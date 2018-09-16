@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import injectGlobal from "../styles/globalStyle";
 
 class App extends Component {
   render() {
-    return <div>Seoul Revisioned</div>;
+    return (
+      <injectGlobal>
+        <div>Seoul Revisioned</div>
+      </injectGlobal>
+    );
   }
 }
 
