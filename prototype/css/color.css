@@ -1,0 +1,206 @@
+
+/* brown */
+
+#intro h2,
+#offer h2.heading,
+#bar h2.heading,
+.thumb-content h4,
+.room-detail a,
+.login-link a:hover,
+.rv-price a:hover,
+.topright-link-collapse li a:hover {
+	color:#3E2B2C;
+}
+
+ul.room-list li.active {
+	color:#3E2B2C;
+	font-weight: 600;
+}
+
+header .top ul.topright-link li a,
+.rv-box .rv-detail .rv-room-more a:hover {
+  color: #3E2B2C;
+}
+
+a:hover,
+a:focus,
+a:active
+.navbar .nav > .active > a,.navbar .nav > .active > a:hover,
+.navbar .nav > li > a:hover,
+.navbar .nav > li > a:focus,
+.navbar .nav > .active > a:focus{ 
+	color:#3E2B2C;
+	text-decoration: none;
+	-webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+
+.custom-carousel-nav.right:hover, 
+.custom-carousel-nav.left:hover, 
+.flex-control-nav li a:hover, 
+.flex-control-nav li a.active {
+  background-color: #3E2B2C;
+}
+
+.cbp-l-caption-buttonLeft,
+.cbp-l-caption-buttonRight,.cbp-l-filters-button .cbp-filter-counter {
+    background-color: #3E2B2C;
+}
+
+.cbp-l-filters-button .cbp-filter-counter:before {
+    border-top: 4px solid #3E2B2C;
+}
+
+textarea:focus,
+.form-control:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: #3E2B2C;
+}
+
+input:focus {
+	border-color: #3E2B2C;
+}
+
+
+/* buttons */
+.btn-dark:hover,.btn-dark:focus,.btn-dark:active  {
+  background: #3E2B2C;
+  border:1px solid #3E2B2C;
+}
+
+.btn-theme {
+  border:1px solid #3E2B2C;
+  background: #3E2B2C;
+}
+
+
+/* modal styled */
+.modal.styled .modal-header {
+  background-color: #3E2B2C;
+}
+
+
+/* parallax c slider */
+.da-slide .da-link:hover{
+	background: #3E2B2C;
+	border: 4px solid #3E2B2C;
+}
+
+.da-dots span{
+	background: #3E2B2C;
+}
+
+
+/* flexslider */
+#featured .flexslider .slide-caption {
+	border-left:5px solid #3E2B2C;
+}
+
+
+
+/* wine */
+
+header .nav li a:hover,
+header .nav li a:focus,
+header .nav li.active a,
+header .nav li.active a:hover,
+ul.room-list a:hover {
+  color:#6D0C1F;
+  -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color:#6D0C1F;
+  font-weight: 600;
+}
+
+.btn-theme:hover {
+  border:1px solid #6D0C1F;
+  background: #6D0C1F;
+}
+
+.thumb-box a:hover,
+.room-detail a:hover,
+.rv-box .rv-price .rv-price-num,
+.rv-box .rv-price a,
+.rv-box .rv-detail .rv-room-more a,
+.rv-change a:hover,
+.rv-check a:hover,
+.rv-note a:hover {
+  color: #6D0C1F;
+}
+
+ul.rv-list li.active a,
+ul.rv-list li.active a:hover,
+.rv-check-date h4,
+#pop_btn:hover {
+  color: #6D0C1F;
+  font-weight: 600;
+}
+
+a.scrollup:hover {
+  background: #6D0C1F;
+}
+
+
+/* beige*/
+
+
+footer{
+  background: #F1EBD6;
+}
+
+.bg-ivory {
+  background: #F1EBD6;
+}
+
+
+/* white */
+
+.btn-theme:hover,
+.btn-theme:focus,
+.btn-theme:active
+input[type="submit"]:hover,
+input[type="submit"]:focus,
+input[type="submit"]:active {
+  color: #fff;
+}
+
+
+/* orange */
+
+.rv-box .rv-price .rv-price-num h2.discount {
+  color: #f29502;
+}
+
+
+
+/* red */
+
+.rv-form .lable span.red {
+  color: red;
+}
