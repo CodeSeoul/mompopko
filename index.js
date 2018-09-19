@@ -1,11 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const firebase = require("firebase");
-const firebaseConfig = require("./config/keys");
+const admin = require("firebase-admin");
+let serviceAccount = require("./config/keys.json");
 
-firebase.initializeApp(firebaseConfig);
-const database = firebase.database();
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+const database = admin.firestore();
+
+// Disable deprecated features
+database.settings({
+  timestampsInSnapshots: true
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
