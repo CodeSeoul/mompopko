@@ -14,18 +14,6 @@ database.settings({
   timestampsInSnapshots: true
 });
 
-database
-  .collection("users")
-  .add({
-    first: "Aiden",
-    last: "Jung",
-    born: 1990
-  })
-  .then(data => {
-    console.log(data.id);
-  })
-  .catch(err => console.log(err));
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
