@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import injectGlobal from "../styles/globalStyle";
+import Main from "./Main.js";
 
-class App extends Component {
-  render() {
-    return (
-      <injectGlobal>
-        <div>Seoul Revisioned</div>
-      </injectGlobal>
-    );
-  }
-}
+const App = () => {
+  return (
+    <injectGlobal>
+      <Main />
+    </injectGlobal>
+  );
+};
 
 export default App;
