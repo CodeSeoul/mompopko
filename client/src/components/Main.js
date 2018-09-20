@@ -6,9 +6,8 @@ const Main = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/people" component={People} />
-        <Route path="/person" component={Person} />
         <Route path="/openings" component={Openings} />
-        <Route path="/opening" component={Opening} />
+        <Route path="/profile" component={Profile} />
         <Route path="/Data" component={Data} />
         <Route path="/About" component={About} />
       </Switch>
