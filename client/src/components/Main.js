@@ -8,7 +8,7 @@ import Profile from "../pages/Profile";
 import Data from "../pages/Data";
 import About from "../pages/About";
 import Admin from "../pages/Admin";
-import AddData from "../pages/AddData";
+import AddData from "../pages/AddDataPage";
 const Main = () => {
   return (
     <main>
