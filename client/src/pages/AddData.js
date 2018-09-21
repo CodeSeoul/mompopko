@@ -1,5 +1,5 @@
 import React from "react";
-
+import AddFileContainer from "../components/containers/AddFileContainer";
 //features
 //should have icon to show drag and drop
 //user knows when file has been accepted
@@ -14,6 +14,7 @@ class AddData extends React.Component {
     return (
       <div>
         <h1>AddData</h1>
+        <AddFileContainer />
         {/* component to enter data */}
         {/* table to see summary of data */}
         {/* button to upload data to firebase */}
