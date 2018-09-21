@@ -1,6 +1,6 @@
 import React from "react";
 import AddFileContainer from "../components/containers/AddFileContainer";
-import { AddData } from "../styles/pages/AddData";
+import AddData from "../styles/pages/AddData/index";
 //features
 //should have icon to show drag and drop
 //user knows when file has been accepted
@@ -12,9 +12,12 @@ import { AddData } from "../styles/pages/AddData";
 
 class AddDataPage extends React.Component {
   render() {
+    const { Header } = AddData;
     return (
       <div>
-        <h1>AddData</h1>
+        <Header>
+          <h1>AddData</h1>
+        </Header>
         <AddFileContainer />
         {/* component to enter data */}
         {/* table to see summary of data */}
