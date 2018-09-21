@@ -9,15 +9,16 @@ import React from "react";
 //user can decide to delete some parts of data before adding to firebase
 //user get notification of status of uploadin to firebase
 
-const AddData = () => {
-  return (
-    <div>
-      <h1>AddData</h1>
-      {/* component to enter data */}
-      {/* table to see summary of data */}
-      {/* button to upload data to firebase */}
-    </div>
-  );
-};
-
+class AddData extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>AddData</h1>
+        {/* component to enter data */}
+        {/* table to see summary of data */}
+        {/* button to upload data to firebase */}
+      </div>
+    );
+  }
+}
 export default AddData;
