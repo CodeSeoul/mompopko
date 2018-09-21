@@ -1,8 +1,10 @@
 import React from "react";
+import AddFile from "../presentational/AddFile";
+class AddFileContainer extends React.Component {
+  state = {};
 
-const Addfile = () => {
-  return <div>AddFile</div>;
-};
-
-export default Addfile;
-<div>AddFile</div>;
+  render() {
+    return <AddFile />;
+  }
+}
+export default AddFileContainer;

@@ -1,10 +1,9 @@
 import React from "react";
-import AddFile from "../presentational/AddFile";
-class AddFileContainer extends Component {
-  state = {};
+import AddData from "../../styles/components/AddFile/index";
+const Addfile = () => {
+  const { Wrapper } = AddData;
+  console.log("AddData", Wrapper);
+  return <Wrapper>AddFiles</Wrapper>;
+};
 
-  render() {
-    return <AddFile />;
-  }
-}
-export default AddFileContainer;
+export default Addfile;
