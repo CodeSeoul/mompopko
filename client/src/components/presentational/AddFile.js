@@ -1,7 +1,7 @@
 import React from "react";
-import AddData from "../../styles/components/AddFile/index";
+import AddFile from "../../styles/components/AddFile/index";
 const Addfile = () => {
-  const { Wrapper } = AddData;
+  const { Wrapper } = AddFile;
   console.log("AddData", Wrapper);
   return <Wrapper>AddFiles</Wrapper>;
 };

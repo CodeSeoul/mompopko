@@ -1,5 +1,5 @@
 import Wrapper from "./wrapper";
 
-const AddData = { Wrapper };
+const AddFile = { Wrapper };
 
-export default AddData;
+export default AddFile;
