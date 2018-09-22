@@ -6,7 +6,19 @@ const Wrapper = styled.div`
   height: 20vmin;
   margin: 0 auto;
   text-align: center;
-  border: 1px solid blue;
+
+  div {
+    height: 100%;
+    border: 1px solid blue;
+  }
+  .drop_enter {
+    background-color: #2196f3;
+    border: none;
+  }
+  .drop_leave {
+    background-color: gray;
+    border: none;
+  }
 `;
 
 export default Wrapper;

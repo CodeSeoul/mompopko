@@ -2,13 +2,21 @@ import React from "react";
 import AddFile from "../presentational/AddFile";
 import { log } from "util";
 class AddFileContainer extends React.Component {
-  state = {};
+  state = {
+    className: ""
+  };
 
   _onDragEnter = () => {
     console.log("Drag Enter");
+    this.setState({
+      className: "drop_enter"
+    });
   };
   _onDragLeave = () => {
     console.log("Drag Leave");
+    this.setState({
+      className: ""
+    });
   };
   _onDragOver = e => {
     e.preventDefault();
@@ -26,6 +34,7 @@ class AddFileContainer extends React.Component {
         onDrop={this._onDrop}
         onDragEnter={this._onDragEnter}
         onDragLeave={this._onDragLeave}
+        className={this.state.className}
       />
     );
   }
