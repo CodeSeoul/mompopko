@@ -5,9 +5,9 @@ const Search = props => {
   return (
     <SearchStyle>
       <div className="search-container">
-        <div>
+        <button>
           <i className="fa fa-search" />
-        </div>
+        </button>
         <form action="POST">
           <input type="text" />
         </form>
