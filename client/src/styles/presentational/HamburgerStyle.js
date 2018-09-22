@@ -13,7 +13,7 @@ const HamburgerStyle = styled.div`
     background-color: ${styleVar.secondaryDark};
     margin-top: 5px;
   }
-  @media only screen and (max-width: 767px) {
+  @media only screen and (max-width: 740px) {
     display: block;
   }
 `;
