@@ -1,9 +1,10 @@
 import React from "react";
+import Brand from "../../styles/presentational/Brand";
 
 const Header = props => {
   return (
     <div className="header">
-      <div className="brand">Seoul Re-visioned</div>
+      <Brand>Seoul Re-visioned</Brand>
       <div className="navbar" />
     </div>
   );
