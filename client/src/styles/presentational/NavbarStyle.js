@@ -6,24 +6,30 @@ const NavbarStyle = styled.div`
   nav {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    height: 50px;
+
     ul {
-      margin: 15px 0;
-      &.sns {
-        font-size: 1.5rem;
-        a {
-          color: ${styleVar.primaryDark};
-        }
-      }
+      margin: 0;
       padding: 0;
       display: flex;
       flex-direction: row;
       align-items: center;
       justify-content: space-around;
+
       a {
-        padding: 0 20px;
         text-decoration: none;
         color: ${styleVar.secondaryDark};
         display: block;
+        padding: 10px;
+        :hover {
+          background-color: ${styleVar.secondaryLight};
+        }
+      }
+
+      &.sns a {
+        color: ${styleVar.primaryDark};
+        font-size: 1.5rem;
+        padding: 6px 10px;
       }
     }
   }
@@ -49,9 +55,6 @@ const NavbarStyle = styled.div`
         margin: 0 auto;
         width: 300px;
         font-size: 1.5rem;
-        a {
-          color: ${styleVar.primaryDark};
-        }
       }
     }
   }
