@@ -7,8 +7,10 @@ const BrandStyle = styled.div`
   text-align: center;
   font-size: 1.5rem;
   font-family: Amatic SC;
-  h1 {
+  a {
     margin: 20px 0;
+    text-decoration: none;
+    color: ${styleVar.primaryDark};
   }
 `;
 
