@@ -8,10 +8,12 @@ import Profile from "../pages/Profile";
 import Data from "../pages/Data";
 import About from "../pages/About";
 import Admin from "../pages/Admin";
+import Header from "./presentational/Header";
 
 const Main = () => {
   return (
     <main>
+      <Header />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/people" component={People} />
