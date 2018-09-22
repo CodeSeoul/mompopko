@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import styleVar from "../variables";
 
-const Brand = styled.div`
+const BrandStyle = styled.div`
   @import url("https://fonts.googleapis.com/css?family=Amatic+SC:400,700");
   border-bottom: 1px solid #ddd;
   text-align: center;
@@ -12,4 +12,4 @@ const Brand = styled.div`
   }
 `;
 
-export default Brand;
+export default BrandStyle;
