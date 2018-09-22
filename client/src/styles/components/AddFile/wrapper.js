@@ -14,10 +14,15 @@ const Wrapper = styled.div`
   .drop_enter {
     background-color: #2196f3;
     border: none;
+    color: white;
   }
   .drop_leave {
     background-color: gray;
     border: none;
+  }
+  p {
+    font-size: 2rem;
+    color: dimgray;
   }
 `;
 

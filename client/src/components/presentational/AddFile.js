@@ -4,6 +4,8 @@ const Addfile = props => {
   const { Wrapper } = AddFile;
   const { onDragOver, onDrop, onDragLeave, onDragEnter, className } = props;
   console.log("className", className);
+  const dropText =
+    className === "drop_enter" ? "Drop File!" : "Drop Files Here";
   return (
     <Wrapper>
       <div
@@ -15,7 +17,7 @@ const Addfile = props => {
         }}
         className={className}
       >
-        AddFiles
+        <p className={className}>{dropText}</p>
       </div>
     </Wrapper>
   );
