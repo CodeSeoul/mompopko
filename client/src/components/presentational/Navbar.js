@@ -27,9 +27,15 @@ class Navbar extends Component {
             <Link to="/about">About</Link>
           </ul>
           <ul className="sns">
-            <Link to="#">FB</Link>
-            <Link to="#">IG</Link>
-            <Link to="#">YT</Link>
+            <Link to="#">
+              <i className="fab fa-facebook-square" />
+            </Link>
+            <Link to="#">
+              <i className="fab fa-instagram" />
+            </Link>
+            <Link to="#">
+              <i className="fab fa-youtube" />
+            </Link>
           </ul>
         </nav>
       </NavbarStyle>
