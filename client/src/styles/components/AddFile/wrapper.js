@@ -16,9 +16,11 @@ const Wrapper = styled.div`
     border: none;
     color: white;
   }
-  .drop_leave {
-    background-color: gray;
-    border: none;
+  .drop_processed {
+    background-color: white;
+  }
+  .dropped {
+    background-color: lightblue;
   }
   p {
     font-size: 2rem;

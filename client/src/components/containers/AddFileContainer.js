@@ -32,7 +32,12 @@ class AddFileContainer extends React.Component {
       const reader = new FileReader();
       //file droppeed into container
       const file = e.dataTransfer.files[0];
-
+      this.setState(prevState => {
+        return {
+          ...prevState,
+          className: "dropped"
+        };
+      });
       reader.onload = event => {
         //console.log("e.evententTarget.result", event.target.result);
         /* Parse data */
@@ -49,7 +54,7 @@ class AddFileContainer extends React.Component {
         });
         this.setState(prevState => {
           return {
-            ...prevState,
+            className: "drop_processed",
             fileArray: filteredData
           };
         });
