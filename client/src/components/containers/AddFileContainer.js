@@ -47,7 +47,12 @@ class AddFileContainer extends React.Component {
         const wsname = workbook.SheetNames[0];
         const ws = workbook.Sheets[wsname];
         /* Convert array of arrays  to JSON*/
-        const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+        const data = XLSX.utils.sheet_to_json(ws, {
+          header: 1,
+          //raw: false keeps dates and phone numbers as strings
+          raw: false
+        });
+
         /* remove empty rows of data */
         const filteredData = data.filter(item => {
           return item.length > 0;
