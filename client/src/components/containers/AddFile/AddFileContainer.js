@@ -1,5 +1,6 @@
 import React from "react";
 import AddFile from "../../presentational/AddFile/AddFile";
+import FileData from "../../presentational/AddFile/FileData";
 import XLSX from "xlsx";
 class AddFileContainer extends React.Component {
   state = {
@@ -72,14 +73,17 @@ class AddFileContainer extends React.Component {
   render() {
     console.log("this.state.fileArray", this.state.fileArray);
     return (
-      <AddFile
-        id="dragbox"
-        onDragOver={this._onDragOver}
-        onDrop={this._onDrop}
-        onDragEnter={this._onDragEnter}
-        onDragLeave={this._onDragLeave}
-        className={this.state.className}
-      />
+      <React.Fragment>
+        <AddFile
+          id="dragbox"
+          onDragOver={this._onDragOver}
+          onDrop={this._onDrop}
+          onDragEnter={this._onDragEnter}
+          onDragLeave={this._onDragLeave}
+          className={this.state.className}
+        />
+        <FileData data={this.state.fileArray} />
+      </React.Fragment>
     );
   }
 }
