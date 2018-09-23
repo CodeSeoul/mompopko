@@ -1,5 +1,5 @@
 import React from "react";
-import AddFileContainer from "../components/containers/AddFileContainer";
+import AddFileContainer from "../components/containers/AddFile/AddFileContainer";
 import AddData from "../styles/pages/AddData/index";
 //features
 //should have icon to show drag and drop

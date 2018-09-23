@@ -1,5 +1,5 @@
 import React from "react";
-import AddFile from "../presentational/AddFile";
+import AddFile from "../../presentational/AddFile";
 import XLSX from "xlsx";
 class AddFileContainer extends React.Component {
   state = {
