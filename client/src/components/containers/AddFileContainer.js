@@ -1,12 +1,15 @@
 import React from "react";
 import AddFile from "../presentational/AddFile";
-import { log } from "util";
+import XLSX from "xlsx";
 class AddFileContainer extends React.Component {
   state = {
-    className: ""
+    className: "",
+    fileArray: []
   };
 
-  _onDragEnter = () => {
+  _onDragEnter = e => {
+    e.preventDefault();
+    e.stopPropagation();
     console.log("Drag Enter");
     this.setState({
       className: "drop_enter"
@@ -24,9 +27,40 @@ class AddFileContainer extends React.Component {
   };
   _onDrop = e => {
     e.preventDefault();
+    e.stopPropagation();
+    if (e.dataTransfer.files.length > 0) {
+      const reader = new FileReader();
+      //file droppeed into container
+      const file = e.dataTransfer.files[0];
+
+      reader.onload = event => {
+        //console.log("e.evententTarget.result", event.target.result);
+        /* Parse data */
+        const buffer = event.target.result;
+        const workbook = XLSX.read(buffer, { type: "array" });
+        /* Get first worksheet */
+        const wsname = workbook.SheetNames[0];
+        const ws = workbook.Sheets[wsname];
+        /* Convert array of arrays  to JSON*/
+        const data = XLSX.utils.sheet_to_json(ws, { header: 1 });
+        /* remove empty rows of data */
+        const filteredData = data.filter(item => {
+          return item.length > 0;
+        });
+        this.setState(prevState => {
+          return {
+            ...prevState,
+            fileArray: filteredData
+          };
+        });
+      };
+      reader.readAsArrayBuffer(file);
+    } else {
+      console.log("Must drop in a file");
+    }
   };
-  componentDidMount() {}
   render() {
+    console.log("this.state.fileArray", this.state.fileArray);
     return (
       <AddFile
         id="dragbox"

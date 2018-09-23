@@ -13,7 +13,7 @@ const Addfile = props => {
         onDragEnter={e => onDragEnter(e)}
         onDragLeave={e => onDragLeave(e)}
         onDrop={e => {
-          onDrop(e, "wip");
+          onDrop(e);
         }}
         className={className}
       >
