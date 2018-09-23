@@ -4,8 +4,20 @@ const Addfile = props => {
   const { Wrapper } = AddFile;
   const { onDragOver, onDrop, onDragLeave, onDragEnter, className } = props;
   console.log("className", className);
-  const dropText =
-    className === "drop_enter" ? "Drop File!" : "Drop Files Here";
+  let dropText;
+  switch (className) {
+    case "drop_enter":
+      dropText = "Drop File!";
+      break;
+    case "dropped":
+      dropText = "Processing!";
+      break;
+    case "drop_processed":
+      dropText = "Done!";
+      break;
+    default:
+      dropText = "Drop Files Here";
+  }
   return (
     <Wrapper>
       <div

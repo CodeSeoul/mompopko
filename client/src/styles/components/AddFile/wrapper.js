@@ -18,6 +18,7 @@ const Wrapper = styled.div`
   }
   .drop_processed {
     background-color: white;
+    color: blue;
   }
   .dropped {
     background-color: lightblue;
