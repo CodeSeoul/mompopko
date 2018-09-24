@@ -8,6 +8,7 @@ import Profile from "../pages/Profile";
 import Data from "../pages/Data";
 import About from "../pages/About";
 import Admin from "../pages/Admin";
+import AddData from "../pages/AddDataPage";
 import Header from "./presentational/Header";
 
 const Main = () => {
@@ -22,6 +23,7 @@ const Main = () => {
         <Route path="/data" component={Data} />
         <Route path="/about" component={About} />
         <Route path="/admin" component={Admin} />
+        <Route path="/addData" component={AddData} />
       </Switch>
     </main>
   );
