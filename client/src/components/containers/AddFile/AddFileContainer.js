@@ -5,7 +5,8 @@ import XLSX from "xlsx";
 class AddFileContainer extends React.Component {
   state = {
     className: "",
-    fileArray: []
+    rawFileArray: [],
+    formattedFileData: []
   };
 
   _onDragEnter = e => {
@@ -58,10 +59,33 @@ class AddFileContainer extends React.Component {
         const filteredData = data.filter(item => {
           return item.length > 0;
         });
+        //format data for firebase
+        const formattedFileData = filteredData.reduce(
+          (formattedData, item, i) => {
+            const uid =
+              "id_" +
+              Math.random()
+                .toString(36)
+                .substr(2, 12);
+            const business = {
+              uid,
+              name: item[2],
+              location: `${item[3]} ${item[8]}`,
+              tel: item[6],
+              opening: item[7],
+              type: item[11]
+            };
+            console.log("formattedData", formattedData);
+            console.log("business", business);
+            return [...formattedData, business];
+          },
+          []
+        );
         this.setState(prevState => {
           return {
             className: "drop_processed",
-            fileArray: filteredData
+            rawFileArray: filteredData,
+            formattedFileData
           };
         });
       };
@@ -71,7 +95,7 @@ class AddFileContainer extends React.Component {
     }
   };
   render() {
-    console.log("this.state.fileArray", this.state.fileArray);
+    console.log("State", this.state);
     return (
       <React.Fragment>
         <AddFile
@@ -82,7 +106,10 @@ class AddFileContainer extends React.Component {
           onDragLeave={this._onDragLeave}
           className={this.state.className}
         />
-        <FileData data={this.state.fileArray} />
+        {this.state.rawFileArray.length > 0 && (
+          <button>Upload New Businesses</button>
+        )}
+        <FileData data={this.state.formattedFileData} />
       </React.Fragment>
     );
   }

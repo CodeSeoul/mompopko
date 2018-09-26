@@ -8,14 +8,22 @@ const FileData = props => {
         <p>Number of businesses: {data.length - 1}</p>
         <table>
           <tbody>
+            <tr>
+              <th>name</th>
+              <th>location</th>
+              <th>opening</th>
+              <th>tel</th>
+              <th>type</th>
+            </tr>
             {data.map((business, i) => {
+              const { uid, name, location, opening, tel, type } = business;
               return (
-                <tr key={i}>
-                  <th>{business[2]}</th>
-                  <th>{business[3] + " " + business[8]}</th>
-                  <th>{business[6]}</th>
-                  <th>{business[7]}</th>
-                  <th>{business[11]}</th>
+                <tr key={uid}>
+                  <th>{name}</th>
+                  <th>{location}</th>
+                  <th>{opening}</th>
+                  <th>{tel}</th>
+                  <th>{type}</th>
                 </tr>
               );
             })}
