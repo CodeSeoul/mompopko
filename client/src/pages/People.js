@@ -1,8 +1,13 @@
 import React, { Component } from "react";
+import PeopleContainer from "../components/containers/PeopleContainer.js/PeopleContainer";
 
 class People extends Component {
   render() {
-    return <div />;
+    return (
+      <div>
+        <PeopleContainer />
+      </div>
+    );
   }
 }
 
