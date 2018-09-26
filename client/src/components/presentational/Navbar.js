@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import NavbarStyle from "../../styles/presentational/NavbarStyle";
 import { Link } from "react-router-dom";
-import Hamburger from "../container/Hamburger";
+import HamburgerMenu from "../containers/HamburgerMenu/HamburgerMenu";
 
 class Navbar extends Component {
   state = {
@@ -18,7 +18,7 @@ class Navbar extends Component {
   render() {
     return (
       <NavbarStyle toggle={this.state.toggle}>
-        <Hamburger toggleHamburger={() => this.toggleHamburger()} />
+        <HamburgerMenu toggleHamburger={() => this.toggleHamburger()} />
         <nav className="container">
           <ul className="menu">
             <Link to="/people">People</Link>

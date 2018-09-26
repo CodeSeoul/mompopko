@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import styleVar from "../variables";
 
-const HamburgerStyle = styled.div`
+const HamburgerMenuStyle = styled.div`
   display: none;
   position: absolute;
   right: 35px;
@@ -18,4 +18,4 @@ const HamburgerStyle = styled.div`
   }
 `;
 
-export default HamburgerStyle;
+export default HamburgerMenuStyle;
