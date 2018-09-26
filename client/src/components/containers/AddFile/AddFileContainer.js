@@ -69,10 +69,15 @@ class AddFileContainer extends React.Component {
                 .substr(2, 12);
             const business = {
               uid,
+              category: item[0],
+              registrationDate: item[1],
               name: item[2],
-              location: `${item[3]} ${item[8]}`,
+              locationNew: `${item[3]} ${item[8]}`,
+              locationOld: `${item[4]} ${item[9]}`,
+              area: item[5],
               tel: item[6],
               opening: item[7],
+              buildingConstuction: item[10],
               type: item[11]
             };
             console.log("formattedData", formattedData);
@@ -94,6 +99,10 @@ class AddFileContainer extends React.Component {
       console.log("Must drop in a file");
     }
   };
+
+  upload = e => {
+    e.preventDefault();
+  };
   render() {
     console.log("State", this.state);
     return (
@@ -107,7 +116,7 @@ class AddFileContainer extends React.Component {
           className={this.state.className}
         />
         {this.state.rawFileArray.length > 0 && (
-          <button>Upload New Businesses</button>
+          <button onClick={this.uploadData}>Upload New Businesses</button>
         )}
         <FileData data={this.state.formattedFileData} />
       </React.Fragment>

@@ -9,14 +9,21 @@ const FileData = props => {
         <table>
           <tbody>
             <tr>
-              <th>name</th>
-              <th>location</th>
-              <th>opening</th>
-              <th>tel</th>
-              <th>type</th>
+              <th>Name</th>
+              <th>Location</th>
+              <th>Opening</th>
+              <th>Tel</th>
+              <th>Type</th>
             </tr>
             {data.map((business, i) => {
-              const { uid, name, location, opening, tel, type } = business;
+              const {
+                uid,
+                name,
+                locationNew: location,
+                opening,
+                tel,
+                type
+              } = business;
               return (
                 <tr key={uid}>
                   <th>{name}</th>
