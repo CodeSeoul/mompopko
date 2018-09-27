@@ -9,6 +9,7 @@ import Data from "../pages/Data";
 import About from "../pages/About";
 import Admin from "../pages/Admin";
 import AddData from "../pages/AddDataPage";
+import AddPeople from "../pages/AddPeople";
 import Header from "./presentational/Header";
 
 const Main = () => {
@@ -24,6 +25,7 @@ const Main = () => {
         <Route path="/about" component={About} />
         <Route path="/admin" component={Admin} />
         <Route path="/addData" component={AddData} />
+        <Route path="/addPeople" component={AddPeople} />
       </Switch>
     </main>
   );
