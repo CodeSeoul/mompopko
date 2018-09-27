@@ -1,5 +1,4 @@
 import React from "react";
-
 import AddPeopleData from "../../presentational/AddPeopleData/AddPeopleData";
 
 class AddPeopleContainer extends React.Component {
@@ -10,9 +9,9 @@ class AddPeopleContainer extends React.Component {
   changeHandler = e => {
     const name = e.target.name;
     const value = e.target.value;
-    this.setState({
-      People: { [name]: value }
-    });
+    this.setState(prevState => ({
+      People: { ...prevState.People, [name]: value }
+    }));
   };
 
   render() {
