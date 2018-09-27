@@ -1,5 +1,7 @@
 import React from "react";
 
+import AddPeopleData from "../../presentational/AddPeopleData/AddPeopleData";
+
 class AddPeopleContainer extends React.Component {
   state = {
     PeopleArray: []
@@ -8,7 +10,7 @@ class AddPeopleContainer extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <div>Add People Component</div>
+        <AddPeopleData />
       </React.Fragment>
     );
   }
