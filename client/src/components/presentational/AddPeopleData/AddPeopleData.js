@@ -57,7 +57,7 @@ const AddPeopleData = props => {
         rows="10"
       />
       <input onChange={e => props.changeHandler(e)} type="file" name="image" />
-      <button>submit</button>
+      <button onClick={() => props.uploadHandler()}>submit</button>
     </form>
   );
 };

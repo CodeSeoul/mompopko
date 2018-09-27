@@ -14,11 +14,18 @@ class AddPeopleContainer extends React.Component {
     }));
   };
 
+  uploadHandler = () => {
+    console.log("upload handler working");
+  };
+
   render() {
     console.log(this.state);
     return (
       <React.Fragment>
-        <AddPeopleData changeHandler={this.changeHandler} />
+        <AddPeopleData
+          uploadHandler={this.uploadHandler}
+          changeHandler={this.changeHandler}
+        />
       </React.Fragment>
     );
   }
