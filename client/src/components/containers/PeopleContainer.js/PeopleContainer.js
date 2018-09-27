@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import config from "../../../config/config";
 import People from "../../../styles/components/People/People";
+import Person from "../../presentational/Person/Person";
 const firebase = require("firebase");
 require("firebase/firestore");
 
@@ -26,10 +27,13 @@ class PeopleContainer extends Component {
 
   render() {
     console.log(this.state);
+    const people = this.state.people.map(person => {
+      return <Person person={person} />;
+    });
     return (
       <People>
         <div className="header">People</div>
-        <div className="people" />
+        {people}
       </People>
     );
   }
