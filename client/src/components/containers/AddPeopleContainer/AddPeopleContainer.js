@@ -4,13 +4,22 @@ import AddPeopleData from "../../presentational/AddPeopleData/AddPeopleData";
 
 class AddPeopleContainer extends React.Component {
   state = {
-    PeopleArray: []
+    People: {}
+  };
+
+  changeHandler = e => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({
+      People: { [name]: value }
+    });
   };
 
   render() {
+    console.log(this.state);
     return (
       <React.Fragment>
-        <AddPeopleData />
+        <AddPeopleData changeHandler={this.changeHandler} />
       </React.Fragment>
     );
   }
