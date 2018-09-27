@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import config from "../../../config/config";
+import People from "../../../styles/components/People/People";
 const firebase = require("firebase");
 require("firebase/firestore");
 
@@ -25,7 +26,12 @@ class PeopleContainer extends Component {
 
   render() {
     console.log(this.state);
-    return <div />;
+    return (
+      <People>
+        <div className="header">People</div>
+        <div className="people" />
+      </People>
+    );
   }
 }
 export default PeopleContainer;
