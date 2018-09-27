@@ -20,7 +20,9 @@ class PeopleContainer extends Component {
     db.collection("people")
       .get()
       .then(collection => {
-        const people = collection.docs.map(doc => doc.data());
+        const people = collection.docs.map(doc => {
+          return { ...doc.data(), id: doc.id };
+        });
         this.setState({ people: people });
       });
   }
@@ -28,7 +30,7 @@ class PeopleContainer extends Component {
   render() {
     console.log(this.state);
     const people = this.state.people.map(person => {
-      return <Person person={person} />;
+      return <Person key={person.id} person={person} />;
     });
     return (
       <People>
