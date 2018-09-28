@@ -2,11 +2,12 @@ import React from "react";
 
 const AddPeopleData = props => {
   return (
-    <form action="POST">
+    <form onSubmit={e => props.uploadHandler(e)} action="POST">
       <span>name</span>
       <input onChange={e => props.changeHandler(e)} name="name" type="text" />
       <span>occupation</span>
       <input
+        value={props.fashion}
         onChange={e => props.changeHandler(e)}
         name="occupation"
         type="text"
@@ -57,7 +58,7 @@ const AddPeopleData = props => {
         rows="10"
       />
       <input onChange={e => props.changeHandler(e)} type="file" name="image" />
-      <button onClick={() => props.uploadHandler()}>submit</button>
+      <button>submit</button>
     </form>
   );
 };
