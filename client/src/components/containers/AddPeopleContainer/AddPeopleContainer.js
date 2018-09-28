@@ -27,6 +27,7 @@ class AddPeopleContainer extends React.Component {
     console.log("upload handler working");
     db.collection("people").add(People);
     e.target.reset();
+    this.setState({ People: {} });
   };
 
   render() {
