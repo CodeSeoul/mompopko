@@ -26,7 +26,6 @@ const AddPeopleData = props => {
       <span>occupation</span>
       <input
         value={occupation}
-        value={props.fashion}
         onChange={e => props.changeHandler(e)}
         name="occupation"
         type="text"

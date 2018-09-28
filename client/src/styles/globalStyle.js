@@ -1,6 +1,6 @@
-import { injectGlobal } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
-injectGlobal`
+const GlobalStyle = createGlobalStyle`
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700|Roboto:300,400,700');
 
   html, body {
@@ -11,4 +11,4 @@ injectGlobal`
   }
 `;
 
-export default injectGlobal;
+export default GlobalStyle;
