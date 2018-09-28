@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import config from "../../../config/config";
 import People from "../../../styles/components/People/People";
 import Person from "../../presentational/Person/Person";
-const firebase = require("firebase");
-require("firebase/firestore");
+import FbApp from "../../../config/firebase";
 
-firebase.initializeApp(config);
-const db = firebase.firestore();
+const db = FbApp.firestore();
 
 db.settings({
   timestampsInSnapshots: true
@@ -21,6 +18,7 @@ class PeopleContainer extends Component {
       .get()
       .then(collection => {
         const people = collection.docs.map(doc => {
+          console.log(doc.data(), "doc");
           return { ...doc.data(), id: doc.id };
         });
         this.setState({ people: people });
