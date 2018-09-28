@@ -50,7 +50,8 @@ class AddPeopleContainer extends React.Component {
             console.log("image uploading finished");
           }
         );
-      });
+      })
+      .catch(err => console.log(err));
     e.target.reset();
     this.setState({ People: {}, imgFile: null });
   };
