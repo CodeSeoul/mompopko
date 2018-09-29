@@ -33,7 +33,9 @@ class PeopleContainer extends Component {
     return (
       <People>
         <div className="header">People</div>
-        {people}
+        <div className="container" id="people">
+          {people}
+        </div>
       </People>
     );
   }
