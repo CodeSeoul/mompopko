@@ -33,8 +33,10 @@ class PeopleContainer extends Component {
     return (
       <People>
         <div className="header">People</div>
-        <div className="container" id="people">
-          {people}
+        <div className="container">
+          <div className="grid-container" id="people">
+            {people}
+          </div>
         </div>
       </People>
     );

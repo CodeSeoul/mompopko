@@ -8,9 +8,9 @@ class Person extends Component {
 
     return (
       <PersonStyle>
-        <div id="container">
-          <h1 id="nav">People</h1>
-          <div>{person.id}</div>
+        <div className="person-card">
+          <img src={person.imgURL} />
+          <div className="description">{person.occupation}</div>
         </div>
       </PersonStyle>
     );
