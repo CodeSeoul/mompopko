@@ -25,11 +25,20 @@ const FooterStyle = styled.div`
   }
 
   .copyright-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    width: 70%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
 
-    a {
-      padding: 0 80px;
+  /* Mobile */
+  @media only screen and (max-width: 740px) {
+    .copyright-container {
+      flex-direction: column;
+      a {
+        height: 30px;
+      }
     }
   }
 `;
