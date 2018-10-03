@@ -4,12 +4,13 @@ const People = styled.div`
   padding: 3rem 5rem;
 
   .container {
-    margin-top: 30px;
+    margin: 30px auto;
   }
 
   .grid-container {
+    width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-gap: 1rem;
   }
 `;
