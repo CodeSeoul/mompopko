@@ -18,7 +18,7 @@ const Footer = props => {
           <i className="fab fa-youtube" />
         </Link>
       </div>
-      <div>
+      <div className="copyright-container">
         <Link to="#">Contact</Link>
         <Link to="#">Copyright</Link>
         <Link to="#">Collaborate</Link>
