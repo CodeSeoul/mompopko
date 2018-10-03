@@ -11,6 +11,7 @@ import Admin from "../pages/Admin";
 import AddData from "../pages/AddDataPage";
 import AddPeople from "../pages/AddPeople";
 import Header from "./presentational/Header";
+import Footer from "./presentational/Footer/Footer";
 
 const Main = () => {
   return (
@@ -27,6 +28,7 @@ const Main = () => {
         <Route path="/addData" component={AddData} />
         <Route path="/addPeople" component={AddPeople} />
       </Switch>
+      <Footer />
     </main>
   );
 };
