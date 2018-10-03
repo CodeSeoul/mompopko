@@ -1,12 +1,13 @@
 import React from "react";
 import FooterStyle from "../../../styles/presentational/FooterStyle";
+import EmailSubscription from "../../containers/EmailSubscription/EmailSubscription";
 import { Link } from "react-router-dom";
 
 const Footer = props => {
   return (
     <FooterStyle>
       <div className="subscribe">Subscribe</div>
-      <div className="email" />
+      <EmailSubscription />
       <div className="icon-container">
         <Link to="#">
           <i className="fab fa-facebook" />
