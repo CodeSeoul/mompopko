@@ -8,9 +8,15 @@ const Footer = props => {
       <div className="subscribe">Subscribe</div>
       <div className="email" />
       <div className="icon-container">
-        <Link to="#">Instagram</Link>
-        <Link to="#">Instagram</Link>
-        <Link to="#">Youtube</Link>
+        <Link to="#">
+          <i className="fab fa-facebook" />
+        </Link>
+        <Link to="#">
+          <i className="fab fa-instagram" />
+        </Link>
+        <Link to="#">
+          <i className="fab fa-youtube" />
+        </Link>
       </div>
       <div>
         <Link to="#">Contact</Link>
