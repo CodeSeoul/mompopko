@@ -10,7 +10,14 @@ class Person extends Component {
       <PersonStyle>
         <div className="person-card">
           <img src={person.imgURL} />
-          <div className="description">{person.occupation}</div>
+          <div className="description">
+            <div id="person-occupation">
+              <i className="fas fa-user" />
+              {person.occupation}
+            </div>
+            <br />
+            <div id="person-name">{person.name}</div>
+          </div>
         </div>
       </PersonStyle>
     );

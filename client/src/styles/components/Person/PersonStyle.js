@@ -16,16 +16,32 @@ const Person = styled.div`
   }
 
   .description {
-    color: ${styledVar.primaryDark};
+    color: ${styledVar.secondaryDark};
     background-color: ${styledVar.primaryLight};
     opacity: 0.8;
     transform: translateY(-50px);
     height: 50px;
     transition: all 0.5s;
+    padding: 0.81rem 0 0 1rem;
 
     :hover {
-      height: 80px;
-      transform: translateY(-80px);
+      height: 90px;
+      transform: translateY(-90px);
+    }
+
+    i {
+      margin-right: 0.5rem;
+    }
+
+    #person-occupation {
+      height: 0.5rem;
+    }
+
+    #person-name {
+      color : ${styledVar.primaryDark}
+      font-size: 2rem;
+      font-family: "Caveat";
+      font-weight: 700;
     }
   }
 `;
