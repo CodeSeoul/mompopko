@@ -47,7 +47,12 @@ class AddPeopleContainer extends React.Component {
             console.log(error);
           },
           complete => {
-            console.log("image uploading finished");
+            console.log("image uploading finished", person.id);
+            uploadTask.snapshot.ref.getDownloadURL().then(imgURL => {
+              db.collection("/people")
+                .doc(person.id)
+                .set({ ...People, imgURL: imgURL });
+            });
           }
         );
       })
