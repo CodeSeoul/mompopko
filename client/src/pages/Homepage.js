@@ -1,7 +1,13 @@
 import React from "react";
+import PeopleContainer from "../components/containers/PeopleContainer/PeopleContainer";
 
-const Hompage = () => {
-  return <div>Homepage</div>;
+const Homepage = () => {
+  return (
+    <React.Fragment>
+      <div>Homepage</div>
+      <PeopleContainer />
+    </React.Fragment>
+  );
 };
 
-export default Hompage;
+export default Homepage;
