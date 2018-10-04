@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import People from "../../../styles/components/People/People";
 import Person from "../../presentational/Person/Person";
+import PeopleInfo from "../../presentational/PeopleInfo/PeopleInfo";
 import FbApp from "../../../config/firebase";
+import { Switch, Route } from "react-router-dom";
 
 const db = FbApp.firestore();
 
@@ -50,14 +52,40 @@ class PeopleContainer extends Component {
     }
 
     return (
-      <People>
-        <div className="header">People</div>
-        <div className="container">
-          <div className="grid-container" id="people">
-            {people}
-          </div>
-        </div>
-      </People>
+      <Switch>
+        <Route
+          exact
+          path="/"
+          component={() => (
+            <People>
+              <div className="header">People</div>
+              <div className="container">
+                <div className="grid-container" id="people">
+                  {people}
+                </div>
+              </div>
+            </People>
+          )}
+        />
+        <Route
+          exact
+          path="/people"
+          component={() => (
+            <People>
+              <div className="header">People</div>
+              <div className="container">
+                <div className="grid-container" id="people">
+                  {people}
+                </div>
+              </div>
+            </People>
+          )}
+        />
+        <Route
+          path="/people/:id"
+          component={() => <PeopleInfo person={people}>Hello</PeopleInfo>}
+        />
+      </Switch>
     );
   }
 }
