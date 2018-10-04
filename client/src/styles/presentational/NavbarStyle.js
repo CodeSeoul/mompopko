@@ -21,7 +21,9 @@ const NavbarStyle = styled.div`
         color: ${styleVar.secondaryDark};
         display: block;
         padding: 10px;
+        transition: background-color 0.4s;
         :hover {
+          transition: background-color 0.4s;
           background-color: ${styleVar.secondaryLight};
         }
       }
@@ -47,7 +49,10 @@ const NavbarStyle = styled.div`
         display: flex;
         flex-direction: column;
         a {
+          transition: background-color 0.4s;
           padding: 1rem;
+          width: 90%;
+          text-align: center;
         }
       }
 
