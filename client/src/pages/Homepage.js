@@ -5,7 +5,7 @@ const Homepage = () => {
   return (
     <React.Fragment>
       <div>Homepage</div>
-      <PeopleContainer />
+      <PeopleContainer numberOfPeople={3} />
     </React.Fragment>
   );
 };

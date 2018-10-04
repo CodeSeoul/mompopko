@@ -26,10 +26,29 @@ class PeopleContainer extends Component {
   }
 
   render() {
+    const { numberOfPeople } = this.props;
+
+    const people = [];
+
     console.log(this.state);
-    const people = this.state.people.map(person => {
-      return <Person key={person.id} person={person} />;
-    });
+
+    // shows as many people as numberOfPeople prop
+    if (numberOfPeople !== undefined) {
+      for (let i = 0; i < numberOfPeople; i++) {
+        people[i] =
+          this.state.people[i] === undefined ? null : (
+            <Person
+              key={this.state.people[i].id}
+              person={this.state.people[i]}
+            />
+          );
+      }
+    } else {
+      this.state.people.map(person => {
+        people.push(<Person key={person.id} person={person} />);
+      });
+    }
+
     return (
       <People>
         <div className="header">People</div>
