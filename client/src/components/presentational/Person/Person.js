@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 
 class Person extends Component {
   render() {
-    const person = this.props.person;
+    const { index, person, selectPerson } = this.props;
     console.log("people", person);
 
     return (
       <PersonStyle>
-        <Link to={`/people/${person.id}`}>
+        <Link onClick={() => selectPerson(index)} to={`/people/${person.id}`}>
           <div className="person-card">
             <img src={person.imgURL} />
             <div className="description">

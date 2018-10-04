@@ -13,8 +13,17 @@ db.settings({
 
 class PeopleContainer extends Component {
   state = {
-    people: []
+    people: [],
+    selectedPerson: null
   };
+
+  selectPerson = index => {
+    const newIndex = index;
+    this.setState({
+      selectedPerson: newIndex
+    });
+  };
+
   componentDidMount() {
     db.collection("people")
       .get()
@@ -40,14 +49,27 @@ class PeopleContainer extends Component {
         people[i] =
           this.state.people[i] === undefined ? null : (
             <Person
+              index={i}
               key={this.state.people[i].id}
               person={this.state.people[i]}
+              selectPerson={index => {
+                this.selectPerson(index);
+              }}
             />
           );
       }
     } else {
-      this.state.people.map(person => {
-        people.push(<Person key={person.id} person={person} />);
+      this.state.people.map((person, index) => {
+        people.push(
+          <Person
+            selectPerson={index => {
+              this.selectPerson(index);
+            }}
+            index={index}
+            key={person.id}
+            person={person}
+          />
+        );
       });
     }
 
@@ -56,7 +78,7 @@ class PeopleContainer extends Component {
         <Route
           exact
           path="/"
-          component={() => (
+          render={() => (
             <People>
               <div className="header">People</div>
               <div className="container">
@@ -70,7 +92,7 @@ class PeopleContainer extends Component {
         <Route
           exact
           path="/people"
-          component={() => (
+          render={() => (
             <People>
               <div className="header">People</div>
               <div className="container">
@@ -83,7 +105,13 @@ class PeopleContainer extends Component {
         />
         <Route
           path="/people/:id"
-          component={() => <PeopleInfo person={people}>Hello</PeopleInfo>}
+          render={() =>
+            this.state.selectedPerson === null ? null : (
+              <PeopleInfo person={this.state.people[this.state.selectedPerson]}>
+                Hello
+              </PeopleInfo>
+            )
+          }
         />
       </Switch>
     );
