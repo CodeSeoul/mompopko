@@ -2,6 +2,11 @@ import styled from "styled-components";
 import styledVar from "../../variables";
 
 const Person = styled.div`
+
+  a{
+    text-decoration : none;
+  }
+  
   .person-card {
     overflow: hidden;
     width: 100%;
