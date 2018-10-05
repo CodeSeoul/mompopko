@@ -12,18 +12,34 @@ db.settings({
 class AddPeopleContainer extends React.Component {
   state = {
     People: {},
-    imgFile: null
+    imgFile: null,
+    subImgFiles: FileList
   };
 
   changeHandler = e => {
     let name = e.target.name;
     let value = e.target.value;
-    if (name === "image") {
-      this.setState({
-        imgFile: e.target.files[0]
-      });
-      console.log(this.state);
+
+    switch (name) {
+      case "image": {
+        let imgFile = e.target.files[0];
+        this.setState({
+          imgFile: imgFile
+        });
+        break;
+        console.log(this.state);
+      }
+
+      case "subImages": {
+        let subImages = [...e.target.files];
+        this.setState({
+          subImgFiles: subImages
+        });
+        break;
+        console.log(this.state);
+      }
     }
+
     this.setState(prevState => ({
       People: { ...prevState.People, [name]: value }
     }));
@@ -31,14 +47,23 @@ class AddPeopleContainer extends React.Component {
 
   uploadHandler = e => {
     e.preventDefault();
+
     const People = this.state.People;
-    const img = this.state.imgFile;
+    const mainImg = this.state.imgFile;
+    const subImgs = this.state.subImgFiles;
+
     console.log("upload handler working");
+
     db.collection("people")
       .add(People)
       .then(person => {
-        const uploadTask = storage.ref(`people/${person.id}`).put(img);
-        uploadTask.on(
+        // Uploading main image
+
+        const mainImgUploadTask = storage
+          .ref(`people/${person.id}/${person.id}_main`)
+          .put(mainImg);
+
+        mainImgUploadTask.on(
           "state_changed",
           snapshot => {
             console.log(snapshot);
@@ -47,18 +72,43 @@ class AddPeopleContainer extends React.Component {
             console.log(error);
           },
           complete => {
-            console.log("image uploading finished", person.id);
-            uploadTask.snapshot.ref.getDownloadURL().then(imgURL => {
+            console.log("Main image uploaded");
+
+            mainImgUploadTask.snapshot.ref.getDownloadURL().then(imgURL => {
               db.collection("/people")
                 .doc(person.id)
                 .set({ ...People, imgURL: imgURL });
             });
           }
         );
+
+        // Uploading sub images
+
+        for (let i = 0; i < subImgs.length; i++) {
+          storage
+            .ref(`people/${person.id}/${person.id}_sub${i}`)
+            .put(subImgs[i])
+            .on(
+              "state_changed",
+              snapshot => {
+                console.log(snapshot);
+              },
+              error => {
+                console.log(error);
+              },
+              complete => {
+                console.log("image uploading finished", person.id);
+
+                // db.collection("/people")
+                //   .doc(person.id)
+                //   .set({ ...People, subURL :  });
+              }
+            );
+        }
       })
       .catch(err => console.log(err));
     e.target.reset();
-    this.setState({ People: {}, imgFile: null });
+    this.setState({ People: {}, imgFile: null, subImgFiles: FileList });
   };
 
   render() {
