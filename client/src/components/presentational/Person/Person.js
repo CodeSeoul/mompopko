@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 class Person extends Component {
   render() {
-    const { index, person, selectPerson } = this.props;
+    const { person } = this.props;
     console.log("people", person);
 
     return (
