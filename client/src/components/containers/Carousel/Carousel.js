@@ -1,9 +1,12 @@
 import React from "react";
+import CarouselStyle from "../../../styles/container/CarouselStyle/CarouselStyle";
 
 class Carousel extends React.Component {
   render() {
-    console.log(this.props.children);
-    return <div>{this.props.children}</div>;
+    return;
+    <CarouselStyle>
+      <div>{this.props.children}</div>;
+    </CarouselStyle>;
   }
 }
 
