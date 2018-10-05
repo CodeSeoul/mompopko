@@ -50,6 +50,7 @@ class PeopleContainer extends Component {
     } else {
       this.state.people.map(person => {
         people.push(<Person key={person.id} person={person} />);
+        return null;
       });
     }
 

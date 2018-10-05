@@ -27,7 +27,6 @@ class AddPeopleContainer extends React.Component {
           imgFile: imgFile
         });
         break;
-        console.log(this.state);
       }
 
       case "subImages": {
@@ -36,13 +35,12 @@ class AddPeopleContainer extends React.Component {
           subImgFiles: subImages
         });
         break;
-        console.log(this.state);
       }
+      default:
+        this.setState(prevState => ({
+          People: { ...prevState.People, [name]: value }
+        }));
     }
-
-    this.setState(prevState => ({
-      People: { ...prevState.People, [name]: value }
-    }));
   };
 
   uploadHandler = e => {

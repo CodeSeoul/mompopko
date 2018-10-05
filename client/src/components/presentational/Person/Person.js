@@ -11,7 +11,7 @@ class Person extends Component {
       <PersonStyle>
         <Link to={`/people/${person.id}`}>
           <div className="person-card">
-            <img src={person.imgURL} />
+            <img alt="" src={person.imgURL} />
             <div className="description">
               <div id="person-occupation">
                 <i className="fas fa-user" />

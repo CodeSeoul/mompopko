@@ -1,5 +1,4 @@
 import React from "react";
-import Person from "../Person/Person";
 import PeopleInfoStyle from "../../../styles/presentational/PeopleInfoStyle";
 import Carousel from "../../containers/Carousel/Carousel";
 
@@ -8,9 +7,9 @@ class PeopleInfo extends React.Component {
     console.log(this.props);
     const person = this.props.person;
     const images = [
-      <img src={person.imgURL} />,
+      <img alt="" src={person.imgURL} />,
       person.subImgURLs.map((url, index) => {
-        return <img src={url} key={index} />;
+        return <img alt="" src={url} key={index} />;
       })
     ];
 
