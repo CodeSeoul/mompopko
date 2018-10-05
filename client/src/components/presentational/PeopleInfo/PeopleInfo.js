@@ -7,13 +7,16 @@ class PeopleInfo extends React.Component {
   render() {
     console.log(this.props);
     const person = this.props.person;
-    const subImgURLs = person.subImgURLs.map((url, index) => {
-      return <img src={url} key={index} />;
-    });
+    const images = [
+      <img src={person.imgURL} />,
+      person.subImgURLs.map((url, index) => {
+        return <img src={url} key={index} />;
+      })
+    ];
 
     return (
       <PeopleInfoStyle>
-        <Carousel>{subImgURLs}</Carousel>
+        <Carousel>{images}</Carousel>
         <div className="profile-box-container">
           <ul className="profile-box">
             <li>
