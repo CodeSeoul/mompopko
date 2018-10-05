@@ -4,6 +4,7 @@ import PeopleInfoStyle from "../../../styles/presentational/PeopleInfoStyle";
 
 class PeopleInfo extends React.Component {
   render() {
+    console.log(this.props);
     const person = this.props.person;
     const subImgURLs = person.subImgURLs.map((url, index) => {
       return <img src={url} key={index} />;
