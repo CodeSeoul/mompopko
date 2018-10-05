@@ -1,6 +1,7 @@
 import React from "react";
 import Person from "../Person/Person";
 import PeopleInfoStyle from "../../../styles/presentational/PeopleInfoStyle";
+import Carousel from "../../containers/Carousel/Carousel";
 
 class PeopleInfo extends React.Component {
   render() {
@@ -12,7 +13,7 @@ class PeopleInfo extends React.Component {
 
     return (
       <PeopleInfoStyle>
-        <div className="image-slider">{subImgURLs}</div>
+        <Carousel>{subImgURLs}</Carousel>
         <div className="profile-box-container">
           <ul className="profile-box">
             <li>
