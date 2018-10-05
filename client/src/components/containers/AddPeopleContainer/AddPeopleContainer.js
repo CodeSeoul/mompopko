@@ -83,27 +83,35 @@ class AddPeopleContainer extends React.Component {
         );
 
         // Uploading sub images
-
+        let subImgURLs = [];
         for (let i = 0; i < subImgs.length; i++) {
-          storage
+          const subImgsUploadTask = storage
             .ref(`people/${person.id}/${person.id}_sub${i}`)
-            .put(subImgs[i])
-            .on(
-              "state_changed",
-              snapshot => {
-                console.log(snapshot);
-              },
-              error => {
-                console.log(error);
-              },
-              complete => {
-                console.log("image uploading finished", person.id);
+            .put(subImgs[i]);
 
-                // db.collection("/people")
-                //   .doc(person.id)
-                //   .set({ ...People, subURL :  });
-              }
-            );
+          subImgsUploadTask.on(
+            "state_changed",
+            snapshot => {
+              console.log(snapshot);
+            },
+            error => {
+              console.log(error);
+            },
+            complete => {
+              subImgsUploadTask.snapshot.ref
+                .getDownloadURL()
+                .then(subImgURL => {
+                  subImgURLs[`${i}`] = subImgURL;
+
+                  db.collection("people")
+                    .doc(person.id)
+                    .set({
+                      ...People,
+                      subImgURLs: { ...subImgURLs }
+                    });
+                });
+            }
+          );
         }
       })
       .catch(err => console.log(err));
