@@ -77,7 +77,7 @@ class AddPeopleContainer extends React.Component {
             mainImgUploadTask.snapshot.ref.getDownloadURL().then(imgURL => {
               db.collection("/people")
                 .doc(person.id)
-                .set({ ...People, imgURL: imgURL });
+                .set({ imgURL: imgURL }, { merge: true });
             });
           }
         );
@@ -105,10 +105,12 @@ class AddPeopleContainer extends React.Component {
 
                   db.collection("people")
                     .doc(person.id)
-                    .set({
-                      ...People,
-                      subImgURLs: { ...subImgURLs }
-                    });
+                    .set(
+                      {
+                        subImgURLs: subImgURLs
+                      },
+                      { merge: true }
+                    );
                 });
             }
           );
