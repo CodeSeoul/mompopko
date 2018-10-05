@@ -103,7 +103,7 @@ class AddPeopleContainer extends React.Component {
                 .then(subImgURL => {
                   subImgURLs[`${i}`] = subImgURL;
 
-                  db.collection("people")
+                  db.collection("/people")
                     .doc(person.id)
                     .set(
                       {
