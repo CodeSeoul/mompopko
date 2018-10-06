@@ -34,11 +34,11 @@ class Carousel extends React.Component {
     return (
       <CarouselStyle>
         <div className="wrapper">
-          <div onClick={this.left} className="left button" />
+          <i onClick={this.left} className="fas fa-angle-left left button" />
           <div className="slide" slideindex={this.state.slideIndex}>
             {this.props.children}
           </div>
-          <div onClick={this.right} className="right button" />
+          <i onClick={this.right} className="fas fa-angle-right right button" />
         </div>
       </CarouselStyle>
     );

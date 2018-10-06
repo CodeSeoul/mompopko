@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { callbackify } from "util";
 
 const CarouselStyle = styled.div`
+
+  padding : 3rem 2rem;
+
   .wrapper {
     overflow: hidden;
     width: 300px;
@@ -11,16 +14,15 @@ const CarouselStyle = styled.div`
     .button {
       width: 30px;
       height: 30px;
-      background-color: black;
       position: absolute;
       top: 50%;
     }
     .left {
-      left: 10%;
+      left: 5px;
       z-index: 1;
     }
     .right {
-      right: 10%;
+      right: 5px;
     }
 
     img {
@@ -28,6 +30,7 @@ const CarouselStyle = styled.div`
       height: 400px;
       object-fit: cover;
     }
+
     .slide {
       display: flex;
       flex-direction: row;
