@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { callbackify } from "util";
+import styleVar from "../../variables";
 
 const CarouselStyle = styled.div`
 
@@ -10,19 +10,33 @@ const CarouselStyle = styled.div`
     width: 300px;
     height: 400px;
     position: relative;
+    :hover{
+      .left {
+        left : 5px;
+      }
+
+      .right{
+        right : 5px;
+      }
+    }
 
     .button {
       width: 30px;
       height: 30px;
       position: absolute;
       top: 50%;
+      text-align : center;
+      transition : all 0.3s;
+      font-size : 1.5rem;
+      color : ${styleVar.primaryLight};
+      cursor : pointer;
     }
     .left {
-      left: 5px;
+      left: -30px;
       z-index: 1;
     }
     .right {
-      right: 5px;
+      right: -30px;
     }
 
     img {
