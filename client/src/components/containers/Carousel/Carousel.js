@@ -3,12 +3,13 @@ import CarouselStyle from "../../../styles/container/CarouselStyle/CarouselStyle
 
 class Carousel extends React.Component {
   state = {
-    slideIndex: 0
+    slideIndex: 0,
+    numberOfImages: this.props.children.length
   };
 
   right = () => {
     let newIndex = this.state.slideIndex;
-    if (newIndex === this.props.children.length) {
+    if (newIndex === this.state.numberOfImages - 1) {
       newIndex = 0;
     } else {
       newIndex++;
@@ -19,11 +20,14 @@ class Carousel extends React.Component {
   left = () => {
     let newIndex = this.state.slideIndex;
     if (newIndex === 0) {
-      newIndex = this.props.children.length;
+      newIndex = this.state.numberOfImages - 1;
     } else {
       newIndex--;
     }
-    this.setState({ slideIndex: newIndex }, () => {});
+    this.setState({ slideIndex: newIndex }, () => {
+      console.log(this.state);
+      console.log(this.props.children);
+    });
   };
 
   render() {

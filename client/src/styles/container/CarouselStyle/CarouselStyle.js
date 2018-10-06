@@ -31,14 +31,15 @@ const CarouselStyle = styled.div`
     .slide {
       display: flex;
       flex-direction: row;
-      width: 900px;
-      height: 400px;
+      width: ${props =>
+        300 * props.children.props.children[1].props.children.length + "px"}
+      height: 100%;
       transition: transform 0.3s;
       transform: translateX(
         ${props => {
           return (
             (props.children.props.children[1].props.slideindex /
-              props.children.props.children.length) *
+              props.children.props.children[1].props.children.length) *
               -100 +
             "%"
           );
