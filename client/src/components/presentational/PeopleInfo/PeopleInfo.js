@@ -7,9 +7,9 @@ class PeopleInfo extends React.Component {
     console.log(this.props);
     const person = this.props.person;
     const images = [
-      <img alt="" src={person.imgURL} />,
+      <img key={0} alt="" src={person.imgURL} />,
       ...person.subImgURLs.map((url, index) => {
-        return <img alt="" src={url} key={index} />;
+        return <img alt="" src={url} key={index+1} />;
       })
     ];
 
