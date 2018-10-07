@@ -32,10 +32,10 @@ class Carousel extends React.Component {
 
   render() {
     return (
-      <CarouselStyle>
-        <div className="wrapper">
+      <CarouselStyle numberOfImages={this.state.numberOfImages} slideIndex={this.state.slideIndex}>
+        <div className="wrapper" >
           <i onClick={this.left} className="fas fa-angle-left left button" />
-          <div className="slide" slideindex={this.state.slideIndex}>
+          <div className="slide">
             {this.props.children}
           </div>
           <i onClick={this.right} className="fas fa-angle-right right button" />

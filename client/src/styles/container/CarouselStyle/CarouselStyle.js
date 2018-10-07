@@ -49,16 +49,13 @@ const CarouselStyle = styled.div`
       display: flex;
       flex-direction: row;
       width: ${props =>
-        300 * props.children.props.children[1].props.children.length + "px"}
+        300 * props.numberOfImages + "px"}
       height: 100%;
       transition: transform 0.3s;
       transform: translateX(
         ${props => {
           return (
-            (props.children.props.children[1].props.slideindex /
-              props.children.props.children[1].props.children.length) *
-              -100 +
-            "%"
+            (props.slideIndex / props.numberOfImages) * -100 + "%"
           );
         }}
       );
