@@ -1,6 +1,7 @@
 import React from "react";
 import PeopleInfoStyle from "../../../styles/presentational/PeopleInfoStyle";
 import Carousel from "../../containers/Carousel/Carousel";
+import GoogleMap from "../../presentational/GoogleMap/GoogleMap";
 
 class PeopleInfo extends React.Component {
   render() {
@@ -9,7 +10,7 @@ class PeopleInfo extends React.Component {
     const images = [
       <img key={0} alt="" src={person.imgURL} />,
       ...person.subImgURLs.map((url, index) => {
-        return <img alt="" src={url} key={index+1} />;
+        return <img alt="" src={url} key={index + 1} />;
       })
     ];
 
@@ -50,6 +51,17 @@ class PeopleInfo extends React.Component {
             <li>
               <h5>Address</h5>
               <div>{person.address}</div>
+              <GoogleMap
+                id="myMap"
+                option={{ center: { lat: 29, lng: 56 }, zoom: 8 }}
+                onMapLoad={map => {
+                  const market = new window.google.maps.Marker({
+                    position: { lat: 29, lng: 56 },
+                    map: map,
+                    title: "business"
+                  });
+                }}
+              />
             </li>
           </ul>
         </div>
