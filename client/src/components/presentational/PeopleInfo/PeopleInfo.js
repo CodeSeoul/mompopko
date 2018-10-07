@@ -52,7 +52,7 @@ class PeopleInfo extends React.Component {
               <h5>Address</h5>
               <div>{person.address}</div>
               <GoogleMap
-                id="myMap"
+                id="map"
                 option={{ center: { lat: 29, lng: 56 }, zoom: 8 }}
                 onMapLoad={map => {
                   const market = new window.google.maps.Marker({

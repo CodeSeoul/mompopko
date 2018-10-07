@@ -7,6 +7,11 @@ const PeopleInfoStyle = styled.div`
   align-items: center;
   justify-content: center;
 
+  #map {
+    width: 500px;
+    height: 500px;
+  }
+
   .profile-box {
     background-color: grey;
   }
