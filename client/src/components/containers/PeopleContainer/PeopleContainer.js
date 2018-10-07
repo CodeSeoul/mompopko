@@ -14,14 +14,7 @@ db.settings({
 class PeopleContainer extends Component {
   state = {
     people: [],
-    selectedPerson: null
-  };
-
-  selectPerson = index => {
-    const newIndex = index;
-    this.setState({
-      selectedPerson: newIndex
-    });
+    isLoaded: false
   };
 
   componentDidMount() {
@@ -32,7 +25,7 @@ class PeopleContainer extends Component {
           console.log(doc.data(), "doc");
           return { ...doc.data(), id: doc.id };
         });
-        this.setState({ people: people });
+        this.setState({ people: people, isLoaded: true });
       });
   }
 
@@ -49,31 +42,19 @@ class PeopleContainer extends Component {
         people[i] =
           this.state.people[i] === undefined ? null : (
             <Person
-              index={i}
               key={this.state.people[i].id}
               person={this.state.people[i]}
-              selectPerson={index => {
-                this.selectPerson(index);
-              }}
             />
           );
       }
     } else {
-      this.state.people.map((person, index) => {
-        people.push(
-          <Person
-            selectPerson={index => {
-              this.selectPerson(index);
-            }}
-            index={index}
-            key={person.id}
-            person={person}
-          />
-        );
+      this.state.people.map(person => {
+        people.push(<Person key={person.id} person={person} />);
+        return null;
       });
     }
 
-    return (
+    return this.state.isLoaded ? (
       <Switch>
         <Route
           exact
@@ -105,16 +86,15 @@ class PeopleContainer extends Component {
         />
         <Route
           path="/people/:id"
-          render={() =>
-            this.state.selectedPerson === null ? null : (
-              <PeopleInfo person={this.state.people[this.state.selectedPerson]}>
-                Hello
-              </PeopleInfo>
-            )
-          }
+          render={props => {
+            const person = this.state.people.filter(person => {
+              return person.id === props.match.params.id;
+            });
+            return <PeopleInfo person={person[0]} />;
+          }}
         />
       </Switch>
-    );
+    ) : null;
   }
 }
 export default PeopleContainer;

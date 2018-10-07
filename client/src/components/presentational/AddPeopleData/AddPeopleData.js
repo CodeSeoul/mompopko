@@ -7,13 +7,13 @@ const AddPeopleData = props => {
     occupation,
     business,
     location,
-    fashion,
     category,
     started,
     url,
     address,
     interview,
-    image
+    image,
+    subImages
   } = props;
   return (
     <AddPeopleDataStyle>
@@ -44,13 +44,6 @@ const AddPeopleData = props => {
           value={location}
           onChange={e => props.changeHandler(e)}
           name="location"
-          type="text"
-        />
-        <span>fashion</span>
-        <input
-          value={fashion}
-          onChange={e => props.changeHandler(e)}
-          name="fashion"
           type="text"
         />
         <span>category</span>
@@ -89,11 +82,20 @@ const AddPeopleData = props => {
           cols="30"
           rows="10"
         />
+        <span>Main image</span>
         <input
           value={image}
           onChange={e => props.changeHandler(e)}
           type="file"
           name="image"
+        />
+        <span>Sub images</span>
+        <input
+          value={subImages}
+          onChange={e => props.changeHandler(e)}
+          type="file"
+          name="subImages"
+          multiple
         />
         <button>submit</button>
       </form>
