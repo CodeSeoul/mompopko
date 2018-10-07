@@ -4,8 +4,26 @@ import Carousel from "../../containers/Carousel/Carousel";
 import GoogleMap from "../../presentational/GoogleMap/GoogleMap";
 
 class PeopleInfo extends React.Component {
+  state = {};
+
+  componentDidMount() {
+    let geoData = {};
+    fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${
+        this.props.person.address
+      }&key=AIzaSyCrvxG0KmEFbbfzH9Y-qh9CKHjKM_-0Rfk`
+    )
+      .then(res => res.json())
+      .then(data => {
+        geoData = data.results[0].geometry.location;
+        console.log(geoData);
+        this.setState({ geoLocation: geoData }, () =>
+          console.log(this.state, "state")
+        );
+      })
+      .catch(err => console.log(err));
+  }
   render() {
-    console.log(this.props);
     const person = this.props.person;
     const images = [
       <img key={0} alt="" src={person.imgURL} />,
@@ -51,17 +69,28 @@ class PeopleInfo extends React.Component {
             <li>
               <h5>Address</h5>
               <div>{person.address}</div>
-              <GoogleMap
-                id="map"
-                option={{ center: { lat: 29, lng: 56 }, zoom: 8 }}
-                onMapLoad={map => {
-                  const market = new window.google.maps.Marker({
-                    position: { lat: 29, lng: 56 },
-                    map: map,
-                    title: "business"
-                  });
-                }}
-              />
+              {!this.state.geoLocation ? null : (
+                <GoogleMap
+                  id="map"
+                  option={{
+                    center: {
+                      lat: this.state.geoLocation.lat,
+                      lng: this.state.geoLocation.lng
+                    },
+                    zoom: 17
+                  }}
+                  onMapLoad={map => {
+                    const market = new window.google.maps.Marker({
+                      position: {
+                        lat: this.state.geoLocation.lat,
+                        lng: this.state.geoLocation.lng
+                      },
+                      map: map,
+                      title: "business"
+                    });
+                  }}
+                />
+              )}
             </li>
           </ul>
         </div>
