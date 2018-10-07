@@ -7,7 +7,6 @@ const AddPeopleData = props => {
     occupation,
     business,
     location,
-    fashion,
     category,
     started,
     url,
@@ -45,13 +44,6 @@ const AddPeopleData = props => {
           value={location}
           onChange={e => props.changeHandler(e)}
           name="location"
-          type="text"
-        />
-        <span>fashion</span>
-        <input
-          value={fashion}
-          onChange={e => props.changeHandler(e)}
-          name="fashion"
           type="text"
         />
         <span>category</span>
