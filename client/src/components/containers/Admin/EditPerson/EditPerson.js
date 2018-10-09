@@ -35,6 +35,10 @@ class EditPerson extends Component {
     }));
   };
 
+  imageHandler = e => {
+    e.preventDefault();
+  };
+
   uploadHandler = e => {
     e.preventDefault();
   };
@@ -55,9 +59,25 @@ class EditPerson extends Component {
     } = this.state.person;
 
     const images = [
-      <img src={imgURL} key={0} />,
-      ...subImgURLs.map(subImage => {
-        return <img src={subImage} />;
+      <div className="images-container" key={0}>
+        <label htmlFor={imgURL}>
+          <img src={imgURL} />
+        </label>
+        <input onChange={e => this.imageHandler(e)} id={imgURL} type="file" />
+      </div>,
+      ...subImgURLs.map((subImage, index) => {
+        return (
+          <div className="images-container" key={index + 1}>
+            <label htmlFor={subImage}>
+              <img src={subImage} />;
+            </label>
+            <input
+              onChange={e => this.imageHandler(e)}
+              id={subImage}
+              type="file"
+            />
+          </div>
+        );
       })
     ];
 
