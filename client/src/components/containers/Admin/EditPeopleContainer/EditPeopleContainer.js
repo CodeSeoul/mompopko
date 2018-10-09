@@ -9,6 +9,7 @@ db.settings({
 });
 
 class EditPeopleContainer extends Component {
+  state = {};
   componentDidMount() {
     db.collection("people")
       .get()
@@ -21,17 +22,37 @@ class EditPeopleContainer extends Component {
       });
   }
   render() {
+    const tableData = !this.state.isLoaded
+      ? null
+      : this.state.people.map((row, index) => {
+          return (
+            <tr key={row.id}>
+              <td>{index}</td>
+              <td>{row.name}</td>
+              <td>{row.business}</td>
+              <td>
+                <button>Edit</button>
+              </td>
+              <td>
+                <button>Delete</button>
+              </td>
+            </tr>
+          );
+        });
     return (
       <EditPeopleStyle>
         <div>EditPeople</div>
         <table className="table">
-          <tr>
-            <th>Number</th>
-            <th>Owner</th>
-            <th>Business</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Owner</th>
+              <th>Business</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>{tableData}</tbody>
         </table>
       </EditPeopleStyle>
     );
