@@ -1,20 +1,34 @@
 import styled from "styled-components";
 import styleVar from "../variables";
 const AddPeopleDataStyle = styled.div`
-  text-align: center;
+  .profile-box-container {
+    padding: 2rem;
+    background-color: ${styleVar.secondaryLight};
 
-  input,
-  span,
-  textarea {
-    margin: 10px auto;
-    display: block;
-    width: 300px;
+    h5 {
+      font-family: "Caveat";
+      text-transform: capitalize;
+      font-size: 1.5rem;
+      margin: 0.7rem 0;
+    }
+
+    input,
+    textarea {
+      width: 80%;
+      font-size: 1.3rem;
+      margin-left: 3rem;
+      display: block;
+    }
+
+    button {
+      display: block;
+      margin: 1rem auto;
+    }
   }
 
-  input {
-    height: 30px;
-    border: ${styleVar.primaryDark} solid 1px;
-  }
+  @media only screen and (max-width: 900px) {
+    grid-template-columns: 1fr;
+    padding: 1rem 3rem;
   }
 `;
 
