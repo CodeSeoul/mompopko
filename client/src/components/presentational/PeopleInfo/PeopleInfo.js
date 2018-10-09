@@ -76,7 +76,7 @@ class PeopleInfo extends React.Component {
             </li>
             <li>
               <h5>Address</h5>
-              <div>{person.address}</div>
+              <span>{person.address}</span>
               {!this.state.geoLocation ? null : (
                 <GoogleMap
                   id="map"

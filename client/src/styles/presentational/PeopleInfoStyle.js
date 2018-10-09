@@ -11,6 +11,7 @@ const PeopleInfoStyle = styled.div`
   #map {
     width: 100%;
     height: 200px;
+    margin-top: 2rem;
   }
 
   .profile-box-container {
@@ -25,6 +26,9 @@ const PeopleInfoStyle = styled.div`
         margin-right: 2rem;
         font-size: 1.3rem;
         color: ${styleVar.secondaryDark};
+        :hover {
+          color: ${styleVar.primaryDark};
+        }
       }
     }
 
