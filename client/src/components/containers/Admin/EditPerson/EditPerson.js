@@ -30,27 +30,9 @@ class EditPerson extends Component {
       return null;
     }
 
-    switch (name) {
-      case "image": {
-        let imgFile = e.target.files[0];
-        this.setState({
-          imgFile: imgFile
-        });
-        break;
-      }
-
-      case "subImages": {
-        let subImages = [...e.target.files];
-        this.setState({
-          subImgFiles: subImages
-        });
-        break;
-      }
-      default:
-        this.setState(prevState => ({
-          person: { ...prevState.person, [name]: value }
-        }));
-    }
+    this.setState(prevState => ({
+      person: { ...prevState.person, [name]: value }
+    }));
   };
 
   uploadHandler = e => {
