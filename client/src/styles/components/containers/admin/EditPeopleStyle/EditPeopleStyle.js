@@ -3,6 +3,20 @@ import styleVar from "../../../../variables";
 
 const EditPeopleStyle = styled.div`
   font-family: "Roboto";
+
+  .images {
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(20%,auto));
+    min-height: 30vmax;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   .profile-box-container {
     padding: 2rem;
     background-color: ${styleVar.secondaryLight};
@@ -43,6 +57,19 @@ const EditPeopleStyle = styled.div`
   @media only screen and (max-width: 900px) {
     grid-template-columns: 1fr;
     padding: 1rem 3rem;
+
+    .images {
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: 1fr
+      min-height: 100vmax;
+
+      img {
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
+    }
   }
 `;
 
