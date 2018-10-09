@@ -149,7 +149,7 @@ class EditPerson extends Component {
                 cols="30"
                 rows="10"
               />
-              <button>submit</button>
+              <button>Edit</button>
             </form>
           </div>
         </div>

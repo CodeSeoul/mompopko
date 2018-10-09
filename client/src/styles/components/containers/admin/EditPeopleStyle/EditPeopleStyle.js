@@ -2,6 +2,7 @@ import styled from "styled-components";
 import styleVar from "../../../../variables";
 
 const EditPeopleStyle = styled.div`
+  font-family: "Roboto";
   .profile-box-container {
     padding: 2rem;
     background-color: ${styleVar.secondaryLight};
@@ -15,8 +16,9 @@ const EditPeopleStyle = styled.div`
 
     input,
     textarea {
+      font-family: "Roboto";
       width: 80%;
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       margin-left: 3rem;
       display: inline-block;
       border: none;
@@ -28,8 +30,13 @@ const EditPeopleStyle = styled.div`
     }
 
     button {
+      font-family: "Roboto";
       display: block;
-      margin: 1rem auto;
+      padding: 0.5rem 1.5rem;
+      font-size: 1.3rem;
+      margin: 0 auto;
+      border: 1px solid ${styleVar.primaryDark};
+      background-color: ${styleVar.primaryLight};
     }
   }
 
