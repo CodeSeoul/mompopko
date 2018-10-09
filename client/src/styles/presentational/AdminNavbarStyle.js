@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import styleVar from "../variables";
 
-const NavbarStyle = styled.div`
+const AdminNavbarStyle = styled.div`
   border-bottom: 1px solid #ddd;
   nav {
     display: grid;
-    grid-template-columns: 1fr
+    grid-template-columns: 1fr;
     height: 50px;
 
     ul {
@@ -65,4 +65,4 @@ const NavbarStyle = styled.div`
   }
 `;
 
-export default NavbarStyle;
+export default AdminNavbarStyle;
