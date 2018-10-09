@@ -11,7 +11,14 @@ db.settings({
 
 class AddPeopleContainer extends React.Component {
   state = {
-    People: {},
+    People: {
+      urls: {
+        website: "",
+        facebook: "",
+        instagram: "",
+        youtube: ""
+      }
+    },
     imgFile: null,
     subImgFiles: FileList
   };
@@ -19,6 +26,19 @@ class AddPeopleContainer extends React.Component {
   changeHandler = e => {
     let name = e.target.name;
     let value = e.target.value;
+    let group = e.target.getAttribute("group");
+
+    //handling urls
+
+    if (group === "url") {
+      this.setState(prevState => ({
+        People: {
+          ...prevState.People,
+          urls: { ...prevState.People.urls, [name]: value }
+        }
+      }));
+      return null;
+    }
 
     switch (name) {
       case "image": {
@@ -116,7 +136,18 @@ class AddPeopleContainer extends React.Component {
       })
       .catch(err => console.log(err));
     e.target.reset();
-    this.setState({ People: {}, imgFile: null, subImgFiles: FileList });
+    this.setState({
+      People: {
+        urls: {
+          website: "",
+          facebook: "",
+          instagram: "",
+          youtube: ""
+        }
+      },
+      imgFile: null,
+      subImgFiles: FileList
+    });
   };
 
   render() {
@@ -124,7 +155,7 @@ class AddPeopleContainer extends React.Component {
     return (
       <React.Fragment>
         <AddPeopleData
-          props={this.state.People}
+          people={this.state.People}
           uploadHandler={this.uploadHandler}
           changeHandler={this.changeHandler}
         />

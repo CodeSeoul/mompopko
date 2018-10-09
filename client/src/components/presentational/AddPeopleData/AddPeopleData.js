@@ -9,12 +9,13 @@ const AddPeopleData = props => {
     location,
     category,
     started,
-    url,
+    urls,
     address,
     interview,
     image,
     subImages
-  } = props;
+  } = props.people;
+
   return (
     <AddPeopleDataStyle>
       <form onSubmit={e => props.uploadHandler(e)} action="POST">
@@ -60,11 +61,36 @@ const AddPeopleData = props => {
           name="started"
           type="date"
         />
-        <span>url</span>
+        <span>Website URL</span>
         <input
-          value={url}
+          value={urls.website}
+          group="url"
           onChange={e => props.changeHandler(e)}
-          name="url"
+          name="website"
+          type="url"
+        />
+        <span>Facebook URL</span>
+        <input
+          value={urls.facebook}
+          group="url"
+          onChange={e => props.changeHandler(e)}
+          name="facebook"
+          type="url"
+        />
+        <span>Instagram URL</span>
+        <input
+          value={urls.instagram}
+          group="url"
+          onChange={e => props.changeHandler(e)}
+          name="instagram"
+          type="url"
+        />
+        <span>Youtube URL</span>
+        <input
+          value={urls.youtube}
+          group="url"
+          onChange={e => props.changeHandler(e)}
+          name="youtube"
           type="url"
         />
         <span>address</span>
