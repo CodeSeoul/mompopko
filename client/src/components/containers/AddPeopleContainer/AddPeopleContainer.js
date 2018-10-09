@@ -73,7 +73,10 @@ class AddPeopleContainer extends React.Component {
     console.log("upload handler working");
 
     db.collection("people")
-      .add(People)
+      .add({
+        ...People,
+        timeCreated: FbApp.firebase_.firestore.Timestamp.now()
+      })
       .then(person => {
         // Uploading main image
 
