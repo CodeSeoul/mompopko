@@ -24,6 +24,15 @@ class EditPeopleContainer extends Component {
     return (
       <EditPeopleStyle>
         <div>EditPeople</div>
+        <table className="table">
+          <tr>
+            <th>Number</th>
+            <th>Owner</th>
+            <th>Business</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </table>
       </EditPeopleStyle>
     );
   }
