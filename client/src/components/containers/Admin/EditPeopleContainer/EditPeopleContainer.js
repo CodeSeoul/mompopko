@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import FbApp from "../../../../config/firebase";
+import { Link, Switch, Route } from "react-router-dom";
 import EditPeopleStyle from "../../../../styles/components/containers/admin/EditPeopleStyle/EditPeopleStyle";
+import EditPerson from "../EditPerson/EditPerson";
 
 const db = FbApp.firestore();
 
@@ -32,7 +34,9 @@ class EditPeopleContainer extends Component {
               <td>{row.name}</td>
               <td>{row.business}</td>
               <td>
-                <button>Edit</button>
+                <Link to={`/admin/people/${row.id}`}>
+                  <button>Edit</button>
+                </Link>
               </td>
               <td>
                 <button>Delete</button>
@@ -40,21 +44,40 @@ class EditPeopleContainer extends Component {
             </tr>
           );
         });
-    return (
+    return !this.state.isLoaded ? null : (
       <EditPeopleStyle>
         <div>EditPeople</div>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Number</th>
-              <th>Owner</th>
-              <th>Business</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>{tableData}</tbody>
-        </table>
+        <Switch>
+          <Route
+            exact
+            path="/admin/people"
+            render={() => {
+              return (
+                <table className="table">
+                  <thead>
+                    <tr>
+                      <th>Number</th>
+                      <th>Owner</th>
+                      <th>Business</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </tr>
+                  </thead>
+                  <tbody>{tableData}</tbody>
+                </table>
+              );
+            }}
+          />
+          <Route
+            path="/admin/people/:id"
+            render={props => {
+              const person = this.state.people.filter(person => {
+                return person.id === props.match.params.id;
+              });
+              return <EditPerson person={person[0]} />;
+            }}
+          />
+        </Switch>
       </EditPeopleStyle>
     );
   }
