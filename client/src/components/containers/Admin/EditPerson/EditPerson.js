@@ -51,12 +51,22 @@ class EditPerson extends Component {
       address,
       interview,
       imgURL,
-      subImages
+      subImgURLs
     } = this.state.person;
+
+    const images = [
+      <img src={imgURL} key={0} />,
+      ...subImgURLs.map(subImage => {
+        return <img src={subImage} />;
+      })
+    ];
+
     console.log(this.state);
+
     return (
       <React.Fragment>
         <div>Editing this</div>
+        <div className="images">{images}</div>
         <div className="profile-box-container">
           <div className="profile-box">
             <form onSubmit={e => this.uploadHandler(e)} action="POST">
