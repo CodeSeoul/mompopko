@@ -50,7 +50,7 @@ class EditPerson extends Component {
       urls,
       address,
       interview,
-      image,
+      imgURL,
       subImages
     } = this.state.person;
     console.log(this.state);
@@ -62,7 +62,7 @@ class EditPerson extends Component {
             <form onSubmit={e => this.uploadHandler(e)} action="POST">
               <h5>name</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={name}
                 onChange={e => this.changeHandler(e)}
                 name="name"
@@ -70,7 +70,7 @@ class EditPerson extends Component {
               />
               <h5>occupation</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={occupation}
                 onChange={e => this.changeHandler(e)}
                 name="occupation"
@@ -78,7 +78,7 @@ class EditPerson extends Component {
               />
               <h5>business</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={business}
                 onChange={e => this.changeHandler(e)}
                 name="business"
@@ -86,7 +86,7 @@ class EditPerson extends Component {
               />
               <h5>location</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={location}
                 onChange={e => this.changeHandler(e)}
                 name="location"
@@ -94,7 +94,7 @@ class EditPerson extends Component {
               />
               <h5>category</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={category}
                 onChange={e => this.changeHandler(e)}
                 name="category"
@@ -102,7 +102,7 @@ class EditPerson extends Component {
               />
               <h5>started</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={started}
                 onChange={e => this.changeHandler(e)}
                 name="started"
@@ -110,7 +110,7 @@ class EditPerson extends Component {
               />
               <h5>Website URL</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={urls.website}
                 group="url"
                 onChange={e => this.changeHandler(e)}
@@ -119,7 +119,7 @@ class EditPerson extends Component {
               />
               <h5>Facebook URL</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={urls.facebook}
                 group="url"
                 onChange={e => this.changeHandler(e)}
@@ -128,7 +128,7 @@ class EditPerson extends Component {
               />
               <h5>Instagram URL</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={urls.instagram}
                 group="url"
                 onChange={e => this.changeHandler(e)}
@@ -137,7 +137,7 @@ class EditPerson extends Component {
               />
               <h5>Youtube URL</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={urls.youtube}
                 group="url"
                 onChange={e => this.changeHandler(e)}
@@ -146,7 +146,7 @@ class EditPerson extends Component {
               />
               <h5>address</h5>
               <input
-                spellcheck="false"
+                spellCheck="false"
                 value={address}
                 onChange={e => this.changeHandler(e)}
                 name="address"
@@ -154,7 +154,7 @@ class EditPerson extends Component {
               />
               <h5>interview</h5>
               <textarea
-                spellcheck="false"
+                spellCheck="false"
                 value={interview}
                 onChange={e => this.changeHandler(e)}
                 name="interview"

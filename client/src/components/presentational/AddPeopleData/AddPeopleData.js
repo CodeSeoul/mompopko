@@ -22,7 +22,7 @@ const AddPeopleData = props => {
         <form onSubmit={e => props.uploadHandler(e)} action="POST">
           <h5>name</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={name}
             onChange={e => props.changeHandler(e)}
             name="name"
@@ -30,7 +30,7 @@ const AddPeopleData = props => {
           />
           <h5>occupation</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={occupation}
             onChange={e => props.changeHandler(e)}
             name="occupation"
@@ -38,7 +38,7 @@ const AddPeopleData = props => {
           />
           <h5>business</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={business}
             onChange={e => props.changeHandler(e)}
             name="business"
@@ -46,7 +46,7 @@ const AddPeopleData = props => {
           />
           <h5>location</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={location}
             onChange={e => props.changeHandler(e)}
             name="location"
@@ -54,7 +54,7 @@ const AddPeopleData = props => {
           />
           <h5>category</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={category}
             onChange={e => props.changeHandler(e)}
             name="category"
@@ -62,7 +62,7 @@ const AddPeopleData = props => {
           />
           <h5>started</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={started}
             onChange={e => props.changeHandler(e)}
             name="started"
@@ -70,7 +70,7 @@ const AddPeopleData = props => {
           />
           <h5>Website URL</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={urls.website}
             group="url"
             onChange={e => props.changeHandler(e)}
@@ -79,7 +79,7 @@ const AddPeopleData = props => {
           />
           <h5>Facebook URL</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={urls.facebook}
             group="url"
             onChange={e => props.changeHandler(e)}
@@ -88,7 +88,7 @@ const AddPeopleData = props => {
           />
           <h5>Instagram URL</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={urls.instagram}
             group="url"
             onChange={e => props.changeHandler(e)}
@@ -97,7 +97,7 @@ const AddPeopleData = props => {
           />
           <h5>Youtube URL</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={urls.youtube}
             group="url"
             onChange={e => props.changeHandler(e)}
@@ -106,7 +106,7 @@ const AddPeopleData = props => {
           />
           <h5>address</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={address}
             onChange={e => props.changeHandler(e)}
             name="address"
@@ -122,7 +122,7 @@ const AddPeopleData = props => {
           />
           <h5>Main image</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={image}
             onChange={e => props.changeHandler(e)}
             type="file"
@@ -130,7 +130,7 @@ const AddPeopleData = props => {
           />
           <h5>Sub images</h5>
           <input
-            spellcheck="false"
+            spellCheck="false"
             value={subImages}
             onChange={e => props.changeHandler(e)}
             type="file"
