@@ -22,7 +22,7 @@ const PeopleInfoStyle = styled.div`
       padding: 0;
 
       a {
-        padding-right: 2rem;
+        margin-right: 2rem;
         font-size: 1.3rem;
         color: ${styleVar.secondaryDark};
       }
