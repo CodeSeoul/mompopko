@@ -18,6 +18,14 @@ const PeopleInfoStyle = styled.div`
 
     ul {
       list-style: none;
+      margin-left: 3rem;
+      padding: 0;
+
+      a {
+        padding-right: 2rem;
+        font-size: 1.3rem;
+        color: ${styleVar.secondaryDark};
+      }
     }
 
     h5 {

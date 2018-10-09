@@ -60,10 +60,18 @@ class PeopleInfo extends React.Component {
             <li>
               <h5>URL</h5>
               <ul>
-                <li>{person.urls.website}</li>
-                <li>{person.urls.facebook}</li>
-                <li>{person.urls.instagram}</li>
-                <li>{person.urls.youtube}</li>
+                <a href={person.urls.website}>
+                  <i className="fas fa-home" />
+                </a>
+                <a href={person.urls.facebook}>
+                  <i className="fab fa-facebook" />
+                </a>
+                <a href={person.urls.instagram}>
+                  <i className="fab fa-instagram" />
+                </a>
+                <a href={person.urls.youtube}>
+                  <i className="fab fa-youtube" />
+                </a>
               </ul>
             </li>
             <li>
