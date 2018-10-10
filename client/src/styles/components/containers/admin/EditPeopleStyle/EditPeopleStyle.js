@@ -10,6 +10,10 @@ const EditPeopleStyle = styled.div`
     grid-template-columns: repeat(auto-fit, minmax(20%,auto));
     min-height: 30vmax;
 
+  input[type='file']{
+    display : none;
+  }
+
     img {
       object-fit: cover;
       width: 100%;

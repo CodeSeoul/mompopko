@@ -10,7 +10,9 @@ db.settings({
 
 class EditPerson extends Component {
   state = {
-    person: this.props.person
+    person: this.props.person,
+    mainImage: File,
+    subImages: FileList
   };
 
   changeHandler = e => {
@@ -35,8 +37,53 @@ class EditPerson extends Component {
     }));
   };
 
-  imageHandler = e => {
+  imageHandler = (e, index) => {
     e.preventDefault();
+
+    const name = e.target.name;
+    const file = e.target.files[0];
+
+    switch (name) {
+      case "main-image": {
+        let reader = new FileReader();
+        reader.onload = () => {
+          this.setState(
+            prevState => {
+              return {
+                person: {
+                  ...prevState.person,
+                  imgURL: reader.result
+                }
+              };
+            },
+            () => console.log(this.state)
+          );
+        };
+        reader.readAsDataURL(file);
+        break;
+      }
+      case "sub-image": {
+        let reader = new FileReader();
+        reader.onload = () => {
+          let newImgURLs = [...this.state.person.subImgURLs];
+          newImgURLs[index] = reader.result;
+          this.setState(
+            prevState => {
+              return {
+                person: {
+                  ...prevState.person,
+                  subImgURLs: newImgURLs
+                }
+              };
+            },
+            () => console.log(this.state)
+          );
+        };
+        reader.readAsDataURL(file);
+        break;
+      }
+      default:
+    }
   };
 
   uploadHandler = e => {
@@ -63,16 +110,24 @@ class EditPerson extends Component {
         <label htmlFor={imgURL}>
           <img src={imgURL} />
         </label>
-        <input onChange={e => this.imageHandler(e)} id={imgURL} type="file" />
+        <input
+          name="main-image"
+          value={this.state.mainImage}
+          onChange={e => this.imageHandler(e, 0)}
+          id={imgURL}
+          type="file"
+        />
       </div>,
       ...subImgURLs.map((subImage, index) => {
         return (
           <div className="images-container" key={index + 1}>
             <label htmlFor={subImage}>
-              <img src={subImage} />;
+              <img src={subImage} />
             </label>
             <input
-              onChange={e => this.imageHandler(e)}
+              name="sub-image"
+              value={this.state.subImages[index]}
+              onChange={e => this.imageHandler(e, index)}
               id={subImage}
               type="file"
             />
