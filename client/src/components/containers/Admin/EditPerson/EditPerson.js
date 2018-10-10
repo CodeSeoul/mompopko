@@ -11,7 +11,7 @@ db.settings({
 class EditPerson extends Component {
   state = {
     person: this.props.person,
-    mainImage: File,
+    mainImage: null,
     subImages: FileList
   };
 
@@ -50,6 +50,7 @@ class EditPerson extends Component {
           this.setState(
             prevState => {
               return {
+                mainImage: file,
                 person: {
                   ...prevState.person,
                   imgURL: reader.result
@@ -67,9 +68,13 @@ class EditPerson extends Component {
         reader.onload = () => {
           let newImgURLs = [...this.state.person.subImgURLs];
           newImgURLs[index] = reader.result;
+          let newsubImages = [...this.state.subImages];
+          newsubImages[index] = file;
+          console.log(newsubImages);
           this.setState(
             prevState => {
               return {
+                subImages: newsubImages,
                 person: {
                   ...prevState.person,
                   subImgURLs: newImgURLs
@@ -112,7 +117,6 @@ class EditPerson extends Component {
         </label>
         <input
           name="main-image"
-          value={this.state.mainImage}
           onChange={e => this.imageHandler(e, 0)}
           id={imgURL}
           type="file"
@@ -126,7 +130,6 @@ class EditPerson extends Component {
             </label>
             <input
               name="sub-image"
-              value={this.state.subImages[index]}
               onChange={e => this.imageHandler(e, index)}
               id={subImage}
               type="file"
