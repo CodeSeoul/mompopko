@@ -93,6 +93,42 @@ class EditPerson extends Component {
 
   uploadHandler = e => {
     e.preventDefault();
+    const person = this.state.person;
+    const mainImg = this.state.mainImage;
+    const subImgs = this.state.subImgFiles;
+
+    console.log("upload handler working");
+
+    const storageRef = storage.ref();
+    const folderRef = storageRef.child("people");
+    const folderName = person.id;
+    const mainImageRef = folderRef
+      .child(folderName)
+      .child(`${folderName}_main`);
+
+    if (mainImg) {
+      const mainImgUploadTask = mainImageRef.put(mainImg);
+      mainImgUploadTask.on(
+        "state_changed",
+        snapshot => {
+          console.log(snapshot);
+        },
+        error => {
+          console.log(error);
+        },
+        complete => {
+          console.log("Main image uploaded");
+
+          mainImgUploadTask.snapshot.ref.getDownloadURL().then(imgURL => {
+            db.collection("people")
+              .doc(person.id)
+              .set({ imgURL: imgURL }, { merge: true });
+          });
+        }
+      );
+    }
+
+    console.log(mainImageRef.fullPath);
   };
 
   render() {
@@ -249,7 +285,7 @@ class EditPerson extends Component {
                 cols="30"
                 rows="10"
               />
-              <button>Edit</button>
+              <button onClick={() => this.uploadHandler}>Edit</button>
             </form>
           </div>
         </div>
