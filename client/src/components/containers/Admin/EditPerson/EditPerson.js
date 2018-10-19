@@ -95,18 +95,19 @@ class EditPerson extends Component {
     e.preventDefault();
     const person = this.state.person;
     const mainImg = this.state.mainImage;
-    const subImgs = this.state.subImgFiles;
+    const subImgs = this.state.subImages;
 
     console.log("upload handler working");
 
-    const storageRef = storage.ref();
-    const folderRef = storageRef.child("people");
-    const folderName = person.id;
-    const mainImageRef = folderRef
-      .child(folderName)
-      .child(`${folderName}_main`);
+    // uploading main image
 
     if (mainImg) {
+      const storageRef = storage.ref();
+      const folderRef = storageRef.child("people");
+      const folderName = person.id;
+      const mainImageRef = folderRef
+        .child(folderName)
+        .child(`${folderName}_main`);
       const mainImgUploadTask = mainImageRef.put(mainImg);
       mainImgUploadTask.on(
         "state_changed",
@@ -128,7 +129,47 @@ class EditPerson extends Component {
       );
     }
 
-    console.log(mainImageRef.fullPath);
+    //uploading sub images
+    if (subImgs.length > 0) {
+      const subImgURLs = [...person.subImgURLs];
+      for (let i = 0; i < subImgs.length; i++) {
+        if (subImgs[i] === undefined) {
+          continue;
+        }
+        const storageRef = storage.ref();
+        const folderRef = storageRef.child("people");
+        const folderName = person.id;
+        const subImageRef = folderRef
+          .child(folderName)
+          .child(`${folderName}_sub${i}`);
+        const subImgUploadTask = subImageRef.put(subImgs[i]);
+        subImgUploadTask.on(
+          "state_changed",
+          snapshot => {
+            console.log(snapshot);
+          },
+          error => {
+            console.log(error);
+          },
+          complete => {
+            console.log("Sub image uploaded");
+
+            subImgUploadTask.snapshot.ref.getDownloadURL().then(subImgURL => {
+              subImgURLs[`${i}`] = subImgURL;
+              console.log(subImgURLs);
+              db.collection("people")
+                .doc(person.id)
+                .set(
+                  {
+                    subImgURLs: subImgURLs
+                  },
+                  { merge: true }
+                );
+            });
+          }
+        );
+      }
+    }
   };
 
   render() {
