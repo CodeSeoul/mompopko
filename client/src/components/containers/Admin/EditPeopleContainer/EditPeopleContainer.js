@@ -5,6 +5,7 @@ import EditPeopleStyle from "../../../../styles/components/containers/admin/Edit
 import EditPerson from "../EditPerson/EditPerson";
 
 const db = FbApp.firestore();
+const storage = FbApp.storage();
 
 db.settings({
   timestampsInSnapshots: true
@@ -12,6 +13,46 @@ db.settings({
 
 class EditPeopleContainer extends Component {
   state = {};
+  deleteHandler = (id, subImgURLs) => {
+    console.log(id, subImgURLs);
+    db.collection("people")
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log("successfully deleted");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    for (let i = 0; i < subImgURLs.length; i++) {
+      let personRef = storage
+        .ref()
+        .child("people")
+        .child(id)
+        .child(`${id}_sub${i}`);
+      personRef
+        .delete()
+        .then(() => {
+          console.log("successfully deleted");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+    let personRef = storage
+      .ref()
+      .child("people")
+      .child(id)
+      .child(`${id}_main`);
+    personRef
+      .delete()
+      .then(() => {
+        console.log("successfully deleted");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
   componentDidMount() {
     db.collection("people")
       .orderBy("timeCreated", "desc")
@@ -39,7 +80,11 @@ class EditPeopleContainer extends Component {
                 </Link>
               </td>
               <td>
-                <button>Delete</button>
+                <button
+                  onClick={() => this.deleteHandler(row.id, row.subImgURLs)}
+                >
+                  Delete
+                </button>
               </td>
             </tr>
           );

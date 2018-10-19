@@ -131,7 +131,8 @@ class AddPeopleContainer extends React.Component {
                         subImgURLs: subImgURLs
                       },
                       { merge: true }
-                    );
+                    )
+                    .catch(err => console.log(err));
                 });
             }
           );
