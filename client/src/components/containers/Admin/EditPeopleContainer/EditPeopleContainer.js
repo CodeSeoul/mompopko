@@ -15,6 +15,7 @@ class EditPeopleContainer extends Component {
   state = {};
   deleteHandler = (id, subImgURLs) => {
     console.log(id, subImgURLs);
+
     db.collection("people")
       .doc(id)
       .delete()
@@ -24,12 +25,14 @@ class EditPeopleContainer extends Component {
       .catch(err => {
         console.log(err);
       });
+
     for (let i = 0; i < subImgURLs.length; i++) {
       let personRef = storage
         .ref()
         .child("people")
         .child(id)
         .child(`${id}_sub${i}`);
+
       personRef
         .delete()
         .then(() => {
@@ -39,11 +42,13 @@ class EditPeopleContainer extends Component {
           console.log(err);
         });
     }
+
     let personRef = storage
       .ref()
       .child("people")
       .child(id)
       .child(`${id}_main`);
+
     personRef
       .delete()
       .then(() => {

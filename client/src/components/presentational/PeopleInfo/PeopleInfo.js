@@ -102,6 +102,7 @@ class PeopleInfo extends React.Component {
             </li>
           </ul>
         </div>
+        <div className="interview">{person.interview}</div>
       </PeopleInfoStyle>
     );
   }
