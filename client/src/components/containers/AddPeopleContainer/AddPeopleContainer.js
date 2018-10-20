@@ -105,38 +105,51 @@ class AddPeopleContainer extends React.Component {
 
         // Uploading sub images
         let subImgURLs = [];
-        for (let i = 0; i < subImgs.length; i++) {
-          const subImgsUploadTask = storage
-            .ref(`people/${person.id}/${person.id}_sub${i}`)
-            .put(subImgs[i]);
+        let uploadCheck = 0;
+        function getURLs() {
+          return new Promise(resolve => {
+            for (let i = 0; i < subImgs.length; i++) {
+              const subImgsUploadTask = storage
+                .ref(`people/${person.id}/${person.id}_sub${i}`)
+                .put(subImgs[i]);
 
-          subImgsUploadTask.on(
-            "state_changed",
-            snapshot => {
-              console.log(snapshot);
-            },
-            error => {
-              console.log(error);
-            },
-            complete => {
-              subImgsUploadTask.snapshot.ref
-                .getDownloadURL()
-                .then(subImgURL => {
-                  subImgURLs[`${i}`] = subImgURL;
-
-                  db.collection("people")
-                    .doc(person.id)
-                    .set(
-                      {
-                        subImgURLs: subImgURLs
-                      },
-                      { merge: true }
-                    )
-                    .catch(err => console.log(err));
-                });
+              subImgsUploadTask.on(
+                "state_changed",
+                snapshot => {
+                  console.log(snapshot);
+                },
+                error => {
+                  console.log(error);
+                },
+                complete => {
+                  subImgsUploadTask.snapshot.ref
+                    .getDownloadURL()
+                    .then(subImgURL => {
+                      subImgURLs[`${i}`] = subImgURL;
+                      ++uploadCheck;
+                      if (uploadCheck == subImgs.length) {
+                        resolve();
+                        uploadCheck = 0;
+                      }
+                    });
+                }
+              );
             }
-          );
+          });
         }
+        async function uploadImages() {
+          await getURLs();
+          console.log(subImgURLs);
+          db.collection("people")
+            .doc(person.id)
+            .set(
+              {
+                subImgURLs: subImgURLs
+              },
+              { merge: true }
+            );
+        }
+        uploadImages();
       })
       .catch(err => console.log(err));
     e.target.reset();
