@@ -99,6 +99,15 @@ class EditPerson extends Component {
 
     console.log("upload handler working");
 
+    db.collection("people")
+      .doc(person.id)
+      .set(
+        {
+          ...person
+        },
+        { merge: true }
+      );
+
     // uploading main image
 
     if (mainImg) {
@@ -170,6 +179,11 @@ class EditPerson extends Component {
         );
       }
     }
+    this.setState = {
+      person: this.props.person,
+      mainImage: null,
+      subImages: FileList
+    };
   };
 
   render() {
