@@ -1,90 +1,117 @@
 import React from "react";
 
 const AddOpenings = props => {
+  const {
+    category,
+    registration,
+    name,
+    newLocation,
+    oldLocation,
+    area,
+    telephone,
+    opening,
+    newZipcode,
+    oldZipcode,
+    construction,
+    type
+  } = props.opening;
+
   return (
     <div>
       <form>
         <h5>Business Catagory</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={category}
+          value={category}
           name="category"
           type="text"
         />
         <h5>Registration Date</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={registration}
+          value={registration}
           name="registration"
           type="date"
         />
         <h5>Business Name</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={name}
+          value={name}
           name="name"
           type="text"
         />
         <h5>Location(new system)</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={newLocation}
+          value={newLocation}
           name="newLocation"
           type="text"
         />
         <h5>Location(old system)</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={oldLocation}
+          value={oldLocation}
           name="oldLocation"
           type="text"
         />
         <h5>Area</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={area}
+          value={area}
           name="area"
           type="text"
         />
         <h5>Telephone</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={telephone}
+          value={telephone}
           name="telephone"
           type="text"
         />
         <h5>Opening Date</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={opening}
+          value={opening}
           name="opening"
           type="date"
         />
         <h5>Zipcode(new system)</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={newZipcode}
+          value={newZipcode}
           name="newZipcode"
           type="text"
         />
         <h5>Zipcode(old system)</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={oldZipcode}
+          value={oldZipcode}
           name="oldZipcode"
           type="text"
         />
         <h5>Construction date</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={construction}
+          value={construction}
           name="construction"
           type="date"
         />
         <h5>Type</h5>
         <input
+          onChange={e => props.changeHandler(e)}
           spellCheck="false"
-          //value={type}
+          value={type}
           name="type"
           type="text"
         />
