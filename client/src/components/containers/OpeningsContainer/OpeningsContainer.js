@@ -10,7 +10,10 @@ db.settings({
 });
 
 class OpeningsContainer extends Component {
-  state = {};
+  state = {
+    openings: [],
+    isLoaded: false
+  };
 
   componentDidMount() {
     db.collection("openings")
@@ -20,17 +23,19 @@ class OpeningsContainer extends Component {
           return { ...doc.data(), id: doc.id };
         });
         this.setState({
-          openings: openings
+          openings: openings,
+          isLoaded: true
         });
       });
   }
 
   render() {
-    return (
-      <OpeningsStyle>
-        <Opening />
-      </OpeningsStyle>
-    );
+    const openings = !this.state.isLoaded
+      ? null
+      : this.state.openings.map(opening => {
+          return <Opening key={opening.id} opening={opening} />;
+        });
+    return <OpeningsStyle>{openings}</OpeningsStyle>;
   }
 }
 
