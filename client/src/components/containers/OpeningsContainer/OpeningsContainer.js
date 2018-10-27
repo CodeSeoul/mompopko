@@ -35,7 +35,13 @@ class OpeningsContainer extends Component {
       : this.state.openings.map(opening => {
           return <Opening key={opening.id} opening={opening} />;
         });
-    return <OpeningsStyle>{openings}</OpeningsStyle>;
+    return (
+      <OpeningsStyle>
+        <div className="container">
+          <div className="grid-container">{openings}</div>
+        </div>
+      </OpeningsStyle>
+    );
   }
 }
 
