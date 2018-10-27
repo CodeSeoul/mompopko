@@ -18,7 +18,7 @@ const AddOpenings = props => {
 
   return (
     <div>
-      <form>
+      <form action="POST" onSubmit={e => props.uploadHandler(e)}>
         <h5>Business Catagory</h5>
         <input
           onChange={e => props.changeHandler(e)}
