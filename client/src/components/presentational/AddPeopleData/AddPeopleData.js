@@ -7,14 +7,15 @@ const AddPeopleData = props => {
     occupation,
     business,
     location,
-    fashion,
     category,
     started,
-    url,
+    urls,
     address,
     interview,
-    image
-  } = props;
+    image,
+    subImages
+  } = props.people;
+
   return (
     <AddPeopleDataStyle>
       <form onSubmit={e => props.uploadHandler(e)} action="POST">
@@ -46,13 +47,6 @@ const AddPeopleData = props => {
           name="location"
           type="text"
         />
-        <span>fashion</span>
-        <input
-          value={fashion}
-          onChange={e => props.changeHandler(e)}
-          name="fashion"
-          type="text"
-        />
         <span>category</span>
         <input
           value={category}
@@ -67,11 +61,36 @@ const AddPeopleData = props => {
           name="started"
           type="date"
         />
-        <span>url</span>
+        <span>Website URL</span>
         <input
-          value={url}
+          value={urls.website}
+          group="url"
           onChange={e => props.changeHandler(e)}
-          name="url"
+          name="website"
+          type="url"
+        />
+        <span>Facebook URL</span>
+        <input
+          value={urls.facebook}
+          group="url"
+          onChange={e => props.changeHandler(e)}
+          name="facebook"
+          type="url"
+        />
+        <span>Instagram URL</span>
+        <input
+          value={urls.instagram}
+          group="url"
+          onChange={e => props.changeHandler(e)}
+          name="instagram"
+          type="url"
+        />
+        <span>Youtube URL</span>
+        <input
+          value={urls.youtube}
+          group="url"
+          onChange={e => props.changeHandler(e)}
+          name="youtube"
           type="url"
         />
         <span>address</span>
@@ -89,11 +108,20 @@ const AddPeopleData = props => {
           cols="30"
           rows="10"
         />
+        <span>Main image</span>
         <input
           value={image}
           onChange={e => props.changeHandler(e)}
           type="file"
           name="image"
+        />
+        <span>Sub images</span>
+        <input
+          value={subImages}
+          onChange={e => props.changeHandler(e)}
+          type="file"
+          name="subImages"
+          multiple
         />
         <button>submit</button>
       </form>
