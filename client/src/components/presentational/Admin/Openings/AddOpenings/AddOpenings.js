@@ -123,6 +123,7 @@ const AddOpenings = props => {
           onChange={e => props.changeHandler(e)}
           type="file"
           name="images"
+          multiple
         />
         <button>submit</button>
       </form>
