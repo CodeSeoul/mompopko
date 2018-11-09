@@ -9,7 +9,8 @@ db.settings({
 
 class AddOpeningsContainer extends Component {
   state = {
-    opening: {}
+    opening: {},
+    images: FileList
   };
 
   uploadHandler = e => {
@@ -28,9 +29,21 @@ class AddOpeningsContainer extends Component {
     const value = e.target.value;
     const newOpening = { ...this.state.opening };
 
-    this.setState({
-      opening: { ...newOpening, [name]: value }
-    });
+    switch (name) {
+      case "images": {
+        let images = [...e.target.files];
+        this.setState({
+          images: images
+        });
+        break;
+      }
+      default: {
+        this.setState({
+          opening: { ...newOpening, [name]: value }
+        });
+      }
+    }
+
     console.log(this.state);
   };
 
