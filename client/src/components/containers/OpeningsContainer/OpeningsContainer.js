@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import OpeningsStyle from "../../../styles/components/containers/OpeningsStyle/OpeningsStyle";
 import Opening from "../../presentational/Opening/Opening";
+import OpeningInfo from "../../presentational/OpeningInfo/OpeningInfo";
 import FbApp from "../../../config/firebase";
+import { Switch, Route } from "react-router-dom";
 
 const db = FbApp.firestore();
 
@@ -35,13 +37,32 @@ class OpeningsContainer extends Component {
       : this.state.openings.map(opening => {
           return <Opening key={opening.id} opening={opening} />;
         });
-    return (
-      <OpeningsStyle>
-        <div className="container">
-          <div className="grid-container">{openings}</div>
-        </div>
-      </OpeningsStyle>
-    );
+    return this.state.isLoaded ? (
+      <Switch>
+        <Route
+          exact
+          path="/openings"
+          render={() => {
+            return (
+              <OpeningsStyle>
+                <div className="container">
+                  <div className="grid-container">{openings}</div>
+                </div>
+              </OpeningsStyle>
+            );
+          }}
+        />
+        <Route
+          path="/openings/:id"
+          render={props => {
+            const opening = this.state.openings.filter(opening => {
+              return (opening.id = props.match.params.id);
+            });
+            return <OpeningInfo opening={opening[0]} />;
+          }}
+        />
+      </Switch>
+    ) : null;
   }
 }
 
