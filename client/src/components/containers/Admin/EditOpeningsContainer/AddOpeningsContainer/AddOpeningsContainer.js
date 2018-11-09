@@ -32,7 +32,7 @@ class AddOpeningsContainer extends Component {
           return new Promise(resolve => {
             for (let i = 0; i < images.length; i++) {
               const imgsUploadTask = storage
-                .ref(`people/${opening.id}/${opening.id}_sub${i}`)
+                .ref(`openings/${opening.id}/${opening.id}_sub${i}`)
                 .put(images[i]);
 
               imgsUploadTask.on(
@@ -60,7 +60,7 @@ class AddOpeningsContainer extends Component {
         async function uploadImages() {
           await getURLs();
           console.log(imgURLs);
-          db.collection("people")
+          db.collection("openings")
             .doc(opening.id)
             .set(
               {

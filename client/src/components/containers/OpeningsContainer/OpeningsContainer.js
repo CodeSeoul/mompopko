@@ -32,11 +32,9 @@ class OpeningsContainer extends Component {
   }
 
   render() {
-    const openings = !this.state.isLoaded
-      ? null
-      : this.state.openings.map(opening => {
-          return <Opening key={opening.id} opening={opening} />;
-        });
+    const openings = this.state.openings.map(opening => {
+      return <Opening key={opening.id} opening={opening} />;
+    });
     return this.state.isLoaded ? (
       <Switch>
         <Route
@@ -56,7 +54,7 @@ class OpeningsContainer extends Component {
           path="/openings/:id"
           render={props => {
             const opening = this.state.openings.filter(opening => {
-              return (opening.id = props.match.params.id);
+              return opening.id == props.match.params.id;
             });
             return <OpeningInfo opening={opening[0]} />;
           }}

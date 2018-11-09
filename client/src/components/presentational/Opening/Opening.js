@@ -7,6 +7,7 @@ class Opening extends Component {
 
   render() {
     const { opening } = this.props;
+    console.log(this.props.opening);
     return (
       <OpeningStyle>
         <Link to={`/openings/${opening.id}`}>
