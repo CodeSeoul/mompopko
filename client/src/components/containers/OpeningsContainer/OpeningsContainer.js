@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import OpeningsStyle from "../../../styles/components/containers/OpeningsStyle/OpeningsStyle";
 import Opening from "../../presentational/Opening/Opening";
-import OpeningInfo from "../../presentational/OpeningInfo/OpeningInfo";
+import OpeningInfo from "../../containers/OpeningInfo/OpeningInfo";
 import FbApp from "../../../config/firebase";
 import { Switch, Route } from "react-router-dom";
 
