@@ -13,7 +13,9 @@ const AddOpenings = props => {
     newZipcode,
     oldZipcode,
     construction,
-    type
+    type,
+    image,
+    subImages
   } = props.opening;
 
   return (
@@ -114,6 +116,23 @@ const AddOpenings = props => {
           value={type}
           name="type"
           type="text"
+        />
+        <h5>Main image</h5>
+        <input
+          spellCheck="false"
+          value={image}
+          onChange={e => props.changeHandler(e)}
+          type="file"
+          name="image"
+        />
+        <h5>Sub images</h5>
+        <input
+          spellCheck="false"
+          value={subImages}
+          onChange={e => props.changeHandler(e)}
+          type="file"
+          name="subImages"
+          multiple
         />
         <button>submit</button>
       </form>
