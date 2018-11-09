@@ -3,6 +3,7 @@ import AddOpenings from "../../../../presentational/Admin/Openings/AddOpenings/A
 import FbApp from "../../../../../config/firebase";
 
 const db = FbApp.firestore();
+const storage = FbApp.storage();
 db.settings({
   timestampsInSnapshots: true
 });
@@ -15,11 +16,62 @@ class AddOpeningsContainer extends Component {
 
   uploadHandler = e => {
     e.preventDefault();
+
     const opening = this.state.opening;
-    db.collection("openings").add({
-      ...opening,
-      timeCreated: FbApp.firebase_.firestore.Timestamp.now()
-    });
+    const images = this.state.images;
+
+    db.collection("openings")
+      .add({
+        ...opening,
+        timeCreated: FbApp.firebase_.firestore.Timestamp.now()
+      })
+      .then(opening => {
+        let imgURLs = [];
+        let uploadCheck = 0;
+        function getURLs() {
+          return new Promise(resolve => {
+            for (let i = 0; i < images.length; i++) {
+              const imgsUploadTask = storage
+                .ref(`people/${opening.id}/${opening.id}_sub${i}`)
+                .put(images[i]);
+
+              imgsUploadTask.on(
+                "state_changed",
+                snapshot => {
+                  console.log(snapshot);
+                },
+                error => {
+                  console.log(error);
+                },
+                complete => {
+                  imgsUploadTask.snapshot.ref.getDownloadURL().then(imgURL => {
+                    imgURLs[`${i}`] = imgURL;
+                    ++uploadCheck;
+                    if (uploadCheck == images.length) {
+                      resolve();
+                      uploadCheck = 0;
+                    }
+                  });
+                }
+              );
+            }
+          });
+        }
+        async function uploadImages() {
+          await getURLs();
+          console.log(imgURLs);
+          db.collection("people")
+            .doc(opening.id)
+            .set(
+              {
+                imgURLs: imgURLs
+              },
+              { merge: true }
+            );
+        }
+        uploadImages();
+      })
+      .catch(err => console.log(err));
     e.target.reset();
     this.setState({ opening: {} });
   };
