@@ -27,12 +27,46 @@ class EditOpeningsContainer extends React.Component {
       });
   }
   render() {
+    const tableData = !this.state.isLoaded
+      ? null
+      : this.state.openings.map((row, index) => {
+          return (
+            <tr key={row.id}>
+              <td>{index}</td>
+              <td>{row.name}</td>
+              <td>
+                <Link to={`/admin/openings/${row.id}`}>
+                  <button>Edit</button>
+                </Link>
+              </td>
+              <td>
+                <button
+                  onClick={() => this.deleteHandler(row.id, row.subImgURLs)}
+                >
+                  Delete
+                </button>
+              </td>
+            </tr>
+          );
+        });
     return (
       <Switch>
         <Route
           path="/admin/openings"
           render={() => {
-            return <div>Edit Openings</div>;
+            return (
+              <table className="table">
+                <thead>
+                  <tr>
+                    <th>Number</th>
+                    <th>Business</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                  </tr>
+                </thead>
+                <tbody>{tableData}</tbody>
+              </table>
+            );
           }}
         />
         <Route path="/admin/openings/add" component={AddOpeningsContainer} />
