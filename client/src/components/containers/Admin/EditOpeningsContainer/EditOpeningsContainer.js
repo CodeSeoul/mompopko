@@ -5,6 +5,12 @@ import AddOpeningsContainer from "./AddOpeningsContainer/AddOpeningsContainer";
 const EditOpeningsContainer = props => {
   return (
     <Switch>
+      <Route
+        path="/admin/openings"
+        render={() => {
+          return <div>Edit Openings</div>;
+        }}
+      />
       <Route path="/admin/openings/add" component={AddOpeningsContainer} />
       <Route
         path="/admin/openings/edit/:id"
