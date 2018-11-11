@@ -1,10 +1,31 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import FbApp from "../../../../config/firebase";
+import { Link, Switch, Route } from "react-router-dom";
 import AddOpeningsContainer from "./AddOpeningsContainer/AddOpeningsContainer";
 
-class EditOpeningsContainer extends React.Component {
-  state = {};
+const db = FbApp.firestore();
+const storage = FbApp.storage();
 
+db.settings({
+  timestampsInSnapshots: true
+});
+
+class EditOpeningsContainer extends React.Component {
+  state = {
+    isLoaded: false
+  };
+
+  componentDidMount() {
+    db.collection("openings")
+      .orderBy("timeCreated", "desc")
+      .get()
+      .then(collection => {
+        const openings = collection.docs.map(doc => {
+          return { ...doc.data(), id: doc.id };
+        });
+        this.setState({ openings: openings, isLoaded: true });
+      });
+  }
   render() {
     return (
       <Switch>
