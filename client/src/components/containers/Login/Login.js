@@ -48,7 +48,7 @@ class Login extends Component {
 }
 
 Login.propTypes = {
-  email: PropTypes.any.isRequired,
-  password: PropTypes.any.isRequired
+  email: PropTypes.string,
+  password: PropTypes.string
 };
 export default Login;
