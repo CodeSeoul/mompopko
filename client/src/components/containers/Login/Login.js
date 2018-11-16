@@ -17,24 +17,26 @@ class Login extends Component {
   };
 
   render() {
-    <form>
-      <input
-        value={this.state.email}
-        name="email"
-        onChange={e => {
-          this.changeHandler(e);
-        }}
-        type="email"
-      />
-      <input
-        name="password"
-        value={this.state.password}
-        onChange={e => {
-          this.changeHandler(e);
-        }}
-        type="password"
-      />
-    </form>;
+    return (
+      <form>
+        <input
+          value={this.state.email}
+          name="email"
+          onChange={e => {
+            this.changeHandler(e);
+          }}
+          type="email"
+        />
+        <input
+          name="password"
+          value={this.state.password}
+          onChange={e => {
+            this.changeHandler(e);
+          }}
+          type="password"
+        />
+      </form>
+    );
   }
 }
 
