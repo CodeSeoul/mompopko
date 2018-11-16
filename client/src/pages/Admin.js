@@ -31,11 +31,16 @@ const Admin = () => {
     }
   });
 
+  let signOut = () => {
+    auth.signOut();
+  };
+
   return (
     <React.Fragment>
       <Login
         submitHandler={(email, password) => signInHandler(email, password)}
       />
+      <button onClick={() => signOut()}>sign out</button>
       <Switch>
         <Route path="/admin/people" component={EditPeopleContainer} />
         <Route path="/admin/openings" component={EditOpeningsContainer} />
