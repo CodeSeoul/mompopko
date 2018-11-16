@@ -52,6 +52,7 @@ class EditOpeningsContainer extends React.Component {
     return (
       <Switch>
         <Route
+          exact
           path="/admin/openings"
           render={() => {
             return (
