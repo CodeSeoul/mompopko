@@ -24,7 +24,7 @@ class Login extends Component {
 
   render() {
     return (
-      <form onSubmit={e => this.submitHandler(e)}>
+      <form method="post" onSubmit={e => this.submitHandler(e)}>
         <input
           value={this.state.email}
           name="email"
