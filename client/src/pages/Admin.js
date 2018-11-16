@@ -6,9 +6,14 @@ import EditOpeningsContainer from "../components/containers/Admin/EditOpeningsCo
 import Login from "../components/containers/Login/Login";
 
 const Admin = () => {
+  let submitHandler = (email, password) => {
+    console.log(email, password);
+  };
   return (
     <React.Fragment>
-      <Login />
+      <Login
+        submitHandler={(email, password) => submitHandler(email, password)}
+      />
       <Switch>
         <Route path="/admin/people" component={EditPeopleContainer} />
         <Route path="/admin/openings" component={EditOpeningsContainer} />

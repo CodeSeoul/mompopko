@@ -8,6 +8,7 @@ class Login extends Component {
   };
 
   changeHandler = e => {
+    e.preventDefault();
     let name = e.target.name;
     let value = e.target.value;
 
@@ -16,9 +17,14 @@ class Login extends Component {
     });
   };
 
+  submitHandler = e => {
+    e.preventDefault();
+    this.props.submitHandler(this.state.email, this.state.password);
+  };
+
   render() {
     return (
-      <form>
+      <form onSubmit={e => this.submitHandler(e)}>
         <input
           value={this.state.email}
           name="email"
@@ -35,6 +41,7 @@ class Login extends Component {
           }}
           type="password"
         />
+        <button>Login</button>
       </form>
     );
   }
