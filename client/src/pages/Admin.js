@@ -54,18 +54,23 @@ class Admin extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Login
-          submitHandler={(email, password) =>
-            this.signInHandler(email, password)
-          }
-        />
-        <button onClick={() => this.signOut()}>sign out</button>
-        <Switch>
-          <Route path="/admin/people" component={EditPeopleContainer} />
-          <Route path="/admin/openings" component={EditOpeningsContainer} />
-          <Route path="/admin/data" />
-          <Route path="/admin/about" />
-        </Switch>
+        {this.state.isLoggedIn ? (
+          <div>
+            <button onClick={() => this.signOut()}>sign out</button>
+            <Switch>
+              <Route path="/admin/people" component={EditPeopleContainer} />
+              <Route path="/admin/openings" component={EditOpeningsContainer} />
+              <Route path="/admin/data" />
+              <Route path="/admin/about" />
+            </Switch>
+          </div>
+        ) : (
+          <Login
+            submitHandler={(email, password) =>
+              this.signInHandler(email, password)
+            }
+          />
+        )}
       </React.Fragment>
     );
   }
