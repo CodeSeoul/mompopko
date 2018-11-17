@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
+import LoginStyle from "../../../styles/container/LoginStyle/LoginStyle";
 class Login extends Component {
   state = {
     email: "",
@@ -28,25 +28,27 @@ class Login extends Component {
 
   render() {
     return (
-      <form method="post" onSubmit={e => this.submitHandler(e)}>
-        <input
-          value={this.state.email}
-          name="email"
-          onChange={e => {
-            this.changeHandler(e);
-          }}
-          type="email"
-        />
-        <input
-          name="password"
-          value={this.state.password}
-          onChange={e => {
-            this.changeHandler(e);
-          }}
-          type="password"
-        />
-        <button>Login</button>
-      </form>
+      <LoginStyle>
+        <form method="post" onSubmit={e => this.submitHandler(e)}>
+          <input
+            value={this.state.email}
+            name="email"
+            onChange={e => {
+              this.changeHandler(e);
+            }}
+            type="email"
+          />
+          <input
+            name="password"
+            value={this.state.password}
+            onChange={e => {
+              this.changeHandler(e);
+            }}
+            type="password"
+          />
+          <button>Login</button>
+        </form>
+      </LoginStyle>
     );
   }
 }
