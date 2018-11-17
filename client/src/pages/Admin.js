@@ -7,48 +7,68 @@ import Login from "../components/containers/Login/Login";
 
 const auth = FbApp.auth();
 
-const Admin = () => {
-  let signInHandler = (email, password) => {
+auth.onAuthStateChanged(user => {
+  if (user) {
+    const { uid } = user;
+    console.log(user);
+  } else {
+  }
+});
+
+class Admin extends React.Component {
+  state = {
+    isLoggedIn: false
+  };
+  signInHandler = (email, password) => {
     if (auth.currentUser) {
       auth.signOut();
+      this.setState({
+        isLoggedIn: false
+      });
     }
-    auth.signInWithEmailAndPassword(email, password).catch(error => {
-      let errorCode = error.code;
-      let errorMessage = error.message;
-      if (errorCode === "auth/wrong-password") {
-        alert("Wrong Password");
-      } else {
-        alert(errorMessage);
-      }
-    });
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then(() => {
+        this.setState({
+          isLoggedIn: true
+        });
+      })
+      .catch(error => {
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        if (errorCode === "auth/wrong-password") {
+          alert("Wrong Password");
+        } else {
+          alert(errorMessage);
+        }
+      });
   };
 
-  auth.onAuthStateChanged(user => {
-    if (user) {
-      const { uid } = user;
-      console.log(user);
-    } else {
-    }
-  });
-
-  let signOut = () => {
-    auth.signOut();
+  signOut = () => {
+    auth.signOut().then(
+      this.setState({
+        isLoggedIn: false
+      })
+    );
   };
-
-  return (
-    <React.Fragment>
-      <Login
-        submitHandler={(email, password) => signInHandler(email, password)}
-      />
-      <button onClick={() => signOut()}>sign out</button>
-      <Switch>
-        <Route path="/admin/people" component={EditPeopleContainer} />
-        <Route path="/admin/openings" component={EditOpeningsContainer} />
-        <Route path="/admin/data" />
-        <Route path="/admin/about" />
-      </Switch>
-    </React.Fragment>
-  );
-};
+  render() {
+    return (
+      <React.Fragment>
+        <Login
+          submitHandler={(email, password) =>
+            this.signInHandler(email, password)
+          }
+        />
+        <button onClick={() => this.signOut()}>sign out</button>
+        <Switch>
+          <Route path="/admin/people" component={EditPeopleContainer} />
+          <Route path="/admin/openings" component={EditOpeningsContainer} />
+          <Route path="/admin/data" />
+          <Route path="/admin/about" />
+        </Switch>
+      </React.Fragment>
+    );
+  }
+}
 
 export default Admin;
