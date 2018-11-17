@@ -15,6 +15,44 @@ class EditOpeningsContainer extends React.Component {
     isLoaded: false
   };
 
+  deleteHandler = (id, imgURLs) => {
+    db.collection("openings")
+      .doc(id)
+      .delete()
+      .then(() => {
+        console.log("successfully deleted");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+    for (let i = 0; i < imgURLs.length; i++) {
+      let personRef = storage
+        .ref()
+        .child("openings")
+        .child(id)
+        .child(`${id}_sub${i}`);
+
+      personRef
+        .delete()
+        .then(() => {
+          console.log("successfully deleted");
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    }
+    db.collection("openings")
+      .orderBy("timeCreated", "desc")
+      .get()
+      .then(collection => {
+        const openings = collection.docs.map(doc => {
+          return { ...doc.data(), id: doc.id };
+        });
+        this.setState({ openings: openings, isLoaded: true });
+      });
+  };
+
   componentDidMount() {
     db.collection("openings")
       .orderBy("timeCreated", "desc")
@@ -40,9 +78,7 @@ class EditOpeningsContainer extends React.Component {
                 </Link>
               </td>
               <td>
-                <button
-                  onClick={() => this.deleteHandler(row.id, row.subImgURLs)}
-                >
+                <button onClick={() => this.deleteHandler(row.id, row.imgURLs)}>
                   Delete
                 </button>
               </td>
