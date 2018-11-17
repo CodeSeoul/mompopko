@@ -57,6 +57,16 @@ class EditPeopleContainer extends Component {
       .catch(err => {
         console.log(err);
       });
+    db.collection("people")
+      .orderBy("timeCreated", "desc")
+      .get()
+      .then(collection => {
+        const people = collection.docs.map(doc => {
+          console.log(doc.data(), "doc");
+          return { ...doc.data(), id: doc.id };
+        });
+        this.setState({ people: people, isLoaded: true });
+      });
   };
   componentDidMount() {
     db.collection("people")
