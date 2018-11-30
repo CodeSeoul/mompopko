@@ -18,7 +18,7 @@ auth.onAuthStateChanged(user => {
 
 class Admin extends React.Component {
   state = {
-    isLoggedIn: false
+    isLoggedIn: true
   };
   signInHandler = (email, password) => {
     if (auth.currentUser) {
