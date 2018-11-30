@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import PeopleContainer from "../components/containers/PeopleContainer/PeopleContainer";
-import OpeningsContainer from "../components/containers/OpeningsContainer/OpeningsContainer";
+import PeopleAndOpeningsContainer from "../components/containers/PeopleAndOpeningsContainer/PeopleAndOpeningsContainer";
 
 class PeopleAndOpenings extends Component {
   render() {
-    return <div>People and Openings</div>;
+    return <PeopleAndOpeningsContainer />;
   }
 }
 
