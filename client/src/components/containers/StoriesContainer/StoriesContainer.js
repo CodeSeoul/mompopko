@@ -38,12 +38,13 @@ class StoriesContainer extends React.Component {
       });
   }
   render() {
-    return (
+    return this.state.isOpeningsLoaded === true &&
+      this.state.isPeopleLoaded === true ? (
       <Switch>
         <Route path="/stories" />
         <Route path="/stories/:id" />
       </Switch>
-    );
+    ) : null;
   }
 }
 
