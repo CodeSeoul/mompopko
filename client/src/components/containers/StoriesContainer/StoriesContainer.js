@@ -8,7 +8,7 @@ db.settings({
   timestampsInSnapshots: true
 });
 
-class PeopleAndOpeningsContainer extends React.Component {
+class StoriesContainer extends React.Component {
   state = {
     isPeopleLoaded: false,
     isOpeningsLoaded: false,
@@ -40,11 +40,11 @@ class PeopleAndOpeningsContainer extends React.Component {
   render() {
     return (
       <Switch>
-        <Route path="/peopleandopenings" />
-        <Route path="/peopleandopenings/:id" />
+        <Route path="/stories" />
+        <Route path="/stories/:id" />
       </Switch>
     );
   }
 }
 
-export default PeopleAndOpeningsContainer;
+export default StoriesContainer;
