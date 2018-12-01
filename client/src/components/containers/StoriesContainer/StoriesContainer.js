@@ -1,6 +1,7 @@
 import React from "react";
 import FbApp from "../../../config/firebase";
 import { Switch, Route } from "react-router-dom";
+import Story from "../../presentational/Story/Story";
 
 const db = FbApp.firestore();
 
@@ -26,12 +27,28 @@ class StoriesContainer extends React.Component {
       });
   }
   render() {
-    return this.state.isLoaded === true ? (
+    const stories = this.state.stories.map((story, index) => {
+      if (index > 15) {
+        return null;
+      }
+      return <Story story={story} />;
+    });
+
+    console.log(stories);
+    return this.state.isLoaded == true ? (
       <Switch>
-        <Route path="/stories" />
+        <Route
+          exact
+          path="/stories"
+          render={() => {
+            return stories;
+          }}
+        />
         <Route path="/stories/:id" />
       </Switch>
-    ) : null;
+    ) : (
+      <div>Loading</div>
+    );
   }
 }
 
