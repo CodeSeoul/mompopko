@@ -134,20 +134,6 @@ class AddStories extends Component {
               name="opening"
               type="date"
             />
-            <h5>Zipcode(new system)</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="newZipcode"
-              type="text"
-            />
-            <h5>Zipcode(old system)</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="oldZipcode"
-              type="text"
-            />
             <h5>Construction date</h5>
             <input
               onChange={e => this.changeHandler(e)}
