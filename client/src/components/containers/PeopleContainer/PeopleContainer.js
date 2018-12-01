@@ -19,6 +19,7 @@ class PeopleContainer extends Component {
 
   componentDidMount() {
     db.collection("people")
+      .orderBy("timeCreated", "desc")
       .get()
       .then(collection => {
         const people = collection.docs.map(doc => {
