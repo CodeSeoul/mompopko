@@ -2,35 +2,34 @@ import styled from "styled-components";
 import styleVar from "../variables";
 
 const SearchStyle = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  margin: 20px 0;
 
-  display : flex;
-  align-items : center;
-  justify-content : center;
-  box-sizing : border-box;
-  margin : 20px 0;
-
-  button {
-    display : inline-block;
-    border-radius : 5% 0% 0% 5%;
-    height : 20px;
-    border : 0.5px ${styleVar.primaryDark} solid;
-    background-color : ${styleVar.secondaryDark};
-    i{
-      color : ${styleVar.primaryLight};
-    }
+  .search-container {
+    display: flex;
+    flex-direction: row;
   }
 
-  form{
-    display : inline-block;
-
-    input{
-      border : 0.5px ${styleVar.primaryDark} solid;
-      border-radius : 0% 5% 5% 0%;
-      height : 16px;
-    }
+  .icon-wrapper {
+    height: 24px;
+    padding: 0 4px;
+    background-color: ${styleVar.secondaryDark};
+    color: ${styleVar.primaryLight};
+    border-radius: 5px 0 0 5px;
   }
 
-  
+  form {
+    height: 20px;
+
+    input {
+      border-radius: 0 5px 5px 0;
+      height: 20px;
+      padding: 0;
+      height: inherit;
+    }
   }
 
   /* Mobile */

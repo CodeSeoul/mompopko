@@ -5,11 +5,11 @@ const Search = props => {
   return (
     <SearchStyle>
       <div className="search-container">
-        <button>
+        <div className="icon-wrapper">
           <i className="fa fa-search" />
-        </button>
+        </div>
         <form action="POST">
-          <input type="text" />
+          <input placeholder=" Search" type="text" />
         </form>
       </div>
     </SearchStyle>

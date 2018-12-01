@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import styleVar from "../variables";
+import styleVar from "../../../variables";
 
-const PeopleInfoStyle = styled.div`
+const OpeningInfoStyle = styled.div`
   .grid-container {
     padding: 1rem 10%;
     display: grid;
@@ -57,4 +57,4 @@ const PeopleInfoStyle = styled.div`
   }
 `;
 
-export default PeopleInfoStyle;
+export default OpeningInfoStyle;
