@@ -10,36 +10,23 @@ db.settings({
 
 class StoriesContainer extends React.Component {
   state = {
-    isPeopleLoaded: false,
-    isOpeningsLoaded: false,
-    people: [],
-    openings: []
+    isLoaded: false,
+    stories: []
   };
 
   componentDidMount() {
-    db.collection("openings")
+    db.collection("stories")
       .orderBy("timeCreated", "desc")
       .get()
       .then(collection => {
-        const openings = collection.docs.map(doc => {
+        const stories = collection.docs.map(doc => {
           return { ...doc.data(), id: doc.id };
         });
-        this.setState({ openings: openings, isOpeningsLoaded: true });
-      });
-
-    db.collection("people")
-      .orderBy("timeCreated", "desc")
-      .get()
-      .then(collection => {
-        const people = collection.docs.map(doc => {
-          return { ...doc.data(), id: doc.id };
-        });
-        this.setState({ people: people, isPeopleLoaded: true });
+        this.setState({ stories: stories, isLoaded: true });
       });
   }
   render() {
-    return this.state.isOpeningsLoaded === true &&
-      this.state.isPeopleLoaded === true ? (
+    return this.state.isLoaded === true ? (
       <Switch>
         <Route path="/stories" />
         <Route path="/stories/:id" />

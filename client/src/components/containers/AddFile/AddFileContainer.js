@@ -111,10 +111,12 @@ class AddFileContainer extends React.Component {
           story[el] === undefined ? (story[el] = "") : null;
         }
         db.collection("stories").add({
-          ...story,
+          owner: {},
+          business: {
+            ...story
+          },
           timeCreated: FbApp.firebase_.firestore.Timestamp.now()
         });
-        console.log(index);
       });
       alert("Successfully Uploaded");
     }
