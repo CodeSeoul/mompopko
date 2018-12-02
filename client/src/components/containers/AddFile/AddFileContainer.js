@@ -2,6 +2,14 @@ import React from "react";
 import AddFile from "../../presentational/AddFile/AddFile";
 import FileData from "../../presentational/AddFile/FileData";
 import XLSX from "xlsx";
+import FbApp from "../../../config/firebase";
+
+const db = FbApp.firestore();
+
+db.settings({
+  timestampsInSnapshots: true
+});
+
 class AddFileContainer extends React.Component {
   state = {
     className: "",
@@ -62,16 +70,10 @@ class AddFileContainer extends React.Component {
         //format data for firebase
         const formattedFileData = filteredData.reduce(
           (formattedData, item, i) => {
-            const uid =
-              "id_" +
-              Math.random()
-                .toString(36)
-                .substr(2, 12);
             const business = {
-              uid,
               category: item[0],
               registrationDate: item[1],
-              name: item[2],
+              businessName: item[2],
               locationNew: `${item[3]} ${item[8]}`,
               locationOld: `${item[4]} ${item[9]}`,
               area: item[5],
@@ -100,8 +102,25 @@ class AddFileContainer extends React.Component {
     }
   };
 
-  upload = e => {
+  uploadData = e => {
     e.preventDefault();
+    const stories = [...this.state.formattedFileData];
+    async function removeUndefined() {
+      await stories.map((story, index) => {
+        for (let el in story) {
+          story[el] === undefined ? (story[el] = "") : null;
+        }
+        db.collection("stories").add({
+          owner: {},
+          business: {
+            ...story
+          },
+          timeCreated: FbApp.firebase_.firestore.Timestamp.now()
+        });
+      });
+      alert("Successfully Uploaded");
+    }
+    removeUndefined();
   };
   render() {
     console.log("State", this.state);

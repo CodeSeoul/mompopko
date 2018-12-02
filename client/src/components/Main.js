@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Home from "../pages/Homepage";
 import People from "../pages/People";
 import Openings from "../pages/Openings";
+import Stories from "../pages/Stories";
 import Profile from "../pages/Profile";
 import Data from "../pages/Data";
 import About from "../pages/About";
@@ -23,6 +24,7 @@ const Main = () => {
       </Switch>
       <Switch>
         <Route exact path="/" component={Home} />
+        <Route path="/stories" component={Stories} />
         <Route path="/people" component={People} />
         <Route path="/openings" component={Openings} />
         <Route path="/profile" component={Profile} />
