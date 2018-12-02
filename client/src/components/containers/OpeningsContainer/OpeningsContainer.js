@@ -4,6 +4,7 @@ import Opening from "../../presentational/Opening/Opening";
 import OpeningInfo from "../../containers/OpeningInfo/OpeningInfo";
 import FbApp from "../../../config/firebase";
 import { Switch, Route } from "react-router-dom";
+import MenuNavi from "../../presentational/MenuNavi.js"
 
 const db = FbApp.firestore();
 
@@ -43,6 +44,7 @@ class OpeningsContainer extends Component {
           render={() => {
             return (
               <OpeningsStyle>
+                <MenuNavi menuName="New Openings"/>
                 <div className="container">
                   <div className="grid-container">{openings}</div>
                 </div>
