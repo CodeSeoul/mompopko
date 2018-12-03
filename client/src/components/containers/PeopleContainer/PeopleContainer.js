@@ -4,6 +4,7 @@ import Person from "../../presentational/Person/Person";
 import PeopleInfo from "../../presentational/PeopleInfo/PeopleInfo";
 import FbApp from "../../../config/firebase";
 import { Switch, Route } from "react-router-dom";
+import MenuNavi from "../../presentational/MenuNavi.js"
 
 const db = FbApp.firestore();
 
@@ -76,7 +77,7 @@ class PeopleContainer extends Component {
           path="/people"
           render={() => (
             <People>
-              <div className="header">People</div>
+              <MenuNavi menuName="People"/>
               <div className="container">
                 <div className="grid-container" id="people">
                   {people}
