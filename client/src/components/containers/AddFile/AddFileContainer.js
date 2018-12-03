@@ -72,15 +72,12 @@ class AddFileContainer extends React.Component {
           (formattedData, item, i) => {
             const business = {
               category: item[0],
-              registrationDate: item[1],
-              businessName: item[2],
-              locationNew: `${item[3]} ${item[8]}`,
-              locationOld: `${item[4]} ${item[9]}`,
-              area: item[5],
-              tel: item[6],
-              opening: item[7],
-              buildingConstuction: item[10],
-              type: item[11]
+              businessName: item[1],
+              locationNew: `${item[2]} ${item[6]}`,
+              locationOld: `${item[3]} ${item[7]}`,
+              tel: item[4],
+              opening: item[5],
+              type: item[8]
             };
             console.log("formattedData", formattedData);
             console.log("business", business);
