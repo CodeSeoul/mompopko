@@ -17,22 +17,21 @@ const FileData = props => {
             </tr>
             {data.map((business, i) => {
               const {
-                uid,
                 name,
                 locationNew: location,
                 opening,
                 tel,
                 type
               } = business;
-              return (
-                <tr key={uid}>
+              return i > 0 ? (
+                <tr key={i}>
                   <th>{name}</th>
                   <th>{location}</th>
                   <th>{opening}</th>
                   <th>{tel}</th>
                   <th>{type}</th>
                 </tr>
-              );
+              ) : null;
             })}
           </tbody>
         </table>
