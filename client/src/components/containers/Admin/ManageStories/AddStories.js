@@ -8,7 +8,9 @@ db.settings({
 });
 
 class AddStories extends Component {
-  state = {};
+  state = {
+    level: "level1"
+  };
 
   changeHandler(e) {
     const name = e.target.name;
@@ -20,143 +22,164 @@ class AddStories extends Component {
     return (
       <div className="wrapper">
         <form>
-          <div className="people-form">
-            <span>People Form</span>
-            <h5>Person Name</h5>
-            <input
-              spellCheck="false"
-              onChange={e => this.changeHandler(e)}
-              name="personName"
-              type="text"
-            />
-            <h5>Occupation</h5>
-            <input
-              spellCheck="false"
-              onChange={e => this.changeHandler(e)}
-              name="occupation"
-              type="text"
-            />
-            <h5>Website URL</h5>
-            <input
-              spellCheck="false"
-              group="url"
-              onChange={e => this.changeHandler(e)}
-              name="website"
-              type="url"
-            />
-            <h5>Facebook URL</h5>
-            <input
-              spellCheck="false"
-              group="url"
-              onChange={e => this.changeHandler(e)}
-              name="facebook"
-              type="url"
-            />
-            <h5>Instagram URL</h5>
-            <input
-              spellCheck="false"
-              group="url"
-              onChange={e => this.changeHandler(e)}
-              name="instagram"
-              type="url"
-            />
-            <h5>Youtube URL</h5>
-            <input
-              spellCheck="false"
-              group="url"
-              onChange={e => this.changeHandler(e)}
-              name="youtube"
-              type="url"
-            />
-            <h5>interview</h5>
-            <textarea
-              onChange={e => this.changeHandler(e)}
-              name="interview"
-              cols="30"
-              rows="10"
-            />
-          </div>
-          <div className="business-form">
-            <span>Business Form</span>
-            <h5>Business Category</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="category"
-              type="text"
-            />
-            <h5>Registration Date</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="registration"
-              type="date"
-            />
-            <h5>Business Name</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="businessName"
-              type="text"
-            />
-            <h5>Location(new system)</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="newLocation"
-              type="text"
-            />
-            <h5>Location(old system)</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="oldLocation"
-              type="text"
-            />
-            <h5>Area</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="area"
-              type="text"
-            />
-            <h5>Telephone</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="telephone"
-              type="text"
-            />
-            <h5>Opening Date</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="opening"
-              type="date"
-            />
-            <h5>Construction date</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="construction"
-              type="date"
-            />
-            <h5>Type</h5>
-            <input
-              onChange={e => this.changeHandler(e)}
-              spellCheck="false"
-              name="type"
-              type="text"
-            />
-            <h5>Images</h5>
-            <input
-              spellCheck="false"
-              onChange={e => this.changeHandler(e)}
-              type="file"
-              name="images"
-              multiple
-            />
-          </div>
+          <h5>Chosse Business Level</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            type="radio"
+            value="level1"
+            id="level1"
+            name="level"
+            checked
+          />
+          <label htmlFor="level1">Level 1</label>
+          <input
+            onChange={e => this.changeHandler(e)}
+            type="radio"
+            value="level2"
+            id="level2"
+            name="level"
+          />
+          <label htmlFor="level2">Level 2</label>
+          <input
+            onChange={e => this.changeHandler(e)}
+            type="radio"
+            value="level3"
+            id="level3"
+            name="level"
+          />
+          <label htmlFor="level3">Level 3</label>
+
+          <h5>Person Name</h5>
+          <input
+            spellCheck="false"
+            onChange={e => this.changeHandler(e)}
+            name="personName"
+            type="text"
+          />
+          <h5>Occupation</h5>
+          <input
+            spellCheck="false"
+            onChange={e => this.changeHandler(e)}
+            name="occupation"
+            type="text"
+          />
+          <h5>Website URL</h5>
+          <input
+            spellCheck="false"
+            group="url"
+            onChange={e => this.changeHandler(e)}
+            name="website"
+            type="url"
+          />
+          <h5>Facebook URL</h5>
+          <input
+            spellCheck="false"
+            group="url"
+            onChange={e => this.changeHandler(e)}
+            name="facebook"
+            type="url"
+          />
+          <h5>Instagram URL</h5>
+          <input
+            spellCheck="false"
+            group="url"
+            onChange={e => this.changeHandler(e)}
+            name="instagram"
+            type="url"
+          />
+          <h5>Youtube URL</h5>
+          <input
+            spellCheck="false"
+            group="url"
+            onChange={e => this.changeHandler(e)}
+            name="youtube"
+            type="url"
+          />
+          <h5>interview</h5>
+          <textarea
+            onChange={e => this.changeHandler(e)}
+            name="interview"
+            cols="30"
+            rows="10"
+          />
+          <h5>Business Category</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="category"
+            type="text"
+          />
+          <h5>Registration Date</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="registration"
+            type="date"
+          />
+          <h5>Business Name</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="businessName"
+            type="text"
+          />
+          <h5>Location(new system)</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="newLocation"
+            type="text"
+          />
+          <h5>Location(old system)</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="oldLocation"
+            type="text"
+          />
+          <h5>Area</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="area"
+            type="text"
+          />
+          <h5>Telephone</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="telephone"
+            type="text"
+          />
+          <h5>Opening Date</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="opening"
+            type="date"
+          />
+          <h5>Construction date</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="construction"
+            type="date"
+          />
+          <h5>Type</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="type"
+            type="text"
+          />
+          <h5>Images</h5>
+          <input
+            spellCheck="false"
+            onChange={e => this.changeHandler(e)}
+            type="file"
+            name="images"
+            multiple
+          />
         </form>
       </div>
     );

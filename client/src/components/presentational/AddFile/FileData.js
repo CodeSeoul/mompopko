@@ -9,7 +9,7 @@ const FileData = props => {
         <table>
           <tbody>
             <tr>
-              <th>Name</th>
+              <th>Business Name</th>
               <th>Location</th>
               <th>Opening</th>
               <th>Tel</th>
@@ -17,7 +17,7 @@ const FileData = props => {
             </tr>
             {data.map((business, i) => {
               const {
-                name,
+                businessName,
                 locationNew: location,
                 opening,
                 tel,
@@ -25,7 +25,7 @@ const FileData = props => {
               } = business;
               return i > 0 ? (
                 <tr key={i}>
-                  <th>{name}</th>
+                  <th>{businessName}</th>
                   <th>{location}</th>
                   <th>{opening}</th>
                   <th>{tel}</th>
