@@ -48,26 +48,12 @@ class AddStories extends Component {
           />
           <label htmlFor="level3">Level 3</label>
 
-          <h5>interview</h5>
-          <textarea
-            onChange={e => this.changeHandler(e)}
-            name="interview"
-            cols="30"
-            rows="10"
-          />
           <h5>Business Category</h5>
           <input
             onChange={e => this.changeHandler(e)}
             spellCheck="false"
             name="category"
             type="text"
-          />
-          <h5>Registration Date</h5>
-          <input
-            onChange={e => this.changeHandler(e)}
-            spellCheck="false"
-            name="registration"
-            type="date"
           />
           <h5>Business Name</h5>
           <input
@@ -90,13 +76,6 @@ class AddStories extends Component {
             name="oldLocation"
             type="text"
           />
-          <h5>Area</h5>
-          <input
-            onChange={e => this.changeHandler(e)}
-            spellCheck="false"
-            name="area"
-            type="text"
-          />
           <h5>Telephone</h5>
           <input
             onChange={e => this.changeHandler(e)}
@@ -104,6 +83,7 @@ class AddStories extends Component {
             name="telephone"
             type="text"
           />
+
           <h5>Opening Date</h5>
           <input
             onChange={e => this.changeHandler(e)}
@@ -111,28 +91,47 @@ class AddStories extends Component {
             name="opening"
             type="date"
           />
-          <h5>Construction date</h5>
+          <h5>New Zipcode</h5>
           <input
             onChange={e => this.changeHandler(e)}
             spellCheck="false"
-            name="construction"
-            type="date"
+            name="newZipCode"
+            type="text"
           />
-          <h5>Type</h5>
+          <h5>Old Zipcode</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="oldZipCode"
+            type="text"
+          />
+          <h5>Business Type</h5>
           <input
             onChange={e => this.changeHandler(e)}
             spellCheck="false"
             name="type"
             type="text"
           />
-          <h5>Images</h5>
-          <input
-            spellCheck="false"
-            onChange={e => this.changeHandler(e)}
-            type="file"
-            name="images"
-            multiple
-          />
+
+          {this.state.level === "level2" || this.state.level === "level3" ? (
+            <div>
+              <h5>interview</h5>
+              <textarea
+                onChange={e => this.changeHandler(e)}
+                name="interview"
+                cols="30"
+                rows="10"
+              />
+              <h5>Images</h5>
+              <input
+                spellCheck="false"
+                onChange={e => this.changeHandler(e)}
+                type="file"
+                name="images"
+                multiple
+              />
+            </div>
+          ) : null}
           <h5>Person Name</h5>
           <input
             spellCheck="false"
