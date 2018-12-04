@@ -10,8 +10,12 @@ db.settings({
 
 class AddStories extends Component {
   state = {
-    level: "level1"
+    story: { level: "level1" }
   };
+
+  uploadHandler(e) {
+    e.preventDefault();
+  }
 
   changeHandler(e) {
     const name = e.target.name;
@@ -21,7 +25,9 @@ class AddStories extends Component {
     } else {
       value = e.target.value;
     }
-    this.setState({ [name]: value });
+    this.setState(prevState => ({
+      story: { ...prevState.story, [name]: value }
+    }));
   }
 
   render() {
@@ -34,7 +40,7 @@ class AddStories extends Component {
             type="radio"
             value="level1"
             name="level"
-            checked={this.state.level === "level1"}
+            checked={this.state.story.level === "level1"}
           />
           <label htmlFor="level1">Level 1</label>
           <input
@@ -42,7 +48,7 @@ class AddStories extends Component {
             type="radio"
             value="level2"
             name="level"
-            checked={this.state.level === "level2"}
+            checked={this.state.story.level === "level2"}
           />
           <label htmlFor="level2">Level 2</label>
           <input
@@ -50,7 +56,7 @@ class AddStories extends Component {
             type="radio"
             value="level3"
             name="level"
-            checked={this.state.level === "level3"}
+            checked={this.state.story.level === "level3"}
           />
           <label htmlFor="level3">Level 3</label>
 
@@ -119,7 +125,8 @@ class AddStories extends Component {
             type="text"
           />
 
-          {this.state.level === "level2" || this.state.level === "level3" ? (
+          {this.state.story.level === "level2" ||
+          this.state.story.level === "level3" ? (
             <div>
               <h5>interview</h5>
               <textarea
@@ -184,6 +191,13 @@ class AddStories extends Component {
             name="youtube"
             type="url"
           />
+          <button
+            onClick={e => {
+              this.uploadHandler(e);
+            }}
+          >
+            Submit
+          </button>
         </form>
       </div>
     );
