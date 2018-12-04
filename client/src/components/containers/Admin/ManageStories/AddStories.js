@@ -3,6 +3,7 @@ import FbApp from "../../../../config/firebase";
 
 const db = FbApp.firestore();
 const storage = FbApp.storage();
+
 db.settings({
   timestampsInSnapshots: true
 });
@@ -14,7 +15,12 @@ class AddStories extends Component {
 
   changeHandler(e) {
     const name = e.target.name;
-    const value = e.target.value;
+    var value = "";
+    if (e.target.name === "images") {
+      value = e.target.files;
+    } else {
+      value = e.target.value;
+    }
     this.setState({ [name]: value });
   }
 
