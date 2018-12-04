@@ -27,74 +27,27 @@ class AddStories extends Component {
             onChange={e => this.changeHandler(e)}
             type="radio"
             value="level1"
-            id="level1"
             name="level"
-            checked
+            checked={this.state.level === "level1"}
           />
           <label htmlFor="level1">Level 1</label>
           <input
             onChange={e => this.changeHandler(e)}
             type="radio"
             value="level2"
-            id="level2"
             name="level"
+            checked={this.state.level === "level2"}
           />
           <label htmlFor="level2">Level 2</label>
           <input
             onChange={e => this.changeHandler(e)}
             type="radio"
             value="level3"
-            id="level3"
             name="level"
+            checked={this.state.level === "level3"}
           />
           <label htmlFor="level3">Level 3</label>
 
-          <h5>Person Name</h5>
-          <input
-            spellCheck="false"
-            onChange={e => this.changeHandler(e)}
-            name="personName"
-            type="text"
-          />
-          <h5>Occupation</h5>
-          <input
-            spellCheck="false"
-            onChange={e => this.changeHandler(e)}
-            name="occupation"
-            type="text"
-          />
-          <h5>Website URL</h5>
-          <input
-            spellCheck="false"
-            group="url"
-            onChange={e => this.changeHandler(e)}
-            name="website"
-            type="url"
-          />
-          <h5>Facebook URL</h5>
-          <input
-            spellCheck="false"
-            group="url"
-            onChange={e => this.changeHandler(e)}
-            name="facebook"
-            type="url"
-          />
-          <h5>Instagram URL</h5>
-          <input
-            spellCheck="false"
-            group="url"
-            onChange={e => this.changeHandler(e)}
-            name="instagram"
-            type="url"
-          />
-          <h5>Youtube URL</h5>
-          <input
-            spellCheck="false"
-            group="url"
-            onChange={e => this.changeHandler(e)}
-            name="youtube"
-            type="url"
-          />
           <h5>interview</h5>
           <textarea
             onChange={e => this.changeHandler(e)}
@@ -179,6 +132,52 @@ class AddStories extends Component {
             type="file"
             name="images"
             multiple
+          />
+          <h5>Person Name</h5>
+          <input
+            spellCheck="false"
+            onChange={e => this.changeHandler(e)}
+            name="personName"
+            type="text"
+          />
+          <h5>Occupation</h5>
+          <input
+            spellCheck="false"
+            onChange={e => this.changeHandler(e)}
+            name="occupation"
+            type="text"
+          />
+          <h5>Website URL</h5>
+          <input
+            spellCheck="false"
+            group="url"
+            onChange={e => this.changeHandler(e)}
+            name="website"
+            type="url"
+          />
+          <h5>Facebook URL</h5>
+          <input
+            spellCheck="false"
+            group="url"
+            onChange={e => this.changeHandler(e)}
+            name="facebook"
+            type="url"
+          />
+          <h5>Instagram URL</h5>
+          <input
+            spellCheck="false"
+            group="url"
+            onChange={e => this.changeHandler(e)}
+            name="instagram"
+            type="url"
+          />
+          <h5>Youtube URL</h5>
+          <input
+            spellCheck="false"
+            group="url"
+            onChange={e => this.changeHandler(e)}
+            name="youtube"
+            type="url"
           />
         </form>
       </div>
