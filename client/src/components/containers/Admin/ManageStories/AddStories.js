@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import FbApp from "../../../../config/firebase";
+import firebase from "firebase";
 
 const db = FbApp.firestore();
 const storage = FbApp.storage();
@@ -10,24 +11,65 @@ db.settings({
 
 class AddStories extends Component {
   state = {
-    story: { level: "level1" }
+    story: { level: "level1" },
+    images: FileList
   };
 
   uploadHandler(e) {
     e.preventDefault();
+
+    let story = this.state.story;
+    const images = this.state.images;
+
+    db.collection("stories")
+      .add({
+        ...story,
+        timeCreated: FbApp.firebase_.firestore.Timestamp.now()
+      })
+      .then(story => {
+        for (let i = 0; i < images.length; i++) {
+          const imagesUploadTask = storage
+            .ref(`stories/${story.id}/${story.id}_${i}`)
+            .put(images[i]);
+
+          imagesUploadTask.on(
+            "state_changed",
+            snapshot => {
+              console.log(snapshot);
+            },
+            error => {
+              console.log(error);
+            },
+            complete => {
+              imagesUploadTask.snapshot.ref.getDownloadURL().then(imageURL => {
+                db.collection("stories")
+                  .doc(story.id)
+                  .update({
+                    imageURLs: firebase.firestore.FieldValue.arrayUnion(
+                      imageURL
+                    )
+                  });
+              });
+            }
+          );
+        }
+      });
   }
 
   changeHandler(e) {
     const name = e.target.name;
     var value = "";
     if (e.target.name === "images") {
-      value = e.target.files;
+      value = [...e.target.files];
+      this.setState({
+        images: value
+      });
     } else {
       value = e.target.value;
+      this.setState(prevState => ({
+        story: { ...prevState.story, [name]: value }
+      }));
     }
-    this.setState(prevState => ({
-      story: { ...prevState.story, [name]: value }
-    }));
   }
 
   render() {
