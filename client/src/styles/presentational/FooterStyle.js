@@ -16,6 +16,9 @@ const FooterStyle = styled.div`
     color: ${styleVar.primaryLight};
     text-decoration: none;
     padding: 0 10px;
+    :hover {
+      cursor: pointer;
+    }
   }
 
   .icon-container {
@@ -30,6 +33,16 @@ const FooterStyle = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+  }
+
+  .contact {
+    * {
+      margin-bottom: 15px;
+    }
+    input {
+      width: 80%;
+      height: 30px;
+    }
   }
 
   /* Mobile */
