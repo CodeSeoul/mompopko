@@ -22,7 +22,9 @@ class AddStories extends Component {
     const images = this.state.images;
     var level = story.level;
 
-    db.collection(story.level)
+    db.collection("stories")
+      .doc(level)
+      .collection("data")
       .add({
         ...story,
         timeCreated: FbApp.firebase_.firestore.Timestamp.now()
@@ -43,8 +45,9 @@ class AddStories extends Component {
             },
             complete => {
               imagesUploadTask.snapshot.ref.getDownloadURL().then(imageURL => {
-                console.log(imageURL);
-                db.collection(level)
+                db.collection("stories")
+                  .doc(level)
+                  .collection("data")
                   .doc(story.id)
                   .update({
                     imageURLs: firebase.firestore.FieldValue.arrayUnion(
