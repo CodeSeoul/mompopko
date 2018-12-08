@@ -62,7 +62,7 @@ class Admin extends React.Component {
               <Route path="/admin/people" component={EditPeopleContainer} />
               <Route path="/admin/openings" component={EditOpeningsContainer} />
               {/* <Route path="/admin/stories" component={ManageStories} /> */}
-              <Route path="/admin/stories" render={(props)=> {props.stories=this.props.stories.story; return <ManageStories {...props}/>}} />
+              <Route path="/admin/stories" render={()=> { let props = this.props.stories; return <ManageStories {...props}/>}} />
               <Route path="/admin/data" />
               <Route path="/admin/about" />
             </Switch>
