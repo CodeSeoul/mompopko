@@ -20,8 +20,9 @@ class AddStories extends Component {
 
     let story = this.state.story;
     const images = this.state.images;
+    var level = story.level;
 
-    db.collection("stories")
+    db.collection(story.level)
       .add({
         ...story,
         timeCreated: FbApp.firebase_.firestore.Timestamp.now()
@@ -29,7 +30,7 @@ class AddStories extends Component {
       .then(story => {
         for (let i = 0; i < images.length; i++) {
           const imagesUploadTask = storage
-            .ref(`stories/${story.id}/${story.id}_${i}`)
+            .ref(`stories/${level}/${story.id}/${story.id}_${i}`)
             .put(images[i]);
 
           imagesUploadTask.on(
@@ -42,7 +43,8 @@ class AddStories extends Component {
             },
             complete => {
               imagesUploadTask.snapshot.ref.getDownloadURL().then(imageURL => {
-                db.collection("stories")
+                console.log(imageURL);
+                db.collection(level)
                   .doc(story.id)
                   .update({
                     imageURLs: firebase.firestore.FieldValue.arrayUnion(
@@ -54,6 +56,12 @@ class AddStories extends Component {
           );
         }
       });
+
+    e.target.reset();
+    this.setState({
+      story: { level: story.level },
+      images: FileList
+    });
   }
 
   changeHandler(e) {
@@ -75,7 +83,11 @@ class AddStories extends Component {
   render() {
     return (
       <div className="wrapper">
-        <form>
+        <form
+          onSubmit={e => {
+            this.uploadHandler(e);
+          }}
+        >
           <h5>Chosse Business Level</h5>
           <input
             onChange={e => this.changeHandler(e)}
@@ -233,13 +245,7 @@ class AddStories extends Component {
             name="youtube"
             type="url"
           />
-          <button
-            onClick={e => {
-              this.uploadHandler(e);
-            }}
-          >
-            Submit
-          </button>
+          <button>Submit</button>
         </form>
       </div>
     );
