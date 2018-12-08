@@ -21,8 +21,7 @@ class Navbar extends Component {
         <HamburgerMenu toggleHamburger={() => this.toggleHamburger()} />
         <nav className="container">
           <ul className="menu">
-            <Link to="/people">People</Link>
-            <Link to="/openings">New Openings</Link>
+            <Link to="/stories">Stories</Link>
             <Link to="/data">Data Trends</Link>
             <Link to="/about">About</Link>
           </ul>
