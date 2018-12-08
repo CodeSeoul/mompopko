@@ -5,6 +5,7 @@ import AddStories from "./AddStories";
 
 class ManageStories extends Component {
   render() {
+    console.log(this.props);
     return (
       <React.Fragment>
         <Link to="/admin/stories/add">Add Stories</Link>

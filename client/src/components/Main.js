@@ -73,7 +73,8 @@ class Main extends React.Component {
           <Route path="/profile" component={Profile} />
           <Route path="/data" component={Data} />
           <Route path="/about" component={About} />
-          <Route path="/admin" component={Admin} />
+          {/* <Route path="/admin" component={Admin}  /> */}
+          <Route path="/admin" render={(props)=> <Admin {...props} stories={this.state}/>} />
           <Route path="/addData" component={AddData} />
           <Route path="/addPeople" component={AddPeople} />
         </Switch>
