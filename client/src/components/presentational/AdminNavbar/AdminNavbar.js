@@ -21,8 +21,7 @@ class AdminNavbar extends Component {
         <HamburgerMenu toggleHamburger={() => this.toggleHamburger()} />
         <nav className="container">
           <ul className="menu">
-            <Link to="/admin/people">People</Link>
-            <Link to="/admin/openings">New Openings</Link>
+            <Link to="/admin/stories">Story</Link>
             <Link to="/admin/data">Data Trends</Link>
             <Link to="/admin/about">About</Link>
           </ul>
