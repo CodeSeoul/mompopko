@@ -4,6 +4,7 @@ const Admin = require("../../models/Admin");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
+const passport = require("passport");
 
 //@route GET api/users/test
 //@desc test users page

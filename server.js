@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 
 const admin = require("./routes/api/admin");
 const stories = require("./routes/api/stories");
@@ -24,6 +25,15 @@ mongoose
 
 app.get("/", (req, res) => res.send("hello"));
 
+// Passport Middleware
+
+app.use(passport.initialize());
+
+// Passport Config
+
+require("./config/passport")(passport);
+
+// Use Routes
 app.use("/api/admin", admin);
 app.use("/api/stories", stories);
 app.use("/api/dataTrends", dataTrends);
