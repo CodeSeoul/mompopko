@@ -6,8 +6,8 @@ const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
 
-//@route GET api/users/test
-//@desc test users page
+//@route GET api/admin/test
+//@desc test admin page
 //@access Public
 
 router.get("/test", (req, res) => {
@@ -63,9 +63,9 @@ router.post("/login", (req, res) => {
 
     bcrypt.compare(password, admin.password).then(isMatch => {
       if (isMatch) {
-        // User Matched
+        // Admin Matched
 
-        const payload = { id: user.id, email: user.email };
+        const payload = { id: admin.id, email: admin.email };
 
         // Sign Token
 
@@ -86,5 +86,17 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+//@route POST "/api/admin/stories/create"
+//@desc create stories
+//@access Private
+
+router.post(
+  "/stories",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json({ msg: "stories" });
+  }
+);
 
 module.exports = router;
