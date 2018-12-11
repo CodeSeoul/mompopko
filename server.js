@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
-const users = require("./routes/api/users");
+const admin = require("./routes/api/admin");
 const stories = require("./routes/api/stories");
 const dataTrends = require("./routes/api/dataTrends");
 const about = require("./routes/api/about");
@@ -24,7 +24,7 @@ mongoose
 
 app.get("/", (req, res) => res.send("hello"));
 
-app.use("/api/users", users);
+app.use("/api/admin", admin);
 app.use("/api/stories", stories);
 app.use("/api/dataTrends", dataTrends);
 app.use("/api/about", about);
