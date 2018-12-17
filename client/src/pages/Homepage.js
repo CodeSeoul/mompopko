@@ -4,7 +4,7 @@ import PeopleContainer from "../components/containers/PeopleContainer/PeopleCont
 const Homepage = () => {
   return (
     <React.Fragment>
-      <div>Homepage</div>
+      {/* <div>Home</div> */}
       <PeopleContainer numberOfPeople={3} />
     </React.Fragment>
   );

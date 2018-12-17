@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
-const People = styled.div`
+const DataStyle = styled.div`
   padding: 3rem 5rem;
-
   .container {
     margin: 30px auto;
   }
@@ -15,13 +14,4 @@ const People = styled.div`
   }
 `;
 
-const PeopleSpan = styled.span`
-  font-size: 0.75em;
-	padding-left: 3px;
-	color: #aaa;
-`;
-
-
-
-export default People;
-export {PeopleSpan};
+export default DataStyle;

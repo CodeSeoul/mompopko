@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import People from "../../../styles/components/People/People";
+import People, {PeopleSpan} from "../../../styles/components/People/People";
 import Person from "../../presentational/Person/Person";
 import PeopleInfo from "../../presentational/PeopleInfo/PeopleInfo";
 import FbApp from "../../../config/firebase";
@@ -63,7 +63,7 @@ class PeopleContainer extends Component {
           path="/"
           render={() => (
             <People>
-              <div className="header">People</div>
+              <div className="header">People <PeopleSpan><span>[NEW]</span></PeopleSpan></div>
               <div className="container">
                 <div className="grid-container" id="people">
                   {people}
