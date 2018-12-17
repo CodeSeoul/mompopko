@@ -2,6 +2,48 @@ const express = require("express");
 const router = express.Router();
 const Story = require("../../../models/Story");
 const passport = require("passport");
+const path = require("path");
+const mongoose = require("mongoose");
+const multer = require("multer");
+const GridFsStorage = require("multer-gridfs-storage");
+const Grid = require("gridfs-stream");
+const keys = require("../../../config/keys");
+const crypto = require("crypto");
+
+let gfs;
+const conn = mongoose.connection;
+conn.once("open", () => {
+  gfs = Grid(conn.db, mongoose.mongo);
+  gfs.collection("stories");
+});
+
+const storage = new GridFsStorage({
+  url: keys.mongoURI,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const fileName = buf.toString("hex") + path.extname(file.originalname);
+        const fileInfo = {
+          fileName: fileName,
+          bucketName: "stories"
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+const upload = multer({ storage });
+
+//@route GET api/stories/test
+//@desc test stories page
+//@access Public
+
+router.post("/upload", upload.array("file"), (req, res) => {
+  res.json({ file: req.files });
+});
 
 //@route GET api/stories/test
 //@desc test stories page
@@ -18,6 +60,7 @@ router.get("/test", (req, res) => {
 router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
+  upload.array("file"),
   (req, res) => {
     const storyFields = {};
 
@@ -56,8 +99,8 @@ router.post(
     if (req.body.business.channels.website)
       storyFields.business.channels.website =
         req.body.business.channels.website;
-    if (typeof req.body.business.images !== "undefined") {
-      storyFields.business.images = req.body.business.images;
+    if (typeof req.body.files !== "undefined") {
+      storyFields.business.images = req.body.files.file;
     }
 
     if (req.body.createdDate) storyFields.createdDate = req.body.createdDate;

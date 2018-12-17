@@ -24,7 +24,7 @@ const StorySchema = new Schema({
       youtube: { type: String },
       website: { type: String }
     },
-    images: [{ type: String, data: Buffer }]
+    images: [{ type: Object, data: Buffer }]
   },
 
   createdDate: { type: Date, default: Date.now },
