@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 
-const Lv3StorySchema = new Schema({
+const StorySchema = new Schema({
   business: {
     category: {
       type: String,
@@ -16,15 +16,23 @@ const Lv3StorySchema = new Schema({
     openingDate: { type: Date },
     newZipcode: { type: String },
     oldZipcode: { type: String },
-    type: { type: String, required: true }
+    type: { type: String, required: true },
+    channels: {
+      facebook: { type: String },
+      instagram: { type: String },
+      youtube: { type: String },
+      website: { type: String }
+    },
+    images: [{ type: String, data: Buffer }]
   },
 
   createdDate: { type: Date, default: Date.now },
 
   owner: {
     name: { type: String },
-    interview: { type: String, required: true }
+    interview: { type: String },
+    images: [{ type: String, data: Buffer }]
   }
 });
 
-module.exports = Lv3Story = mongoose.model("lv3story", Lv3StorySchema);
+module.exports = Story = mongoose.model("story", StorySchema);

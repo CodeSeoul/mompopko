@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
-const Admin = require("../../models/Admin");
+const Admin = require("../../../models/Admin");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const keys = require("../../config/keys");
+const keys = require("../../../config/keys");
 const passport = require("passport");
+const stories = require("./stories");
+
+router.use("/stories", stories);
 
 //@route GET api/admin/test
 //@desc test admin page
@@ -90,13 +93,5 @@ router.post("/login", (req, res) => {
 //@route POST "/api/admin/stories/create"
 //@desc create stories
 //@access Private
-
-router.post(
-  "/stories",
-  passport.authenticate("jwt", { session: false }),
-  (req, res) => {
-    res.json({ msg: "stories" });
-  }
-);
 
 module.exports = router;
