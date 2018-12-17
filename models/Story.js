@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 // Create Schema
 
 const StorySchema = new Schema({
+  level: { type: Number, required: true },
   business: {
     category: {
       type: String,

@@ -20,7 +20,11 @@ router.post(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     const storyFields = {};
+
+    if (req.body.level) storyFields.level = req.body.level;
+
     storyFields.business = {};
+
     if (req.body.business.category)
       storyFields.business.category = req.body.business.category;
     if (req.body.business.name)
