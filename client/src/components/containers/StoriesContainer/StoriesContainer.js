@@ -1,6 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import Story from "../../presentational/Story/Story";
+import StoryStyle from "../../../styles/components/containers/StoryStyle/StoryStyle";
+import MenuNavi from "../../presentational/MenuNavi";
 
 class StoriesContainer extends React.Component {
   state = {
@@ -19,18 +21,28 @@ class StoriesContainer extends React.Component {
 
     console.log(stories);
     return this.state.isLoaded == true ? (
-      <Switch>
-        <Route
-          exact
-          path="/stories"
-          render={() => {
-            return stories;
-          }}
-        />
-        <Route path="/stories/:id" />
-      </Switch>
+      <React.Fragment>
+        <StoryStyle>
+          <MenuNavi menuName="Stories" />
+          <Switch>
+            <Route
+              exact
+              path="/stories"
+              render={() => {
+                return stories;
+              }}
+            />
+            <Route path="/stories/:id" />
+          </Switch>
+        </StoryStyle>
+      </React.Fragment>
     ) : (
-      <div>Loading</div>
+      <React.Fragment>
+        <StoryStyle>
+          <MenuNavi menuName="Stories" />
+          <div>Loading</div>
+        </StoryStyle>
+      </React.Fragment>
     );
   }
 }

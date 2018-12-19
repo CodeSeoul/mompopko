@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const StoryStyle = styled.div`
+const DataStyle = styled.div`
   padding: 3rem 5rem;
   .container {
     margin: 30px auto;
@@ -14,4 +14,4 @@ const StoryStyle = styled.div`
   }
 `;
 
-export default StoryStyle;
+export default DataStyle;
