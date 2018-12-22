@@ -5,10 +5,28 @@ import Login from "../components/containers/Login/Login";
 
 class Admin extends React.Component {
   state = {
-    isLoggedIn: true
+    isLoggedIn: false
   };
 
   signOut = () => {};
+
+  signInHandler = (email, password) => {
+    const data = {
+      email,
+      password
+    };
+
+    fetch("http://localhost:5000/api/admin/login", {
+      method: "POST",
+      mode: "cors",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(res => console.log(res));
+  };
   render() {
     console.log(this.props);
     return (
