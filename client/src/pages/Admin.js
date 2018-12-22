@@ -1,7 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import EditPeopleContainer from "../components/containers/Admin/EditPeopleContainer/EditPeopleContainer";
-import EditOpeningsContainer from "../components/containers/Admin/EditOpeningsContainer/EditOpeningsContainer";
 import ManageStories from "../components/containers/Admin/ManageStories/ManageStories";
 import Login from "../components/containers/Login/Login";
 
@@ -19,8 +17,6 @@ class Admin extends React.Component {
           <div>
             <button onClick={() => this.signOut()}>sign out</button>
             <Switch>
-              <Route path="/admin/people" component={EditPeopleContainer} />
-              <Route path="/admin/openings" component={EditOpeningsContainer} />
               {/* <Route path="/admin/stories" component={ManageStories} /> */}
               <Route
                 path="/admin/stories"
