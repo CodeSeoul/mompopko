@@ -2,6 +2,7 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import ManageStories from "../components/containers/Admin/ManageStories/ManageStories";
 import Login from "../components/containers/Login/Login";
+import axios from "axios";
 
 class Admin extends React.Component {
   state = {
@@ -16,16 +17,10 @@ class Admin extends React.Component {
       password
     };
 
-    fetch("http://localhost:5000/api/admin/login", {
-      method: "POST",
-      mode: "cors",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(res => console.log(res));
+    axios
+      .post("http://localhost:5000/api/admin/login", data)
+      .then(res => console.log(res.data))
+      .catch(err => console.log(err));
   };
   render() {
     console.log(this.props);
