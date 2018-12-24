@@ -20,7 +20,7 @@ class Admin extends React.Component {
     axios
       .post("http://localhost:5000/api/admin/login", data)
       .then(res => console.log(res.data))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err.response.data));
   };
   render() {
     console.log(this.props);
