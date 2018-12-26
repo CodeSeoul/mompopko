@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import ManageStories from "../components/containers/Admin/ManageStories/ManageStories";
 import Login from "../components/containers/Login/Login";
 import axios from "axios";
+import setAuthToken from "../utils/setAuthToken";
 
 class Admin extends React.Component {
   state = {
@@ -19,9 +20,21 @@ class Admin extends React.Component {
 
     axios
       .post("http://localhost:5000/api/admin/login", data)
-      .then(res => console.log(res.data))
-      .catch(err => console.log(err.response.data));
+      .then(res => {
+        this.setState({ isLoggedIn: true });
+        const { token } = res.data;
+        localStorage.setItem("jwtToken", token);
+        setAuthToken(token);
+      })
+      .catch(err => console.log(err));
   };
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isLoggedIn) {
+      this.props.history.push("stories");
+    }
+  }
+
   render() {
     console.log(this.props);
     return (
