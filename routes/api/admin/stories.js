@@ -41,19 +41,19 @@ const upload = multer({ storage });
 //@desc test stories page
 //@access Public
 
-router.post("/upload", upload.array("file"), (req, res) => {
-  res.json({ file: req.files });
-});
-
-//@route GET api/stories/test
-//@desc test stories page
-//@access Public
-
 router.get("/test", (req, res) => {
   res.json({ msg: "Stories page works" });
 });
 
-//@route POST api/stories/lv1/register
+//@route POST api/stories/upload
+//@desc upload test files
+//@access Private
+
+router.post("/upload", upload.array("file"), (req, res) => {
+  res.json({ file: req.files });
+});
+
+//@route POST api/stories/
 //@desc create or update a single story
 //@access Private
 

@@ -55,6 +55,8 @@ router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
 
+  console.log(email, password);
+
   // Find admin
 
   Admin.findOne({ email }).then(admin => {
