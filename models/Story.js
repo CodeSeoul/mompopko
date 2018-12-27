@@ -28,6 +28,8 @@ const StorySchema = new Schema({
 
   createdDate: { type: Date, default: Date.now },
 
+  image: [],
+
   owner: {
     name: { type: String },
     interview: { type: String }

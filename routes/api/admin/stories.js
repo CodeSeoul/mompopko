@@ -80,17 +80,23 @@ router.post(
       storyFields.business.oldZipcode = storyData.oldZipcode;
     if (storyData.type) storyFields.business.type = storyData.type;
     storyFields.business.channels = {};
-    // if (req.body.story.channels.facebook)
-    //   storyFields.business.channels.facebook = req.body.story.channels.facebook;
-    // if (req.body.story.channels.instagram)
-    //   storyFields.business.channels.instagram =
-    //     req.body.story.channels.instagram;
-    // if (req.body.story.channels.youtube)
-    //   storyFields.business.channels.youtube = req.body.story.channels.youtube;
-    // if (req.body.story.channels.website)
-    //   storyFields.business.channels.website = req.body.story.channels.website;
+    if (storyData.channels.facebook)
+      storyFields.business.channels.facebook = storyData.channels.facebook;
+    if (storyData.channels.instagram)
+      storyFields.business.channels.instagram = storyData.channels.instagram;
+    if (storyData.channels.youtube)
+      storyFields.business.channels.youtube = storyData.channels.youtube;
+    if (storyData.channels.website)
+      storyFields.business.channels.website = storyData.channels.website;
 
     if (req.body.createdDate) storyFields.createdDate = req.body.createdDate;
+
+    if (typeof req.files !== "undefined") {
+      storyFields.image = [];
+      req.files.map(file => {
+        storyFields.image.push(file.id);
+      });
+    }
 
     storyFields.owner = {};
 
