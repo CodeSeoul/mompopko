@@ -10,26 +10,24 @@ const about = require("./routes/api/about");
 
 const app = express();
 
-// Body Parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-//CORS
-
 app.use(function(req, res, next) {
   //allow cross origin requests
-  res.setHeader(
+  res.header(
     "Access-Control-Allow-Methods",
-    "POST, PUT, OPTIONS, DELETE, GET"
+    "POST, HEAD, PUT, OPTIONS, DELETE, GET"
   );
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
   res.header("Access-Control-Allow-Credentials", true);
   next();
 });
+
+// Body Parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // DB config
 const db = require("./config/keys").mongoURI;
