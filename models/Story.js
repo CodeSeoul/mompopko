@@ -23,16 +23,14 @@ const StorySchema = new Schema({
       instagram: { type: String },
       youtube: { type: String },
       website: { type: String }
-    },
-    images: [{ type: Object, data: Buffer }]
+    }
   },
 
   createdDate: { type: Date, default: Date.now },
 
   owner: {
     name: { type: String },
-    interview: { type: String },
-    images: [{ type: String, data: Buffer }]
+    interview: { type: String }
   }
 });
 

@@ -26,8 +26,6 @@ app.use(function(req, res, next) {
 });
 
 // Body Parser middleware
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
 
 // DB config
 const db = require("./config/keys").mongoURI;
