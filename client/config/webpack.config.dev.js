@@ -80,6 +80,8 @@ module.exports = {
   devtool: "cheap-module-source-map",
   // These are the "entry points" to our application.
   // This means they will be the "root" imports that are included in JS bundle.
+
+  // setting for code splitting by thyun.ahn
   entry: {
     app: [
       require.resolve("react-dev-utils/webpackHotDevClient"),
@@ -87,6 +89,8 @@ module.exports = {
     ],
     vendor: ["react", "react-dom", "react-router-dom"]
   },
+
+  // origin of entry key's value was below codes. (#94~#111 line) (thyun.ahn)
   //[
   //   // Include an alternative client for WebpackDevServer. A client's job is to
   //   // connect to WebpackDevServer by a socket and get notified about changes.
@@ -186,7 +190,7 @@ module.exports = {
         loader: "url-loader",
         options: {
           name: "[hash].[ext]",
-          limit: 10000 //byte 단위.
+          limit: 10000 //(byte).
         }
       },
 
