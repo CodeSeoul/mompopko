@@ -1,20 +1,56 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 class AddStories extends Component {
   state = {
-    story: { level: "level1" },
-    images: FileList
+    story: { level: 1, channels: {} },
+    images: []
   };
 
-  uploadHandler(e) {
+  async uploadHandler(e) {
     e.preventDefault();
+
+    let data = new FormData();
+    const story = { ...this.state.story };
+    const images = [...this.state.images];
+    data.append("story", JSON.stringify(story));
+    for (let i = 0; i < images.length - 1; i++) {
+      data.append("images", images[i]);
+    }
+
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data; boundary='random boundary'"
+      }
+    };
+
+    console.log(data);
+
+    axios
+      .post("http://localhost:5000/api/admin/stories", data, config)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => console.log(err));
   }
 
-  changeHandler(e) {
+  changeHandler = e => {
     const name = e.target.name;
     var value = "";
+
+    console.log(this.state);
+
+    if (e.target.getAttribute("group") === "channels") {
+      value = e.target.value;
+      let channels = { ...this.state.story.channels };
+      this.setState({
+        story: { ...this.state.story, channels: { ...channels, [name]: value } }
+      });
+      return null;
+    }
+
     if (e.target.name === "images") {
-      value = [...e.target.files];
+      value = e.target.files;
       this.setState({
         images: value
       });
@@ -24,12 +60,14 @@ class AddStories extends Component {
         story: { ...prevState.story, [name]: value }
       }));
     }
-  }
+  };
 
   render() {
     return (
       <div className="wrapper">
         <form
+          method="POST"
+          encType="multipart/form-data"
           onSubmit={e => {
             this.uploadHandler(e);
           }}
@@ -38,25 +76,25 @@ class AddStories extends Component {
           <input
             onChange={e => this.changeHandler(e)}
             type="radio"
-            value="level1"
+            value={1}
             name="level"
-            checked={this.state.story.level === "level1"}
+            checked={this.state.story.level == 1}
           />
           <label htmlFor="level1">Level 1</label>
           <input
             onChange={e => this.changeHandler(e)}
             type="radio"
-            value="level2"
+            value={2}
             name="level"
-            checked={this.state.story.level === "level2"}
+            checked={this.state.story.level == 2}
           />
           <label htmlFor="level2">Level 2</label>
           <input
             onChange={e => this.changeHandler(e)}
             type="radio"
-            value="level3"
+            value={3}
             name="level"
-            checked={this.state.story.level === "level3"}
+            checked={this.state.story.level == 3}
           />
           <label htmlFor="level3">Level 3</label>
 
@@ -74,18 +112,18 @@ class AddStories extends Component {
             name="businessName"
             type="text"
           />
-          <h5>Location(new system)</h5>
+          <h5>Address(new system)</h5>
           <input
             onChange={e => this.changeHandler(e)}
             spellCheck="false"
-            name="newLocation"
+            name="newAddress"
             type="text"
           />
-          <h5>Location(old system)</h5>
+          <h5>Address(old system)</h5>
           <input
             onChange={e => this.changeHandler(e)}
             spellCheck="false"
-            name="oldLocation"
+            name="oldAddress"
             type="text"
           />
           <h5>Telephone</h5>
@@ -100,21 +138,21 @@ class AddStories extends Component {
           <input
             onChange={e => this.changeHandler(e)}
             spellCheck="false"
-            name="opening"
+            name="openingDate"
             type="date"
           />
           <h5>New Zipcode</h5>
           <input
             onChange={e => this.changeHandler(e)}
             spellCheck="false"
-            name="newZipCode"
+            name="newZipcode"
             type="text"
           />
           <h5>Old Zipcode</h5>
           <input
             onChange={e => this.changeHandler(e)}
             spellCheck="false"
-            name="oldZipCode"
+            name="oldZipcode"
             type="text"
           />
           <h5>Business Type</h5>
@@ -125,8 +163,7 @@ class AddStories extends Component {
             type="text"
           />
 
-          {this.state.story.level === "level2" ||
-          this.state.story.level === "level3" ? (
+          {this.state.story.level == 2 || this.state.story.level == 3 ? (
             <div>
               <h5>interview</h5>
               <textarea
@@ -145,24 +182,18 @@ class AddStories extends Component {
               />
             </div>
           ) : null}
-          <h5>Person Name</h5>
+          <h5>Owner Name</h5>
           <input
             spellCheck="false"
             onChange={e => this.changeHandler(e)}
-            name="personName"
+            name="ownerName"
             type="text"
           />
-          <h5>Occupation</h5>
-          <input
-            spellCheck="false"
-            onChange={e => this.changeHandler(e)}
-            name="occupation"
-            type="text"
-          />
+
           <h5>Website URL</h5>
           <input
             spellCheck="false"
-            group="url"
+            group="channels"
             onChange={e => this.changeHandler(e)}
             name="website"
             type="url"
@@ -170,7 +201,7 @@ class AddStories extends Component {
           <h5>Facebook URL</h5>
           <input
             spellCheck="false"
-            group="url"
+            group="channels"
             onChange={e => this.changeHandler(e)}
             name="facebook"
             type="url"
@@ -178,7 +209,7 @@ class AddStories extends Component {
           <h5>Instagram URL</h5>
           <input
             spellCheck="false"
-            group="url"
+            group="channels"
             onChange={e => this.changeHandler(e)}
             name="instagram"
             type="url"
@@ -186,7 +217,7 @@ class AddStories extends Component {
           <h5>Youtube URL</h5>
           <input
             spellCheck="false"
-            group="url"
+            group="channels"
             onChange={e => this.changeHandler(e)}
             name="youtube"
             type="url"
