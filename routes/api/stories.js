@@ -30,21 +30,35 @@ router.get("/test", (req, res) => {
 //@access Public
 
 router.get("/", (req, res) => {
+  
   Story.find().then(storiesData => {
-    storiesData.map(storyData => {
-      console.log(storyData.image, "story image");
+    let responseData = [...storiesData];
+    
+    
+    storiesData.map((storyData,storyIndex) => {
+      
+      responseData[storyIndex].imageFiles =[];
       gfs.files
         .find({ _id: { $in: storyData.image } })
         .toArray((err, files) => {
-          console.log(files);
-          files.map(file => {
+          files.map((file,imageIndex) => {
+            
+            let data =[]
             var readstream = gfs.createReadStream({
-              id: file._id
+              _id: file._id
             });
-            readstream.pipe(res);
+            readstream.on('data',(chunk)=>{
+              data.push(chunk);
+            })
+            readstream.on('end',()=>{
+              data = Buffer.concat(data);
+              
+              responseData[storyIndex].imageFiles[imageIndex]=Buffer(data).toString('base64')
+            })
           });
         });
     });
+    res.json(responseData)
   });
 });
 
