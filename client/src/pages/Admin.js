@@ -20,13 +20,13 @@ class Admin extends React.Component {
 
     axios
       .post("http://localhost:5000/api/admin/login", data)
-      .then(res => {
+      .then((res) => {
         this.setState({ isLoggedIn: true });
         const { token } = res.data;
         localStorage.setItem("jwtToken", token);
         setAuthToken(token);
       })
-      .catch(err => console.log(err));
+      .catch((err) => console.log(err));
   };
 
   componentWillReceiveProps(nextProps) {
@@ -46,7 +46,7 @@ class Admin extends React.Component {
               {/* <Route path="/admin/stories" component={ManageStories} /> */}
               <Route
                 path="/admin/stories"
-                render={props => {
+                render={(props) => {
                   return (
                     <ManageStories {...props} stories={this.props.stories} />
                   );
