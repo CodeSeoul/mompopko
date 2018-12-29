@@ -103,25 +103,23 @@ router.post(
     if (storyData.ownerName) storyFields.owner.name = storyData.ownerName;
     if (storyData.interview) storyFields.owner.interview = storyData.interview;
 
-    Story.findOne({ "business.name": req.body.story.businessName }).then(
-      story => {
-        if (story) {
-          //update
-          Story.findOneAndUpdate(
-            {
-              "business.name": req.body.story.businessName
-            },
-            { $set: storyFields },
-            { new: true }
-          ).then(story => {
-            res.json(story);
-          });
-        } else {
-          //create
-          new Story(storyFields).save().then(story => res.json(story));
-        }
+    Story.findOne({ "business.name": storyData.businessName }).then(story => {
+      if (story) {
+        //update
+        Story.findOneAndUpdate(
+          {
+            "business.name": storyData.businessName
+          },
+          { $set: storyFields },
+          { new: true }
+        ).then(story => {
+          res.json(story);
+        });
+      } else {
+        //create
+        new Story(storyFields).save().then(story => res.json(story));
       }
-    );
+    });
   }
 );
 

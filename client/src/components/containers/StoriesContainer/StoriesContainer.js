@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
+import axios from "axios";
 import Story from "../../presentational/Story/Story";
 import StoryStyle from "../../../styles/components/containers/StoryStyle/StoryStyle";
 import MenuNavi from "../../presentational/MenuNavi";
@@ -10,7 +11,16 @@ class StoriesContainer extends React.Component {
     stories: []
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    axios
+      .get("http://localhost:5000/api/stories")
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
   render() {
     const stories = this.state.stories.map((story, index) => {
       if (index > 15) {
