@@ -25,8 +25,8 @@ router.get("/test", (req, res) => {
   res.json({ msg: "Stories page works" });
 });
 
-//@route GET api/stories
-//@desc fetch stories page
+//@route GET api/stories/image/:id
+//@desc fetch stories' images page
 //@access Public
 
 router.get("/image/:id", (req, res) => {
