@@ -14,8 +14,8 @@ class Story extends Component {
         <Link to={`/stories/${story.id}`}>
           <div className="story-card">
             <img
-              alt=""
-              src="https://cdn.pixabay.com/photo/2018/04/05/23/30/nature-3294543_960_720.jpg"
+              alt="Not Loaded"
+              src={"http://localhost:5000/api/stories/image/" + story.image[0]}
             />
             <div className="description">
               <div id="story-category">

@@ -16,6 +16,7 @@ class StoriesContainer extends React.Component {
       .get("http://localhost:5000/api/stories")
       .then(res => {
         console.log(res);
+        this.setState({ isLoaded: true, stories: res.data.stories });
       })
       .catch(err => {
         console.log(err);
@@ -23,9 +24,6 @@ class StoriesContainer extends React.Component {
   }
   render() {
     const stories = this.state.stories.map((story, index) => {
-      if (index > 15) {
-        return null;
-      }
       return <Story story={story} />;
     });
 

@@ -29,36 +29,27 @@ router.get("/test", (req, res) => {
 //@desc fetch stories page
 //@access Public
 
-router.get("/", (req, res) => {
-  
-  Story.find().then(storiesData => {
-    let responseData = [...storiesData];
-    
-    
-    storiesData.map((storyData,storyIndex) => {
-      
-      responseData[storyIndex].imageFiles =[];
-      gfs.files
-        .find({ _id: { $in: storyData.image } })
-        .toArray((err, files) => {
-          files.map((file,imageIndex) => {
-            
-            let data =[]
-            var readstream = gfs.createReadStream({
-              _id: file._id
-            });
-            readstream.on('data',(chunk)=>{
-              data.push(chunk);
-            })
-            readstream.on('end',()=>{
-              data = Buffer.concat(data);
-              
-              responseData[storyIndex].imageFiles[imageIndex]=Buffer(data).toString('base64')
-            })
-          });
-        });
+router.get("/image/:id", (req, res) => {
+  let fileId = req.params.id;
+  gfs.files
+    .find({ _id: mongoose.Types.ObjectId(fileId) })
+    .toArray((err, files) => {
+      const readStream = gfs.createReadStream({
+        _id: files[0]._id
+      });
+      res.set("Content-Type", files[0].contentType);
+
+      return readStream.pipe(res);
     });
-    res.json(responseData)
+});
+
+//@route GET api/stories
+//@desc fetch stories page
+//@access Public
+
+router.get("/", async (req, res) => {
+  Story.find().then(stories => {
+    res.json({ stories });
   });
 });
 
