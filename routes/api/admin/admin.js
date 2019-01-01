@@ -8,7 +8,11 @@ const passport = require("passport");
 const stories = require("./stories");
 const bodyParser = require("body-parser");
 
-router.use("/stories", stories);
+router.use(
+  "/stories",
+  passport.authenticate("jwt", { session: false }),
+  stories
+);
 
 // router.use(bodyParser.urlencoded({ extended: false }));
 // router.use(bodyParser.json());
@@ -100,9 +104,5 @@ router.post(
     });
   }
 );
-
-//@route POST "/api/admin/stories/create"
-//@desc create stories
-//@access Private
 
 module.exports = router;

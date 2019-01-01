@@ -123,4 +123,8 @@ router.post(
   }
 );
 
+//@route DELETE api/stories/
+//@desc delete a story
+//@access Private
+
 module.exports = router;
