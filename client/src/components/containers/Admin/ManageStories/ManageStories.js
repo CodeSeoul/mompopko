@@ -28,6 +28,7 @@ class ManageStories extends Component {
           <td>{story.business.name}</td>
           <td>{story.createdDate}</td>
           <td>{story.owner.name}</td>
+          <td>{story.level}</td>
           <td>
             <Link to={`/admin/stories/${story._id}`}>
               <button>Edit</button>
@@ -52,7 +53,7 @@ class ManageStories extends Component {
             path="/admin/stories"
             render={() => {
               return (
-                <div>
+                <div className="table-container">
                   <table>
                     <thead>
                       <tr>
@@ -60,8 +61,8 @@ class ManageStories extends Component {
                         <th>Created Date</th>
                         <th>Owner Name</th>
                         <th>Level</th>
-                        <th>Delete</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                       </tr>
                     </thead>
                     <tbody>{tableData}</tbody>

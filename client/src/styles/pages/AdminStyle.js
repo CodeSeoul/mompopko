@@ -70,6 +70,23 @@ const AdminStyle = styled.div`
         display: block;
       }
     }
+    .table-container {
+      table {
+        width: 100%;
+        margin-top: 5rem;
+        border: 1px solid #ccc;
+        border-collapse: collapse;
+        text-align: center;
+        font-size: 1.2rem;
+
+        td,
+        th {
+          padding: 1.2rem;
+          border: 1px solid #ccc;
+          margin: 0;
+        }
+      }
+    }
   }
 `;
 export default AdminStyle;
