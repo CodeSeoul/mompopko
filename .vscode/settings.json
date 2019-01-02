@@ -4,11 +4,18 @@
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
   "emmet.includeLanguages": {
-      "javascript": "javascriptreact"
+    "javascript": "javascriptreact"
   },
   "prettier.tabWidth": 2,
   "prettier.useTabs": false,
-  "editor.formatOnSave": true,
+  "editor.formatOnSave": false,
+  "[javascript]": {
+    "editor.formatOnSave": true
+  },
+
   "prettier.arrowParens": false
+
+
+
 
 }

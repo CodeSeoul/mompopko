@@ -1,9 +1,11 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import {
+  Switch,
+  Route
+} from "react-router-dom";
 import ManageStories from "../components/containers/Admin/ManageStories/ManageStories";
 import AdminStyle from "../styles/pages/AdminStyle";
 import Login from "../components/containers/Login/Login";
-import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 
 class Admin extends React.Component {
@@ -12,9 +14,7 @@ class Admin extends React.Component {
   };
 
   signOut = () => {
-    this.setState({ isLoggedIn: false });
-    localStorage.setItem("jwtToken", false);
-    setAuthToken(false);
+
   };
 
   signInHandler = (email, password) => {
@@ -23,15 +23,6 @@ class Admin extends React.Component {
       password
     };
 
-    axios
-      .post("http://localhost:5000/api/admin/login", data)
-      .then(res => {
-        this.setState({ isLoggedIn: true });
-        const { token } = res.data;
-        localStorage.setItem("jwtToken", token);
-        setAuthToken(token);
-      })
-      .catch(err => console.log(err));
   };
 
   componentWillReceiveProps(nextProps) {
@@ -42,37 +33,50 @@ class Admin extends React.Component {
 
   render() {
     console.log(this.props);
-    return (
-      <React.Fragment>
-        <AdminStyle>
-          {this.state.isLoggedIn ? (
-            <div>
-              <button id="signout" onClick={() => this.signOut()}>
-                sign out
-              </button>
-              <Switch>
-                {/* <Route path="/admin/stories" component={ManageStories} /> */}
-                <Route
-                  path="/admin/stories"
-                  render={props => {
-                    return (
-                      <ManageStories {...props} stories={this.props.stories} />
-                    );
-                  }}
+    return ( <
+      React.Fragment >
+      <
+      AdminStyle > {
+        this.state.isLoggedIn ? ( <
+          div >
+          <
+          button id = "signout"
+          onClick = {
+            () => this.signOut()
+          } >
+          sign out <
+          /button> <
+          Switch > { /* <Route path="/admin/stories" component={ManageStories} /> */ } <
+          Route path = "/admin/stories"
+          render = {
+            props => {
+              return ( <
+                ManageStories { ...props
+                }
+                stories = {
+                  this.props.stories
+                }
                 />
-                <Route path="/admin/data" />
-                <Route path="/admin/about" />
-              </Switch>
-            </div>
-          ) : (
-            <Login
-              submitHandler={(email, password) =>
-                this.signInHandler(email, password)
-              }
-            />
-          )}
-        </AdminStyle>
-      </React.Fragment>
+              );
+            }
+          }
+          /> <
+          Route path = "/admin/data" / >
+          <
+          Route path = "/admin/about" / >
+          <
+          /Switch> < /
+          div >
+        ) : ( <
+          Login submitHandler = {
+            (email, password) =>
+            this.signInHandler(email, password)
+          }
+          />
+        )
+      } <
+      /AdminStyle> < /
+      React.Fragment >
     );
   }
 }
