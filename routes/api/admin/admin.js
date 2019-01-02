@@ -8,11 +8,7 @@ const passport = require("passport");
 const stories = require("./stories");
 const bodyParser = require("body-parser");
 
-router.use(
-  "/stories",
-  passport.authenticate("jwt", { session: false }),
-  stories
-);
+router.use("/stories", stories);
 
 // router.use(bodyParser.urlencoded({ extended: false }));
 // router.use(bodyParser.json());

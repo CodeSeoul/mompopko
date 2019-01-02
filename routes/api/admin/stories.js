@@ -12,7 +12,6 @@ let gfs;
 const conn = mongoose.connection;
 conn.once("open", () => {
   gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection("stories");
 });
 
 const storage = new GridFsStorage({
@@ -126,5 +125,36 @@ router.post(
 //@route DELETE api/stories/
 //@desc delete a story
 //@access Private
+
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Story.findById(req.params.id)
+      .then(story => {
+        story.image.map(imageId =>
+          gfs.remove(
+            {
+              _id: mongoose.Types.ObjectId(imageId),
+              root: "images"
+            },
+            (err, girdStore) => {
+              if (err) {
+                return res.status(404).json({ err: err });
+              }
+            }
+          )
+        );
+        story.remove();
+      })
+      .then(() => {
+        res.json({ success: true });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(404).json({ postnotfound: "post not found" });
+      });
+  }
+);
 
 module.exports = router;
