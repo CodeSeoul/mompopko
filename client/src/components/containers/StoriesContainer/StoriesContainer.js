@@ -1,7 +1,7 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import axios from "axios";
-import Story from "../../presentational/Story/Story";
+import Stories from "../../presentational/Stories/Stories";
 import StoryStyle from "../../../styles/components/containers/StoryStyle/StoryStyle";
 import MenuNavi from "../../presentational/MenuNavi";
 
@@ -23,12 +23,7 @@ class StoriesContainer extends React.Component {
       });
   }
   render() {
-    const stories = this.state.stories.map((story, index) => {
-      return <Story story={story} />;
-    });
-
-    console.log(stories);
-    return this.state.isLoaded == true ? (
+    return this.state.isLoaded === true ? (
       <React.Fragment>
         <StoryStyle>
           <MenuNavi menuName="Stories" />
@@ -37,7 +32,7 @@ class StoriesContainer extends React.Component {
               exact
               path="/stories"
               render={() => {
-                return stories;
+                return <Stories stories={this.state.stories} />;
               }}
             />
             <Route path="/stories/:id" />
