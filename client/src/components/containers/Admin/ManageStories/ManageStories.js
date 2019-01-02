@@ -99,6 +99,12 @@ class ManageStories extends Component {
               return <AddStories />;
             }}
           />
+          <Route
+            path="/admin/stories/:id"
+            render={props => {
+              return <div>{props.match.params.id}</div>;
+            }}
+          />
         </Switch>
       </div>
     );
