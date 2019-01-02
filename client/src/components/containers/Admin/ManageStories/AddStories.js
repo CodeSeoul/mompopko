@@ -14,7 +14,7 @@ class AddStories extends Component {
     const story = { ...this.state.story };
     const images = [...this.state.images];
     data.append("story", JSON.stringify(story));
-    for (let i = 0; i < images.length - 1; i++) {
+    for (let i = 0; i < images.length; i++) {
       data.append("images", images[i]);
     }
 
