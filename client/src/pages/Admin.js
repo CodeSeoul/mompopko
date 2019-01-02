@@ -3,42 +3,47 @@ import { Switch, Route } from "react-router-dom";
 import ManageStories from "../components/containers/Admin/ManageStories/ManageStories";
 import AdminStyle from "../styles/pages/AdminStyle";
 import Login from "../components/containers/Login/Login";
-import setAuthToken from "../utils/setAuthToken";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loginUser, logoutUser } from "../actions/authActions";
 
 class Admin extends React.Component {
-  state = {
-    isLoggedIn: true
+  state = {};
+
+  signOut = () => {
+    this.props.logoutUser();
   };
 
-  signOut = () => {};
-
   signInHandler = (email, password) => {
-    const data = {
+    const userData = {
       email,
       password
     };
+    this.props.loginUser(userData);
   };
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.isLoggedIn) {
-      this.props.history.push("stories");
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.auth) {
+      return { auth: nextProps.auth };
     }
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push("/admin/stories");
+    }
+    return null;
   }
 
   render() {
-    console.log(this.props);
+    const { errors, auth } = this.state;
+
     return (
       <React.Fragment>
         <AdminStyle>
-          {" "}
-          {this.state.isLoggedIn ? (
+          {auth.isAuthenticated ? (
             <div>
               <button id="signout" onClick={() => this.signOut()}>
-                sign out{" "}
-              </button>{" "}
+                sign out
+              </button>
               <Switch>
-                {" "}
-                {/* <Route path="/admin/stories" component={ManageStories} /> */}{" "}
                 <Route
                   path="/admin/stories"
                   render={props => {
@@ -46,10 +51,10 @@ class Admin extends React.Component {
                       <ManageStories {...props} stories={this.props.stories} />
                     );
                   }}
-                />{" "}
+                />
                 <Route path="/admin/data" />
                 <Route path="/admin/about" />
-              </Switch>{" "}
+              </Switch>
             </div>
           ) : (
             <Login
@@ -57,11 +62,24 @@ class Admin extends React.Component {
                 this.signInHandler(email, password)
               }
             />
-          )}{" "}
-        </AdminStyle>{" "}
+          )}
+        </AdminStyle>
       </React.Fragment>
     );
   }
 }
 
-export default Admin;
+Admin.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(
+  mapStateToProps,
+  { loginUser, logoutUser }
+)(Admin);

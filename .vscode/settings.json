@@ -1,21 +1,16 @@
 {
-  "terminal.integrated.fontSize": 20,
-  "editor.fontSize": 20,
+  "editor.fontSize": 26,
   "editor.tabSize": 2,
   "editor.wordWrap": "on",
+  "terminal.integrated.fontSize": 26,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact"
   },
-  "prettier.tabWidth": 2,
-  "prettier.useTabs": false,
-  "editor.formatOnSave": false,
-  "[javascript]": {
-    "editor.formatOnSave": true
+  "emmet.syntaxProfiles": {
+    "javascript": "jsx"
   },
-
-  "prettier.arrowParens": false
-
-
-
-
+  "editor.formatOnSave": true,
+  "window.zoomLevel": 0,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "liveServer.settings.donotShowInfoMsg": true
 }
