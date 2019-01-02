@@ -73,31 +73,38 @@ class AddStories extends Component {
           }}
         >
           <h5>Chosse Business Level</h5>
-          <input
-            onChange={e => this.changeHandler(e)}
-            type="radio"
-            value={1}
-            name="level"
-            checked={this.state.story.level == 1}
-          />
-          <label htmlFor="level1">Level 1</label>
-          <input
-            onChange={e => this.changeHandler(e)}
-            type="radio"
-            value={2}
-            name="level"
-            checked={this.state.story.level == 2}
-          />
-          <label htmlFor="level2">Level 2</label>
-          <input
-            onChange={e => this.changeHandler(e)}
-            type="radio"
-            value={3}
-            name="level"
-            checked={this.state.story.level == 3}
-          />
-          <label htmlFor="level3">Level 3</label>
-
+          <div className="level-input-container">
+            <div className="level-input">
+              <input
+                onChange={e => this.changeHandler(e)}
+                type="radio"
+                value={1}
+                name="level"
+                checked={this.state.story.level == 1}
+              />
+              <label htmlFor="level1">Level 1</label>
+            </div>
+            <div className="level-input">
+              <input
+                onChange={e => this.changeHandler(e)}
+                type="radio"
+                value={2}
+                name="level"
+                checked={this.state.story.level == 2}
+              />
+              <label htmlFor="level2">Level 2</label>
+            </div>
+            <div className="level-input">
+              <input
+                onChange={e => this.changeHandler(e)}
+                type="radio"
+                value={3}
+                name="level"
+                checked={this.state.story.level == 3}
+              />
+              <label htmlFor="level3">Level 3</label>
+            </div>
+          </div>
           <h5>Business Category</h5>
           <input
             onChange={e => this.changeHandler(e)}

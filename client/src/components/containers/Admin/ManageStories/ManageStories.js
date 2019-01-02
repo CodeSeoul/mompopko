@@ -25,7 +25,6 @@ class ManageStories extends Component {
           Add
         </Link>
         <Switch>
-          {/* <Route path="/admin/stories/add" component={AddStories}/> */}
           <Route
             path="/admin/stories/add"
             render={() => {
