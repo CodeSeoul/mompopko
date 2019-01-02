@@ -1,0 +1,14 @@
+{
+  "terminal.integrated.fontSize": 20,
+  "editor.fontSize": 20,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "emmet.includeLanguages": {
+      "javascript": "javascriptreact"
+  },
+  "prettier.tabWidth": 2,
+  "prettier.useTabs": false,
+  "editor.formatOnSave": true,
+  "prettier.arrowParens": false
+
+}
