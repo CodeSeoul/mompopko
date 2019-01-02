@@ -70,10 +70,14 @@ const AdminStyle = styled.div`
         display: block;
       }
     }
+    .search-container {
+      margin-top: 2rem;
+    }
+
     .table-container {
       table {
         width: 100%;
-        margin-top: 5rem;
+
         border: 1px solid #ccc;
         border-collapse: collapse;
         text-align: center;

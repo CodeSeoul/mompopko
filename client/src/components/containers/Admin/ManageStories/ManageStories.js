@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import { Switch, Link, Route } from "react-router-dom";
 import AddStories from "./AddStories";
+import Search from "../../../presentational/Search";
 import axios from "axios";
 
 class ManageStories extends Component {
   state = {
     isLoaded: false,
-    stories: []
+    stories: [],
+    searchKey: ""
   };
 
   componentDidMount() {
@@ -20,27 +22,39 @@ class ManageStories extends Component {
         console.log(err);
       });
   }
+
+  searchHandler(e) {
+    e.preventDefault();
+    const searchKey = e.target.value;
+    this.setState({ searchKey: searchKey });
+    console.log(this.state.searchKey);
+  }
+
   render() {
     console.log(this.state.stories);
     const tableData = this.state.stories.map(story => {
-      return (
-        <tr>
-          <td>{story.business.name}</td>
-          <td>{story.createdDate}</td>
-          <td>{story.owner.name}</td>
-          <td>{story.level}</td>
-          <td>
-            <Link to={`/admin/stories/${story._id}`}>
-              <button>Edit</button>
-            </Link>
-          </td>
-          <td>
-            <button onClick={() => this.deleteHandler(story._id)}>
-              Delete
-            </button>
-          </td>
-        </tr>
-      );
+      if (story.business.name.includes(this.state.searchKey)) {
+        return (
+          <tr>
+            <td>{story.business.name}</td>
+            <td>{story.createdDate}</td>
+            <td>{story.owner.name}</td>
+            <td>{story.level}</td>
+            <td>
+              <Link to={`/admin/stories/${story._id}`}>
+                <button>Edit</button>
+              </Link>
+            </td>
+            <td>
+              <button onClick={() => this.deleteHandler(story._id)}>
+                Delete
+              </button>
+            </td>
+          </tr>
+        );
+      } else {
+        return null;
+      }
     });
     return (
       <div className="manage-stories">
@@ -53,21 +67,28 @@ class ManageStories extends Component {
             path="/admin/stories"
             render={() => {
               return (
-                <div className="table-container">
-                  <table>
-                    <thead>
-                      <tr>
-                        <th>Business Name</th>
-                        <th>Created Date</th>
-                        <th>Owner Name</th>
-                        <th>Level</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-                      </tr>
-                    </thead>
-                    <tbody>{tableData}</tbody>
-                  </table>
-                </div>
+                <React.Fragment>
+                  <Search
+                    searchHandler={e => {
+                      this.searchHandler(e);
+                    }}
+                  />
+                  <div className="table-container">
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Business Name</th>
+                          <th>Created Date</th>
+                          <th>Owner Name</th>
+                          <th>Level</th>
+                          <th>Edit</th>
+                          <th>Delete</th>
+                        </tr>
+                      </thead>
+                      <tbody>{tableData}</tbody>
+                    </table>
+                  </div>
+                </React.Fragment>
               );
             }}
           />
