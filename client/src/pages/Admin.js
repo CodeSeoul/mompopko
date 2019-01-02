@@ -11,7 +11,11 @@ class Admin extends React.Component {
     isLoggedIn: false
   };
 
-  signOut = () => {};
+  signOut = () => {
+    this.setState({ isLoggedIn: false });
+    localStorage.setItem("jwtToken", false);
+    setAuthToken(false);
+  };
 
   signInHandler = (email, password) => {
     const data = {
