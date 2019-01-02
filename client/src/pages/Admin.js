@@ -8,7 +8,7 @@ import setAuthToken from "../utils/setAuthToken";
 
 class Admin extends React.Component {
   state = {
-    isLoggedIn: false
+    isLoggedIn: true
   };
 
   signOut = () => {
