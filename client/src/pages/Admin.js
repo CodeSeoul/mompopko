@@ -1,16 +1,21 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 import ManageStories from "../components/containers/Admin/ManageStories/ManageStories";
+import AdminStyle from "../styles/pages/AdminStyle";
 import Login from "../components/containers/Login/Login";
 import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 
 class Admin extends React.Component {
   state = {
-    isLoggedIn: false
+    isLoggedIn: true
   };
 
-  signOut = () => {};
+  signOut = () => {
+    this.setState({ isLoggedIn: false });
+    localStorage.setItem("jwtToken", false);
+    setAuthToken(false);
+  };
 
   signInHandler = (email, password) => {
     const data = {
@@ -20,13 +25,13 @@ class Admin extends React.Component {
 
     axios
       .post("http://localhost:5000/api/admin/login", data)
-      .then((res) => {
+      .then(res => {
         this.setState({ isLoggedIn: true });
         const { token } = res.data;
         localStorage.setItem("jwtToken", token);
         setAuthToken(token);
       })
-      .catch((err) => console.log(err));
+      .catch(err => console.log(err));
   };
 
   componentWillReceiveProps(nextProps) {
@@ -39,30 +44,34 @@ class Admin extends React.Component {
     console.log(this.props);
     return (
       <React.Fragment>
-        {this.state.isLoggedIn ? (
-          <div>
-            <button onClick={() => this.signOut()}>sign out</button>
-            <Switch>
-              {/* <Route path="/admin/stories" component={ManageStories} /> */}
-              <Route
-                path="/admin/stories"
-                render={(props) => {
-                  return (
-                    <ManageStories {...props} stories={this.props.stories} />
-                  );
-                }}
-              />
-              <Route path="/admin/data" />
-              <Route path="/admin/about" />
-            </Switch>
-          </div>
-        ) : (
-          <Login
-            submitHandler={(email, password) =>
-              this.signInHandler(email, password)
-            }
-          />
-        )}
+        <AdminStyle>
+          {this.state.isLoggedIn ? (
+            <div>
+              <button id="signout" onClick={() => this.signOut()}>
+                sign out
+              </button>
+              <Switch>
+                {/* <Route path="/admin/stories" component={ManageStories} /> */}
+                <Route
+                  path="/admin/stories"
+                  render={props => {
+                    return (
+                      <ManageStories {...props} stories={this.props.stories} />
+                    );
+                  }}
+                />
+                <Route path="/admin/data" />
+                <Route path="/admin/about" />
+              </Switch>
+            </div>
+          ) : (
+            <Login
+              submitHandler={(email, password) =>
+                this.signInHandler(email, password)
+              }
+            />
+          )}
+        </AdminStyle>
       </React.Fragment>
     );
   }

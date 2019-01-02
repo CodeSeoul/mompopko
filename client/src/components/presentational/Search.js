@@ -9,7 +9,13 @@ const Search = props => {
           <i className="fa fa-search" />
         </div>
         <form action="POST">
-          <input placeholder=" Search" type="text" />
+          <input
+            onChange={e => {
+              props.searchHandler(e);
+            }}
+            placeholder=" Search"
+            type="text"
+          />
         </form>
       </div>
     </SearchStyle>

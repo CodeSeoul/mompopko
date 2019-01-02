@@ -4,7 +4,6 @@ import styleVar from "../variables";
 const SearchStyle = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
   box-sizing: border-box;
   margin: 20px 0;
 
