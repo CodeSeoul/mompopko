@@ -1,5 +1,5 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import Home from "../pages/Homepage";
 import Stories from "../pages/Stories";
 import Profile from "../pages/Profile";
@@ -59,7 +59,9 @@ const mapStateToProps = state => ({
   story: state.story
 });
 
-export default connect(
-  mapStateToProps,
-  { getStories }
-)(Main);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    { getStories }
+  )(Main)
+);
