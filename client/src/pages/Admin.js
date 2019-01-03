@@ -26,10 +26,13 @@ class Admin extends React.Component {
     if (nextProps.auth) {
       return { auth: nextProps.auth };
     }
-    if (this.props.auth.isAuthenticated) {
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (!prevState.auth.isAuthenticated) {
       this.props.history.push("/admin/stories");
     }
-    return null;
   }
 
   render() {
