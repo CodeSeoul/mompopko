@@ -23,8 +23,8 @@ class Admin extends React.Component {
   };
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.auth) {
-      return { auth: nextProps.auth };
+    if (nextProps.errors || nextProps.auth) {
+      return { auth: nextProps.auth, errors: nextProps.errors };
     }
     return null;
   }
@@ -59,6 +59,7 @@ class Admin extends React.Component {
             </div>
           ) : (
             <Login
+              errors={errors}
               submitHandler={(email, password) =>
                 this.signInHandler(email, password)
               }

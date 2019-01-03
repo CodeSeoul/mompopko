@@ -47,6 +47,9 @@ class Login extends Component {
             }}
             type="password"
           />
+          <span id="error-message">
+            {this.props.errors[Object.keys(this.props.errors)[0]]}
+          </span>
           <button>Login</button>
         </form>
       </LoginStyle>

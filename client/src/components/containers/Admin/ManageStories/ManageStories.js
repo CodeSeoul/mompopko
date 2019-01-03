@@ -16,7 +16,7 @@ class ManageStories extends Component {
     console.log(this.state.searchKey);
   }
 
-  getDerivedStateFromProps(nextProps) {
+  static getDerivedStateFromProps(nextProps) {
     console.log(nextProps);
     if (nextProps.story) {
       return { story: nextProps.story };
@@ -26,10 +26,10 @@ class ManageStories extends Component {
   render() {
     const { story } = this.props;
     const tableData = story.isLoaded
-      ? story.stories.map(story => {
+      ? story.stories.map((story, index) => {
           if (story.business.name.includes(this.state.searchKey)) {
             return (
-              <tr>
+              <tr key={index}>
                 <td>{story.business.name}</td>
                 <td>{story.createdDate}</td>
                 <td>{story.owner.name}</td>

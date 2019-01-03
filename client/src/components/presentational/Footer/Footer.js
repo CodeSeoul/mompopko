@@ -41,7 +41,9 @@ class Footer extends React.Component {
           </Link>
         </div>
         <div className="copyright-container">
-          <a onClick={e => this.ShowModal(e)}>Contact</a>
+          <Link to="#" onClick={e => this.ShowModal(e)}>
+            Contact
+          </Link>
           <Link to="#">Copyright</Link>
           <Link to="#">Collaborate</Link>
         </div>
