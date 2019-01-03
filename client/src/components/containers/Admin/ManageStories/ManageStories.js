@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Switch, Link, Route } from "react-router-dom";
 import AddStories from "./AddStories";
 import Search from "../../../presentational/Search";
+import { connect } from "react-redux";
 
 class ManageStories extends Component {
   state = {
@@ -15,32 +16,41 @@ class ManageStories extends Component {
     console.log(this.state.searchKey);
   }
 
+  getDerivedStateFromProps(nextProps) {
+    console.log(nextProps);
+    if (nextProps.story) {
+      return { story: nextProps.story };
+    }
+  }
+
   render() {
-    console.log(this.state.stories);
-    const tableData = this.state.stories.map(story => {
-      if (story.business.name.includes(this.state.searchKey)) {
-        return (
-          <tr>
-            <td>{story.business.name}</td>
-            <td>{story.createdDate}</td>
-            <td>{story.owner.name}</td>
-            <td>{story.level}</td>
-            <td>
-              <Link to={`/admin/stories/${story._id}`}>
-                <button>Edit</button>
-              </Link>
-            </td>
-            <td>
-              <button onClick={() => this.deleteHandler(story._id)}>
-                Delete
-              </button>
-            </td>
-          </tr>
-        );
-      } else {
-        return null;
-      }
-    });
+    const { story } = this.props;
+    const tableData = story.isLoaded
+      ? story.stories.map(story => {
+          if (story.business.name.includes(this.state.searchKey)) {
+            return (
+              <tr>
+                <td>{story.business.name}</td>
+                <td>{story.createdDate}</td>
+                <td>{story.owner.name}</td>
+                <td>{story.level}</td>
+                <td>
+                  <Link to={`/admin/stories/${story._id}`}>
+                    <button>Edit</button>
+                  </Link>
+                </td>
+                <td>
+                  <button onClick={() => this.deleteHandler(story._id)}>
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            );
+          } else {
+            return null;
+          }
+        })
+      : null;
     return (
       <div className="manage-stories">
         <Link id="add-stories-button" to="/admin/stories/add">
@@ -96,4 +106,11 @@ class ManageStories extends Component {
   }
 }
 
-export default ManageStories;
+const MapStateToProps = state => ({
+  story: state.story
+});
+
+export default connect(
+  MapStateToProps,
+  {}
+)(ManageStories);

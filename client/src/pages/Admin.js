@@ -29,12 +29,6 @@ class Admin extends React.Component {
     return null;
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (!prevState.auth.isAuthenticated) {
-      this.props.history.push("/admin/stories");
-    }
-  }
-
   render() {
     const { errors, auth } = this.state;
 
@@ -47,14 +41,7 @@ class Admin extends React.Component {
                 sign out
               </button>
               <Switch>
-                <Route
-                  path="/admin/stories"
-                  render={props => {
-                    return (
-                      <ManageStories {...props} stories={this.props.stories} />
-                    );
-                  }}
-                />
+                <Route path="/admin/stories" component={ManageStories} />
                 <Route path="/admin/data" />
                 <Route path="/admin/about" />
               </Switch>
