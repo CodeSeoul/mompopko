@@ -2,26 +2,11 @@ import React, { Component } from "react";
 import { Switch, Link, Route } from "react-router-dom";
 import AddStories from "./AddStories";
 import Search from "../../../presentational/Search";
-import axios from "axios";
 
 class ManageStories extends Component {
   state = {
-    isLoaded: false,
-    stories: [],
     searchKey: ""
   };
-
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/api/stories")
-      .then(res => {
-        console.log(res);
-        this.setState({ isLoaded: true, stories: res.data.stories });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
 
   searchHandler(e) {
     e.preventDefault();

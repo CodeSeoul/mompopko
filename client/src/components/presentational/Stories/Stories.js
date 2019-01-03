@@ -5,8 +5,6 @@ class Stories extends Component {
   render() {
     const { stories } = this.props;
 
-    console.log(stories);
-
     const levelStories = level => {
       return stories
         .filter(story => {

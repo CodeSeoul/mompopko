@@ -1,6 +1,5 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-
 import Home from "../pages/Homepage";
 import Stories from "../pages/Stories";
 import Profile from "../pages/Profile";
@@ -11,14 +10,22 @@ import AddData from "../pages/AddDataPage";
 import Header from "./presentational/Header";
 import Footer from "./presentational/Footer/Footer";
 import AdminHeader from "./presentational/AdminHeader/AdminHeader";
+import { connect } from "react-redux";
+import { getStories } from "../actions/storyActions";
 
 class Main extends React.Component {
-  state = {
-    stories: {}
-  };
+  state = {};
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.getStories();
+  }
 
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.story) {
+      return { story: nextProps.story };
+    }
+    return null;
+  }
   render() {
     return (
       <main>
@@ -28,12 +35,7 @@ class Main extends React.Component {
         </Switch>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route
-            path="/stories"
-            render={props => {
-              return <Stories {...props} stories={this.state.stories} />;
-            }}
-          />
+          <Route path="/stories" component={Stories} />
           <Route path="/profile" component={Profile} />
           <Route path="/data" component={Data} />
           <Route path="/about" component={About} />
@@ -53,4 +55,11 @@ class Main extends React.Component {
   }
 }
 
-export default Main;
+const mapStateToProps = state => ({
+  story: state.story
+});
+
+export default connect(
+  mapStateToProps,
+  { getStories }
+)(Main);

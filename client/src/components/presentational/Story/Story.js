@@ -6,7 +6,6 @@ class Story extends Component {
 
   render() {
     const { story } = this.props;
-    console.log(story);
 
     return (
       <Link to={`/stories/${story._id}`}>

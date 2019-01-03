@@ -1,29 +1,24 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import axios from "axios";
 import Stories from "../../presentational/Stories/Stories";
 import StoryStyle from "../../../styles/components/containers/StoryStyle/StoryStyle";
 import MenuNavi from "../../presentational/MenuNavi";
+import { connect } from "react-redux";
 
 class StoriesContainer extends React.Component {
-  state = {
-    isLoaded: false,
-    stories: []
-  };
+  state = {};
 
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/api/stories")
-      .then(res => {
-        console.log(res);
-        this.setState({ isLoaded: true, stories: res.data.stories });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.story) {
+      return { story: nextProps.story };
+    }
+    return null;
   }
+
   render() {
-    return this.state.isLoaded === true ? (
+    const { stories, isLoaded } = this.state.story;
+
+    return isLoaded === true ? (
       <React.Fragment>
         <StoryStyle>
           <MenuNavi menuName="Stories" />
@@ -32,7 +27,7 @@ class StoriesContainer extends React.Component {
               exact
               path="/stories"
               render={() => {
-                return <Stories stories={this.state.stories} />;
+                return <Stories stories={stories} />;
               }}
             />
             <Route path="/stories/:id" />
@@ -50,4 +45,13 @@ class StoriesContainer extends React.Component {
   }
 }
 
-export default StoriesContainer;
+const mapStateToProps = state => {
+  return {
+    story: state.story
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  {}
+)(StoriesContainer);

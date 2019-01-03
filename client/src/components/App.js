@@ -4,15 +4,17 @@ import Main from "./Main.js";
 import { Provider } from "react-redux";
 import store from "../store";
 
-const App = () => {
-  return (
-    <Provider store={store}>
-      <React.Fragment>
-        <GlobalStyle />
-        <Main />
-      </React.Fragment>
-    </Provider>
-  );
-};
+class App extends React.Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <React.Fragment>
+          <GlobalStyle />
+          <Main />
+        </React.Fragment>
+      </Provider>
+    );
+  }
+}
 
 export default App;
