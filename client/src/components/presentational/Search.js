@@ -13,7 +13,14 @@ const Search = props => {
             onChange={e => {
               props.searchHandler(e);
             }}
-            placeholder=" Search"
+            placeholder=" Find"
+            type="text"
+          />
+          <input
+            onChange={e => {
+              props.searchHandler(e);
+            }}
+            placeholder=" Near"
             type="text"
           />
         </form>
