@@ -3,7 +3,7 @@ import axios from "axios";
 
 class AddStories extends Component {
   state = {
-    story: { level: 1, channels: {} },
+    story: { level: "1", channels: {} },
     images: []
   };
 
@@ -80,7 +80,7 @@ class AddStories extends Component {
                 type="radio"
                 value={1}
                 name="level"
-                checked={this.state.story.level == 1}
+                checked={this.state.story.level === "1"}
               />
               <label htmlFor="level1">Level 1</label>
             </div>
@@ -90,7 +90,7 @@ class AddStories extends Component {
                 type="radio"
                 value={2}
                 name="level"
-                checked={this.state.story.level == 2}
+                checked={this.state.story.level === "2"}
               />
               <label htmlFor="level2">Level 2</label>
             </div>
@@ -100,7 +100,7 @@ class AddStories extends Component {
                 type="radio"
                 value={3}
                 name="level"
-                checked={this.state.story.level == 3}
+                checked={this.state.story.level === "3"}
               />
               <label htmlFor="level3">Level 3</label>
             </div>
@@ -170,7 +170,7 @@ class AddStories extends Component {
             type="text"
           />
 
-          {this.state.story.level == 2 || this.state.story.level == 3 ? (
+          {this.state.story.level === "2" || this.state.story.level === "3" ? (
             <div>
               <h5>interview</h5>
               <textarea

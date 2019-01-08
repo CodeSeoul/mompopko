@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import LoginStyle from "../../../styles/container/LoginStyle/LoginStyle";
+
 class Login extends Component {
   state = {
     email: "",
@@ -46,6 +47,9 @@ class Login extends Component {
             }}
             type="password"
           />
+          <span id="error-message">
+            {this.props.errors[Object.keys(this.props.errors)[0]]}
+          </span>
           <button>Login</button>
         </form>
       </LoginStyle>

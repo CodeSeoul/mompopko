@@ -14,9 +14,14 @@ const LoginStyle = styled.div`
     border: none;
     background-color: #3575dd;
     color: white;
-    font-size: 20px;
+    font-size: 1.1rem;
     border-radius: 5%;
     padding: 5px 10px;
+  }
+  #error-message {
+    font-size: 0.8rem;
+    text-align: center;
+    color: red;
   }
 `;
 
