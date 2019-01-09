@@ -30,7 +30,12 @@ class StoriesContainer extends React.Component {
                 return <Stories stories={stories} />;
               }}
             />
-            <Route path="/stories/:id" />
+            <Route
+              path="/stories/:id"
+              render={props => {
+                return <div>Hello</div>;
+              }}
+            />
           </Switch>
         </StoryStyle>
       </React.Fragment>

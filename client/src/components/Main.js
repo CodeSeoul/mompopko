@@ -11,6 +11,7 @@ import BeautyAndHealth from "../pages/BeautyAndHealth";
 import Fashion from "../pages/Fashion";
 import Entertainment from "../pages/Entertainment";
 import Services from "../pages/Services";
+import StoryInfo from "../components/containers/StoryInfo/StoryInfo";
 import { connect } from "react-redux";
 import { getStories } from "../actions/storyActions";
 
@@ -41,6 +42,7 @@ class Main extends React.Component {
           <Route path="/fashion" component={Fashion} />
           <Route path="/entertainment" component={Entertainment} />
           <Route path="/services" component={Services} />
+          <Route path="/stories/:id" component={StoryInfo} />
           <Route
             path="/admin"
             render={props => <Admin {...props} stories={this.state.stories} />}

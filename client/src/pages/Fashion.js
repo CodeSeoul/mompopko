@@ -30,7 +30,6 @@ class Fashion extends React.Component {
                 return <Stories stories={stories} />;
               }}
             />
-            <Route path="/stories/:id" />
           </Switch>
         </StoryStyle>
       </React.Fragment>
