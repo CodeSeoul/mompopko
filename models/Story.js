@@ -18,6 +18,9 @@ const StorySchema = new Schema({
     newZipcode: { type: String },
     oldZipcode: { type: String },
     type: { type: String, required: true },
+    category1: { type: String, required: true },
+    category2: { type: String, required: true },
+    category3: { type: String, required: true },
     channels: {
       facebook: { type: String },
       instagram: { type: String },

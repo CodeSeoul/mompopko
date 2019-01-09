@@ -112,6 +112,34 @@ class AddStories extends Component {
             name="category"
             type="text"
           />
+          <h5>Business Type</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="type"
+            type="text"
+          />
+          <h5>Business Category1</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="category1"
+            type="text"
+          />
+          <h5>Business Category2</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="category2"
+            type="text"
+          />
+          <h5>Business Category3</h5>
+          <input
+            onChange={e => this.changeHandler(e)}
+            spellCheck="false"
+            name="category3"
+            type="text"
+          />
           <h5>Business Name</h5>
           <input
             onChange={e => this.changeHandler(e)}
@@ -160,13 +188,6 @@ class AddStories extends Component {
             onChange={e => this.changeHandler(e)}
             spellCheck="false"
             name="oldZipcode"
-            type="text"
-          />
-          <h5>Business Type</h5>
-          <input
-            onChange={e => this.changeHandler(e)}
-            spellCheck="false"
-            name="type"
             type="text"
           />
 
