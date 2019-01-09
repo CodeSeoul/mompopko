@@ -16,11 +16,17 @@ const NavbarStyle = styled.div`
       align-items: center;
       justify-content: space-around;
 
+      > div {
+        height: 100%;
+      }
+
       a {
+        align-items: center;
+        height: 100%;
         text-decoration: none;
         color: ${styleVar.secondaryDark};
-        display: block;
-        padding: 10px;
+        display: flex;
+        padding: 0 10px;
         transition: background-color 0.4s;
         :hover {
           transition: background-color 0.4s;
@@ -55,7 +61,6 @@ const NavbarStyle = styled.div`
       justify-content: space-between;
       align-items: flex-start;
     }
-    padding-top: 8px;
     font-size: 1rem;
     width: 100%;
     height: 400px;
