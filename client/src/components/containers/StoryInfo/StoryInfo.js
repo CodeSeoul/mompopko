@@ -53,37 +53,39 @@ class StoryInfo extends Component {
                   {storyData.business.category3}
                 </span>
                 <span className="openingData">
-                  {storyData.business.openingDate}
+                  {storyData.business.openingDate.substring(0, 9)}
                 </span>
               </div>
             </header>
             <div className="main">
-              <div className="image-map-container">{images}</div>
-              <GoogleMap
-                id="map"
-                option={{
-                  center: {
-                    lat: 45,
-                    lng: 120
-                  },
-                  zoom: 17
-                }}
-                onMapLoad={map => {
-                  const marker = new window.google.maps.Marker({
-                    position: {
-                      lat: 45,
-                      lng: 120
+              <div className="image-map-container">
+                {images}
+                <GoogleMap
+                  id="map"
+                  option={{
+                    center: {
+                      lat: 38,
+                      lng: 130
                     },
-                    map: map,
-                    title: "business"
-                  });
-                }}
-              />
+                    zoom: 17
+                  }}
+                  onMapLoad={map => {
+                    const marker = new window.google.maps.Marker({
+                      position: {
+                        lat: 38,
+                        lng: 130
+                      },
+                      map: map,
+                      title: "business"
+                    });
+                  }}
+                />
+              </div>
             </div>
             <div className="interview-container">
               <p className="owner-name">Owner : {storyData.owner.name}</p>
               <p className="published-date">
-                Published : {storyData.createdDate}
+                Published : {storyData.createdDate.substring(0, 10)}
               </p>
               <p className="interview">{storyData.owner.interview}</p>
             </div>
