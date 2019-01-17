@@ -16,15 +16,26 @@ const NavbarStyle = styled.div`
       align-items: center;
       justify-content: space-around;
 
+      > div {
+        height: 100%;
+      }
+
       a {
+        align-items: center;
+        height: 100%;
         text-decoration: none;
         color: ${styleVar.secondaryDark};
-        display: block;
-        padding: 10px;
+        display: flex;
+        padding: 0 10px;
         transition: background-color 0.4s;
         :hover {
           transition: background-color 0.4s;
           background-color: ${styleVar.secondaryLight};
+        }
+        :hover + .dropdown {
+          display: block;
+          position: absolute;
+          left: 0px;
         }
       }
 
@@ -34,6 +45,37 @@ const NavbarStyle = styled.div`
         padding: 6px 10px;
       }
     }
+  }
+
+  .dropdown {
+    :hover {
+      display: block;
+      position: absolute;
+      left: 0px;
+    }
+    ul {
+      margin: 20px 40px;
+      display: flex;
+      flex-direction: column;
+      list-style: none;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    font-size: 1rem;
+    width: 100%;
+    height: 400px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: none;
+  }
+
+  .dropdown-wrapper {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    text-align: center;
   }
 
   /* Mobile */

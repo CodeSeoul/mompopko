@@ -1,11 +1,11 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import Stories from "../../presentational/Stories/Stories";
-import StoryStyle from "../../../styles/components/containers/StoryStyle/StoryStyle";
-import MenuNavi from "../../presentational/MenuNavi";
+import Stories from "../components/presentational/Stories/Stories";
+import StoryStyle from "../styles/components/containers/StoryStyle/StoryStyle";
+import MenuNavi from "../components/presentational/MenuNavi";
 import { connect } from "react-redux";
 
-class StoriesContainer extends React.Component {
+class Services extends React.Component {
   state = {};
 
   static getDerivedStateFromProps(nextProps, prevState) {
@@ -21,21 +21,16 @@ class StoriesContainer extends React.Component {
     return isLoaded === true ? (
       <React.Fragment>
         <StoryStyle>
-          <MenuNavi menuName="Stories" />
+          <MenuNavi menuName="Services" />
           <Switch>
             <Route
               exact
-              path="/stories"
+              path="/services"
               render={() => {
                 return <Stories stories={stories} />;
               }}
             />
-            <Route
-              path="/stories/:id"
-              render={props => {
-                return <div>Hello</div>;
-              }}
-            />
+            <Route path="/stories/:id" />
           </Switch>
         </StoryStyle>
       </React.Fragment>
@@ -59,4 +54,4 @@ const mapStateToProps = state => {
 export default connect(
   mapStateToProps,
   {}
-)(StoriesContainer);
+)(Services);

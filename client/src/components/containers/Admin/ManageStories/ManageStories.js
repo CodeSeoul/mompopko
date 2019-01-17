@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Switch, Link, Route } from "react-router-dom";
 import AddStories from "./AddStories";
-import Search from "../../../presentational/Search";
 import { connect } from "react-redux";
 
 class ManageStories extends Component {
@@ -63,8 +62,10 @@ class ManageStories extends Component {
             render={() => {
               return (
                 <React.Fragment>
-                  <Search
-                    searchHandler={e => {
+                  <input
+                    type="text"
+                    value={this.state.searchKey}
+                    onChange={e => {
                       this.searchHandler(e);
                     }}
                   />

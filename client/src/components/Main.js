@@ -1,15 +1,17 @@
 import React from "react";
 import { Switch, Route, withRouter } from "react-router-dom";
 import Home from "../pages/Homepage";
-import Stories from "../pages/Stories";
-import Profile from "../pages/Profile";
-import Data from "../pages/Data";
-import About from "../pages/About";
 import Admin from "../pages/Admin";
 import AddData from "../pages/AddDataPage";
 import Header from "./presentational/Header";
 import Footer from "./presentational/Footer/Footer";
 import AdminHeader from "./presentational/AdminHeader/AdminHeader";
+import FoodAndDrink from "../pages/FoodAndDrink";
+import BeautyAndHealth from "../pages/BeautyAndHealth";
+import Fashion from "../pages/Fashion";
+import Entertainment from "../pages/Entertainment";
+import Services from "../pages/Services";
+import StoryInfo from "../components/containers/StoryInfo/StoryInfo";
 import { connect } from "react-redux";
 import { getStories } from "../actions/storyActions";
 
@@ -35,11 +37,12 @@ class Main extends React.Component {
         </Switch>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/stories" component={Stories} />
-          <Route path="/profile" component={Profile} />
-          <Route path="/data" component={Data} />
-          <Route path="/about" component={About} />
-          {/* <Route path="/admin" component={Admin}  /> */}
+          <Route path="/food&drink" component={FoodAndDrink} />
+          <Route path="/beauty&health" component={BeautyAndHealth} />
+          <Route path="/fashion" component={Fashion} />
+          <Route path="/entertainment" component={Entertainment} />
+          <Route path="/services" component={Services} />
+          <Route path="/stories/:id" component={StoryInfo} />
           <Route
             path="/admin"
             render={props => <Admin {...props} stories={this.state.stories} />}

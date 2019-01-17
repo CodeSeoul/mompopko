@@ -5,7 +5,7 @@ const Brand = props => {
   return (
     <BrandStyle>
       <Link to="/">
-        <h1>Seoul Re-visioned</h1>
+        <h1>mompopko</h1>
       </Link>
     </BrandStyle>
   );

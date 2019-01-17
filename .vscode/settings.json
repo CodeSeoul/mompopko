@@ -10,7 +10,7 @@
     "javascript": "jsx"
   },
   "editor.formatOnSave": true,
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 1,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "liveServer.settings.donotShowInfoMsg": true
 }

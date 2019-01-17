@@ -87,9 +87,13 @@ router.post(
       storyFields.business.channels.youtube = storyData.channels.youtube;
     if (storyData.channels.website)
       storyFields.business.channels.website = storyData.channels.website;
-
+    if (storyData.category1)
+      storyFields.business.category1 = storyData.category1;
+    if (storyData.category2)
+      storyFields.business.category2 = storyData.category2;
+    if (storyData.category3)
+      storyFields.business.category3 = storyData.category3;
     if (req.body.createdDate) storyFields.createdDate = req.body.createdDate;
-
     if (typeof req.files !== "undefined") {
       storyFields.image = [];
       req.files.map(file => {
