@@ -9,5 +9,20 @@
 </head>
 <body>
 
+    <ul class="nav border-bottom justify-content-center text-center">
+
+        <li class="nav-item col-6">
+            <a href="#" class="nav-link">
+            Businesses
+            </a>
+        </li>
+
+        <li class="nav-item col-6">
+            <a href="#" class="nav-link">
+            Data Trends
+            </a>
+        </li>
+    
+    </ul>
 
     
