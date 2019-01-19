@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>MomPopKo</title>
-    <link rel='stylesheet' href='../lib/frontend/bootstrap/css/bootstrap.css'>
+    <link rel='stylesheet' href='../../lib/frontend/bootstrap/css/bootstrap.css'>
 </head>
 <body>
     <nav class="navbar navbar-light bg-light justify-content-center border-bottom navbar-expand-sm">
