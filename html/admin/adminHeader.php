@@ -8,7 +8,7 @@
     <link rel='stylesheet' href='../../lib/frontend/bootstrap/css/bootstrap.css'>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light justify-content-center border-bottom navbar-expand-sm">
+    <nav class="mb-5 navbar navbar-light bg-light justify-content-center border-bottom navbar-expand-sm">
     <ul class="navbar-nav justify-content-between d-flex col-8">
 
         <li class="nav-item">
