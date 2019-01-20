@@ -7,6 +7,7 @@
     <title>MomPopKo</title>
     <link rel='stylesheet' href='../../lib/frontend/bootstrap/css/bootstrap.css'>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <link rel='stylesheet' href='../../styles/business_index.css'>
 </head>
 <body>
     <nav class="mb-5 navbar navbar-light bg-light justify-content-center border-bottom navbar-expand-sm">
