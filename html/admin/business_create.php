@@ -1,6 +1,6 @@
 <?php include 'adminHeader.php'?>
 
-<div class='container'>
+<div class='container mb-5'>
 
     <form action='#' method='POST'>
         
