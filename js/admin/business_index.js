@@ -121,6 +121,7 @@ function changePage(e) {
 }
 
 //previous, next page buttons' functions has yet to be created
+//backup
 
 //check or uncheck all checkboxes
 
