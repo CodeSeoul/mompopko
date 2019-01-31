@@ -102,10 +102,20 @@ function loadRow(data) {
 
 function pageEvent() {
   let pageButtons = document.querySelectorAll(".page-number");
+  let prevButton = document.querySelector('a[aria-label="Previous"]');
+  let nextButton = document.querySelector('a[aria-label="Next"]');
 
   pageButtons.forEach(pageButton =>
     pageButton.addEventListener("click", e => changePage(e), true)
   );
+
+  prevButton.addEventListener("click", e => {
+    changePageSet(e, pageButtons);
+  });
+
+  nextButton.addEventListener("click", e => {
+    changePageSet(e, pageButtons);
+  });
 }
 
 // change the page when admin clicks a page number
@@ -122,6 +132,43 @@ function changePage(e) {
       parseInt(e.target.textContent)
     )
   );
+}
+
+function changePageSet(e, pageButtons) {
+  let lastPageNum = pageButtons[pageButtons.length - 1].textContent;
+  let button = e.target;
+
+  if (button.getAttribute("aria-label") == "Previous" && lastPageNum != 5) {
+    pageButtons.forEach(pageButton => {
+      pageButton.lastElementChild.textContent =
+        parseInt(pageButton.lastElementChild.textContent) - 5;
+      pageButton.classList.remove("active");
+    });
+
+    pageButtons[4].classList.toggle("active");
+    loadRow(
+      fetchData(
+        document.querySelector("#search-button").elements.search.value,
+        parseInt(lastPageNum - 5)
+      )
+    );
+  }
+
+  if (button.getAttribute("aria-label") == "Next") {
+    pageButtons.forEach(pageButton => {
+      pageButton.lastElementChild.textContent =
+        parseInt(pageButton.lastElementChild.textContent) + 5;
+      pageButton.classList.remove("active");
+    });
+
+    pageButtons[0].classList.toggle("active");
+    loadRow(
+      fetchData(
+        document.querySelector("#search-button").elements.search.value,
+        parseInt(lastPageNum + 1)
+      )
+    );
+  }
 }
 
 //previous, next page buttons' functions has yet to be created
