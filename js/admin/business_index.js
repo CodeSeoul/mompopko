@@ -24,7 +24,7 @@ function fetchData(
     .then(res => res.json())
     .then(data => {
       console.log(JSON.stringify(data));
-      return { meta: data, businesses: JSON.stringify(data) };
+      return { meta: data, businesses: JSON.parse(data) };
     })
     .catch(err => {
       console.log(err);
@@ -36,7 +36,7 @@ function fetchData(
 function loadRow(data) {
   let meta = data["meta"];
   let businesses = JSON.parse(data["businesses"]);
-  let index = 0;
+
   for (business in businesses) {
     let tr = document.createElement("tr");
     let thCheckbox = document.createElement("th");
@@ -77,6 +77,10 @@ function loadRow(data) {
     tdAddress.appendChild(document.createTextNode(business["address"]));
     childrenArr.push(tdAddress);
     buttonEdit.appendChild(document.createTextNode("Edit"));
+    buttonEdit.addEventListener("click", () => {
+      localStorage.setItem("selectedBusiness", JSON.stringify(business));
+      window.location.pathname = "../../html/admin/admin_login.html";
+    });
     tdEdit.appendChild(buttonEdit);
     childrenArr.push(tdEdit);
     buttonImage.appendChild(document.createTextNode("Select"));
