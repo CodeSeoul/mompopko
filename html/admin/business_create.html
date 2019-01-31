@@ -22,7 +22,7 @@
   <body>
     <header id="header"></header>
     <div class="container mb-5">
-      <form action="#" method="POST">
+      <form id="business_create_form" action="#" method="POST">
         <div class="form-group">
           <label for="level">Level</label>
           <input type="text" id="level" class="form-control" />
@@ -158,14 +158,12 @@
     </div>
 
     <script src="../../lib/frontend/jquery/jquery-3.3.1.min.js"></script>
-    <script
-      src="../../lib/frontend/popper/popper.min.js"
-      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-      crossorigin="anonymous"
-    ></script>
+    <script src="../../lib/frontend/popper/popper.min.js"></script>
     <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
     <script>
       $("#header").load("adminHeader.html");
     </script>
+    <script type="text/javascript" src="../../js/modal.js"></script>
+    <script src="../../js/admin/business_create.js"></script>
   </body>
 </html>
