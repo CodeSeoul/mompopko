@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>MomPopKo</title>
+	<title>mompopko</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="MomPopKo" />
 	<link href="css/style.css" rel="stylesheet" />
@@ -37,10 +37,12 @@
 		$(window).scroll(function() {
 		    if ($(this).scrollTop() > 50){  
 		        $('#top-logo').addClass("sticky");
+		        $('#top-sns').addClass("sticky");
 		        $('#top_search').addClass("shrink");
 		    }
 		    else{
 		        $('#top-logo').removeClass("sticky");
+		        $('#top-sns').removeClass("sticky");
 		        $('#top_search').removeClass("shrink");
 		    }
 		});
@@ -58,7 +60,22 @@
 							<img src="img/logo.png" id="top-logo" class="top-logo" alt="logo">
 						</a>
 					</div>
-					<div class="col-xs-6">
+					<div class="col-xs-4"></div>
+					<div class="col-xs-4">
+						<ul id="top-sns" class="sns-list">
+							<li><a><i class="fab fa-facebook-square"></i></a></li>
+							<li><a><i class="fab fa-instagram"></i></a></li>
+							<li><a><i class="fab fa-youtube"></i></a></li>
+						</ul>
+						<div class="menu">
+							<a data-toggle="collapse" data-target=".navbar-collapse">
+								<i class="fas fa-bars"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
 	                	<form id="top_search" class="search_wrapper" autocomplete="off">
 	                    <div class="sb sb_input_keyword">
 							<input type="text" id="sb_keyword_label" value="Find" disabled/>
@@ -72,155 +89,137 @@
 							<input class="sb_search" type="submit" value=""/>
 						</div>
 						<ol class="sb_dropdown sb_keyword" style="display:none;">
+							<li class="rank_title">
+								<a href="">Most Popular</a>
+							</li>
 							<li class="rank_1">
 								<div class="rank">
 									<div class="rank_num">1.</div>
-									<div class="rank_icon up"></div>
 								</div>
 								<a href="">Taco</a>
 							</li>
 							<li class="rank_2">
 								<div class="rank">
 									<div class="rank_num">2.</div>
-									<div class="rank_icon up"></div>
 								</div>
 								<a href="">Wine by the Glass</a>
 							</li>
 							<li class="rank_3">
 								<div class="rank">
 									<div class="rank_num">3.</div>
-									<div class="rank_icon stay"></div>
 								</div>
 								<a href="">Nail Art</a>
 							</li>
 							<li class="rank_4">
 								<div class="rank">
 									<div class="rank_num">4.</div>
-									<div class="rank_icon down"></div>
 								</div>
 								<a href="">Message</a>
 							</li>
 							<li class="rank_5">
 								<div class="rank">
 									<div class="rank_num">5.</div>
-									<div class="rank_icon stay"></div>
 								</div>
 								<a href="">Sauna</a>
 							</li>
 							<li class="rank_6">
 								<div class="rank">
 									<div class="rank_num">6.</div>
-									<div class="rank_icon stay"></div>
 								</div>
 								<a href="">Glasses</a>
 							</li>
 							<li class="rank_7">
 								<div class="rank">
 									<div class="rank_num">7.</div>
-									<div class="rank_icon up"></div>
 								</div>
 								<a href="">Groceries</a>
 							</li>
 							<li class="rank_8">
 								<div class="rank">
 									<div class="rank_num">8.</div>
-									<div class="rank_icon up"></div>
 								</div>
 								<a href="">Photography Studio</a>
 							</li>
 							<li class="rank_9">
 								<div class="rank">
 									<div class="rank_num">9.</div>
-									<div class="rank_icon down"></div>
 								</div>
 								<a href="">Shared Housing</a>
 							</li>
 							<li class="rank_10">
 								<div class="rank">
 									<div class="rank_num">10.</div>
-									<div class="rank_icon up"></div>
 								</div>
 								<a href="">Golf Range</a>
 							</li>
 						</ol>
 						<ol class="sb_dropdown sb_location" style="display:none;">
+							<li class="rank_title">
+								<a href="">Most Popular</a>
+							</li>
 							<li class="rank_1">
 								<div class="rank">
-									<div class="rank_num"></div>
-									<div class="rank_icon near"></div>
+									<div class="near"></div>
 								</div>
 								<a href="">Near Me</a>
 							</li>
 							<li class="rank_9">
 								<div class="rank">
 									<div class="rank_num">1.</div>
-									<div class="rank_icon stay"></div>
 								</div>
 								<a href="">Gangnam</a>
 							</li>
 							<li class="rank_9">
 								<div class="rank">
 									<div class="rank_num">2.</div>
-									<div class="rank_icon up"></div>
 								</div>
 								<a href="">Itaewon</a>
 							</li>
 							<li class="rank_9">
 								<div class="rank">
 									<div class="rank_num">3.</div>
-									<div class="rank_icon stay"></div>
 								</div>
 								<a href="">Garosugil</a>
 							</li>
 							<li class="rank_9">
 								<div class="rank">
 									<div class="rank_num">4.</div>
-									<div class="rank_icon down"></div>
 								</div>
 								<a href="">Sinsa Station</a>
 							</li>
 							<li class="rank_9">
 								<div class="rank">
 									<div class="rank_num">5.</div>
-									<div class="rank_icon down"></div>
 								</div>
 								<a href="">Haebangchon</a>
 							</li>
 							<li class="rank_9">
 								<div class="rank">
 									<div class="rank_num">6.</div>
-									<div class="rank_icon up"></div>
 								</div>
 								<a href="">Seoul Forest</a>
 							</li>
 							<li class="rank_9">
 								<div class="rank">
 									<div class="rank_num">7.</div>
-									<div class="rank_icon up"></div>
 								</div>
 								<a href="">Euljiro 3-ga Station</a>
 							</li>
 							<li class="rank_9">
 								<div class="rank">
 									<div class="rank_num">8.</div>
-									<div class="rank_icon down"></div>
 								</div>
 								<a href="">Hongdae</a>
 							</li>
 							<li class="rank_9">
 								<div class="rank">
 									<div class="rank_num">9.</div>
-									<div class="rank_icon stay"></div>
 								</div>
-								<a href="">Lotte Tower</a></li>
+								<a href="">Lotte Tower</a>
+							</li>
 						</ol>
 	                	</form>
 	            	</div>
-					<div class="menu">
-						<a data-toggle="collapse" data-target=".navbar-collapse">
-							<i class="fas fa-bars"></i>
-						</a>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -229,7 +228,7 @@
 			<div class="container">
 				<div class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-						<li class="dropdown">
+						<li id="all-category" class="dropdown">
 							<a class="dropdown-toggle" data-toggle="dropdown"><i class="fas fa-bars"></i></a>
 							<ul class="dropdown-menu multi-column columns-6">
 								<div class="row">
@@ -410,6 +409,87 @@
 						<div class="col-xs-12 col-sm-6 col-md-4">
 							<div class="thumb-box">
 								<div class="thumb-img">
+									<a href="mamalee_level_2_3.html">
+										<img src="img/openings/MamaleeMarket_1.jpg" width="100%" alt="" />
+									</a>
+								</div>
+								<div class="thumb-content">
+									<h5 class="thumb-category">
+										<i class="fas fa-utensils"></i>
+										<span class="main">Food & Drink</span>
+										<span class="sub">Korean</span>
+									</h5>
+									<a href="mamalee_level_2_3.html">
+										<div class="row">
+											<div class="col-xs-7 thumb-name">
+												<span>Mamalee Market</span>
+												<div style="color: #999;">(level 2/3)</div>
+											</div>
+											<div class="col-xs-5 thumb-product">
+												<img src="img/openings/MamaleeMarket_2.jpg" width="100%" alt="" />
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<div class="thumb-box">
+								<div class="thumb-img">
+									<a href="mamalee_level_1.html">
+										<img src="img/openings/MamaleeMarket_1.jpg" width="100%" alt="" />
+									</a>
+								</div>
+								<div class="thumb-content">
+									<h5 class="thumb-category">
+										<i class="fas fa-utensils"></i>
+										<span class="main">Food & Drink</span>
+										<span class="sub">Korean</span>
+									</h5>
+									<a href="mamalee_level_1.html">
+										<div class="row">
+											<div class="col-xs-7 thumb-name">
+												<span>Mamalee Market</span>
+												<div style="color: #999;">(level 1)</div>
+											</div>
+											<div class="col-xs-5 thumb-product">
+												<img src="img/openings/MamaleeMarket_2.jpg" width="100%" alt="" />
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<div class="thumb-box">
+								<div class="thumb-img">
+									<a href="mamalee_level_closed.html">
+										<img src="img/openings/MamaleeMarket_1.jpg" width="100%" alt="" />
+									</a>
+								</div>
+								<div class="thumb-content">
+									<h5 class="thumb-category">
+										<i class="fas fa-utensils"></i>
+										<span class="main">Food & Drink</span>
+										<span class="sub">Korean</span>
+									</h5>
+									<a href="mamalee_level_closed.html">
+										<div class="row">
+											<div class="col-xs-7 thumb-name">
+												<span>Mamalee Market</span>
+												<div style="color: #999;">(closed)</div>
+											</div>
+											<div class="col-xs-5 thumb-product">
+												<img src="img/openings/MamaleeMarket_2.jpg" width="100%" alt="" />
+											</div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-4">
+							<div class="thumb-box">
+								<div class="thumb-img">
 									<a href="">
 										<img src="img/openings/RouseArouse_1.jpg" width="100%" alt="" />
 									</a>
@@ -427,32 +507,6 @@
 											</div>
 											<div class="col-xs-5 thumb-product">
 												<img src="img/openings/RouseArouse_2.jpg" width="100%" alt="" />
-											</div>
-										</div>
-									</a>
-								</div>
-							</div>
-						</div>
-						<div class="col-xs-12 col-sm-6 col-md-4">
-							<div class="thumb-box">
-								<div class="thumb-img">
-									<a href="">
-										<img src="img/openings/MamaleeMarket_1.jpg" width="100%" alt="" />
-									</a>
-								</div>
-								<div class="thumb-content">
-									<h5 class="thumb-category">
-										<i class="fas fa-utensils"></i>
-										<span class="main">Food & Drink</span>
-										<span class="sub">Korean</span>
-									</h5>
-									<a href="">
-										<div class="row">
-											<div class="col-xs-7 thumb-name">
-												<span>Mamalee Market</span>
-											</div>
-											<div class="col-xs-5 thumb-product">
-												<img src="img/openings/MamaleeMarket_2.jpg" width="100%" alt="" />
 											</div>
 										</div>
 									</a>
@@ -511,6 +565,32 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-xs-12 col-sm-6 col-md-4">
+								<div class="thumb-box">
+									<div class="thumb-img">
+										<a href="">
+											<img src="img/openings/AllGoodClinic_1.jpg" width="100%" alt="" />
+										</a>
+									</div>
+									<div class="thumb-content">
+										<h5 class="thumb-category">
+											<i class="fas fa-gift"></i>
+											<span class="main">Beauty & Health</span>
+											<span class="sub">Acupuncture</span>
+										</h5>
+										<a href="">
+											<div class="row">
+												<div class="col-xs-7 thumb-name">
+													<span>All Good Clinic</span>
+												</div>
+												<div class="col-xs-5 thumb-product">
+													<img src="img/openings/AllGoodClinic_2.jpg" width="100%" alt="" />
+												</div>
+											</div>
+										</a>
+									</div>
+								</div>
+							</div>
 						<div class="col-xs-12 col-sm-6 col-md-4">
 							<div class="thumb-box">
 								<div class="thumb-img">
@@ -667,7 +747,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xs-12 aligncenter mgbottom30">
+						<div class="col-xs-12 alignright mgbottom30">
 							<button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button>
 						</div>
 					</div>
@@ -828,7 +908,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xs-12 aligncenter mgbottom30">
+						<div class="col-xs-12 alignright mgbottom30">
 							<button class="btn btn-more">See More</button>
 						</div>
 					</div>
@@ -987,7 +1067,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xs-12 aligncenter mgbottom30">
+						<div class="col-xs-12 alignright mgbottom30">
 							<button class="btn btn-more">See More</button>
 						</div>
 					</div>
@@ -1013,11 +1093,11 @@
 				<div class="col-sm-12">
 					<ul class="link-list">
 						<li>
-							<a href="">About Us</a>
+							<a href="">ABOUT</a>
 						</li>
-						<li>MomPopKo @ 2019</li>
+						<li>MOMPOPKO @ 2018</li>
 						<li>
-							<a href="">Contact</a>
+							<a href="">CONTACT</a>
 						</li>
 					</ul>
 				</div>
