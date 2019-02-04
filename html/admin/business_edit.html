@@ -25,7 +25,8 @@
       <form action="#" method="POST">
         <div class="form-group">
           <label for="level">Level</label>
-          <input type="text" id="level" class="form-control" />
+          <!-- <input type="text" id="level" class="form-control" /> -->
+          <select name="bizLevel" id="bizLevel" class="form-control"></select>
         </div>
 
         <!-- existing images should be seen here and when admin clicks it he should be able to change the image -->
@@ -170,8 +171,10 @@
       crossorigin="anonymous"
     ></script>
     <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
+    <script src="../../js/admin//business_index.js"></script>
     <script>
       $("#header").load("adminHeader.html");
+      utils.createBizSelectbox();
     </script>
   </body>
 </html>

@@ -1,5 +1,35 @@
-//fetchData from server
+/**
+ * ==================================================================================
+ * business utils
+ * ==================================================================================
+ */
 
+let utils = (() => {
+  // business Level
+  let bizLevelInfo = { level1: 1, level2: 2, level3: 3 };
+
+  /**
+   * ---------------------------------------------------------------------------
+   * createBizSelectbox : make selectbox for business level
+   * ---------------------------------------------------------------------------
+   */
+  function createBizSelectbox() {
+    let selectElem = document.getElementById("bizLevel"); // business level select Elem
+    let optElem;
+    for (keys in bizLevelInfo) {
+      optElem = document.createElement("option");
+      optElem.value = optElem[keys];
+      optElem.text = keys;
+      selectElem.options.add(optElem);
+    }
+  }
+
+  return {
+    createBizSelectbox
+  };
+})();
+
+//fetchData from server
 function fetchData(
   searchKey = "",
   pageIndex = 0,
@@ -21,12 +51,12 @@ function fetchData(
     },
     body: JSON.stringify(data)
   })
-    .then(res => res.json())
-    .then(data => {
+    .then((res) => res.json())
+    .then((data) => {
       console.log(JSON.stringify(data));
       return { meta: data, businesses: JSON.parse(data) };
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
     });
 }
@@ -105,15 +135,15 @@ function pageEvent() {
   let prevButton = document.querySelector('a[aria-label="Previous"]');
   let nextButton = document.querySelector('a[aria-label="Next"]');
 
-  pageButtons.forEach(pageButton =>
-    pageButton.addEventListener("click", e => changePage(e), true)
+  pageButtons.forEach((pageButton) =>
+    pageButton.addEventListener("click", (e) => changePage(e), true)
   );
 
-  prevButton.addEventListener("click", e => {
+  prevButton.addEventListener("click", (e) => {
     changePageSet(e, pageButtons);
   });
 
-  nextButton.addEventListener("click", e => {
+  nextButton.addEventListener("click", (e) => {
     changePageSet(e, pageButtons);
   });
 }
@@ -122,7 +152,7 @@ function pageEvent() {
 
 function changePage(e) {
   let pageButtons = document.querySelectorAll(".page-number");
-  pageButtons.forEach(pageButton => {
+  pageButtons.forEach((pageButton) => {
     pageButton.classList.remove("active");
   });
   e.target.parentNode.classList.toggle("active");
@@ -139,7 +169,7 @@ function changePageSet(e, pageButtons) {
   let button = e.target;
 
   if (button.getAttribute("aria-label") == "Previous" && lastPageNum != 5) {
-    pageButtons.forEach(pageButton => {
+    pageButtons.forEach((pageButton) => {
       pageButton.lastElementChild.textContent =
         parseInt(pageButton.lastElementChild.textContent) - 5;
       pageButton.classList.remove("active");
@@ -155,7 +185,7 @@ function changePageSet(e, pageButtons) {
   }
 
   if (button.getAttribute("aria-label") == "Next") {
-    pageButtons.forEach(pageButton => {
+    pageButtons.forEach((pageButton) => {
       pageButton.lastElementChild.textContent =
         parseInt(pageButton.lastElementChild.textContent) + 5;
       pageButton.classList.remove("active");
@@ -209,7 +239,7 @@ function searchEnter(e) {
 
 function searchEvent() {
   let searchButton = document.querySelector("#search-button");
-  searchButton.addEventListener("submit", e => searchEnter(e));
+  searchButton.addEventListener("submit", (e) => searchEnter(e));
 }
 
 //init
