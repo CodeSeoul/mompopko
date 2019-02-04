@@ -22,7 +22,7 @@
   <body>
     <header id="header"></header>
     <div class="container mb-5">
-      <form action="#" method="POST">
+      <form action="#" method="POST" onsubmit="return utils.checkValidation()">
         <div class="form-group">
           <label for="level" class="essential-asterisk">Level</label>
           <!-- <input type="text" id="level" class="form-control" /> -->
@@ -41,18 +41,14 @@
 
         <div class="form-group">
           <label for="main-category" class="essential-asterisk">Menu</label>
-          <input
-            type="text"
-            id="main-category"
-            class="form-control essential-border"
-          />
+          <input type="text" id="menu" class="form-control essential-border" />
         </div>
 
         <div class="form-group">
           <label for="opening-date" class="essential-asterisk">Open Date</label>
           <input
             type="date"
-            id="opening-date"
+            id="open-date"
             class="form-control essential-border"
           />
         </div>
@@ -61,7 +57,7 @@
           <label for="new-address" class="essential-asterisk">Address</label>
           <input
             type="text"
-            id="new-address"
+            id="address"
             class="form-control essential-border"
           />
         </div>
@@ -93,7 +89,7 @@
           <label for="district" class="essential-asterisk">Neighborhood</label>
           <input
             type="text"
-            id="district"
+            id="neighborhood"
             class="form-control essential-border"
           />
         </div>
@@ -104,7 +100,7 @@
           </label>
           <input
             type="text"
-            id="old-zipcode"
+            id="zipcode"
             class="form-control essential-border"
           />
         </div>

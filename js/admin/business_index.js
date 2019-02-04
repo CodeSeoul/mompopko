@@ -18,14 +18,47 @@ let utils = (() => {
     let optElem;
     for (keys in bizLevelInfo) {
       optElem = document.createElement("option");
-      optElem.value = optElem[keys];
+      optElem.value = bizLevelInfo[keys];
       optElem.text = keys;
       selectElem.options.add(optElem);
     }
   }
 
+  /**
+   * ---------------------------------------------------------------------------
+   * isEmpty : check value is null/undefined/empty string
+   * @param : value which needs checked
+   * @return : true (param is null/undefined/empty string) / false (param has value)
+   * ---------------------------------------------------------------------------
+   */
+  function isEmpty(arg) {
+    if (arg === undefined || arg === null || arg === "") return true;
+    return false;
+  }
+
+  /**
+   * ---------------------------------------------------------------------------
+   * checkValidation : check validation before submit
+   * 1. check whether essential value is null or not.
+   * @return : true (validation success) / false (validation fail)
+   * ---------------------------------------------------------------------------
+   */
+  function checkValidation() {
+    let essentialElems = document.getElementsByClassName("essential-border");
+    for (elem of essentialElems) {
+      console.log(elem.value);
+      if (isEmpty(elem.value)) {
+        alert(elem.id + " needs value.");
+        return false;
+      }
+    }
+    return true;
+  }
+
   return {
-    createBizSelectbox
+    createBizSelectbox,
+    checkValidation,
+    isEmpty
   };
 })();
 
