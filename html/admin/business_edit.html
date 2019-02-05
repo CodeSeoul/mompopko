@@ -33,10 +33,14 @@
           ></select>
         </div>
 
-        <!-- existing images should be seen here and when admin clicks it he should be able to change the image -->
         <div class="form-group">
-          <label for="images">Images</label>
-          <input type="file" id="images" class="form-control" />
+          <label for="mainImages">Main image</label>
+          <input
+            name="mainImage"
+            type="file"
+            id="mainImage"
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
@@ -107,57 +111,87 @@
 
         <div class="form-group">
           <label for="tel">Telephone</label>
-          <input type="text" id="tel" class="form-control" />
+          <input name="tel" type="text" id="tel" class="form-control" />
         </div>
 
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="email" id="email" class="form-control" />
+          <input name="email" type="email" id="email" class="form-control" />
         </div>
 
         <div class="form-group">
           <label for="operating-hour">Operating hour</label>
-          <input type="text" id="operating-hour" class="form-control" />
+          <input
+            name="operatingHour"
+            type="text"
+            id="operating-hour"
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
           <label for="owner-name">Owner Name</label>
-          <input type="text" id="owner-name" class="form-control" />
+          <input
+            name="ownerName"
+            type="text"
+            id="owner-name"
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
           <label for="interview">Interview</label>
-          <textarea type="text" id="interview" class="form-control"></textarea>
+          <textarea
+            name="interview"
+            type="text"
+            id="interview"
+            class="form-control"
+          ></textarea>
         </div>
 
         <div class="form-group">
           <label for="interview-date">Interview date</label>
-          <input type="date" id="interview-date" class="form-control" />
+          <input
+            name="interviewDate"
+            type="date"
+            id="interview-date"
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
           <label for="website">website url</label>
-          <input type="url" id="website" class="form-control" />
+          <input name="website" type="url" id="website" class="form-control" />
         </div>
 
         <div class="form-group">
           <label for="facebook">Facebook url</label>
-          <input type="url" id="facebook" class="form-control" />
+          <input
+            name="facebook"
+            type="url"
+            id="facebook"
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
           <label for="instagram">Instagram url</label>
-          <input type="url" id="instagram" class="form-control" />
+          <input
+            name="instagram"
+            type="url"
+            id="instagram"
+            class="form-control"
+          />
         </div>
 
         <div class="form-group">
           <label for="youtube">Youtube url</label>
-          <input type="url" id="youtube" class="form-control" />
+          <input name="youtube" type="url" id="youtube" class="form-control" />
         </div>
 
         <div class="form-group">
           <label for="twitter">Twitter url</label>
-          <input type="url" id="twitter" class="form-control" />
+          <input name="twitter" type="url" id="twitter" class="form-control" />
         </div>
 
         <div class="container">
@@ -170,16 +204,13 @@
     </div>
 
     <script src="../../lib/frontend/jquery/jquery-3.3.1.min.js"></script>
-    <script
-      src="../../lib/frontend/popper/popper.min.js"
-      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
-      crossorigin="anonymous"
-    ></script>
+    <script src="../../lib/frontend/popper/popper.min.js"></script>
     <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
     <script src="../../js/admin//business_index.js"></script>
     <script>
       $("#header").load("adminHeader.html");
       utils.createBizSelectbox();
     </script>
+    <script type="text/javascript" src="../../js/modal.js"></script>
   </body>
 </html>
