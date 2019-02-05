@@ -61,9 +61,8 @@ let utils = (() => {
 let addEventToForm = function() {
   let form = document.querySelector("#business_create_form");
   console.log(form);
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-    if (utils.checkValidation()) showPreview(e);
+  form.addEventListener("submit", (e) => {
+    if (utils.checkValidation(e)) showPreview(e);
   });
 };
 
@@ -207,6 +206,20 @@ let createPreviewElement = function() {
   // append carousel
   preview.querySelector("#carousel").appendChild(createCarousel(subImagesURLs));
 
+  //final submit button
+  let finalSubmitContainer = document.createElement("div");
+  let finalSubmitButton = document.createElement("button");
+  finalSubmitContainer.className = "text-center";
+  finalSubmitButton.textContent = "Register This Post";
+  finalSubmitButton.className = "btn btn-primary mt-5 p-2";
+  finalSubmitButton.addEventListener("click", () => {
+    if (confirm("Do you really want to register this post?")) {
+      form.submit();
+    }
+  });
+  finalSubmitContainer.appendChild(finalSubmitButton);
+  preview.appendChild(finalSubmitContainer);
+
   return preview;
 };
 
@@ -249,9 +262,9 @@ function createCarousel(imageURLs) {
     i == 0 ? button.lastElementChild.classList.add("slider-active") : null;
     button.style.display = "inline-block";
 
-    button.addEventListener("click", e => {
+    button.addEventListener("click", (e) => {
       carouselContainer.style.transform = `translate(${-i * (100 + 8 / 3)}%)`;
-      buttons.childNodes.forEach(button =>
+      buttons.childNodes.forEach((button) =>
         button.lastElementChild.classList.remove("slider-active")
       );
       button.lastElementChild.classList.add("slider-active");
