@@ -43,7 +43,9 @@ let utils = (() => {
    * @return : true (validation success) / false (validation fail)
    * ---------------------------------------------------------------------------
    */
-  function checkValidation() {
+
+  function checkValidation(e) {
+    e.preventDefault();
     let essentialElems = document.getElementsByClassName("essential-border");
     for (elem of essentialElems) {
       console.log(elem.value);
