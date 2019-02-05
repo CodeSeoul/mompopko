@@ -1,10 +1,69 @@
+let utils = (() => {
+  // business Level
+  let bizLevelInfo = { level1: 1, level2: 2, level3: 3 };
+
+  /**
+   * ---------------------------------------------------------------------------
+   * createBizSelectbox : make selectbox for business level
+   * ---------------------------------------------------------------------------
+   */
+  function createBizSelectbox() {
+    let selectElem = document.getElementById("bizLevel"); // business level select Elem
+    let optElem;
+    for (keys in bizLevelInfo) {
+      optElem = document.createElement("option");
+      optElem.value = bizLevelInfo[keys];
+      optElem.text = keys;
+      selectElem.options.add(optElem);
+    }
+  }
+
+  /**
+   * ---------------------------------------------------------------------------
+   * isEmpty : check value is null/undefined/empty string
+   * @param : value which needs checked
+   * @return : true (param is null/undefined/empty string) / false (param has value)
+   * ---------------------------------------------------------------------------
+   */
+  function isEmpty(arg) {
+    if (arg === undefined || arg === null || arg === "") return true;
+    return false;
+  }
+
+  /**
+   * ---------------------------------------------------------------------------
+   * checkValidation : check validation before submit
+   * 1. check whether essential value is null or not.
+   * @return : true (validation success) / false (validation fail)
+   * ---------------------------------------------------------------------------
+   */
+  function checkValidation() {
+    let essentialElems = document.getElementsByClassName("essential-border");
+    for (elem of essentialElems) {
+      console.log(elem.value);
+      if (isEmpty(elem.value)) {
+        alert(elem.id + " needs value.");
+        return false;
+      }
+    }
+    return true;
+  }
+
+  return {
+    createBizSelectbox,
+    checkValidation,
+    isEmpty
+  };
+})();
+
 // add event to the form
 
 let addEventToForm = function() {
   let form = document.querySelector("#business_create_form");
   console.log(form);
   form.addEventListener("submit", e => {
-    showPreview(e);
+    e.preventDefault();
+    if (utils.checkValidation()) showPreview(e);
   });
 };
 
@@ -25,7 +84,7 @@ let showPreview = function(e) {
 let createPreviewElement = function() {
   let form = document.querySelector("#business_create_form");
   let businessName = form.querySelector('[name="businessName"]').value;
-  let level = form.querySelector('[name="level"]').value;
+  let bizLevel = form.querySelector('[name="bizLevel"]').value;
 
   let mainImage = form.querySelector('[name="mainImage"]');
   //create main image url for preview
@@ -67,8 +126,6 @@ let createPreviewElement = function() {
   let instagram = form.querySelector('[name="instagram"]').value;
   let youtube = form.querySelector('[name="youtube"]').value;
   let twitter = form.querySelector('[name="twitter"]').value;
-
-  console.log(level, mainImage, subImages, mainCategory);
 
   let preview = document.createElement("section");
   preview.id = "preview";
