@@ -17,12 +17,28 @@
     />
     <link rel="stylesheet" href="../../styles/business_index.css" />
     <link rel="stylesheet" href="../../styles/dataTrend_index.css" />
+    <link rel="stylesheet" href="../../styles/business_create.css" />
   </head>
 
   <body>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8zGM0fpSVwHI9zeklsLyO9T92QZcznsg"
+    ></script>
     <header id="header"></header>
     <div class="container mb-5">
       <form id="business_create_form" action="#" method="POST">
+        <div class="form-group">
+          <label for="businessName">Business Name</label>
+          <input
+            name="businessName"
+            type="text"
+            id="businessName"
+            class="form-control"
+          />
+        </div>
+
         <div class="form-group">
           <label for="level">Level</label>
           <input name="level" type="text" id="level" class="form-control" />
@@ -235,6 +251,7 @@
       $("#header").load("adminHeader.html");
     </script>
     <script type="text/javascript" src="../../js/modal.js"></script>
+    <script src="../../js/googleMap.js"></script>
     <script src="../../js/admin/business_create.js"></script>
   </body>
 </html>

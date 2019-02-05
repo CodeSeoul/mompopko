@@ -31,7 +31,7 @@ const modal = function(element) {
   modalBackground.style.position = "absolute";
   modalBackground.style.display = "flex";
   modalBackground.style.justifyContent = "center";
-  modalBackground.style.alignItems = "center";
+  modalBackground.style.alignItems = "flex-start";
   modalBackground.style.height = maxHeight + "px";
   modalBackground.style.width = "100%";
   modalBackground.style.top = "0";
@@ -43,9 +43,8 @@ const modal = function(element) {
   modalContainer.style.padding = "40px";
   modalContainer.style.position = "relative";
   modalContainer.style.borderRadius = "8px";
-  modalContainer.style.height = "90%";
   modalContainer.style.width = "90%";
-  modalContainer.style.margin = "auto";
+  modalContainer.style.margin = "10px auto 0 auto";
   modalContainer.style.zIndex = "1";
 
   // close modal
@@ -61,7 +60,6 @@ const modal = function(element) {
   );
 
   closeButton.addEventListener("click", e => {
-    e.stopPropagation();
     modalBackground.style.display = "none";
   });
 
