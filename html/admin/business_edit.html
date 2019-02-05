@@ -22,10 +22,15 @@
   <body>
     <header id="header"></header>
     <div class="container mb-5">
-      <form id="business_create_form" action="#" method="POST">
+      <form action="#" method="POST" onsubmit="return utils.checkValidation()">
         <div class="form-group">
-          <label for="level">Level</label>
-          <input name="level" type="text" id="level" class="form-control" />
+          <label for="level" class="essential-asterisk">Level</label>
+          <!-- <input type="text" id="level" class="form-control" /> -->
+          <select
+            name="bizLevel"
+            id="bizLevel"
+            class="form-control essential-border"
+          ></select>
         </div>
 
         <div class="form-group">
@@ -39,98 +44,68 @@
         </div>
 
         <div class="form-group">
-          <label for="subImages">Sub images</label>
-          <input
-            name="subImages"
-            type="file"
-            multiple
-            id="subImages"
-            class="form-control"
-          />
+          <label for="main-category" class="essential-asterisk">Menu</label>
+          <input type="text" id="menu" class="form-control essential-border" />
         </div>
 
         <div class="form-group">
-          <label for="main-category">Main Category</label>
+          <label for="opening-date" class="essential-asterisk">Open Date</label>
           <input
-            name="mainCategory"
-            type="text"
-            id="main-category"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="sub-category1">Sub Category 1</label>
-          <input
-            name="subCategory1"
-            type="text"
-            id="sub-category1"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="sub-category2">Sub Category 2</label>
-          <input
-            name="subCategory2"
-            type="text"
-            id="sub-category2"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="opening-date">Opening Date</label>
-          <input
-            name="openingDate"
             type="date"
-            id="opening-date"
-            class="form-control"
+            id="open-date"
+            class="form-control essential-border"
           />
         </div>
 
         <div class="form-group">
-          <label for="new-address">New Address</label>
+          <label for="new-address" class="essential-asterisk">Address</label>
           <input
-            name="newAddress"
             type="text"
-            id="new-address"
-            class="form-control"
+            id="address"
+            class="form-control essential-border"
           />
         </div>
 
         <div class="form-group">
-          <label for="province">Province</label>
+          <label for="province" class="essential-asterisk">Province</label>
           <input
-            name="province"
             type="text"
             id="province"
-            class="form-control"
+            class="form-control essential-border"
           />
         </div>
 
         <div class="form-group">
-          <label for="city">City</label>
-          <input name="city" type="text" id="city" class="form-control" />
+          <label for="city" class="essential-asterisk">City</label>
+          <input type="text" id="city" class="form-control essential-border" />
         </div>
 
         <div class="form-group">
-          <label for="district">District</label>
+          <label for="district" class="essential-asterisk">District</label>
           <input
-            name="district"
             type="text"
             id="district"
-            class="form-control"
+            class="form-control essential-border"
           />
         </div>
 
         <div class="form-group">
-          <label for="new-zipcode">New Zipcode</label>
+          <label for="district" class="essential-asterisk">Neighborhood</label>
           <input
-            name="newZipcode"
             type="text"
-            id="new-zipcode"
-            class="form-control"
+            id="neighborhood"
+            class="form-control essential-border"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="old-zipcode" class="essential-asterisk">
+            Zipcode
+          </label>
+          <input
+            type="text"
+            id="zipcode"
+            class="form-control essential-border"
           />
         </div>
 
@@ -231,8 +206,10 @@
     <script src="../../lib/frontend/jquery/jquery-3.3.1.min.js"></script>
     <script src="../../lib/frontend/popper/popper.min.js"></script>
     <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
+    <script src="../../js/admin//business_index.js"></script>
     <script>
       $("#header").load("adminHeader.html");
+      utils.createBizSelectbox();
     </script>
     <script type="text/javascript" src="../../js/modal.js"></script>
   </body>

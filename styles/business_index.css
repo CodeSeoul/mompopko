@@ -1,4 +1,13 @@
-.business-index table *{
-    vertical-align: middle !important;
-    font-size : 0.9rem;
+.business-index table * {
+  vertical-align: middle !important;
+  font-size: 0.9rem;
+}
+
+.essential-asterisk::after {
+  content: " *";
+  color: red;
+}
+
+.essential-border {
+  border-color: red;
 }
