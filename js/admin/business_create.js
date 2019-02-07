@@ -1,62 +1,11 @@
-let utils = (() => {
-  // business Level
-  let bizLevelInfo = { level1: 1, level2: 2, level3: 3 };
-
-  /**
-   * ---------------------------------------------------------------------------
-   * createBizSelectbox : make selectbox for business level
-   * ---------------------------------------------------------------------------
-   */
-  function createBizSelectbox() {
-    let selectElem = document.getElementById("bizLevel"); // business level select Elem
-    let optElem;
-    for (keys in bizLevelInfo) {
-      optElem = document.createElement("option");
-      optElem.value = bizLevelInfo[keys];
-      optElem.text = keys;
-      selectElem.options.add(optElem);
-    }
-  }
-
-  /**
-   * ---------------------------------------------------------------------------
-   * isEmpty : check value is null/undefined/empty string
-   * @param : value which needs checked
-   * @return : true (param is null/undefined/empty string) / false (param has value)
-   * ---------------------------------------------------------------------------
-   */
-  function isEmpty(arg) {
-    if (arg === undefined || arg === null || arg === "") return true;
-    return false;
-  }
-
-  /**
-   * ---------------------------------------------------------------------------
-   * checkValidation : check validation before submit
-   * 1. check whether essential value is null or not.
-   * @return : true (validation success) / false (validation fail)
-   * ---------------------------------------------------------------------------
-   */
-  function checkValidation() {
-    let essentialElems = document.getElementsByClassName("essential-border");
-    for (elem of essentialElems) {
-      console.log(elem.value);
-      if (isEmpty(elem.value)) {
-        alert(elem.id + " needs value.");
-        return false;
-      }
-    }
-    return true;
-  }
-
-  return {
-    createBizSelectbox,
-    checkValidation,
-    isEmpty
-  };
-})();
-
-// add event to the form
+/**
+ * ---------------------------------------------------------------------------
+ * addEventToForm : add a submit event to the form
+ * 1. select the form
+ * 2. check validation
+ * 3. show preview
+ * ---------------------------------------------------------------------------
+ */
 
 let addEventToForm = function() {
   let form = document.querySelector("#business_create_form");
@@ -66,9 +15,16 @@ let addEventToForm = function() {
   });
 };
 
+//********/ Execution Start *********//
 addEventToForm();
+//********/ Execution End *********//
 
-// submit handler
+/**
+ * ---------------------------------------------------------------------------
+ * showPreview : showing a preview page
+ * 1. show a business post preview page on modal
+ * ---------------------------------------------------------------------------
+ */
 
 let showPreview = function(e) {
   e.preventDefault();
@@ -79,6 +35,15 @@ let showPreview = function(e) {
   //show the modal
   document.body.appendChild(modal(message));
 };
+
+/**
+ * ---------------------------------------------------------------------------
+ * createPreviewElement : create html elements for preview page content
+ * 1. create html elements
+ * 2. append them
+ * 3. add final submit event
+ * ---------------------------------------------------------------------------
+ */
 
 let createPreviewElement = function() {
   let form = document.querySelector("#business_create_form");
@@ -223,6 +188,17 @@ let createPreviewElement = function() {
   return preview;
 };
 
+/**
+ * ---------------------------------------------------------------------------
+ * createCarousel : create a carousel
+ * 1. create HTML elements
+ * 2. create carousel slider buttons
+ * 3. append all of them to a wrapper
+ * @param : The URLs of images to show on carousel
+ * @return : carousel HTML element
+ * ---------------------------------------------------------------------------
+ */
+
 function createCarousel(imageURLs) {
   let wrapper = document.createElement("div");
 
@@ -236,6 +212,7 @@ function createCarousel(imageURLs) {
   carouselContainer.style.gridTemplateColumns = `repeat(${
     imageURLs.length
   }, 23%)`;
+
   let images = [];
   for (let i = 0; i < imageURLs.length; i++) {
     let image = document.createElement("img");
@@ -246,12 +223,14 @@ function createCarousel(imageURLs) {
     image.style.boxSizing = "border-box";
     images.push(image);
   }
+
   for (img of images) {
     carouselContainer.appendChild(img);
   }
+
   wrapper.appendChild(carouselContainer);
 
-  //add carousel slider
+  // create carousel slider buttons and append them
 
   let buttons = document.createElement("div");
   buttons.classList.add("carousel-button-container");
@@ -274,5 +253,6 @@ function createCarousel(imageURLs) {
     buttons.appendChild(button);
   }
   wrapper.appendChild(buttons);
+
   return wrapper;
 }
