@@ -1,6 +1,6 @@
 {
   "editor.formatOnSave": true,
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   "javascript.preferences.quoteStyle": "single",
   "prettier.arrowParens": "always"
 }

@@ -36,8 +36,8 @@
         <a href="business_create.html"
           ><button class="btn btn-primary">Add</button></a
         >
-        <button class="btn btn-success  ml-2">Save</button>
-        <button class="btn btn-danger ml-2">Delete</button>
+        <button id="saveBtn" class="btn btn-success ml-2">Save</button>
+        <button id="deleteBtn" class="btn btn-danger ml-2">Delete</button>
       </div>
 
       <!-- main body : table -->
@@ -109,6 +109,8 @@
     <script src="../../js/admin//business_index.js"></script>
     <script>
       $("#header").load("adminHeader.html");
+      utils.deleteButton();
+      utils.saveButton();
     </script>
   </body>
 </html>

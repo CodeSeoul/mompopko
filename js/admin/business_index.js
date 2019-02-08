@@ -19,6 +19,10 @@ let utils = (() => {
   // business Level
   let bizLevelInfo = { level1: 1, level2: 2, level3: 3 };
 
+  //business delete list
+
+  let businessToDelete = [];
+
   /**
    * ---------------------------------------------------------------------------
    * createBizSelectbox : make selectbox for business level
@@ -149,6 +153,7 @@ let utils = (() => {
 
         thCheckbox.scope = "row";
         checkbox.type = "checkbox";
+        checkbox.setAttribute("data-businessId", business["biz_id"]);
         thNumber.scope = "row";
         buttonEdit.className = "btn btn-warning";
         buttonImage.className = "btn btn-info";
@@ -303,19 +308,16 @@ let utils = (() => {
       checkAll.addEventListener("click", () => {
         if (checkAll.checked) {
           for (let i = 0; i < checkboxes.length; i++) {
-            let status =
+            var status =
               checkboxes[i].parentNode.parentNode.parentNode.lastChild
                 .lastChild;
             checkboxes[i].checked = true;
-            status.nodeValue = "Delete";
+            status.nodeValue = "Selected";
           }
         } else {
           for (let i = 0; i < checkboxes.length; i++) {
             checkboxes[i].checked = false;
-            checkboxes[
-              i
-            ].parentNode.parentNode.parentNode.lastChild.lastChild.nodeValue =
-              "-";
+            status.nodeValue = "-";
           }
         }
       });
@@ -343,5 +345,58 @@ let utils = (() => {
     if (searchButton) {
       searchButton.addEventListener("submit", (e) => searchEnter(e));
     }
+  }
+
+  /**
+   * ---------------------------------------------------------------------------
+   * deleteButton : add click event to delete button and update status
+   * ---------------------------------------------------------------------------
+   */
+
+  function deleteButton() {
+    let deleteBtn = document.querySelector("#deleteBtn");
+    deleteBtn.addEventListener("click", () => {
+      let checkboxes = document.querySelectorAll(
+        "tbody input[type='checkbox']"
+      );
+      if (checkboxes) {
+        businessToDelete = [];
+        checkboxes.forEach((checkbox) => () => {
+          if (checkbox.checked == true) {
+            checkbox.parentElement.parentElement.parentElement.lastElementChild.textContent =
+              "delete";
+            businessToDelete.push(checkbox.getAttribute("data-businessId"));
+          }
+        });
+      }
+    });
+  }
+
+  /**
+   * ----------------------------------------------------------------------------------
+   * saveButton : add click event to save button and send delete request to the server
+   * ----------------------------------------------------------------------------------
+   */
+
+  function saveButton() {
+    let saveBtn = document.querySelector("#saveBtn");
+    saveBtn.addEventListener("click", () => {
+      if (confirm("Do you really want to delete selected businesses")) {
+        fetch("../../java/delete_business.java", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: { businessId: businessToDelete }
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(JSON.parse(data));
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+    });
   }
 })();
