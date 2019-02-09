@@ -75,7 +75,9 @@ let utils = (() => {
   return {
     createBizSelectbox,
     checkValidation,
-    isEmpty
+    isEmpty,
+    deleteButton,
+    saveButton
   };
 
   /**
