@@ -11,7 +11,7 @@
 
     $pdo = new PDO($dsn, $user, $password);
 
-    $req = $pdo->prepare('SELECT * FROM tb_biz ORDER BY frst_input_date DESC');
+    $req = $pdo->prepare('SELECT * FROM tb_biz ORDER BY biz_view_cnt DESC');
     $req->execute();
     $result = $req -> fetchAll();
 

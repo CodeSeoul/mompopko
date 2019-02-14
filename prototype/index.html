@@ -54,12 +54,130 @@
 	</script>
 
 <script type="text/javascript">
+
+var ajax = new XMLHttpRequest();
+	ajax.open("POST", "../php/db.php", true);
+	ajax.send();
+	ajax.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var result = JSON.parse(this.responseText);
+			var menu_name_span = result.menu_name;
+			var menu_name_level = result.menu_page_yn;
+		};
+	}
+	
+var ajax_biz = new XMLHttpRequest();
+	ajax_biz.open("POST", "../php/biz_db_recent.php", true);
+	ajax_biz.send();
+	ajax_biz.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var result = JSON.parse(this.responseText);
+			var offset=0;
+			for (var i = offset; i < result.length && i<offset+9; i++){
+				var biz_name = result[i].biz_name;
+				var biz_level = result[i].biz_level;
+				var main_div_recent = document.querySelector('#recent');
+				main_div_recent.innerHTML += 
+				`<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="thumb-box">
+						<div class="thumb-img">
+							<a href="mamalee_level_`+biz_level+`.php?biz_name=`+biz_name+`">
+								<img src="img/openings/MamaleeMarket_1.jpg" width="100%" alt="" />
+							</a>
+						</div>
+						<div class="thumb-content">
+							<h5 class="thumb-category">
+								<i class="fas fa-utensils"></i>
+								<span class="main" class="menu_zero_span"></span>
+								<span class="sub" class="menu_sub_cat">Korean</span>
+							</h5>
+							<a href="mamalee_level_`+biz_level+`.php?biz_name=`+biz_name+`">
+								<div class="row">
+									<div class="col-xs-7 thumb-name">
+										<span>`+biz_name+`</span>
+										<div style="color: #999;">(level `+biz_level+`)</div>
+									</div>
+									<div class="col-xs-5 thumb-product">
+										<img src="img/openings/MamaleeMarket_2.jpg" width="100%" alt="" />
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>`;
+				
+			
+			}
+			offset = offset + 8;
+			var recent_button = document.querySelector('#recent_button');
+			recent_button.innerHTML = `<button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button>`;
+		};
+	}
+	
+	ajax_pop.open("POST", "../php/biz_db_popular.php", true);
+	ajax_pop.send();
+	ajax_pop.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var result = JSON.parse(this.responseText);
+			var offset=0;
+			for (var i = offset; i < result.length && i<offset+9; i++){
+				var biz_name = result[i].biz_name;
+				var biz_level = result[i].biz_level;
+				var main_div_popular = document.querySelector('#popular');
+				main_div_popular.innerHTML += 
+				`<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="thumb-box">
+						<div class="thumb-img">
+							<a href="mamalee_level_`+biz_level+`.php?biz_name=`+biz_name+`">
+								<img src="img/openings/MamaleeMarket_1.jpg" width="100%" alt="" />
+							</a>
+						</div>
+						<div class="thumb-content">
+							<h5 class="thumb-category">
+								<i class="fas fa-utensils"></i>
+								<span class="main" class="menu_zero_span"></span>
+								<span class="sub" class="menu_sub_cat">Korean</span>
+							</h5>
+							<a href="mamalee_level_`+biz_level+`.php?biz_name=`+biz_name+`">
+								<div class="row">
+									<div class="col-xs-7 thumb-name">
+										<span>`+biz_name+`</span>
+										<div style="color: #999;">(level `+biz_level+`)</div>
+									</div>
+									<div class="col-xs-5 thumb-product">
+										<img src="img/openings/MamaleeMarket_2.jpg" width="100%" alt="" />
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>`;
+				
+			
+			}
+			offset = offset + 8;
+			var recent_button = document.querySelector('#recent_button');
+			recent_button.innerHTML = `<button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button>`;
+		};
+	}
+
 	var ajax = new XMLHttpRequest();
 	ajax.open("POST", "../php/db.php", true);
 	ajax.send();
 	ajax.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var result = JSON.parse(this.responseText);
+			var menu_level = result.menu_level;
+			var menu_name_span = result.menu_name;
+			var menu_name_level = result.menu_page_yn;
+			console.log(menu_name_span);
+			for (var i = 0; i < result.length && menu_name_level == 1; i++){
+					var menu_zero_span = document.querySelectorAll('.menu_zero_span');
+					menu_zero_span.innerHTML = menu_name;
+					console.log(menu_zero_span);
+				}
+				console.log(menu_name);
+
 			for (var i = 0; i < result.length; i++){
 				var upper_menu_id = result[i].upper_menu_id;
 				var menu_name = result[i].menu_name;
@@ -149,46 +267,12 @@
 				}}
 			};
 		}
+
+
+		
+
 </script>
-<script type="text/javascript">
-	// var ajax = new XMLHttpRequest();
-	// ajax.open("POST", "../php/business_db.php", true);
-	// ajax.send();
-	// ajax.onreadystatechange = function() {
-	// 	if (this.readyState == 4 && this.status == 200) {
-	// 		var result = JSON.parse(this.responseText)
-	// 		for (var i = 0; i < result.length; i++){
-	// 			var biz_id = result[i].biz_id; 
-	// 			var menu_id = result[i].menu_id; 
-	// 			var file_id = result[i].file_id;
-	// 			var biz_name = result[i].biz_name;
-	// 			var biz_level = result[i].biz_level;
-	// 			var biz_view_cnt = result[i].biz_view_cnt;
-	// 			var biz_owner = result[i].biz_owner;
-	// 			var biz_open_date = result[i].biz_open_date;
-	// 			var biz_close_date = result[i].biz_close_date;
-	// 			var biz_address = result[i].biz_address;
-	// 			var biz_province = result[i].biz_province;
-	// 			var biz_city = result[i].biz_city;
-	// 			var biz_district = result[i].biz_district;
-	// 			var biz_neighborhood = result[i].biz_neighborhood;
-	// 			var biz_zipcode = result[i].biz_zipcode;
-	// 			var biz_tel = result[i].biz_tel;
-	// 			var biz_email = result[i].biz_email;
-	// 			var biz_open_hour = result[i].biz_open_hour;
-	// 			var biz_interview_conts = result[i].biz_interview_conts;
-	// 			var biz_interview_date = result[i].biz_interview_date;
-	// 			var biz_website = result[i].biz_website;
-	// 			var biz_facebook = result[i].biz_facebook;
-	// 			var biz_instagram = result[i].biz_instagram;
-	// 			var biz_youtube = result[i].biz_youtube;
-	// 			var biz_twitter = result[i].biz_twitter;
-	// 			var frst_input_date = result[i].frst_input_date;
-	// 			var last_update_date = result[i].last_update_date;
-	// 		};
-	// 	}
-	// }
-</script>
+
 </head>
 
 <body>
@@ -457,13 +541,13 @@
 				</div>
 				<div class="tab-content">
 					<div id="recent" class="tab-pane fade in active">
-						<div class="col-xs-12 col-sm-6 col-md-4">
+						<!-- <div class="col-xs-12 col-sm-6 col-md-4">
 							<div class="thumb-box">
 								<div class="thumb-img">
-									<a href="mamalee_level_2_3.html">
+									<a href="mamalee_level_2_3.php?biz_name=Mamalee%20Market" id='mamalee' >
 										<img src="img/openings/MamaleeMarket_1.jpg" width="100%" alt="" />
 									</a>
-								</div>
+									</div>
 								<div class="thumb-content">
 									<h5 class="thumb-category">
 										<i class="fas fa-utensils"></i>
@@ -797,13 +881,14 @@
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-xs-12 alignright mgbottom30">
-							<button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button>
+						</div> -->
+					</div>
+						<div class="col-xs-12 alignright mgbottom30" id="recent_button">
+							<!-- <button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button> -->
 						</div>
 					</div>
 					<div id="popular" class="tab-pane fade">
-						<div class="col-xs-12 col-sm-6 col-md-4">
+						<!-- <div class="col-xs-12 col-sm-6 col-md-4">
 							<div class="thumb-box">
 								<div class="thumb-img">
 									<a href="">
@@ -961,7 +1046,7 @@
 						</div>
 						<div class="col-xs-12 alignright mgbottom30">
 							<button class="btn btn-more">See More</button>
-						</div>
+						</div> -->
 					</div>
 					<div id="trends" class="tab-pane fade">
 						<div class="col-xs-12 col-sm-6 col-md-4">
