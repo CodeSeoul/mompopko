@@ -18,7 +18,12 @@
       href="fonts/NanumSquare/nanumsquare.css"
       rel="stylesheet"
       type="text/css"
-    />
+	/>
+	<style>
+			#Restaurants_hamburger, #Restaurants_dropdown{
+				display: none;
+			}
+			</style>
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript">
@@ -207,6 +212,55 @@
   </head>
 
   <body>
+<?php
+try{
+$host = 'mompopkoapi.wcoding.com';
+$user = 'mompopko_admin';
+$password = 'windMarshall92Adult';
+$port = '8833';
+$dbname = 'mompopko';
+
+$dsn = 'mysql:host='. $host . ';port=' . $port . ';dbname=' . $dbname;
+
+$pdo = new PDO($dsn, $user, $password);
+
+$biz_name = $_GET['biz_name'];
+$req = $pdo->prepare('SELECT * FROM tb_biz WHERE biz_name = :biz_name');
+
+$req->execute(array(
+':biz_name' => $biz_name
+));
+$result = $req -> fetch();
+$real_biz_name =$result['biz_name'];
+$biz_level = $result['biz_level'];
+$biz_view_cnt = $result['biz_view_cnt'];
+$biz_owner = $result['biz_owner'];
+$biz_open_date = $result['biz_open_date'];
+$biz_close_date = $result['biz_close_date'];
+$biz_address = $result['biz_address'];
+$biz_province = $result['biz_province'];
+$biz_city = $result['biz_city'];
+$biz_district = $result['biz_district'];
+$biz_neighborhood = $result['biz_neighborhood'];
+$biz_zipcode = $result['biz_zipcode'];
+$biz_tel = $result['biz_tel'];
+$biz_email = $result['biz_email'];
+$biz_open_hour = $result['biz_open_hour'];
+$biz_interview_conts = $result['biz_interview_conts'];
+$biz_interview_date = $result['biz_interview_date'];
+$biz_website = $result['biz_website'];
+$biz_facebook = $result['biz_facebook'];
+$biz_instagram = $result['biz_instagram'];
+$biz_youtube = $result['biz_youtube'];
+$biz_twitter = $result['biz_twitter'];
+$brst_input_date = $result['frst_input_date'];
+$bast_update_date = $result['last_update_date'];
+}
+catch (Exception $e)
+{
+die('Error: '. $e->getMessage());
+}
+?>
     <div id="wrapper">
       <header>
         <div class="top">
@@ -226,13 +280,13 @@
               <div class="col-xs-4">
                 <ul id="top-sns" class="sns-list">
                   <li>
-                    <a><i class="fab fa-facebook-square"></i></a>
+                    <a href="<?php echo $biz_facebook;?>"><i class="fab fa-facebook-square"></i></a>
                   </li>
                   <li>
-                    <a><i class="fab fa-instagram"></i></a>
+                    <a href="<?php echo $biz_instagram;?>"><i class="fab fa-instagram"></i></a>
                   </li>
                   <li>
-                    <a><i class="fab fa-youtube"></i></a>
+                    <a href="<?php echo $biz_youtube;?>"><i class="fab fa-youtube"></i></a>
                   </li>
                 </ul>
                 <div class="menu">
@@ -539,7 +593,7 @@
         <div class="container">
           <div class="row">
             <div class="col-xs-12">
-              <h3 class="title">Mamalee Market</h3>
+              <h3 class="title"><?php echo $real_biz_name;?></h3>
               <h5 class="thumb-category">
                 <span>
                   <i class="fas fa-utensils"></i>
@@ -549,7 +603,7 @@
                 </span>
                 <span>
                   <i class="fas fa-map-pin"></i>
-                  <span class="sub">Gangnam, Seoul</span>
+                  <span class="sub"><?php echo $biz_district . ", " . $biz_province;?></span>
                   <i class="fas fa-arrow-right"></i>
                 </span>
                 <span>
@@ -578,8 +632,8 @@
             <div class="col-xs-12">
               <ul class="story_detail">
                 <li>
-                  <i class="fas fa-user"></i> Owner:
-                  <span class="title">Haseul Ram Song</span>
+                  <i class="fas fa-user"></i> Owner: 
+                  <span class="title"><?php echo $biz_owner;?></span>
                 </li>
                 <li>
                   <i class="fas fa-clock"></i> Published:
@@ -588,13 +642,12 @@
               </ul>
               <ul class="story_contact">
                 <li>
-                  <span><i class="fas fa-phone"></i> Telephone:</span>
-                  02-515-2163
+                  <span><i class="fas fa-phone"></i> Telephone: </span>
+                  <?php echo $biz_tel;?>
                 </li>
                 |
                 <li>
-                  <span><i class="fas fa-clock"></i> Hours:</span> Mon-Sat
-                  11am-9pm
+                  <span><i class="fas fa-clock"></i> Hours: </span><?php echo $biz_open_hour;?>
                 </li>
                 |
                 <li>
