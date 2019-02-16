@@ -169,6 +169,8 @@ $biz_name = $_GET['biz_name'];
 echo $biz_name;
 $req = $pdo->prepare('SELECT * FROM tb_biz WHERE biz_name = :biz_name');
 
+// select date_format(biz_open_date, "%M %Y") from tb_biz;
+
 $req->execute(array(
 ':biz_name' => $biz_name
 ));
@@ -218,9 +220,15 @@ die('Error: '. $e->getMessage());
 					<div class="col-xs-4"></div>
 					<div class="col-xs-4">
 						<ul id="top-sns" class="sns-list">
-							<li><a><i class="fab fa-facebook-square"></i></a></li>
-							<li><a><i class="fab fa-instagram"></i></a></li>
-							<li><a><i class="fab fa-youtube"></i></a></li>
+                            <li>
+                                <a href="<?php echo $biz_facebook;?>"><i class="fab fa-facebook-square"></i></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $biz_instagram;?>"><i class="fab fa-instagram"></i></a>
+                            </li>
+                            <li>
+                                <a href="<?php echo $biz_youtube;?>"><i class="fab fa-youtube"></i></a>
+                            </li>
 						</ul>
 						<div class="menu">
 							<a data-toggle="collapse" data-target=".navbar-collapse">

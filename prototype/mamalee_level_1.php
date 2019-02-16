@@ -280,13 +280,13 @@ die('Error: '. $e->getMessage());
               <div class="col-xs-4">
                 <ul id="top-sns" class="sns-list">
                   <li>
-                    <a><i class="fab fa-facebook-square"></i></a>
+                    <a href="<?php echo $biz_facebook;?>"><i class="fab fa-facebook-square"></i></a>
                   </li>
                   <li>
-                    <a><i class="fab fa-instagram"></i></a>
+                    <a href="<?php echo $biz_instagram;?>"><i class="fab fa-instagram"></i></a>
                   </li>
                   <li>
-                    <a><i class="fab fa-youtube"></i></a>
+                    <a href="<?php echo $biz_youtube;?>"><i class="fab fa-youtube"></i></a>
                   </li>
                 </ul>
                 <div class="menu">

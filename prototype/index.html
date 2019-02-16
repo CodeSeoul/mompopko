@@ -54,17 +54,6 @@
 	</script>
 
 <script type="text/javascript">
-
-var ajax = new XMLHttpRequest();
-	ajax.open("POST", "../php/db.php", true);
-	ajax.send();
-	ajax.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var result = JSON.parse(this.responseText);
-			var menu_name_span = result.menu_name;
-			var menu_name_level = result.menu_page_yn;
-		};
-	}
 	
 var ajax_biz = new XMLHttpRequest();
 	ajax_biz.open("POST", "../php/biz_db_recent.php", true);
@@ -87,7 +76,6 @@ var ajax_biz = new XMLHttpRequest();
 						</div>
 						<div class="thumb-content">
 							<h5 class="thumb-category">
-								<i class="fas fa-utensils"></i>
 								<span class="main" class="menu_zero_span"></span>
 								<span class="sub" class="menu_sub_cat">Korean</span>
 							</h5>
@@ -105,15 +93,14 @@ var ajax_biz = new XMLHttpRequest();
 						</div>
 					</div>
 				</div>`;
-				
-			
 			}
 			offset = offset + 8;
 			var recent_button = document.querySelector('#recent_button');
 			recent_button.innerHTML = `<button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button>`;
 		};
 	}
-	
+	</script>
+	<script type="text/javascript">
 	ajax_pop.open("POST", "../php/biz_db_popular.php", true);
 	ajax_pop.send();
 	ajax_pop.onreadystatechange = function() {
@@ -134,7 +121,6 @@ var ajax_biz = new XMLHttpRequest();
 						</div>
 						<div class="thumb-content">
 							<h5 class="thumb-category">
-								<i class="fas fa-utensils"></i>
 								<span class="main" class="menu_zero_span"></span>
 								<span class="sub" class="menu_sub_cat">Korean</span>
 							</h5>
@@ -152,32 +138,30 @@ var ajax_biz = new XMLHttpRequest();
 						</div>
 					</div>
 				</div>`;
-				
-			
 			}
 			offset = offset + 8;
 			var recent_button = document.querySelector('#recent_button');
 			recent_button.innerHTML = `<button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button>`;
 		};
 	}
-
+	</script>
+	<script type="text/javascript">
 	var ajax = new XMLHttpRequest();
 	ajax.open("POST", "../php/db.php", true);
 	ajax.send();
 	ajax.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var result = JSON.parse(this.responseText);
-			var menu_level = result.menu_level;
-			var menu_name_span = result.menu_name;
-			var menu_name_level = result.menu_page_yn;
-			console.log(menu_name_span);
-			for (var i = 0; i < result.length && menu_name_level == 1; i++){
-					var menu_zero_span = document.querySelectorAll('.menu_zero_span');
-					menu_zero_span.innerHTML = menu_name;
-					console.log(menu_zero_span);
-				}
-				console.log(menu_name);
-
+			// var menu_level = result.menu_level;
+			// var menu_name_span = result.menu_name;
+			// var menu_name_level = result.menu_page_yn;
+			// console.log(menu_name_span);
+			// for (var i = 0; i < result.length && menu_name_level == 1; i++){
+			// 		var menu_zero_span = document.querySelectorAll('.menu_zero_span');
+			// 		menu_zero_span.innerHTML = menu_name;
+			// 		console.log(menu_zero_span);
+			// 	}
+			// 	console.log(menu_name);
 			for (var i = 0; i < result.length; i++){
 				var upper_menu_id = result[i].upper_menu_id;
 				var menu_name = result[i].menu_name;
