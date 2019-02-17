@@ -227,17 +227,6 @@
     <script src="../../lib/frontend/popper/popper.min.js"></script>
     <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
     <script src="../../js/admin//business_index.js"></script>
-    <script>
-      $("#header").load("adminHeader.html");
-      utils.createBizSelectbox();
-
-      const menuBtnElem = document.getElementById("menuBtn");
-      menuBtnElem.addEventListener("click", () => {
-        var divElem = document.createElement("div"); // is a node
-        divElem.innerHTML = "testing popup";
-        console.log(divElem);
-        utils.modal(divElem);
-      });
-    </script>
+    <script src="../../js/admin//business_edit.js"></script>
   </body>
 </html>
