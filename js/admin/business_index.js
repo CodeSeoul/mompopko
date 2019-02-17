@@ -395,6 +395,10 @@ let utils = (() => {
   }
 
   function modal(element) {
+    if (utils.isEmpty(element)) {
+      console.error(">>>>>> parameter is essential!!! ");
+      return;
+    }
     let modalContainer = document.createElement("div");
     let modalBackground = document.createElement("div");
     let closeButton = document.createElement("div");

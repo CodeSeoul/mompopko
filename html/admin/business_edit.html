@@ -45,7 +45,27 @@
 
         <div class="form-group">
           <label for="main-category" class="essential-asterisk">Menu</label>
-          <input type="text" id="menu" class="form-control essential-border" />
+          <div class="form-popup-control">
+            <input
+              type="text"
+              id="menu"
+              class="form-control form-popup-id essential-border"
+              disabled
+            />
+            <input
+              type="text"
+              id="menu"
+              class="form-control form-popup-name essential-border"
+              disabled
+            />
+            <input
+              name="menuBtn"
+              type="button"
+              id="menuBtn"
+              value="Select Menu"
+              class="form-popup-button"
+            />
+          </div>
         </div>
 
         <div class="form-group">
@@ -210,7 +230,14 @@
     <script>
       $("#header").load("adminHeader.html");
       utils.createBizSelectbox();
+
+      const menuBtnElem = document.getElementById("menuBtn");
+      menuBtnElem.addEventListener("click", () => {
+        var divElem = document.createElement("div"); // is a node
+        divElem.innerHTML = "testing popup";
+        console.log(divElem);
+        utils.modal(divElem);
+      });
     </script>
-    <script type="text/javascript" src="../../js/modal.js"></script>
   </body>
 </html>
