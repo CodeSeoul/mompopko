@@ -7,7 +7,7 @@
  * ---------------------------------------------------------------------------
  */
 
-let addEventToForm = function() {
+let addEventToForm = function () {
   let form = document.querySelector("#business_create_form");
   console.log(form);
   form.addEventListener("submit", (e) => {
@@ -26,9 +26,12 @@ addEventToForm();
  * ---------------------------------------------------------------------------
  */
 
-let showPreview = function(e) {
+let showPreview = function (e) {
   e.preventDefault();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
   // make a element to put in modal
   let message = createPreviewElement();
 
@@ -45,7 +48,7 @@ let showPreview = function(e) {
  * ---------------------------------------------------------------------------
  */
 
-let createPreviewElement = function() {
+let createPreviewElement = function () {
   let form = document.querySelector("#business_create_form");
   let businessName = form.querySelector('[name="businessName"]').value;
   let bizLevel = form.querySelector('[name="bizLevel"]').value;
