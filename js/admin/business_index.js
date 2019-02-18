@@ -408,7 +408,6 @@ let utils = (() => {
       }
     });
   }
-})();
 
   function modal(element) {
     if (utils.isEmpty(element)) {
@@ -491,6 +490,8 @@ let utils = (() => {
     createBizSelectbox,
     checkValidation,
     isEmpty,
-    modal
+    modal,
+    deleteButton,
+    saveButton
   };
 })();
