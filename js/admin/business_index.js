@@ -17,14 +17,12 @@ let utils = (() => {
   //      END EXECUTION EVENTS
 
   // business Level
-  let bizLevelInfo = {
-    level1: 1,
-    level2: 2,
-    level3: 3
-  };
+
+  const bizLevelInfo = { level1: 1, level2: 2, level3: 3 };
+  // boolean Information
+  const booleanInfo = { 0: false, 1: true };
 
   //business delete list
-
   let businessToDelete = [];
 
   /**
