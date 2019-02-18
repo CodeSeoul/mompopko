@@ -7,7 +7,7 @@
  * ---------------------------------------------------------------------------
  */
 
-let addEventToForm = function() {
+let addEventToForm = function () {
   let form = document.querySelector("#business_create_form");
   console.log(form);
   form.addEventListener("submit", (e) => {
@@ -26,9 +26,12 @@ addEventToForm();
  * ---------------------------------------------------------------------------
  */
 
-let showPreview = function(e) {
+let showPreview = function (e) {
   e.preventDefault();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
   // make a element to put in modal
   let message = createPreviewElement();
 
@@ -45,7 +48,7 @@ let showPreview = function(e) {
  * ---------------------------------------------------------------------------
  */
 
-let createPreviewElement = function() {
+let createPreviewElement = function () {
   let form = document.querySelector("#business_create_form");
   let businessName = form.querySelector('[name="businessName"]').value;
   let bizLevel = form.querySelector('[name="bizLevel"]').value;
@@ -70,9 +73,7 @@ let createPreviewElement = function() {
     }
   }
 
-  let mainCategory = form.querySelector('[name="mainCategory"]').value;
-  let subCategory1 = form.querySelector('[name="subCategory1"]').value;
-  let subCategory2 = form.querySelector('[name="subCategory2"]').value;
+  let menu = form.querySelector('[name="menu"]').value;
   let openingDate = new Date(form.querySelector('[name="openingDate"]').value);
   let newAddress = form.querySelector('[name="newAddress"]').value;
   let province = form.querySelector('[name="province"]').value;
@@ -112,8 +113,8 @@ let createPreviewElement = function() {
       <h5 class="thumb-category">
         <span>
           <i class="fas fa-utensils"></i>
-          <span class="main">${mainCategory || "Food & Drink"}</span>
-          <span class="sub">${subCategory1 || "Korean"}</span>
+          <span class="main">${menu || "Food & Drink"}</span>
+          <span class="sub">${"Korean"}</span>
           <i class="fas fa-arrow-right"></i>
         </span>
         <span>
