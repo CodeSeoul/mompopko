@@ -55,10 +55,34 @@
             echo "Same business exists";
             
         }else{
-            $addBizQuery = 'INSERT INTO tb_biz(biz_name, biz_level, biz_) '
+            $addBizQuery = 'INSERT INTO tb_biz (biz_name, biz_level, biz_menu, biz_open_date, $biz_address,
+            biz_province, biz_city, biz_district, biz_zipcode, biz_tel, biz_email, biz_open_hour, biz_owner, biz_interview_conts, biz_website, biz_facebook, biz_instagram, biz_youtube, biz_twitter)
+            VALUES(:biz_name, :biz_level, :biz_menu, :biz_open_date, :biz_address, :biz_province, :biz_city, :biz_district, :biz_zipcode, :biz_tel, :biz_email, :biz_open_hour, :biz_owner, :biz_interview_conts,
+            :biz_website, :biz_facebook, :biz_instagram, :biz_youtube, :biz_twitter)';
+
             $addBiz = $pdo->prepare($addBizQuery);
+
+            $addBiz.bindParam(":biz_name", $biz_name, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_level", $biz_level, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_menu", $biz_menu, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_open_date", $biz_open_date, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_address", $biz_address, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_province", $biz_province, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_city", $biz_city, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_district", $biz_district, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_zipcode", $biz_zipcode, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_tel", $biz_tel, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_email", $biz_email, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_open_hour", $biz_open_hour, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_owner", $biz_owner, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_interview_conts", $biz_interview_conts, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_website", $biz_website, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_facebook", $biz_facebook, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_instagram", $biz_instagram, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_youtube", $biz_youtube, PDO::PARAM_STR);
+            $addBiz.bindParam(":biz_twitter", $biz_twitter, PDO::PARAM_STR);
+
         }
-        
     }
 }
     catch (Exception $e)
