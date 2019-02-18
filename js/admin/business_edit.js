@@ -20,85 +20,88 @@ const menuBtnElem = document.getElementById("menuBtn");
  */
 const menuSelectPopupElem = () => {
   // example for menu data (until load from DB)
-  const objMenu = [
-    {
-      menuId: "1",
-      menuName: "Food&Drink",
-      menuPageYn: "0"
-    },
-    {
-      menuId: "2",
-      menuName: "Restaurants",
-      menuPageYn: "0"
-    },
-    {
-      menuId: "3",
-      menuName: "Korean",
-      menuPageYn: "1"
-    },
-    {
-      menuId: "4",
-      menuName: "Japanese",
-      menuPageYn: "1"
-    },
-    {
-      menuId: "43",
-      menuName: "Services",
-      menuPageYn: "0"
-    },
-    {
-      menuId: "44",
-      menuName: "Accommodations",
-      menuPageYn: "1"
+
+  let xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState !== 4) return;
+    if (xhr.status >= 200 && xhr.status < 300) {
+
+      let objMenu = [];
+
+      for (menu of JSON.parse(xhr.response)) {
+        objMenu.push({
+          menuId: menu['menu_id'],
+          menuName: menu['menu_name'],
+          menuPageYn: menu['menu_page_yn']
+        });
+      }
+
+      objMenu.shift();
+
+      let divElem = document.createElement("div");
+
+      divElem.innerHTML = `
+        <table class="table-bordered text-center table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">
+            </th>
+            <th scope="col">#</th>
+            <th scope="col">MenuName</th>
+            <th scope="col">MenuId</th>
+            <th scope="col">Has Page</th>
+          </tr>
+        </thead>
+        <tbody id="menu-popup-tbody">
+        </tbody>
+        </table>`;
+
+      let arryTbody = [];
+      let objTbodyTd = {};
+      let tbodyMenuElem = objMenu.map((menu, index) => {
+        tbodyTrElem = document.createElement("tr");
+        objTbodyTd.tbodyTdRowNum = document.createElement("td");
+        objTbodyTd.tbodyTdRowNum.appendChild(document.createTextNode(index));
+        objTbodyTd.tbodyTdMenuName = document.createElement("td");
+        objTbodyTd.tbodyTdMenuName.appendChild(
+          document.createTextNode(menu.menuName)
+        );
+        objTbodyTd.tbodyTdMenuId = document.createElement("td");
+        objTbodyTd.tbodyTdMenuId.appendChild(document.createTextNode(menu.menuId));
+        objTbodyTd.tbodyTdHasPage = document.createElement("td");
+        objTbodyTd.tbodyTdHasPage.appendChild(
+          document.createTextNode(menu.menuPageYn)
+        );
+        objTbodyTd.tbodyThCheckbox = document.createElement("td");
+        objTbodyTd.tbodyThCheckbox.appendChild(document.createTextNode("checkbox"));
+
+        for (tdElem in objTbodyTd) {
+          tbodyTrElem.appendChild(objTbodyTd[tdElem]);
+        }
+        arryTbody.push(tbodyTrElem);
+
+      });
+
+      arryTbody.forEach(tr => {
+        console.log(tr);
+        divElem.querySelector('#menu-popup-tbody').appendChild(tr);
+      })
+
+      document.body.appendChild(utils.modal(divElem));
+
+    } else {
+      console.log('error', xhr);
     }
-  ];
 
-  let divElem = document.createElement("div");
-  divElem.innerHTML = `
-  <table class="table-bordered text-center table table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">
-        </th>
-        <th scope="col">#</th>
-        <th scope="col">MenuName</th>
-        <th scope="col">MenuId</th>
-        <th scope="col">Has Page</th>
-      </tr>
-    </thead>
-    <tbody id="menu-popup-tbody>
-    </tbody>
-  </table>`;
+  }
 
-  let arryTbody = [];
-  let objTbodyTd = {};
-  let tbodyMenuElem = objMenu.map((menu) => {
-    tbodyTrElem = document.createElement("tr");
-    objTbodyTd.tbodyTdRowNum = document.createElement("td");
-    objTbodyTd.tbodyTdRowNum.appendChild(document.createTextNode(1));
-    objTbodyTd.tbodyTdMenuName = document.createElement("td");
-    objTbodyTd.tbodyTdMenuName.appendChild(
-      document.createTextNode(menu.menuName)
-    );
-    objTbodyTd.tbodyTdMenuId = document.createElement("td");
-    objTbodyTd.tbodyTdMenuId.appendChild(document.createTextNode(menu.menuId));
-    objTbodyTd.tbodyTdHasPage = document.createElement("td");
-    objTbodyTd.tbodyTdHasPage.appendChild(
-      document.createTextNode(menu.menuPageYn)
-    );
-    objTbodyTd.tbodyThCheckbox = document.createElement("td");
-    objTbodyTd.tbodyThCheckbox.appendChild(document.createTextNode("checkbox"));
+  xhr.open("GET", "../../php/menu_popup.php");
+  xhr.send();
 
-    for (tdElem in objTbodyTd) {
-      tbodyTrElem.appendChild(objTbodyTd[tdElem]);
-    }
-    arryTbody.push(tbodyTrElem);
-  });
+}
 
-  console.log(arryTbody);
 
-  return divElem;
-};
 
 /**
  * ==================================================================================
@@ -112,6 +115,6 @@ const menuSelectPopupElem = () => {
  * ----------------------------------------------------------------------------------
  */
 menuBtnElem.addEventListener("click", () => {
-  let divElem = menuSelectPopupElem();
-  document.body.appendChild(utils.modal(divElem));
+  menuSelectPopupElem();
+  // document.body.appendChild(utils.modal(divElem));
 });

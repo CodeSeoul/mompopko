@@ -178,7 +178,7 @@ let utils = (() => {
         buttonEdit.appendChild(document.createTextNode("Edit"));
         buttonEdit.addEventListener("click", () => {
           localStorage.setItem("selectedBusiness", JSON.stringify(business));
-          window.location.pathname = "../../html/admin/admin_login.html";
+          window.location.pathname = "../../mompopko/html/admin/business_edit.html";
         });
         tdEdit.appendChild(buttonEdit);
         childrenArr.push(tdEdit);
