@@ -3,6 +3,7 @@
   font-size: 0.9rem;
 }
 
+/* essential */
 .essential-asterisk::after {
   content: " *";
   color: red;
@@ -10,4 +11,22 @@
 
 .essential-border {
   border-color: red;
+}
+
+/* menu popup form */
+.form-popup-control {
+  display: flex;
+  flex-direction: row;
+}
+.form-popup-control > input {
+  margin-right: 10px;
+}
+.form-popup-id {
+  width: 15%;
+  background-color: gray;
+}
+
+.form-popup-name {
+  width: 50%;
+  background-color: gray;
 }

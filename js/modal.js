@@ -51,7 +51,7 @@ const modal = function(element) {
 
   modalBackground.addEventListener(
     "click",
-    e => {
+    (e) => {
       if (e.target === e.currentTarget) {
         e.currentTarget.style.display = "none";
       }
@@ -59,7 +59,7 @@ const modal = function(element) {
     true
   );
 
-  closeButton.addEventListener("click", e => {
+  closeButton.addEventListener("click", (e) => {
     modalBackground.style.display = "none";
   });
 

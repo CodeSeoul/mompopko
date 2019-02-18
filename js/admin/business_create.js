@@ -36,7 +36,7 @@ let showPreview = function (e) {
   let message = createPreviewElement();
 
   //show the modal
-  document.body.appendChild(modal(message));
+  document.body.appendChild(utils.modal(message));
 };
 
 /**
