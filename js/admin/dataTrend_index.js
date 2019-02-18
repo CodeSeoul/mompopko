@@ -15,7 +15,7 @@
       data.sort = sort;
       data.ascending = ascending;
 
-      fetch("../../java/business_index", {
+      fetch("../../php/datatrend_index.php", {
               method: "POST",
               headers: {
                   "Content-Type": "application/json"

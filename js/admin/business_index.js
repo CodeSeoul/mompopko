@@ -9,7 +9,7 @@ let utils = (() => {
   //      EXECUTION EVENTS
 
   pageEvent();
-  loadRow(fetchData());
+  fetchData();
   checkAllCheckboxes();
   searchEvent();
 
@@ -17,7 +17,11 @@ let utils = (() => {
   //      END EXECUTION EVENTS
 
   // business Level
-  let bizLevelInfo = { level1: 1, level2: 2, level3: 3 };
+  let bizLevelInfo = {
+    level1: 1,
+    level2: 2,
+    level3: 3
+  };
 
   //business delete list
 
@@ -91,31 +95,35 @@ let utils = (() => {
   //fetchData from server
   function fetchData(
     searchKey = "",
-    pageIndex = 0,
+    pageIndex = 1,
     postPerPage = 20,
     sort = "businessName",
     ascending = true
   ) {
-    const data = {};
+
+    let data = {};
     data.searchKey = searchKey;
     data.pageIndex = pageIndex;
     data.postPerPage = postPerPage;
     data.sort = sort;
     data.ascending = ascending;
 
-    fetch("../../java/business_index", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(data)
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(JSON.stringify(data));
-        return { meta: data, businesses: JSON.parse(data) };
+    data = JSON.stringify(data);
+    const form = new FormData();
+    form.set("data", data);
+
+    fetch("../../php/business_index.php", {
+        method: "POST",
+        body: form
+      })
+      .then((res) => {
+        return res.json();
+      })
+      .then((resData) => {
+        loadRow(resData, postPerPage, pageIndex);
       })
       .catch((err) => {
+        loadRow()
         console.log(err);
       });
   }
@@ -130,12 +138,13 @@ let utils = (() => {
    * ---------------------------------------------------------------------------
    */
 
-  function loadRow(data) {
-    if (data) {
-      let meta = data["meta"];
-      let businesses = JSON.parse(data["businesses"]);
+  function loadRow(businesses, postPerPage, pageIndex) {
 
-      for (business in businesses) {
+    let tbody = document.querySelector("tbody");
+    if (tbody) tbody.innerHTML = "";
+    if (businesses) {
+
+      businesses.forEach((business, index) => {
         let tr = document.createElement("tr");
         let thCheckbox = document.createElement("th");
         let thNumber = document.createElement("th");
@@ -151,7 +160,6 @@ let utils = (() => {
         let buttonEdit = document.createElement("button");
         let buttonImage = document.createElement("button");
         let childrenArr = [];
-        let tbody = document.querySelector("tbody");
 
         thCheckbox.scope = "row";
         checkbox.type = "checkbox";
@@ -164,16 +172,16 @@ let utils = (() => {
         thCheckbox.appendChild(form);
         childrenArr.push(thCheckbox);
         thNumber.appendChild(
-          document.createTextNode(meta.pageIndex * meta.postPerPage) + index
+          document.createTextNode((pageIndex - 1) * postPerPage + index + 1)
         );
         childrenArr.push(thNumber);
-        tdName.appendChild(document.createTextNode(business["businessName"]));
+        tdName.appendChild(document.createTextNode(business["biz_name"]));
         childrenArr.push(tdName);
-        tdLevel.appendChild(document.createTextNode(business["level"]));
+        tdLevel.appendChild(document.createTextNode(business["biz_level"]));
         childrenArr.push(tdLevel);
-        tdPhone.appendChild(document.createTextNode(business["tel"]));
+        tdPhone.appendChild(document.createTextNode(business["biz_tel"]));
         childrenArr.push(tdPhone);
-        tdAddress.appendChild(document.createTextNode(business["address"]));
+        tdAddress.appendChild(document.createTextNode(business["biz_address"]));
         childrenArr.push(tdAddress);
         buttonEdit.appendChild(document.createTextNode("Edit"));
         buttonEdit.addEventListener("click", () => {
@@ -193,8 +201,8 @@ let utils = (() => {
           tr.appendChild(childrenArr[i]);
         }
 
-        tbody.replaceChild(tr, tbody.lastChild);
-      }
+        if (tbody) tbody.appendChild(tr);
+      })
     }
   }
 
@@ -236,18 +244,23 @@ let utils = (() => {
    */
 
   function changePage(e) {
+
     let pageButtons = document.querySelectorAll(".page-number");
     if (pageButtons) {
       pageButtons.forEach((pageButton) => {
         pageButton.classList.remove("active");
       });
       e.target.parentNode.classList.toggle("active");
-      loadRow(
-        fetchData(
-          document.querySelector("#search-button").elements.search.value,
-          parseInt(e.target.textContent)
-        )
-      );
+      // searchKey = "",
+      // pageIndex = 1,
+      // postPerPage = 20,
+      // sort = "businessName",
+      // ascending = true
+
+      fetchData(
+        document.querySelector("#search-button input[name='search']").value,
+        parseInt(e.target.textContent)
+      )
     }
   }
 
@@ -259,10 +272,10 @@ let utils = (() => {
    */
 
   function changePageSet(e, pageButtons) {
-    console.log(e.eventPhase);
-    let lastPageNum = pageButtons[pageButtons.length - 1].textContent;
-    let button = e.target;
 
+    let lastPageNum = pageButtons[pageButtons.length - 1].textContent;
+    let button = e.currentTarget;
+    console.log(button);
     if (button && lastPageNum) {
       if (button.getAttribute("aria-label") == "Previous" && lastPageNum != 5) {
         pageButtons.forEach((pageButton) => {
@@ -312,7 +325,7 @@ let utils = (() => {
           for (let i = 0; i < checkboxes.length; i++) {
             var status =
               checkboxes[i].parentNode.parentNode.parentNode.lastChild
-                .lastChild;
+              .lastChild;
             checkboxes[i].checked = true;
             status.nodeValue = "Selected";
           }
@@ -384,13 +397,15 @@ let utils = (() => {
     let saveBtn = document.querySelector("#saveBtn");
     saveBtn.addEventListener("click", () => {
       if (confirm("Do you really want to delete selected businesses")) {
-        fetch("../../java/delete_business.java", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: { businessId: businessToDelete }
-        })
+        fetch("../../php/business_delete.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: {
+              businessId: businessToDelete
+            }
+          })
           .then((res) => res.json())
           .then((data) => {
             console.log(JSON.parse(data));
