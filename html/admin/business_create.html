@@ -18,7 +18,7 @@
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8zGM0fpSVwHI9zeklsLyO9T92QZcznsg"></script>
   <header id="header"></header>
   <div class="container mb-5">
-    <form id="business_create_form" action="../../php/business_create.php" method="POST">
+    <form id="business_create_form" enctype="multipart/form-data" action="../../php/business_create.php" method="POST">
       <div class="form-group">
         <label for="businessName" class="essential-asterisk">Business Name</label>
         <input value="prefill" name="businessName" type="text" id="businessName" class="form-control essential-border" />
@@ -37,12 +37,16 @@
 
       <div class="form-group">
         <label for="subImages">Sub images</label>
-        <input name="subImages" type="file" multiple id="subImages" class="form-control" />
+        <input multiple name="subImages[]" type="file" multiple id="subImages" class="form-control" />
       </div>
 
       <div class="form-group">
-        <label for="menu" class="essential-asterisk">Menu</label>
-        <input value="prefill" name="menu" type="text" id="menu" class="form-control essential-border" />
+        <label for="main-category" class="essential-asterisk">Menu</label>
+        <div class="form-popup-control">
+          <input type="text" id="menu" class="form-control form-popup-id essential-border" disabled />
+          <input type="text" id="menu" class="form-control form-popup-name essential-border" disabled />
+          <input name="menuBtn" type="button" id="menuBtn" value="Select Menu" class="form-popup-button" />
+        </div>
       </div>
 
       <div class="form-group">
@@ -142,8 +146,8 @@
   <script src="../../lib/frontend/jquery/jquery-3.3.1.min.js"></script>
   <script src="../../lib/frontend/popper/popper.min.js"></script>
   <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
-  <script src="../../js/admin/business_create.js"></script>
   <script src="../../js/admin/business_index.js"></script>
+  <script src="../../js/admin/business_create.js"></script>
   <script>
     $("#header").load("adminHeader.html");
     utils.createBizSelectbox();

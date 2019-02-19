@@ -131,6 +131,6 @@ const menuSelectPopupElem = () => {
  * ----------------------------------------------------------------------------------
  */
 menuBtnElem.addEventListener("click", () => {
-  let divElem = menuSelectPopupElem();
-  document.body.appendChild(utils.modal(divElem));
+  utils.menuSelectPopupElem();
+  // document.body.appendChild(utils.modal(divElem));
 });
