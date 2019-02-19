@@ -19,6 +19,23 @@ const menuBtnElem = document.getElementById("menuBtn");
  * ----------------------------------------------------------------------------------
  */
 const menuSelectPopupElem = () => {
+  // table elem for menu popup.
+  let tableElem = document.createElement("table");
+  tableElem.className = "table-bordered text-center table table-striped";
+
+  // table's thead elem
+  let theadElem = document.createElement("thead");
+  theadElem.className = "thead-dark";
+  theadElem.innerHTML = `
+        <tr>
+          <th scope="col">
+          </th>
+          <th scope="col">#</th>
+          <th scope="col">MenuName</th>
+          <th scope="col">MenuId</th>
+          <th scope="col">Has Page</th>
+        </tr>`;
+
   // example for menu data (until load from DB)
   const objMenu = [
     {
@@ -53,41 +70,36 @@ const menuSelectPopupElem = () => {
     }
   ];
 
-  let divElem = document.createElement("div");
-  divElem.innerHTML = `
-  <table class="table-bordered text-center table table-striped">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">
-        </th>
-        <th scope="col">#</th>
-        <th scope="col">MenuName</th>
-        <th scope="col">MenuId</th>
-        <th scope="col">Has Page</th>
-      </tr>
-    </thead>
-    <tbody id="menu-popup-tbody>
-    </tbody>
-  </table>`;
-
   let arryTbody = [];
   let objTbodyTd = {};
+
+  //table's contents for tbody
   let tbodyMenuElem = objMenu.map((menu) => {
     tbodyTrElem = document.createElement("tr");
+
+    //checkbox
+    objTbodyTd.tbodyThCheckbox = document.createElement("td");
+    objTbodyTd.tbodyThCheckbox.appendChild(document.createTextNode("checkbox"));
+
+    //rowNum
     objTbodyTd.tbodyTdRowNum = document.createElement("td");
     objTbodyTd.tbodyTdRowNum.appendChild(document.createTextNode(1));
+
+    //menuName
     objTbodyTd.tbodyTdMenuName = document.createElement("td");
     objTbodyTd.tbodyTdMenuName.appendChild(
       document.createTextNode(menu.menuName)
     );
+
+    //menuId
     objTbodyTd.tbodyTdMenuId = document.createElement("td");
     objTbodyTd.tbodyTdMenuId.appendChild(document.createTextNode(menu.menuId));
+
+    //hasPage
     objTbodyTd.tbodyTdHasPage = document.createElement("td");
     objTbodyTd.tbodyTdHasPage.appendChild(
       document.createTextNode(menu.menuPageYn)
     );
-    objTbodyTd.tbodyThCheckbox = document.createElement("td");
-    objTbodyTd.tbodyThCheckbox.appendChild(document.createTextNode("checkbox"));
 
     for (tdElem in objTbodyTd) {
       tbodyTrElem.appendChild(objTbodyTd[tdElem]);
@@ -95,9 +107,16 @@ const menuSelectPopupElem = () => {
     arryTbody.push(tbodyTrElem);
   });
 
-  console.log(arryTbody);
+  //create table's tbody element & put contents in tbody element
+  let tbodyElem = document.createElement("tbody");
+  for (tbody in arryTbody) {
+    tbodyElem.appendChild(arryTbody[tbody]);
+  }
 
-  return divElem;
+  tableElem.appendChild(theadElem);
+  tableElem.appendChild(tbodyElem);
+
+  return tableElem;
 };
 
 /**
