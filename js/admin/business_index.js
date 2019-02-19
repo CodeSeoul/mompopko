@@ -92,7 +92,6 @@ let utils = (() => {
     sort = "businessName",
     ascending = true
   ) {
-
     let data = {};
     data.searchKey = searchKey;
     data.pageIndex = pageIndex;
@@ -105,9 +104,9 @@ let utils = (() => {
     form.set("data", data);
 
     fetch("../../php/business_index.php", {
-        method: "POST",
-        body: form
-      })
+      method: "POST",
+      body: form
+    })
       .then((res) => {
         return res.json();
       })
@@ -115,7 +114,7 @@ let utils = (() => {
         loadRow(resData, postPerPage, pageIndex);
       })
       .catch((err) => {
-        loadRow()
+        loadRow();
         console.log(err);
       });
   }
@@ -131,11 +130,9 @@ let utils = (() => {
    */
 
   function loadRow(businesses, postPerPage, pageIndex) {
-
     let tbody = document.querySelector("tbody");
     if (tbody) tbody.innerHTML = "";
     if (businesses) {
-
       businesses.forEach((business, index) => {
         let tr = document.createElement("tr");
         let thCheckbox = document.createElement("th");
@@ -194,7 +191,7 @@ let utils = (() => {
         }
 
         if (tbody) tbody.appendChild(tr);
-      })
+      });
     }
   }
 
@@ -236,7 +233,6 @@ let utils = (() => {
    */
 
   function changePage(e) {
-
     let pageButtons = document.querySelectorAll(".page-number");
     if (pageButtons) {
       pageButtons.forEach((pageButton) => {
@@ -252,7 +248,7 @@ let utils = (() => {
       fetchData(
         document.querySelector("#search-button input[name='search']").value,
         parseInt(e.target.textContent)
-      )
+      );
     }
   }
 
@@ -264,7 +260,6 @@ let utils = (() => {
    */
 
   function changePageSet(e, pageButtons) {
-
     let lastPageNum = pageButtons[pageButtons.length - 1].textContent;
     let button = e.currentTarget;
     console.log(button);
@@ -317,7 +312,7 @@ let utils = (() => {
           for (let i = 0; i < checkboxes.length; i++) {
             var status =
               checkboxes[i].parentNode.parentNode.parentNode.lastChild
-              .lastChild;
+                .lastChild;
             checkboxes[i].checked = true;
             status.nodeValue = "Selected";
           }
@@ -390,14 +385,14 @@ let utils = (() => {
     saveBtn.addEventListener("click", () => {
       if (confirm("Do you really want to delete selected businesses")) {
         fetch("../../php/business_delete.php", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: {
-              businessId: businessToDelete
-            }
-          })
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: {
+            businessId: businessToDelete
+          }
+        })
           .then((res) => res.json())
           .then((data) => {
             console.log(JSON.parse(data));
