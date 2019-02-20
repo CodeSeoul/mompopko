@@ -4,8 +4,8 @@
     if($_SERVER['REQUEST_METHOD']="GET"){
         
         $host = 'mompopkoapi.wcoding.com';
-        $user = 'mompopko_admin';
-        $password = 'windMarshall92Adult';
+        $user = 'mompopko_api';
+        $password = 'uAVPVDMZz9N8d9RC';
         $port = '8833';
         $dbname = 'mompopko';
     

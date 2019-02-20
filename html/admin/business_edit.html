@@ -1,153 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>MomPopKo</title>
+    <link
+      rel="stylesheet"
+      href="../../lib/frontend/bootstrap/css/bootstrap.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="../../styles/business_index.css" />
+    <link rel="stylesheet" href="../../styles/dataTrend_index.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <title>MomPopKo</title>
-  <link rel="stylesheet" href="../../lib/frontend/bootstrap/css/bootstrap.css" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-    crossorigin="anonymous" />
-  <link rel="stylesheet" href="../../styles/business_index.css" />
-  <link rel="stylesheet" href="../../styles/dataTrend_index.css" />
-</head>
-
-<body>
-  <header id="header"></header>
-  <div class="container mb-5">
-    <form action="#" method="POST" enctype="multipart/form-data" onsubmit="return utils.checkValidation()">
-      <div class="form-group">
-        <label for="level" class="essential-asterisk">Level</label>
-        <input type="text" id="level" class="form-control" />
-        <select name="bizLevel" id="bizLevel" class="form-control essential-border"></select>
-      </div>
-
-      <div class="form-group">
-        <label for="mainImages">Main image</label>
-        <input name="mainImage" type="file" id="mainImage" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="subImages">Sub images</label>
-        <input multiple name="subImages[]" type="file" multiple id="subImages" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="main-category" class="essential-asterisk">Menu</label>
-        <div class="form-popup-control">
-          <input type="text" id="menu" class="form-control form-popup-id essential-border" disabled />
-          <input type="text" id="menu" class="form-control form-popup-name essential-border" disabled />
-          <input name="menuBtn" type="button" id="menuBtn" value="Select Menu" class="form-popup-button" />
+  <body>
+    <header id="header"></header>
+    <div class="container mb-5">
+      <form
+        action="#"
+        method="POST"
+        enctype="multipart/form-data"
+        onsubmit="return utils.checkValidation()"
+      >
+        <div class="form-group">
+          <label for="level" class="essential-asterisk">Level</label>
+          <!-- <input type="text" id="level" class="form-control" /> -->
+          <select
+            name="bizLevel"
+            id="bizLevel"
+            class="form-control essential-border"
+          ></select>
         </div>
-      </div>
 
-      <div class="form-group">
-        <label for="opening-date" class="essential-asterisk">Open Date</label>
-        <input type="date" id="open-date" class="form-control essential-border" />
-      </div>
-
-      <div class="form-group">
-        <label for="new-address" class="essential-asterisk">Address</label>
-        <input type="text" id="address" class="form-control essential-border" />
-      </div>
-
-      <div class="form-group">
-        <label for="province" class="essential-asterisk">Province</label>
-        <input type="text" id="province" class="form-control essential-border" />
-      </div>
-
-      <div class="form-group">
-        <label for="city" class="essential-asterisk">City</label>
-        <input type="text" id="city" class="form-control essential-border" />
-      </div>
-
-      <div class="form-group">
-        <label for="district" class="essential-asterisk">District</label>
-        <input type="text" id="district" class="form-control essential-border" />
-      </div>
-
-      <div class="form-group">
-        <label for="district" class="essential-asterisk">Neighborhood</label>
-        <input type="text" id="neighborhood" class="form-control essential-border" />
-      </div>
-
-      <div class="form-group">
-        <label for="old-zipcode" class="essential-asterisk">
-          Zipcode
-        </label>
-        <input type="text" id="zipcode" class="form-control essential-border" />
-      </div>
-
-      <div class="form-group">
-        <label for="tel">Telephone</label>
-        <input name="tel" type="text" id="tel" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="email">Email</label>
-        <input name="email" type="email" id="email" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="operating-hour">Operating hour</label>
-        <input name="operatingHour" type="text" id="operating-hour" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="owner-name">Owner Name</label>
-        <input name="ownerName" type="text" id="owner-name" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="interview">Interview</label>
-        <textarea name="interview" type="text" id="interview" class="form-control"></textarea>
-      </div>
-
-      <div class="form-group">
-        <label for="interview-date">Interview date</label>
-        <input name="interviewDate" type="date" id="interview-date" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="website">website url</label>
-        <input name="website" type="url" id="website" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="facebook">Facebook url</label>
-        <input name="facebook" type="url" id="facebook" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="instagram">Instagram url</label>
-        <input name="instagram" type="url" id="instagram" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="youtube">Youtube url</label>
-        <input name="youtube" type="url" id="youtube" class="form-control" />
-      </div>
-
-      <div class="form-group">
-        <label for="twitter">Twitter url</label>
-        <input name="twitter" type="url" id="twitter" class="form-control" />
-      </div>
-
-      <div class="container">
-        <div class="row justify-content-end">
-          <button type="submit" class="mr-3 btn btn-info">Preview</button>
-          <button class="btn btn-danger">Cancel</button>
+        <div class="form-group">
+          <label for="mainImages">Main image</label>
+          <input
+            name="mainImage"
+            type="file"
+            id="mainImage"
+            class="form-control"
+          />
         </div>
-      </div>
-    </form>
-  </div>
 
-  <script src="../../lib/frontend/jquery/jquery-3.3.1.min.js"></script>
-  <script src="../../lib/frontend/popper/popper.min.js"></script>
-  <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
-  <script src="../../js/admin//business_index.js"></script>
-  <script src="../../js/admin//business_edit.js"></script>
-</body>
+        <div class="form-group">
+          <label for="subImages">Sub images</label>
+          <input
+            multiple
+            name="subImages[]"
+            type="file"
+            multiple
+            id="subImages"
+            class="form-control"
+          />
+        </div>
 
+        <div class="form-group">
+          <label for="main-category" class="essential-asterisk">Menu</label>
+          <div class="form-popup-control">
+            <input
+              type="text"
+              id="menu"
+              class="form-control form-popup-id essential-border"
+              disabled
+            />
+            <input
+              type="text"
+              id="menu"
+              class="form-control form-popup-name essential-border"
+              disabled
+            />
+            <input
+              name="menuBtn"
+              type="button"
+              id="menuBtn"
+              value="Select Menu"
+              class="form-popup-button"
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="opening-date" class="essential-asterisk">Open Date</label>
+          <input
+            type="date"
+            id="open-date"
+            class="form-control essential-border"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="new-address" class="essential-asterisk">Address</label>
+          <input
+            type="text"
+            id="address"
+            class="form-control essential-border"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="province" class="essential-asterisk">Province</label>
+          <input
+            type="text"
+            id="province"
+            class="form-control essential-border"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="city" class="essential-asterisk">City</label>
+          <input type="text" id="city" class="form-control essential-border" />
+        </div>
+
+        <div class="form-group">
+          <label for="district" class="essential-asterisk">District</label>
+          <input
+            type="text"
+            id="district"
+            class="form-control essential-border"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="district" class="essential-asterisk">Neighborhood</label>
+          <input
+            type="text"
+            id="neighborhood"
+            class="form-control essential-border"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="old-zipcode" class="essential-asterisk">
+            Zipcode
+          </label>
+          <input
+            type="text"
+            id="zipcode"
+            class="form-control essential-border"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="tel">Telephone</label>
+          <input name="tel" type="text" id="tel" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input name="email" type="email" id="email" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="operating-hour">Operating hour</label>
+          <input
+            name="operatingHour"
+            type="text"
+            id="operating-hour"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="owner-name">Owner Name</label>
+          <input
+            name="ownerName"
+            type="text"
+            id="owner-name"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="interview">Interview</label>
+          <textarea
+            name="interview"
+            type="text"
+            id="interview"
+            class="form-control"
+          ></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="interview-date">Interview date</label>
+          <input
+            name="interviewDate"
+            type="date"
+            id="interview-date"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="website">website url</label>
+          <input name="website" type="url" id="website" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="facebook">Facebook url</label>
+          <input
+            name="facebook"
+            type="url"
+            id="facebook"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="instagram">Instagram url</label>
+          <input
+            name="instagram"
+            type="url"
+            id="instagram"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="youtube">Youtube url</label>
+          <input name="youtube" type="url" id="youtube" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="twitter">Twitter url</label>
+          <input name="twitter" type="url" id="twitter" class="form-control" />
+        </div>
+
+        <div class="container">
+          <div class="row justify-content-end">
+            <button type="submit" class="mr-3 btn btn-info">Preview</button>
+            <button class="btn btn-danger">Cancel</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script src="../../lib/frontend/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../lib/frontend/popper/popper.min.js"></script>
+    <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
+    <script src="../../js/admin//business_index.js"></script>
+    <script src="../../js/admin//business_edit.js"></script>
+  </body>
 </html>
