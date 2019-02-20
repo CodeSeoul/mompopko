@@ -175,7 +175,8 @@ let utils = (() => {
         buttonEdit.appendChild(document.createTextNode("Edit"));
         buttonEdit.addEventListener("click", () => {
           localStorage.setItem("selectedBusiness", JSON.stringify(business));
-          window.location.pathname = "../../mompopko/html/admin/business_edit.html";
+          window.location.pathname =
+            "../../mompopko/html/admin/business_edit.html";
         });
         tdEdit.appendChild(buttonEdit);
         childrenArr.push(tdEdit);
@@ -481,97 +482,182 @@ let utils = (() => {
     return modalBackground;
   }
 
-
   /**
    * ----------------------------------------------------------------------------------
-   * menuSelectPopupElem : make elements(contents for menu select popup)
-   * @return : element type which has menus for select
+   * menuSelectPopup : popup for menu select
    * ----------------------------------------------------------------------------------
    */
-  function menuSelectPopupElem() {
+  function menuSelectPopup() {
     // example for menu data (until load from DB)
 
     let xhr = new XMLHttpRequest();
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
       if (xhr.readyState !== 4) return;
       if (xhr.status >= 200 && xhr.status < 300) {
+        // table elem for menu popup.
+        let tableElem = document.createElement("table");
+        tableElem.className = "table-bordered text-center table table-striped";
+
+        // table's thead elem
+        let theadElem = document.createElement("thead");
+        theadElem.className = "thead-dark";
+        theadElem.innerHTML = `
+        <tr>
+          <th scope="col">
+          </th>
+          <th scope="col">#</th>
+          <th scope="col">MenuName</th>
+          <th scope="col">MenuId</th>
+          <th scope="col">Has Page</th>
+        </tr>`;
 
         let objMenu = [];
-
         for (menu of JSON.parse(xhr.response)) {
-          objMenu.push({
-            menuId: menu['menu_id'],
-            menuName: menu['menu_name'],
-            menuPageYn: menu['menu_page_yn']
-          });
+          objMenu.push(menu);
         }
-
-        objMenu.shift();
-
-        let divElem = document.createElement("div");
-
-        divElem.innerHTML = `
-        <table class="table-bordered text-center table table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th scope="col">
-            </th>
-            <th scope="col">#</th>
-            <th scope="col">MenuName</th>
-            <th scope="col">MenuId</th>
-            <th scope="col">Has Page</th>
-          </tr>
-        </thead>
-        <tbody id="menu-popup-tbody">
-        </tbody>
-        </table>`;
-
         let arryTbody = [];
         let objTbodyTd = {};
-        let tbodyMenuElem = objMenu.map((menu, index) => {
+
+        //table's contents for tbody
+        let tbodyMenuElem = objMenu.map((menu) => {
           tbodyTrElem = document.createElement("tr");
+
+          //checkbox
+          objTbodyTd.tbodyThCheckbox = document.createElement("td");
+          objTbodyTd.tbodyThCheckbox.appendChild(
+            document.createTextNode("checkbox")
+          );
+
+          //rowNum
           objTbodyTd.tbodyTdRowNum = document.createElement("td");
-          objTbodyTd.tbodyTdRowNum.appendChild(document.createTextNode(index));
+          objTbodyTd.tbodyTdRowNum.appendChild(
+            document.createTextNode(menu.rownum)
+          );
+
+          //menuName
           objTbodyTd.tbodyTdMenuName = document.createElement("td");
           objTbodyTd.tbodyTdMenuName.appendChild(
-            document.createTextNode(menu.menuName)
+            document.createTextNode(menu.menu_name)
           );
+
+          //menuId
           objTbodyTd.tbodyTdMenuId = document.createElement("td");
-          objTbodyTd.tbodyTdMenuId.appendChild(document.createTextNode(menu.menuId));
+          objTbodyTd.tbodyTdMenuId.appendChild(
+            document.createTextNode(menu.menu_id)
+          );
+
+          //hasPage
           objTbodyTd.tbodyTdHasPage = document.createElement("td");
           objTbodyTd.tbodyTdHasPage.appendChild(
-            document.createTextNode(menu.menuPageYn)
+            document.createTextNode(menu.menu_page_yn)
           );
-          objTbodyTd.tbodyThCheckbox = document.createElement("td");
-          objTbodyTd.tbodyThCheckbox.appendChild(document.createTextNode("checkbox"));
 
           for (tdElem in objTbodyTd) {
             tbodyTrElem.appendChild(objTbodyTd[tdElem]);
           }
           arryTbody.push(tbodyTrElem);
-
         });
 
-        arryTbody.forEach(tr => {
-          console.log(tr);
-          divElem.querySelector('#menu-popup-tbody').appendChild(tr);
-        })
+        //create table's tbody element & put contents in tbody element
+        let tbodyElem = document.createElement("tbody");
+        for (tbody in arryTbody) {
+          tbodyElem.appendChild(arryTbody[tbody]);
+        }
 
-        document.body.appendChild(utils.modal(divElem));
-
+        tableElem.appendChild(theadElem);
+        tableElem.appendChild(tbodyElem);
+        document.body.appendChild(utils.modal(tableElem));
       } else {
-        console.log('error', xhr);
+        console.log("error", xhr);
       }
-
-    }
+    };
 
     xhr.open("GET", "../../php/menu_popup.php");
     xhr.send();
-
   }
 
+  // function menuSelectPopupElem() {
+  //   // example for menu data (until load from DB)
 
+  //   let xhr = new XMLHttpRequest();
+
+  //   xhr.onreadystatechange = function() {
+  //     if (xhr.readyState !== 4) return;
+  //     if (xhr.status >= 200 && xhr.status < 300) {
+  //       let objMenu = [];
+
+  //       for (menu of JSON.parse(xhr.response)) {
+  //         objMenu.push({
+  //           menuId: menu["menu_id"],
+  //           menuName: menu["menu_name"],
+  //           menuPageYn: menu["menu_page_yn"]
+  //         });
+  //       }
+
+  //       objMenu.shift();
+
+  //       let divElem = document.createElement("div");
+
+  //       divElem.innerHTML = `
+  //       <table class="table-bordered text-center table table-striped">
+  //       <thead class="thead-dark">
+  //         <tr>
+  //           <th scope="col">
+  //           </th>
+  //           <th scope="col">#</th>
+  //           <th scope="col">MenuName</th>
+  //           <th scope="col">MenuId</th>
+  //           <th scope="col">Has Page</th>
+  //         </tr>
+  //       </thead>
+  //       <tbody id="menu-popup-tbody">
+  //       </tbody>
+  //       </table>`;
+
+  //       let arryTbody = [];
+  //       let objTbodyTd = {};
+  //       let tbodyMenuElem = objMenu.map((menu, index) => {
+  //         tbodyTrElem = document.createElement("tr");
+  //         objTbodyTd.tbodyTdRowNum = document.createElement("td");
+  //         objTbodyTd.tbodyTdRowNum.appendChild(document.createTextNode(index));
+  //         objTbodyTd.tbodyTdMenuName = document.createElement("td");
+  //         objTbodyTd.tbodyTdMenuName.appendChild(
+  //           document.createTextNode(menu.menuName)
+  //         );
+  //         objTbodyTd.tbodyTdMenuId = document.createElement("td");
+  //         objTbodyTd.tbodyTdMenuId.appendChild(
+  //           document.createTextNode(menu.menuId)
+  //         );
+  //         objTbodyTd.tbodyTdHasPage = document.createElement("td");
+  //         objTbodyTd.tbodyTdHasPage.appendChild(
+  //           document.createTextNode(menu.menuPageYn)
+  //         );
+  //         objTbodyTd.tbodyThCheckbox = document.createElement("td");
+  //         objTbodyTd.tbodyThCheckbox.appendChild(
+  //           document.createTextNode("checkbox")
+  //         );
+
+  //         for (tdElem in objTbodyTd) {
+  //           tbodyTrElem.appendChild(objTbodyTd[tdElem]);
+  //         }
+  //         arryTbody.push(tbodyTrElem);
+  //       });
+
+  //       arryTbody.forEach((tr) => {
+  //         console.log(tr);
+  //         divElem.querySelector("#menu-popup-tbody").appendChild(tr);
+  //       });
+
+  //       document.body.appendChild(utils.modal(divElem));
+  //     } else {
+  //       console.log("error", xhr);
+  //     }
+  //   };
+
+  //   xhr.open("GET", "../../php/menu_popup.php");
+  //   xhr.send();
+  // }
 
   return {
     createBizSelectbox,
@@ -580,6 +666,6 @@ let utils = (() => {
     modal,
     deleteButton,
     saveButton,
-    menuSelectPopupElem
+    menuSelectPopup
   };
 })();
