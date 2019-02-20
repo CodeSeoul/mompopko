@@ -358,14 +358,17 @@ let utils = (() => {
 
   function deleteButton() {
     let deleteBtn = document.querySelector("#deleteBtn");
-    deleteBtn.addEventListener("click", () => {
+    deleteBtn.addEventListener("click", (e) => {
+      e.preventDefault();
       let checkboxes = document.querySelectorAll(
         "tbody input[type='checkbox']"
       );
+
       if (checkboxes) {
         businessToDelete = [];
-        checkboxes.forEach((checkbox) => () => {
+        checkboxes.forEach((checkbox) => {
           if (checkbox.checked == true) {
+
             checkbox.parentElement.parentElement.parentElement.lastElementChild.textContent =
               "delete";
             businessToDelete.push(checkbox.getAttribute("data-businessId"));
@@ -383,24 +386,24 @@ let utils = (() => {
 
   function saveButton() {
     let saveBtn = document.querySelector("#saveBtn");
+
     saveBtn.addEventListener("click", () => {
       if (confirm("Do you really want to delete selected businesses")) {
-        fetch("../../php/business_delete.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: {
-            businessId: businessToDelete
+        let xhr = new XMLHttpRequest();
+        let str_businessToDelete = businessToDelete ? businessToDelete.join(",") : '';
+
+        xhr.open('POST', '../../php/business_delete.php');
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        console.log(str_businessToDelete);
+        xhr.send(`businessToDelete=${str_businessToDelete}`);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState !== 4) return;
+          if (xhr.status >= 200 && xhr.status < 300) {
+            console.log(xhr.responseText);
           }
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(JSON.parse(data));
-          })
-          .catch((err) => {
-            console.log(err);
-          });
+        }
+
       }
     });
   }
@@ -492,7 +495,7 @@ let utils = (() => {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       if (xhr.readyState !== 4) return;
       if (xhr.status >= 200 && xhr.status < 300) {
         // table elem for menu popup.

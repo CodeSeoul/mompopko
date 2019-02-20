@@ -12,7 +12,7 @@ const menuBtnElem = document.getElementById("menuBtn");
  * ----------------------------------------------------------------------------------
  */
 menuBtnElem.addEventListener("click", () => {
-  utils.menuSelectPopupElem();
+  utils.menuSelectPopup();
   // document.body.appendChild(utils.modal(divElem));
 });
 
@@ -143,9 +143,9 @@ let createPreviewElement = function () {
         <span>
           <i class="fas fa-calendar"></i>
           <span class="sub">${openingDate.toLocaleString(
-            "en-US",
-            openingDateFormat
-          ) || "Jan, 2019"}</span>
+    "en-US",
+    openingDateFormat
+  ) || "Jan, 2019"}</span>
         </span>
       </h5>
     </div>
@@ -164,23 +164,23 @@ let createPreviewElement = function () {
     <div class="col-12">
       <ul class="story_detail">
         <li><i class="fas fa-user"></i> <span>Owner:</span>${ownerName ||
-          "Mr.Kim"}</li>
+    "Mr.Kim"}</li>
         <li><i class="fas fa-clock"></i> <span>Published:</span>${new Date(
-          Date.now()
-        ).toLocaleString("en-US", publishedDateFormat) || "Jan 19, 2019"}</li>
+      Date.now()
+    ).toLocaleString("en-US", publishedDateFormat) || "Jan 19, 2019"}</li>
       </ul>
       <div class="story">
         ${interview ||
-          " Sample interview  Sample interview  Sample interview  Sample interview  Sample interview "}
+    " Sample interview  Sample interview  Sample interview  Sample interview  Sample interview "}
         <p>sample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample text</p>
       </div>
       <ul class="story_contact">
         <li><span><i class="fas fa-phone"></i> Telephone:</span> ${tel ||
-          "02-1234-4567"}</li>
+    "02-1234-4567"}</li>
         <li><span><i class="fas fa-clock"></i> Hours:</span> ${operatingHour ||
-          "Mon-Tue 08:00~13:00"}</li>
+    "Mon-Tue 08:00~13:00"}</li>
         <li><span><i class="fab fa-instagram"></i> Instagram:</span> <a>${instagram ||
-          "instagram.com"}</a></li>
+    "instagram.com"}</a></li>
       </ul>
     </div>
   </div>
@@ -230,7 +230,7 @@ function createCarousel(imageURLs) {
   carouselContainer.style.gridGap = 8 / 3 + "%";
   carouselContainer.style.gridTemplateColumns = `repeat(${
     imageURLs.length
-  }, 23%)`;
+    }, 23%)`;
 
   let images = [];
   for (let i = 0; i < imageURLs.length; i++) {
