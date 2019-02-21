@@ -13,11 +13,12 @@
     
         $pdo = new PDO($dsn, $user, $password,array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
-
-        $getMenuQuery = 'SELECT  CONCAT(REPEAT(\'    \', level - 1), CAST(B.menu_name AS CHAR)) AS tree_menu
+        // SELECT  CONCAT(REPEAT(\'    \', level - 1), CAST(B.menu_name AS CHAR)) AS tree_menu_name
+        $getMenuQuery = 'SELECT  CONCAT(REPEAT(\'    \', level - 1), CAST(B.menu_name AS CHAR)) AS tree_menu_name
                                 , B.menu_name
                                 , B.menu_id
                                 , B.menu_page_yn
+                                , IF(B.menu_page_yn = 1, "YES", "NO") AS has_page
                                 , A.rownum
                         FROM    (
                                     SELECT  fn_menu_hierarchy() AS menu_id
