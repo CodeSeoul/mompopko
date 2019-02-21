@@ -504,6 +504,7 @@ let utils = (() => {
         // table elem for menu popup.
         let tableElem = document.createElement("table");
         tableElem.className = "table-bordered text-center table table-striped";
+        tableElem.id = "menu-popup-table";
 
         // table's thead elem
         let theadElem = document.createElement("thead");
@@ -531,9 +532,9 @@ let utils = (() => {
 
           //checkbox
           objTbodyTd.tbodyThCheckbox = document.createElement("td");
-          objTbodyTd.tbodyThCheckbox.appendChild(
-            document.createTextNode("checkbox")
-          );
+          const checkboxInTbody = document.createElement("input");
+          checkboxInTbody.type = "checkbox";
+          objTbodyTd.tbodyThCheckbox.appendChild(checkboxInTbody);
 
           //rowNum
           objTbodyTd.tbodyTdRowNum = document.createElement("td");
@@ -575,6 +576,12 @@ let utils = (() => {
         tableElem.appendChild(theadElem);
         tableElem.appendChild(tbodyElem);
         document.body.appendChild(utils.modal(tableElem));
+
+        //function for checkboxOption (in utils object)
+        checkboxOption({
+          blMultiCheck: false,
+          targetTableElem: "menu-popup-table"
+        });
       } else {
         console.log("error", xhr);
       }
@@ -582,6 +589,26 @@ let utils = (() => {
 
     xhr.open("GET", "../../php/menu_popup.php");
     xhr.send();
+  }
+
+  /**
+   * ----------------------------------------------------------------------------------
+   * checkboxOption : function for checkboxOption
+   * @param : option for checkbox
+   *  - blMultiCheck : false=check only one / true=multicheck
+   *  - targetTableElem : target table element's id
+   * ----------------------------------------------------------------------------------
+   */
+  function checkboxOption(opt) {
+    if (!opt) console.error(">>>>>>>>>>>>> check parameter");
+
+    // event listener for check only one checkbox
+    if (!opt.blMultiCheck) {
+      const menuPopupTableElem = document.getElementById(opt.targetTableElem);
+      menuPopupTableElem.addEventListener("click", () => {
+        console.log(menuPopupTableElem);
+      });
+    }
   }
 
   // function menuSelectPopupElem() {
