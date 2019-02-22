@@ -477,7 +477,9 @@ let utils = (() => {
     );
 
     closeButton.addEventListener("click", (e) => {
-      modalBackground.style.display = "none";
+      // remove popup elements when close
+      modalBackground.parentNode.removeChild(modalBackground);
+      // modalBackground.style.display = "none";
     });
 
     //append modal content, close button, and container to modal background
@@ -493,9 +495,7 @@ let utils = (() => {
    * menuSelectPopup : popup for menu select
    * ----------------------------------------------------------------------------------
    */
-  function menuSelectPopup() {
-    // example for menu data (until load from DB)
-
+  function menuSelectPopup(objParam) {
     let xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function() {
@@ -525,6 +525,7 @@ let utils = (() => {
         }
         let arryTbody = [];
         let objTbodyTd = {};
+        let checkedRowNum = -1;
 
         //table's contents for tbody
         let tbodyMenuElem = objMenu.map((menu) => {
@@ -537,7 +538,7 @@ let utils = (() => {
           checkboxInTbody.name = "select-checkbox";
           checkboxInTbody.dataset.rownum = menu.rownum;
           checkboxInTbody.onclick = () => {
-            checkOnlyOne(checkboxInTbody);
+            checkedRowNum = checkOnlyOne(checkboxInTbody);
           };
           objTbodyTd.tbodyThCheckbox.appendChild(checkboxInTbody);
 
@@ -580,7 +581,43 @@ let utils = (() => {
 
         tableElem.appendChild(theadElem);
         tableElem.appendChild(tbodyElem);
-        document.body.appendChild(utils.modal(tableElem));
+
+        let divElem = document.createElement("div");
+        divElem.appendChild(tableElem);
+
+        //popup's button
+        let popupButtonDivElem = document.createElement("div");
+        // submit button
+        let submitButtonElem = document.createElement("button");
+        popupButtonDivElem.className = "text-center";
+        submitButtonElem.textContent = "Submit";
+        submitButtonElem.className = "btn btn-primary mt-5 p-2";
+        submitButtonElem.addEventListener("click", () => {
+          const menuCheckboxes = document.getElementsByName("select-checkbox");
+          let cnt = 0;
+          for (let i = 0; i < menuCheckboxes.length; i++) {
+            if (menuCheckboxes[i].checked) cnt++;
+          }
+
+          // if not selected any menu
+          if (cnt === 0) {
+            alert("Check the menu");
+            return;
+          }
+
+          // insert menu_id & menu_name values to parent form
+          objParam.menuIdElem.value = objMenu[checkedRowNum].menu_id;
+          objParam.menuNameElem.value = objMenu[checkedRowNum].menu_name;
+
+          // click x button for close popup
+          const xButtonElem = document.getElementsByClassName(
+            "fa-window-close"
+          );
+          xButtonElem[0].click();
+        });
+        popupButtonDivElem.appendChild(submitButtonElem);
+        divElem.appendChild(popupButtonDivElem);
+        document.body.appendChild(utils.modal(divElem));
       } else {
         console.log("error", xhr);
       }
@@ -594,6 +631,7 @@ let utils = (() => {
    * ----------------------------------------------------------------------------------
    * checkOnlyOne : function for check only one checkbox
    * @param : input checkbox tag element
+   * @return : return row index of checked checkbox (start with 0)
    * ----------------------------------------------------------------------------------
    */
   function checkOnlyOne(paramElem) {
@@ -602,6 +640,7 @@ let utils = (() => {
       if (paramElem.dataset.rownum - 1 !== i)
         checkboxNameElem[i].checked = false;
     }
+    return paramElem.dataset.rownum - 1;
   }
 
   // function menuSelectPopupElem() {

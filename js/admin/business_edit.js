@@ -24,5 +24,8 @@ const menuBtnElem = document.getElementById("menuBtn");
  * ----------------------------------------------------------------------------------
  */
 menuBtnElem.addEventListener("click", () => {
-  utils.menuSelectPopup();
+  utils.menuSelectPopup({
+    menuIdElem: document.getElementById("menuId"),
+    menuNameElem: document.getElementById("menuName")
+  });
 });
