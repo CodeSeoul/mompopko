@@ -533,7 +533,12 @@ let utils = (() => {
           //checkbox
           objTbodyTd.tbodyThCheckbox = document.createElement("td");
           const checkboxInTbody = document.createElement("input");
-          checkboxInTbody.type = "checkbox";
+          checkboxInTbody.type = menu.menu_page_yn == 0 ? "hidden" : "checkbox";
+          checkboxInTbody.name = "select-checkbox";
+          checkboxInTbody.dataset.rownum = menu.rownum;
+          checkboxInTbody.onclick = () => {
+            checkOnlyOne(checkboxInTbody);
+          };
           objTbodyTd.tbodyThCheckbox.appendChild(checkboxInTbody);
 
           //rowNum
@@ -576,12 +581,6 @@ let utils = (() => {
         tableElem.appendChild(theadElem);
         tableElem.appendChild(tbodyElem);
         document.body.appendChild(utils.modal(tableElem));
-
-        //function for checkboxOption (in utils object)
-        checkboxOption({
-          blMultiCheck: false,
-          targetTableElem: "menu-popup-table"
-        });
       } else {
         console.log("error", xhr);
       }
@@ -593,21 +592,15 @@ let utils = (() => {
 
   /**
    * ----------------------------------------------------------------------------------
-   * checkboxOption : function for checkboxOption
-   * @param : option for checkbox
-   *  - blMultiCheck : false=check only one / true=multicheck
-   *  - targetTableElem : target table element's id
+   * checkOnlyOne : function for check only one checkbox
+   * @param : input checkbox tag element
    * ----------------------------------------------------------------------------------
    */
-  function checkboxOption(opt) {
-    if (!opt) console.error(">>>>>>>>>>>>> check parameter");
-
-    // event listener for check only one checkbox
-    if (!opt.blMultiCheck) {
-      const menuPopupTableElem = document.getElementById(opt.targetTableElem);
-      menuPopupTableElem.addEventListener("click", () => {
-        console.log(menuPopupTableElem);
-      });
+  function checkOnlyOne(paramElem) {
+    const checkboxNameElem = document.getElementsByName(paramElem.name);
+    for (let i = 0; i < checkboxNameElem.length; i++) {
+      if (paramElem.dataset.rownum - 1 !== i)
+        checkboxNameElem[i].checked = false;
     }
   }
 
