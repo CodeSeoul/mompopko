@@ -368,7 +368,6 @@ let utils = (() => {
         businessToDelete = [];
         checkboxes.forEach((checkbox) => {
           if (checkbox.checked == true) {
-
             checkbox.parentElement.parentElement.parentElement.lastElementChild.textContent =
               "delete";
             businessToDelete.push(checkbox.getAttribute("data-businessId"));
@@ -390,20 +389,24 @@ let utils = (() => {
     saveBtn.addEventListener("click", () => {
       if (confirm("Do you really want to delete selected businesses")) {
         let xhr = new XMLHttpRequest();
-        let str_businessToDelete = businessToDelete ? businessToDelete.join(",") : '';
+        let str_businessToDelete = businessToDelete
+          ? businessToDelete.join(",")
+          : "";
 
-        xhr.open('POST', '../../php/business_delete.php');
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.open("POST", "../../php/business_delete.php");
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
         console.log(str_businessToDelete);
         xhr.send(`businessToDelete=${str_businessToDelete}`);
 
-        xhr.onreadystatechange = function () {
+        xhr.onreadystatechange = function() {
           if (xhr.readyState !== 4) return;
           if (xhr.status >= 200 && xhr.status < 300) {
             console.log(xhr.responseText);
           }
-        }
-
+        };
       }
     });
   }
@@ -495,12 +498,13 @@ let utils = (() => {
 
     let xhr = new XMLHttpRequest();
 
-    xhr.onreadystatechange = function () {
+    xhr.onreadystatechange = function() {
       if (xhr.readyState !== 4) return;
       if (xhr.status >= 200 && xhr.status < 300) {
         // table elem for menu popup.
         let tableElem = document.createElement("table");
         tableElem.className = "table-bordered text-center table table-striped";
+        tableElem.id = "menu-popup-table";
 
         // table's thead elem
         let theadElem = document.createElement("thead");
@@ -528,9 +532,14 @@ let utils = (() => {
 
           //checkbox
           objTbodyTd.tbodyThCheckbox = document.createElement("td");
-          objTbodyTd.tbodyThCheckbox.appendChild(
-            document.createTextNode("checkbox")
-          );
+          const checkboxInTbody = document.createElement("input");
+          checkboxInTbody.type = menu.menu_page_yn == 0 ? "hidden" : "checkbox";
+          checkboxInTbody.name = "select-checkbox";
+          checkboxInTbody.dataset.rownum = menu.rownum;
+          checkboxInTbody.onclick = () => {
+            checkOnlyOne(checkboxInTbody);
+          };
+          objTbodyTd.tbodyThCheckbox.appendChild(checkboxInTbody);
 
           //rowNum
           objTbodyTd.tbodyTdRowNum = document.createElement("td");
@@ -540,9 +549,10 @@ let utils = (() => {
 
           //menuName
           objTbodyTd.tbodyTdMenuName = document.createElement("td");
-          objTbodyTd.tbodyTdMenuName.appendChild(
-            document.createTextNode(menu.menu_name)
-          );
+          const preInTbody = document.createElement("pre");
+          preInTbody.className = "tree-menu-name";
+          preInTbody.appendChild(document.createTextNode(menu.tree_menu_name));
+          objTbodyTd.tbodyTdMenuName.appendChild(preInTbody);
 
           //menuId
           objTbodyTd.tbodyTdMenuId = document.createElement("td");
@@ -553,7 +563,7 @@ let utils = (() => {
           //hasPage
           objTbodyTd.tbodyTdHasPage = document.createElement("td");
           objTbodyTd.tbodyTdHasPage.appendChild(
-            document.createTextNode(menu.menu_page_yn)
+            document.createTextNode(menu.has_page)
           );
 
           for (tdElem in objTbodyTd) {
@@ -578,6 +588,20 @@ let utils = (() => {
 
     xhr.open("GET", "../../php/menu_popup.php");
     xhr.send();
+  }
+
+  /**
+   * ----------------------------------------------------------------------------------
+   * checkOnlyOne : function for check only one checkbox
+   * @param : input checkbox tag element
+   * ----------------------------------------------------------------------------------
+   */
+  function checkOnlyOne(paramElem) {
+    const checkboxNameElem = document.getElementsByName(paramElem.name);
+    for (let i = 0; i < checkboxNameElem.length; i++) {
+      if (paramElem.dataset.rownum - 1 !== i)
+        checkboxNameElem[i].checked = false;
+    }
   }
 
   // function menuSelectPopupElem() {
