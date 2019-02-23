@@ -43,9 +43,27 @@
       <div class="form-group">
         <label for="main-category" class="essential-asterisk">Menu</label>
         <div class="form-popup-control">
-          <input type="text" id="menu" class="form-control form-popup-id essential-border" disabled />
-          <input type="text" id="menu" class="form-control form-popup-name essential-border" disabled />
-          <input name="menuBtn" type="button" id="menuBtn" value="Select Menu" class="form-popup-button" />
+          <input
+            type="text"
+            id="menuId"
+            name="menuId"
+            class="form-control form-popup-id essential-border"
+            readyonly
+          />
+          <input
+            type="text"
+            id="menuName"
+            name="menuName"
+            class="form-control form-popup-name essential-border"
+            readyonly
+          />
+          <input
+            name="menuBtn"
+            type="button"
+            id="menuBtn"
+            value="Select Menu"
+            class="form-popup-button"
+          />
         </div>
       </div>
 
@@ -72,6 +90,17 @@
       <div class="form-group">
         <label for="district" class="essential-asterisk">District</label>
         <input value="prefill" name="district" type="text" id="district" class="form-control essential-border" />
+      </div>
+
+      <div class="form-group">
+        <label for="district" class="essential-asterisk">Neighborhood</label>
+        <input
+          value = "prefill"
+          type="text"
+          name='neighborhood'
+          id="neighborhood"
+          class="form-control essential-border"
+        />
       </div>
 
       <div class="form-group">
@@ -107,7 +136,7 @@
       <div class="form-group">
         <label for="interview-date" class="essential-asterisk">Interview date</label>
         <input value='2018-08-09' name="interviewDate" type="date" id="interview-date" class="form-control essential-border" />
-      </div>
+      </div> 
 
       <div class="form-group">
         <label for="website">website url</label>

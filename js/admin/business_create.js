@@ -12,7 +12,11 @@ const menuBtnElem = document.getElementById("menuBtn");
  * ----------------------------------------------------------------------------------
  */
 menuBtnElem.addEventListener("click", () => {
-  utils.menuSelectPopup();
+  utils.menuSelectPopup({
+    menuIdElem: document.getElementById("menuId"),
+    menuNameElem: document.getElementById("menuName")
+  }
+  );
   // document.body.appendChild(utils.modal(divElem));
 });
 
@@ -84,14 +88,15 @@ let createPreviewElement = function () {
   //create sub images url for preview
   let subImagesURLs = [];
   let subImagesList = "";
-  if (subImages.files.length >= 1) {
+  if (subImages && subImages.files.length >= 1) {
     for (let i = 0; i < subImages.files.length; i++) {
       subImagesURLs.push(URL.createObjectURL(subImages.files[i]));
       subImagesList += `<li><img src='${subImagesURLs[i]}'></li>`;
     }
   }
 
-  let menu = form.querySelector('[name="menu"]').value;
+  let menuId = form.querySelector('#menuId').value;
+  let menuName = form.querySelector('#menuName').value;
   let openingDate = new Date(form.querySelector('[name="openingDate"]').value);
   let newAddress = form.querySelector('[name="newAddress"]').value;
   let province = form.querySelector('[name="province"]').value;
@@ -131,7 +136,7 @@ let createPreviewElement = function () {
       <h5 class="thumb-category">
         <span>
           <i class="fas fa-utensils"></i>
-          <span class="main">${menu || "Food & Drink"}</span>
+          <span class="main">${menuName || "Food & Drink"}</span>
           <span class="sub">${"Korean"}</span>
           <i class="fas fa-arrow-right"></i>
         </span>
@@ -203,7 +208,7 @@ let createPreviewElement = function () {
   });
   finalSubmitContainer.appendChild(finalSubmitButton);
   preview.appendChild(finalSubmitContainer);
-
+  console.dir(form);
   return preview;
 };
 
