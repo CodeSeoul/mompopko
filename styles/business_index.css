@@ -31,6 +31,10 @@
   background-color: gray;
 }
 
+.form-popup-button > button {
+  margin-right: 10px;
+}
+
 /* menu tree name*/
 .tree-menu-name {
   text-align: left;
