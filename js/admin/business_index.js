@@ -493,6 +493,9 @@ let utils = (() => {
   /**
    * ----------------------------------------------------------------------------------
    * menuSelectPopup : popup for menu select
+   * @param : menuid's input element id & menuName's input element id
+   *  - menuIdElem : menuid's input element
+   *  - menuNameElem : menuname's input element
    * ----------------------------------------------------------------------------------
    */
   function menuSelectPopup(objParam) {
@@ -585,13 +588,18 @@ let utils = (() => {
         let divElem = document.createElement("div");
         divElem.appendChild(tableElem);
 
-        //popup's button
+        // popup's button
         let popupButtonDivElem = document.createElement("div");
+        popupButtonDivElem.className = "text-center form-popup-button";
         // submit button
         let submitButtonElem = document.createElement("button");
-        popupButtonDivElem.className = "text-center";
         submitButtonElem.textContent = "Submit";
         submitButtonElem.className = "btn btn-primary mt-5 p-2";
+
+        // click x button for close popup
+        const xButtonElem = document.getElementsByClassName("fa-window-close");
+
+        // submit button's click event
         submitButtonElem.addEventListener("click", () => {
           const menuCheckboxes = document.getElementsByName("select-checkbox");
           let cnt = 0;
@@ -609,13 +617,21 @@ let utils = (() => {
           objParam.menuIdElem.value = objMenu[checkedRowNum].menu_id;
           objParam.menuNameElem.value = objMenu[checkedRowNum].menu_name;
 
-          // click x button for close popup
-          const xButtonElem = document.getElementsByClassName(
-            "fa-window-close"
-          );
           xButtonElem[0].click();
         });
+
+        // cancel button
+        let cancelButtonElem = document.createElement("button");
+        cancelButtonElem.textContent = "Cancel";
+        cancelButtonElem.className = "btn btn-danger mt-5 p-2";
+        // cancel button's click event
+        cancelButtonElem.addEventListener("click", () => {
+          xButtonElem[0].click();
+        });
+
         popupButtonDivElem.appendChild(submitButtonElem);
+        popupButtonDivElem.appendChild(cancelButtonElem);
+
         divElem.appendChild(popupButtonDivElem);
         document.body.appendChild(utils.modal(divElem));
       } else {
