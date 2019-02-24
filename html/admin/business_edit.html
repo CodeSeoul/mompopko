@@ -17,6 +17,7 @@
     />
     <link rel="stylesheet" href="../../styles/business_index.css" />
     <link rel="stylesheet" href="../../styles/dataTrend_index.css" />
+    <link rel='stylesheet' href="../../styles/business_edit.css"/>
   </head>
 
   <body>
@@ -93,6 +94,7 @@
             type="date"
             id="open-date"
             class="form-control essential-border"
+            name="openingDate"
           />
         </div>
 
@@ -101,6 +103,7 @@
           <input
             type="text"
             id="address"
+            name="newAddress"
             class="form-control essential-border"
           />
         </div>
@@ -110,18 +113,20 @@
           <input
             type="text"
             id="province"
+            name="province"
             class="form-control essential-border"
           />
         </div>
 
         <div class="form-group">
           <label for="city" class="essential-asterisk">City</label>
-          <input type="text" id="city" class="form-control essential-border" />
+          <input name = 'city' type="text" id="city" class="form-control essential-border" />
         </div>
 
         <div class="form-group">
           <label for="district" class="essential-asterisk">District</label>
           <input
+            name='district'
             type="text"
             id="district"
             class="form-control essential-border"
@@ -129,8 +134,9 @@
         </div>
 
         <div class="form-group">
-          <label for="district" class="essential-asterisk">Neighborhood</label>
+          <label for="neighborhood" class="essential-asterisk">Neighborhood</label>
           <input
+            name='neighborhood'
             type="text"
             id="neighborhood"
             class="form-control essential-border"
@@ -142,6 +148,7 @@
             Zipcode
           </label>
           <input
+            name='newZipcode'
             type="text"
             id="zipcode"
             class="form-control essential-border"

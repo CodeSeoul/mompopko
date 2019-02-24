@@ -1,0 +1,13 @@
+.current-images-container{
+    display : grid;
+    grid-template-columns : repeat(auto-fit,minmax(200px, auto));
+    grid-template-rows : repeat(auto-fit,minmax(200px, auto));
+
+
+    img{
+        height : 100%;
+        object-fit: contain;
+        width : 100%;
+    }
+
+}

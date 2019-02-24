@@ -20,13 +20,13 @@
         //search key exists
         // param에 따라 정렬 기준(asd, desc) SQL query를 바꾸는 기능 구현 필요
         if($data['searchKey']==''){
-            $query = 'SELECT biz_id, biz_level, biz_name, biz_tel, biz_address FROM tb_biz ORDER BY :sort LIMIT :startIndex, :numberOfPosts';
+            $query = 'SELECT * FROM tb_biz ORDER BY :sort LIMIT :startIndex, :numberOfPosts';
             $req = $pdo->prepare($query);
 
         //search key doesn't exist
         // param에 따라 정렬 기준(asd, desc) SQL query를 바꾸는 기능 구현 필요
         }else{
-            $query = 'SELECT biz_id, biz_level, biz_name, biz_tel, biz_address FROM tb_biz WHERE biz_name LIKE :searchKey OR biz_tel LIKE :searchKey OR biz_address LIKE :searchKey ORDER BY :sort LIMIT :startIndex, :numberOfPosts ';
+            $query = 'SELECT * FROM tb_biz WHERE biz_name LIKE :searchKey OR biz_tel LIKE :searchKey OR biz_address LIKE :searchKey ORDER BY :sort LIMIT :startIndex, :numberOfPosts ';
             $req = $pdo->prepare($query);
             $searchKey = "%" . $data['searchKey'] . "%";
             $req->bindParam(':searchKey', $searchKey,PDO::PARAM_STR);

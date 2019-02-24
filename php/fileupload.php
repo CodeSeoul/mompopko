@@ -23,12 +23,16 @@ catch (Exception $e){
 
     $fileGrpIdReq = $pdo->query("SELECT MAX(file_grp_id) FROM tb_file");
     $fileGrpId = (int)($fileGrpIdReq->fetch())[0]+1;
-    print_r($fileGrpId);
+
+
     $mainImage = $_FILES['mainImage'];
     $subImages = $_FILES['subImages'];
 
-    echo dirname(__DIR__);
+    
     $imgDir = dirname(__DIR__) . "/img/$biz_menuName/";
+
+    echo dirname(__FILE__) . "__FILE__ <br/>";
+    
 
     $totalNbImage = 1 + count($subImages['name']);
 
@@ -79,6 +83,7 @@ catch (Exception $e){
 
                 $uploadMainImgQuery = "INSERT INTO tb_file (file_grp_id, file_id, file_order, file_logic_name, file_physic_name, file_path, file_extension, frst_input_date)
                 VALUES(:fileGrpId, :file_id, :file_order, :file_logic_name, :file_physic_name, :file_path, :file_extension, NOW())";
+
 
                 $mainImgId = 1;
                 $uploadMainImgReq = $pdo->prepare($uploadMainImgQuery);

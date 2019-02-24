@@ -222,7 +222,7 @@ $dbname = 'mompopko';
 
 $dsn = 'mysql:host='. $host . ';port=' . $port . ';dbname=' . $dbname;
 
-$pdo = new PDO($dsn, $user, $password);
+$pdo = new PDO($dsn, $user, $password,array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
 $biz_name = $_GET['biz_name'];
 $req = $pdo->prepare('SELECT * FROM tb_biz WHERE biz_name = :biz_name');
