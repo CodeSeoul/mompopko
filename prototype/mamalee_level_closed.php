@@ -11,12 +11,12 @@
 	<link href="css/bootstrap.min.css" rel="stylesheet" />
 	<link href="css/fontawesome-all.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-    <link href='fonts/NanumSquare/nanumsquare.css' rel='stylesheet' type='text/css'>
+	<link href='fonts/NanumSquare/nanumsquare.css' rel='stylesheet' type='text/css'>
     <style>
 	#Restaurants_hamburger, #Restaurants_dropdown{
 		display: none;
 	}
-	</style>
+    </style>
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -54,102 +54,102 @@
     
     <script type="text/javascript">
 
-	var ajax = new XMLHttpRequest();
-	ajax.open("POST", "../php/db.php", true);
-	ajax.send();
-	ajax.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var result = JSON.parse(this.responseText);
-			for (var i = 0; i < result.length; i++){
-				var upper_menu_id = result[i].upper_menu_id;
-				var menu_name = result[i].menu_name;
-				if (upper_menu_id == 2){
-					var restaurants_dropdown = document.querySelector("#restaurants_dropdown");
-					var restaurants_hamburger = document.querySelector("#restaurants_hamburger");
+var ajax = new XMLHttpRequest();
+ajax.open("POST", "../php/db.php", true);
+ajax.send();
+ajax.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+        var result = JSON.parse(this.responseText);
+        for (var i = 0; i < result.length; i++){
+            var upper_menu_id = result[i].upper_menu_id;
+            var menu_name = result[i].menu_name;
+            if (upper_menu_id == 2){
+                var restaurants_dropdown = document.querySelector("#restaurants_dropdown");
+                var restaurants_hamburger = document.querySelector("#restaurants_hamburger");
 
-					restaurants_dropdown.innerHTML += "<li><a>"+menu_name+"</a></li>";
-					restaurants_hamburger.innerHTML += "<li><a>"+menu_name+"</a></li>";
-				}}
-				
-			for (var i = 0; i < result.length; i++){
-				var upper_menu_id = result[i].upper_menu_id;
-				var menu_name = result[i].menu_name;
-				if (upper_menu_id == 1){
-					var main_bars = document.querySelector("#main_bars");
-					var main_bars_hamburger = document.querySelector("#main_bars_hamburger");
+                restaurants_dropdown.innerHTML += "<li><a>"+menu_name+"</a></li>";
+                restaurants_hamburger.innerHTML += "<li><a>"+menu_name+"</a></li>";
+            }}
+            
+        for (var i = 0; i < result.length; i++){
+            var upper_menu_id = result[i].upper_menu_id;
+            var menu_name = result[i].menu_name;
+            if (upper_menu_id == 1){
+                var main_bars = document.querySelector("#main_bars");
+                var main_bars_hamburger = document.querySelector("#main_bars_hamburger");
 
-					main_bars.innerHTML += "<ul class='multi-column-dropdown' id='"+menu_name+"_dropdown'><h5><a>"+menu_name+"</a></h5></ul>";
-					main_bars_hamburger.innerHTML += "<ul class='multi-column-dropdown' id='"+menu_name+"_hamburger'><h5><a>"+menu_name+"</a></h5></ul>";
-				}}
-			
-			for (var i = 0; i < result.length; i++){
-				var upper_menu_id = result[i].upper_menu_id;
-				var menu_name = result[i].menu_name;
-				if (upper_menu_id == 15){
-					var bars_dropdown = document.querySelector("#Bars_dropdown");
-					var bars_hamburger = document.querySelector("#Bars_hamburger");
-					
-					bars_dropdown.innerHTML += "<li><a>"+menu_name+"</a></li>";
-					bars_hamburger.innerHTML += "<li><a>"+menu_name+"</a></li>";
-				}}
-				
-			for (var i = 0; i < result.length; i++){
-				var upper_menu_id = result[i].upper_menu_id;
-				var menu_name = result[i].menu_name;
-				if (upper_menu_id == 24){
-					var main_beauty = document.querySelector("#main_beauty");
-					var main_beauty_hamburger = document.querySelector("#main_beauty_hamburger");
+                main_bars.innerHTML += "<ul class='multi-column-dropdown' id='"+menu_name+"_dropdown'><h5><a>"+menu_name+"</a></h5></ul>";
+                main_bars_hamburger.innerHTML += "<ul class='multi-column-dropdown' id='"+menu_name+"_hamburger'><h5><a>"+menu_name+"</a></h5></ul>";
+            }}
+        
+        for (var i = 0; i < result.length; i++){
+            var upper_menu_id = result[i].upper_menu_id;
+            var menu_name = result[i].menu_name;
+            if (upper_menu_id == 15){
+                var bars_dropdown = document.querySelector("#Bars_dropdown");
+                var bars_hamburger = document.querySelector("#Bars_hamburger");
+                
+                bars_dropdown.innerHTML += "<li><a>"+menu_name+"</a></li>";
+                bars_hamburger.innerHTML += "<li><a>"+menu_name+"</a></li>";
+            }}
+            
+        for (var i = 0; i < result.length; i++){
+            var upper_menu_id = result[i].upper_menu_id;
+            var menu_name = result[i].menu_name;
+            if (upper_menu_id == 24){
+                var main_beauty = document.querySelector("#main_beauty");
+                var main_beauty_hamburger = document.querySelector("#main_beauty_hamburger");
 
-					main_beauty.innerHTML += "<ul class='multi-column-dropdown' id='"+menu_name+"_dropdown'><h5><a>"+menu_name+"</a></h5></ul>";
-					main_beauty_hamburger.innerHTML += "<ul class='multi-column-dropdown' id='"+menu_name+"_hamburger'><h5><a>"+menu_name+"</a></h5></ul>";
-				}}
+                main_beauty.innerHTML += "<ul class='multi-column-dropdown' id='"+menu_name+"_dropdown'><h5><a>"+menu_name+"</a></h5></ul>";
+                main_beauty_hamburger.innerHTML += "<ul class='multi-column-dropdown' id='"+menu_name+"_hamburger'><h5><a>"+menu_name+"</a></h5></ul>";
+            }}
 
-			for (var i = 0; i < result.length; i++){
-				var upper_menu_id = result[i].upper_menu_id;
-				var menu_name = result[i].menu_name;
-				if (upper_menu_id == 48){
-					var beauty_dropdown = document.querySelector("#Beauty_dropdown");
-					var beauty_hamburger = document.querySelector("#Beauty_hamburger");
+        for (var i = 0; i < result.length; i++){
+            var upper_menu_id = result[i].upper_menu_id;
+            var menu_name = result[i].menu_name;
+            if (upper_menu_id == 48){
+                var beauty_dropdown = document.querySelector("#Beauty_dropdown");
+                var beauty_hamburger = document.querySelector("#Beauty_hamburger");
 
-					beauty_dropdown.innerHTML += "<li><a>"+menu_name+"</a></li>";
-					beauty_hamburger.innerHTML += "<li><a>"+menu_name+"</a></li>";
-				}}
-	
-			for (var i = 0; i < result.length; i++){
-				var upper_menu_id = result[i].upper_menu_id;
-				var menu_name = result[i].menu_name;
-				if (upper_menu_id == 33){
-					var fashion_dropdown = document.querySelector("#fashion_dropdown");
-					var fashion_hamburger = document.querySelector("#fashion_hamburger");
-					
-					fashion_dropdown.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
-					fashion_hamburger.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
-				}}
+                beauty_dropdown.innerHTML += "<li><a>"+menu_name+"</a></li>";
+                beauty_hamburger.innerHTML += "<li><a>"+menu_name+"</a></li>";
+            }}
 
-			for (var i = 0; i < result.length; i++){
-				var upper_menu_id = result[i].upper_menu_id;
-				var menu_name = result[i].menu_name;
-				if (upper_menu_id == 38){
-					var entertainment_dropdown = document.querySelector("#entertainment_dropdown");
-					var entertainment_hamburger = document.querySelector("#entertainment_hamburger");
-					
-					entertainment_dropdown.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
-					entertainment_hamburger.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
-				}}
+        for (var i = 0; i < result.length; i++){
+            var upper_menu_id = result[i].upper_menu_id;
+            var menu_name = result[i].menu_name;
+            if (upper_menu_id == 33){
+                var fashion_dropdown = document.querySelector("#fashion_dropdown");
+                var fashion_hamburger = document.querySelector("#fashion_hamburger");
+                
+                fashion_dropdown.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
+                fashion_hamburger.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
+            }}
 
-			for (var i = 0; i < result.length; i++){
-				var upper_menu_id = result[i].upper_menu_id;
-				var menu_name = result[i].menu_name;
-				if (upper_menu_id == 43){
-					var services_dropdown = document.querySelector("#services_dropdown");
-					var services_hamburger = document.querySelector("#services_hamburger");
+        for (var i = 0; i < result.length; i++){
+            var upper_menu_id = result[i].upper_menu_id;
+            var menu_name = result[i].menu_name;
+            if (upper_menu_id == 38){
+                var entertainment_dropdown = document.querySelector("#entertainment_dropdown");
+                var entertainment_hamburger = document.querySelector("#entertainment_hamburger");
+                
+                entertainment_dropdown.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
+                entertainment_hamburger.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
+            }}
 
-					services_dropdown.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
-					services_hamburger.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
-				}}
-			};
-		}
-    </script>
+        for (var i = 0; i < result.length; i++){
+            var upper_menu_id = result[i].upper_menu_id;
+            var menu_name = result[i].menu_name;
+            if (upper_menu_id == 43){
+                var services_dropdown = document.querySelector("#services_dropdown");
+                var services_hamburger = document.querySelector("#services_hamburger");
+
+                services_dropdown.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
+                services_hamburger.innerHTML += "<h5><a>"+menu_name+"</a></h5>";
+            }}
+        };
+    }
+</script>
 </head>
 
 <body>
@@ -167,15 +167,9 @@
 					<div class="col-xs-4"></div>
 					<div class="col-xs-4">
 						<ul id="top-sns" class="sns-list">
-								<li>
-										<a href="<?= $biz_facebook;?>"><i class="fab fa-facebook-square"></i></a>
-								</li>
-								<li>
-										<a href="<?= $biz_instagram;?>"><i class="fab fa-instagram"></i></a>
-								</li>
-								<li>
-										<a href="<?= $biz_youtube;?>"><i class="fab fa-youtube"></i></a>
-								</li>
+							<li><a><i class="fab fa-facebook-square"></i></a></li>
+							<li><a><i class="fab fa-instagram"></i></a></li>
+							<li><a><i class="fab fa-youtube"></i></a></li>
 						</ul>
 						<div class="menu">
 							<a data-toggle="collapse" data-target=".navbar-collapse">
@@ -413,16 +407,17 @@
 	</header>
 
 	<section id="content_page">
-		<div class="container">
+		<div class="container closed_business">
 			<div class="row">
 				<div class="col-xs-12">
+					<div class="closed">
+						<img src="img/closed.png" alt="">
+					</div>
 					<h3 class="title"><?= $real_biz_name;?></h3>
 					<h5 class="thumb-category">
 						<span>
 							<i class="fas fa-utensils"></i>
-							<span class="main">
-								<?= $menu_navi;?>
-							</span>
+							<span class="main"><?= $menu_navi;?></span>
 							<i class="fas fa-arrow-right"></i>
 						</span>
 						<span>
@@ -480,25 +475,24 @@
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="story_detail">
-						<li><i class="fas fa-user"></i> Owner: <span class="title"><?= $biz_owner;?></span></li>
-						<li><i class="fas fa-clock"></i> Published: <span><?= $biz_interview_date; ?></span></li>
+						<li><i class="fas fa-user"></i> Owner: <span class="title">Haseul Ram Song</span></li>
+						<li><i class="fas fa-clock"></i> Published: <span>November, 10, 2018</span></li>
 					</ul>
 					<div class="story">
-						<?= $biz_interview_conts; ?>
+                    <?= $biz_interview_conts; ?>
 						<div class="story_highlight">
 							<p><span><i class="fas fa-star"></i> Most popular item:</span> Daengjang (soybean paste) marinated steamed chicken and then charcoal grilled (9,000 won) <?= $biz_popular_item;?></p>
-							<p><span><i class="fas fa-thumbs-up"></i> Recommended:</span> Whole roast herbed chicken with mashed potatoes and green beans (needs to be ordered at least three days in advance) (10,500 won)<?= $biz_recommended;?></p>
+							<p><span><i class="fas fa-thumbs-up"></i> Recommended:</span> Whole roast herbed chicken with mashed potatoes and green beans (needs to be ordered at least three days in advance) (10,500 won) <?= $biz_recommended;?></p>
 						</div>
 					</div>
 					<ul class="story_contact">
-						<li><span><i class="fas fa-phone"></i> Telephone: </span><?= $biz_tel;?></li>  | 
-						<li><span><i class="fas fa-clock"></i> Hours: </span><?= $biz_open_hour;?></li>  | 
-						<li><span><i class="fab fa-instagram"></i> Instagram: </span> <a>
-						<?php 
-						$takeout = array(" ","'",",");
-						echo "@" . str_replace($takeout, "", $real_biz_name);
-						?>
-						</a></li>
+							<li><span><i class="fas fa-phone"></i> Telephone: </span><?= $biz_tel;?></li>  | 
+							<li><span><i class="fas fa-clock"></i> Hours: </span><?= $biz_open_hour;?></li>  | 
+							<li><span><i class="fab fa-instagram"></i> Instagram: </span> <a>
+							<?php 
+							$takeout = array(" ","'",",");
+							echo "@" . str_replace($takeout, "", $real_biz_name);
+							?>
 					</ul>
 				</div>
 			</div>
