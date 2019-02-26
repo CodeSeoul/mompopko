@@ -57,7 +57,9 @@
                     </button> -->
                 </div>
             </form>
-            <div id="error_message"></div>
+            <div id="error_message">
+
+            </div>
         </div>
     </div>
 
@@ -69,18 +71,18 @@
         $req->execute(array(
         'login_id' => $login_id));
         $result = $req->fetch();
-        $isPasswordCorrect = password_verify($pswd, $result['pswd']);
+        $isPasswordCorrect = ($pswd == $result['pswd'])? true: false;//password_verify($pswd, $result['pswd']);
+        
         if($isPasswordCorrect){
-            $_SESSION['login_id'] = $login_id;
-            
-            if (isset($_POST['remember'])){
-                setcookie("login_id",$login_id, time()+3600);
-            }
+            // $_SESSION['login_id'] = $login_id;
+            // $_SESSION.gc_maxlifetime = 30;
             
             header ('location: business_index.html');
         }
         else {
             echo "Your user ID or Password is Incorrect!<br> please Try Again";
+            header ('location: admin_login.php');
+
         }
     }
 ?>

@@ -153,58 +153,7 @@
 </head>
 
 <body>
-<?php
-try{
-$host = 'mompopkoapi.wcoding.com';
-$user = 'mompopko_admin';
-$password = 'windMarshall92Adult';
-$port = '8833';
-$dbname = 'mompopko';
-
-$dsn = 'mysql:host='. $host . ';port=' . $port . ';dbname=' . $dbname;
-
-$pdo = new PDO($dsn, $user, $password);
-
-$biz_name = $_GET['biz_name'];
-echo $biz_name;
-$req = $pdo->prepare('SELECT * FROM tb_biz WHERE biz_name = :biz_name');
-
-$req->execute(array(
-':biz_name' => $biz_name
-));
-$result = $req -> fetch();
-$real_biz_name =$result['biz_name'];
-$biz_level = $result['biz_level'];
-$biz_view_cnt = $result['biz_view_cnt'];
-$biz_owner = $result['biz_owner'];
-$biz_open_date = $result['biz_open_date'];
-$biz_close_date = $result['biz_close_date'];
-$biz_address = $result['biz_address'];
-$biz_province = $result['biz_province'];
-$biz_city = $result['biz_city'];
-$biz_district = $result['biz_district'];
-$biz_neighborhood = $result['biz_neighborhood'];
-$biz_zipcode = $result['biz_zipcode'];
-$biz_tel = $result['biz_tel'];
-$biz_email = $result['biz_email'];
-$biz_open_hour = $result['biz_open_hour'];
-$biz_interview_conts = $result['biz_interview_conts'];
-$biz_interview_date = $result['biz_interview_date'];
-$biz_website = $result['biz_website'];
-$biz_facebook = $result['biz_facebook'];
-$biz_instagram = $result['biz_instagram'];
-$biz_youtube = $result['biz_youtube'];
-$biz_twitter = $result['biz_twitter'];
-$brst_input_date = $result['frst_input_date'];
-$bast_update_date = $result['last_update_date'];
-
-echo json_encode($result);
-}
-catch (Exception $e)
-{
-die('Error: '. $e->getMessage());
-}
-?>
+<?php require('./../php/biz_db.php');?>
 	<div id="wrapper">
 	<header>
 		<div class="top">
@@ -218,15 +167,15 @@ die('Error: '. $e->getMessage());
 					<div class="col-xs-4"></div>
 					<div class="col-xs-4">
 						<ul id="top-sns" class="sns-list">
-							<li>
-								<a href="<?php echo $biz_facebook;?>"><i class="fab fa-facebook-square"></i></a>
-							</li>
-							<li>
-								<a href="<?php echo $biz_instagram;?>"><i class="fab fa-instagram"></i></a>
-							</li>
-							<li>
-								<a href="<?php echo $biz_youtube;?>"><i class="fab fa-youtube"></i></a>
-							</li>
+								<li>
+										<a href="<?= $biz_facebook;?>"><i class="fab fa-facebook-square"></i></a>
+								</li>
+								<li>
+										<a href="<?= $biz_instagram;?>"><i class="fab fa-instagram"></i></a>
+								</li>
+								<li>
+										<a href="<?= $biz_youtube;?>"><i class="fab fa-youtube"></i></a>
+								</li>
 						</ul>
 						<div class="menu">
 							<a data-toggle="collapse" data-target=".navbar-collapse">
@@ -467,29 +416,30 @@ die('Error: '. $e->getMessage());
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h3 class="title"><?php echo $real_biz_name;?></h3>
+					<h3 class="title"><?= $real_biz_name;?></h3>
 					<h5 class="thumb-category">
 						<span>
 							<i class="fas fa-utensils"></i>
-							<span class="main">Food & Drink</span>
-							<span class="sub">Korean</span>
+							<span class="main">
+								<?= $menu_navi;?>
+							</span>
 							<i class="fas fa-arrow-right"></i>
 						</span>
 						<span>
 							<i class="fas fa-map-pin"></i>
-							<span class="sub"><?php echo $biz_district . ", " . $biz_province;?></span>
+							<span class="sub"><?= $biz_district . ", " . $biz_province;?></span>
 							<i class="fas fa-arrow-right"></i>
 						</span>
 						<span>
 							<i class="fas fa-calendar"></i>
-							<span class="sub">Opened April 2017</span>
+							<span class="sub">Opened <?= $biz_open_date ?></span>
 						</span>
 					</h5>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-xs-4">
-					<img src="img/openings/MamaleeMarket_1.jpg" width="100%" alt="" />
+					<img src="<?= $image_files; ?>" width="100%" alt="" />
 				</div>
 				<div class="col-xs-8">
 					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1582.3097393533828!2d127.04083211970381!3d37.516892001110456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca475835c1ca3%3A0x40bff6c320cb2cd0!2sGangnam-gu+Office+Station!5e0!3m2!1sen!2skr!4v1547352606119" width="100%" height="550" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -530,22 +480,25 @@ die('Error: '. $e->getMessage());
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="story_detail">
-						<li><i class="fas fa-user"></i> Owner: <span class="title"><?php echo $biz_owner;?></span></li>
-						<li><i class="fas fa-clock"></i> Published: <span>November, 10, 2018</span></li>
+						<li><i class="fas fa-user"></i> Owner: <span class="title"><?= $biz_owner;?></span></li>
+						<li><i class="fas fa-clock"></i> Published: <span><?= $biz_interview_date; ?></span></li>
 					</ul>
 					<div class="story">
-						<p>Seoul life is busy. It would be nice to have a personal chef cook you gourmet meals every day. Chef Haseul Ram Song opened up Mamalee Market to do just that. “I wanted to bring people everyday fine dining.”</p>
-						<p>Mamalee Market is a takeout (and delivery) Korean-style deli selling main and side dishes ranging in flavors, from lamb ragu pasta sauce to dried pollock marinated in spices and soy sauce.</p>
-						<p>Born in Daejeon, Haseul made his way over to culinary school in Seoul to hone his love of cooking. He then moved to Spain, Sans Sebastian and Madrid, and continued to craft his culinary skills in Michelin-starred restaurants for four years. He brings these flavors back to Seoul, mixing things up and elevating ordinary dishes with his own spin.</p>
+						<?= $biz_interview_conts; ?>
 						<div class="story_highlight">
-							<p><span><i class="fas fa-star"></i> Most popular item:</span> Daengjang (soybean paste) marinated steamed chicken and then charcoal grilled (9,000 won)</p>
-							<p><span><i class="fas fa-thumbs-up"></i> Recommended:</span> Whole roast herbed chicken with mashed potatoes and green beans (needs to be ordered at least three days in advance) (10,500 won)</p>
+							<p><span><i class="fas fa-star"></i> Most popular item:</span> Daengjang (soybean paste) marinated steamed chicken and then charcoal grilled (9,000 won) <?= $biz_popular_item;?></p>
+							<p><span><i class="fas fa-thumbs-up"></i> Recommended:</span> Whole roast herbed chicken with mashed potatoes and green beans (needs to be ordered at least three days in advance) (10,500 won)<?= $biz_recommended;?></p>
 						</div>
 					</div>
 					<ul class="story_contact">
-						<li><span><i class="fas fa-phone"></i> Telephone:</span> <?php echo $biz_tel;?></li>  | 
-						<li><span><i class="fas fa-clock"></i> Hours:</span> <?php echo $biz_open_hour;?></li>  | 
-						<li><span><i class="fab fa-instagram"></i> Instagram:</span> <a>@MamaleeMarket</a></li>
+						<li><span><i class="fas fa-phone"></i> Telephone: </span><?= $biz_tel;?></li>  | 
+						<li><span><i class="fas fa-clock"></i> Hours: </span><?= $biz_open_hour;?></li>  | 
+						<li><span><i class="fab fa-instagram"></i> Instagram: </span> <a>
+						<?php 
+						$takeout = array(" ","'",",");
+						echo "@" . str_replace($takeout, "", $real_biz_name);
+						?>
+						</a></li>
 					</ul>
 				</div>
 			</div>
