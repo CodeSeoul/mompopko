@@ -16,6 +16,9 @@
 	#Restaurants_hamburger, #Restaurants_dropdown{
 		display: none;
 	}
+	.story_highlight span:empty{
+		display: none;
+	}
 	</style>
 
 	<script type="text/javascript" src="js/jquery.min.js"></script>
@@ -427,7 +430,12 @@
 						</span>
 						<span>
 							<i class="fas fa-map-pin"></i>
-							<span class="sub"><?= $biz_district . ", " . $biz_province;?></span>
+							<span class="sub">
+								<?php 
+								$biz_district_real = str_replace("-gu", "", $biz_district);
+								echo $biz_district_real . " , " . $biz_province;
+								?>
+								</span>
 							<i class="fas fa-arrow-right"></i>
 						</span>
 						<span>
@@ -486,8 +494,8 @@
 					<div class="story">
 						<?= $biz_interview_conts; ?>
 						<div class="story_highlight">
-							<p><span><i class="fas fa-star"></i> Most popular item:</span> Daengjang (soybean paste) marinated steamed chicken and then charcoal grilled (9,000 won) <?= $biz_popular_item;?></p>
-							<p><span><i class="fas fa-thumbs-up"></i> Recommended:</span> Whole roast herbed chicken with mashed potatoes and green beans (needs to be ordered at least three days in advance) (10,500 won)<?= $biz_recommended;?></p>
+							<span><?= ($biz_popular_item=='')? '' : "Popular:" . $biz_popular_item;?></span><?= ($biz_popular_item=='')? '' : '<br>'?>
+							<span><?= ($biz_popular_item=='')? '' : "Recommended:" . $biz_popular_item;?></span>
 						</div>
 					</div>
 					<ul class="story_contact">
@@ -495,8 +503,8 @@
 						<li><span><i class="fas fa-clock"></i> Hours: </span><?= $biz_open_hour;?></li>  | 
 						<li><span><i class="fab fa-instagram"></i> Instagram: </span> <a>
 						<?php 
-						$takeout = array(" ","'",",");
-						echo "@" . str_replace($takeout, "", $real_biz_name);
+						$takeout_insta = array(" ","'",",");
+						echo "@" . str_replace($takeout_insta, "", $real_biz_name);
 						?>
 						</a></li>
 					</ul>
