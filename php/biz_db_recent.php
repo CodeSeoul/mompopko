@@ -9,7 +9,7 @@
 
     $dsn = 'mysql:host='. $host . ';port=' . $port . ';dbname=' . $dbname;
 
-    $pdo = new PDO($dsn, $user, $password);
+    $pdo = new PDO($dsn, $user, $password,array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
 
     $req = $pdo->prepare('SELECT * FROM tb_biz ORDER BY frst_input_date DESC');
     $req->execute();

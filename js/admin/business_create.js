@@ -1,3 +1,25 @@
+$("#header").load("adminHeader.html");
+
+// create select box for biz level.
+utils.createBizSelectbox();
+
+// menu btn's element
+const menuBtnElem = document.getElementById("menuBtn");
+
+/**
+ * ----------------------------------------------------------------------------------
+ * click EventListner for menu button
+ * ----------------------------------------------------------------------------------
+ */
+menuBtnElem.addEventListener("click", () => {
+  utils.menuSelectPopup({
+    menuIdElem: document.getElementById("menuId"),
+    menuNameElem: document.getElementById("menuName")
+  }
+  );
+  // document.body.appendChild(utils.modal(divElem));
+});
+
 /**
  * ---------------------------------------------------------------------------
  * addEventToForm : add a submit event to the form
@@ -7,7 +29,7 @@
  * ---------------------------------------------------------------------------
  */
 
-let addEventToForm = function() {
+let addEventToForm = function () {
   let form = document.querySelector("#business_create_form");
   console.log(form);
   form.addEventListener("submit", (e) => {
@@ -26,14 +48,17 @@ addEventToForm();
  * ---------------------------------------------------------------------------
  */
 
-let showPreview = function(e) {
+let showPreview = function (e) {
   e.preventDefault();
-  window.scrollTo({ top: 0, behavior: "smooth" });
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
   // make a element to put in modal
   let message = createPreviewElement();
 
   //show the modal
-  document.body.appendChild(modal(message));
+  document.body.appendChild(utils.modal(message));
 };
 
 /**
@@ -45,7 +70,7 @@ let showPreview = function(e) {
  * ---------------------------------------------------------------------------
  */
 
-let createPreviewElement = function() {
+let createPreviewElement = function () {
   let form = document.querySelector("#business_create_form");
   let businessName = form.querySelector('[name="businessName"]').value;
   let bizLevel = form.querySelector('[name="bizLevel"]').value;
@@ -63,16 +88,15 @@ let createPreviewElement = function() {
   //create sub images url for preview
   let subImagesURLs = [];
   let subImagesList = "";
-  if (subImages.files.length >= 1) {
+  if (subImages && subImages.files.length >= 1) {
     for (let i = 0; i < subImages.files.length; i++) {
       subImagesURLs.push(URL.createObjectURL(subImages.files[i]));
       subImagesList += `<li><img src='${subImagesURLs[i]}'></li>`;
     }
   }
 
-  let mainCategory = form.querySelector('[name="mainCategory"]').value;
-  let subCategory1 = form.querySelector('[name="subCategory1"]').value;
-  let subCategory2 = form.querySelector('[name="subCategory2"]').value;
+  let menuId = form.querySelector('#menuId').value;
+  let menuName = form.querySelector('#menuName').value;
   let openingDate = new Date(form.querySelector('[name="openingDate"]').value);
   let newAddress = form.querySelector('[name="newAddress"]').value;
   let province = form.querySelector('[name="province"]').value;
@@ -112,8 +136,8 @@ let createPreviewElement = function() {
       <h5 class="thumb-category">
         <span>
           <i class="fas fa-utensils"></i>
-          <span class="main">${mainCategory || "Food & Drink"}</span>
-          <span class="sub">${subCategory1 || "Korean"}</span>
+          <span class="main">${menuName || "Food & Drink"}</span>
+          <span class="sub">${"Korean"}</span>
           <i class="fas fa-arrow-right"></i>
         </span>
         <span>
@@ -124,9 +148,9 @@ let createPreviewElement = function() {
         <span>
           <i class="fas fa-calendar"></i>
           <span class="sub">${openingDate.toLocaleString(
-            "en-US",
-            openingDateFormat
-          ) || "Jan, 2019"}</span>
+    "en-US",
+    openingDateFormat
+  ) || "Jan, 2019"}</span>
         </span>
       </h5>
     </div>
@@ -145,23 +169,23 @@ let createPreviewElement = function() {
     <div class="col-12">
       <ul class="story_detail">
         <li><i class="fas fa-user"></i> <span>Owner:</span>${ownerName ||
-          "Mr.Kim"}</li>
+    "Mr.Kim"}</li>
         <li><i class="fas fa-clock"></i> <span>Published:</span>${new Date(
-          Date.now()
-        ).toLocaleString("en-US", publishedDateFormat) || "Jan 19, 2019"}</li>
+      Date.now()
+    ).toLocaleString("en-US", publishedDateFormat) || "Jan 19, 2019"}</li>
       </ul>
       <div class="story">
         ${interview ||
-          " Sample interview  Sample interview  Sample interview  Sample interview  Sample interview "}
+    " Sample interview  Sample interview  Sample interview  Sample interview  Sample interview "}
         <p>sample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample text</p>
       </div>
       <ul class="story_contact">
         <li><span><i class="fas fa-phone"></i> Telephone:</span> ${tel ||
-          "02-1234-4567"}</li>
+    "02-1234-4567"}</li>
         <li><span><i class="fas fa-clock"></i> Hours:</span> ${operatingHour ||
-          "Mon-Tue 08:00~13:00"}</li>
+    "Mon-Tue 08:00~13:00"}</li>
         <li><span><i class="fab fa-instagram"></i> Instagram:</span> <a>${instagram ||
-          "instagram.com"}</a></li>
+    "instagram.com"}</a></li>
       </ul>
     </div>
   </div>
@@ -184,7 +208,7 @@ let createPreviewElement = function() {
   });
   finalSubmitContainer.appendChild(finalSubmitButton);
   preview.appendChild(finalSubmitContainer);
-
+  console.dir(form);
   return preview;
 };
 
@@ -211,7 +235,7 @@ function createCarousel(imageURLs) {
   carouselContainer.style.gridGap = 8 / 3 + "%";
   carouselContainer.style.gridTemplateColumns = `repeat(${
     imageURLs.length
-  }, 23%)`;
+    }, 23%)`;
 
   let images = [];
   for (let i = 0; i < imageURLs.length; i++) {

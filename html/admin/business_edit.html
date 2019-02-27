@@ -17,12 +17,18 @@
     />
     <link rel="stylesheet" href="../../styles/business_index.css" />
     <link rel="stylesheet" href="../../styles/dataTrend_index.css" />
+    <link rel="stylesheet" href="../../styles/business_edit.css" />
   </head>
 
   <body>
     <header id="header"></header>
     <div class="container mb-5">
-      <form action="#" method="POST" onsubmit="return utils.checkValidation()">
+      <form
+        action="#"
+        method="POST"
+        enctype="multipart/form-data"
+        onsubmit="return utils.checkValidation()"
+      >
         <div class="form-group">
           <label for="level" class="essential-asterisk">Level</label>
           <!-- <input type="text" id="level" class="form-control" /> -->
@@ -44,8 +50,42 @@
         </div>
 
         <div class="form-group">
+          <label for="subImages">Sub images</label>
+          <input
+            multiple
+            name="subImages[]"
+            type="file"
+            multiple
+            id="subImages"
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
           <label for="main-category" class="essential-asterisk">Menu</label>
-          <input type="text" id="menu" class="form-control essential-border" />
+          <div class="form-popup-control">
+            <input
+              type="text"
+              id="menuId"
+              name="menuId"
+              class="form-control form-popup-id essential-border"
+              readonly
+            />
+            <input
+              type="text"
+              id="menuName"
+              name="menuName"
+              class="form-control form-popup-name essential-border"
+              readonly
+            />
+            <input
+              name="menuBtn"
+              type="button"
+              id="menuBtn"
+              value="Select Menu"
+              class="form-popup-button"
+            />
+          </div>
         </div>
 
         <div class="form-group">
@@ -54,6 +94,7 @@
             type="date"
             id="open-date"
             class="form-control essential-border"
+            name="openingDate"
           />
         </div>
 
@@ -62,6 +103,7 @@
           <input
             type="text"
             id="address"
+            name="newAddress"
             class="form-control essential-border"
           />
         </div>
@@ -71,18 +113,25 @@
           <input
             type="text"
             id="province"
+            name="province"
             class="form-control essential-border"
           />
         </div>
 
         <div class="form-group">
           <label for="city" class="essential-asterisk">City</label>
-          <input type="text" id="city" class="form-control essential-border" />
+          <input
+            name="city"
+            type="text"
+            id="city"
+            class="form-control essential-border"
+          />
         </div>
 
         <div class="form-group">
           <label for="district" class="essential-asterisk">District</label>
           <input
+            name="district"
             type="text"
             id="district"
             class="form-control essential-border"
@@ -90,8 +139,11 @@
         </div>
 
         <div class="form-group">
-          <label for="district" class="essential-asterisk">Neighborhood</label>
+          <label for="neighborhood" class="essential-asterisk"
+            >Neighborhood</label
+          >
           <input
+            name="neighborhood"
             type="text"
             id="neighborhood"
             class="form-control essential-border"
@@ -103,6 +155,7 @@
             Zipcode
           </label>
           <input
+            name="newZipcode"
             type="text"
             id="zipcode"
             class="form-control essential-border"
@@ -120,11 +173,11 @@
         </div>
 
         <div class="form-group">
-          <label for="operating-hour">Operating hour</label>
+          <label for="opening-hour">Opening hour</label>
           <input
-            name="operatingHour"
+            name="openingHour"
             type="text"
-            id="operating-hour"
+            id="opening-hour"
             class="form-control"
           />
         </div>
@@ -207,10 +260,6 @@
     <script src="../../lib/frontend/popper/popper.min.js"></script>
     <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
     <script src="../../js/admin//business_index.js"></script>
-    <script>
-      $("#header").load("adminHeader.html");
-      utils.createBizSelectbox();
-    </script>
-    <script type="text/javascript" src="../../js/modal.js"></script>
+    <script src="../../js/admin//business_edit.js"></script>
   </body>
 </html>

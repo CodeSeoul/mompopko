@@ -9,7 +9,7 @@ function login(e) {
         password: password
     }
 
-    fetch("../../java/adminLogin.java", {
+    fetch("../../php/login.php", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

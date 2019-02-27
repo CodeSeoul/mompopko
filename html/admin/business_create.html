@@ -1,279 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>MomPopKo</title>
-    <link
-      rel="stylesheet"
-      href="../../lib/frontend/bootstrap/css/bootstrap.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
-      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="../../styles/business_index.css" />
-    <link rel="stylesheet" href="../../styles/dataTrend_index.css" />
-    <link rel="stylesheet" href="../../styles/business_create.css" />
-  </head>
 
-  <body>
-    <script
-      async
-      defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8zGM0fpSVwHI9zeklsLyO9T92QZcznsg"
-    ></script>
-    <header id="header"></header>
-    <div class="container mb-5">
-      <form id="business_create_form" action="#" method="POST">
-        <div class="form-group">
-          <label for="businessName" class="essential-asterisk"
-            >Business Name</label
-          >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>MomPopKo</title>
+  <link rel="stylesheet" href="../../lib/frontend/bootstrap/css/bootstrap.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="../../styles/business_index.css" />
+  <link rel="stylesheet" href="../../styles/dataTrend_index.css" />
+  <link rel="stylesheet" href="../../styles/business_create.css" />
+</head>
+
+<body>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8zGM0fpSVwHI9zeklsLyO9T92QZcznsg"></script>
+  <header id="header"></header>
+  <div class="container mb-5">
+    <form id="business_create_form" enctype="multipart/form-data" action="../../php/business_create.php" method="POST">
+      <div class="form-group">
+        <label for="businessName" class="essential-asterisk">Business Name</label>
+        <input value="prefill" name="businessName" type="text" id="businessName" class="form-control essential-border" />
+      </div>
+
+      <div class="form-group">
+        <label for="bizLevel" class="essential-asterisk">Level</label>
+        <!-- <input type="text" id="level" class="form-control" /> -->
+        <select name="bizLevel" id="bizLevel" class="form-control essential-border"></select>
+      </div>
+
+      <div class="form-group">
+        <label for="mainImages">Main image</label>
+        <input name="mainImage" type="file" id="mainImage" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="subImages">Sub images</label>
+        <input multiple name="subImages[]" type="file" multiple id="subImages" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="main-category" class="essential-asterisk">Menu</label>
+        <div class="form-popup-control">
           <input
-            name="businessName"
             type="text"
-            id="businessName"
-            class="form-control essential-border"
+            id="menuId"
+            name="menuId"
+            class="form-control form-popup-id essential-border"
+            readyonly
           />
-        </div>
-
-        <div class="form-group">
-          <label for="bizLevel" class="essential-asterisk">Level</label>
-          <!-- <input type="text" id="level" class="form-control" /> -->
-          <select
-            name="bizLevel"
-            id="bizLevel"
-            class="form-control essential-border"
-          ></select>
-        </div>
-
-        <div class="form-group">
-          <label for="mainImages">Main image</label>
           <input
-            name="mainImage"
-            type="file"
-            id="mainImage"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="subImages">Sub images</label>
-          <input
-            name="subImages"
-            type="file"
-            multiple
-            id="subImages"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="main-category" class="essential-asterisk"
-            >Main Category</label
-          >
-          <input
-            name="mainCategory"
             type="text"
-            id="main-category"
-            class="form-control essential-border"
+            id="menuName"
+            name="menuName"
+            class="form-control form-popup-name essential-border"
+            readyonly
           />
-        </div>
-
-        <div class="form-group">
-          <label for="sub-category1" class="essential-asterisk"
-            >Sub Category 1</label
-          >
           <input
-            name="subCategory1"
-            type="text"
-            id="sub-category1"
-            class="form-control essential-border"
+            name="menuBtn"
+            type="button"
+            id="menuBtn"
+            value="Select Menu"
+            class="form-popup-button"
           />
         </div>
+      </div>
 
-        <div class="form-group">
-          <label for="sub-category2" class="essential-asterisk"
-            >Sub Category 2</label
-          >
-          <input
-            name="subCategory2"
-            type="text"
-            id="sub-category2"
-            class="form-control essential-border"
-          />
+      <div class="form-group">
+        <label for="opening-date">Opening Date</label>
+        <input name="openingDate" type="date" id="opening-date" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="new-address" class="essential-asterisk">Address</label>
+        <input value="prefill" name="newAddress" type="text" id="new-address" class="form-control essential-border" />
+      </div>
+
+      <div class="form-group">
+        <label for="province" class="essential-asterisk">Province</label>
+        <input value="prefill" name="province" type="text" id="province" class="form-control essential-border" />
+      </div>
+
+      <div class="form-group">
+        <label for="city" class="essential-asterisk">City</label>
+        <input value="prefill" name="city" type="text" id="city" class="form-control essential-border" />
+      </div>
+
+      <div class="form-group">
+        <label for="district" class="essential-asterisk">District</label>
+        <input value="prefill" name="district" type="text" id="district" class="form-control essential-border" />
+      </div>
+
+      <div class="form-group">
+        <label for="district" class="essential-asterisk">Neighborhood</label>
+        <input
+          value = "prefill"
+          type="text"
+          name='neighborhood'
+          id="neighborhood"
+          class="form-control essential-border"
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="new-zipcode">New Zipcode</label>
+        <input name="newZipcode" type="text" id="new-zipcode" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="tel">Telephone</label>
+        <input name="tel" type="text" id="tel" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input name="email" type="email" id="email" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="operating-hour">Operating hour</label>
+        <input name="operatingHour" type="text" id="operating-hour" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="owner-name">Owner Name</label>
+        <input name="ownerName" type="text" id="owner-name" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="interview" class="essential-asterisk">Interview</label>
+        <textarea name="interview" type="text" id="interview" class="form-control essential-border">Prefill</textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="interview-date" class="essential-asterisk">Interview date</label>
+        <input value='2018-08-09' name="interviewDate" type="date" id="interview-date" class="form-control essential-border" />
+      </div> 
+
+      <div class="form-group">
+        <label for="website">website url</label>
+        <input name="website" type="url" id="website" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="facebook">Facebook url</label>
+        <input name="facebook" type="url" id="facebook" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="instagram">Instagram url</label>
+        <input name="instagram" type="url" id="instagram" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="youtube">Youtube url</label>
+        <input name="youtube" type="url" id="youtube" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="twitter">Twitter url</label>
+        <input name="twitter" type="url" id="twitter" class="form-control" />
+      </div>
+
+      <div class="container">
+        <div class="row justify-content-end">
+          <button type="submit" class="mr-3 btn btn-info">Preview</button>
+          <button class="btn btn-danger">Cancel</button>
         </div>
+      </div>
+    </form>
+  </div>
 
-        <div class="form-group">
-          <label for="opening-date">Opening Date</label>
-          <input
-            name="openingDate"
-            type="date"
-            id="opening-date"
-            class="form-control"
-          />
-        </div>
+  <script src="../../lib/frontend/jquery/jquery-3.3.1.min.js"></script>
+  <script src="../../lib/frontend/popper/popper.min.js"></script>
+  <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
+  <script src="../../js/admin/business_index.js"></script>
+  <script src="../../js/admin/business_create.js"></script>
+  <script>
+    $("#header").load("adminHeader.html");
+    utils.createBizSelectbox();
+  </script>
+  <script type="text/javascript" src="../../js/modal.js"></script>
+  <script src="../../js/googleMap.js"></script>
+</body>
 
-        <div class="form-group">
-          <label for="new-address" class="essential-asterisk">Address</label>
-          <input
-            name="newAddress"
-            type="text"
-            id="new-address"
-            class="form-control essential-border"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="province" class="essential-asterisk">Province</label>
-          <input
-            name="province"
-            type="text"
-            id="province"
-            class="form-control essential-border"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="city" class="essential-asterisk">City</label>
-          <input
-            name="city"
-            type="text"
-            id="city"
-            class="form-control essential-border"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="district" class="essential-asterisk">District</label>
-          <input
-            name="district"
-            type="text"
-            id="district"
-            class="form-control essential-border"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="new-zipcode">New Zipcode</label>
-          <input
-            name="newZipcode"
-            type="text"
-            id="new-zipcode"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="tel">Telephone</label>
-          <input name="tel" type="text" id="tel" class="form-control" />
-        </div>
-
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input name="email" type="email" id="email" class="form-control" />
-        </div>
-
-        <div class="form-group">
-          <label for="operating-hour">Operating hour</label>
-          <input
-            name="operatingHour"
-            type="text"
-            id="operating-hour"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="owner-name">Owner Name</label>
-          <input
-            name="ownerName"
-            type="text"
-            id="owner-name"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="interview" class="essential-asterisk">Interview</label>
-          <textarea
-            name="interview"
-            type="text"
-            id="interview"
-            class="form-control essential-border"
-          ></textarea>
-        </div>
-
-        <div class="form-group">
-          <label for="interview-date" class="essential-asterisk"
-            >Interview date</label
-          >
-          <input
-            name="interviewDate"
-            type="date"
-            id="interview-date"
-            class="form-control essential-border"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="website">website url</label>
-          <input name="website" type="url" id="website" class="form-control" />
-        </div>
-
-        <div class="form-group">
-          <label for="facebook">Facebook url</label>
-          <input
-            name="facebook"
-            type="url"
-            id="facebook"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="instagram">Instagram url</label>
-          <input
-            name="instagram"
-            type="url"
-            id="instagram"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="youtube">Youtube url</label>
-          <input name="youtube" type="url" id="youtube" class="form-control" />
-        </div>
-
-        <div class="form-group">
-          <label for="twitter">Twitter url</label>
-          <input name="twitter" type="url" id="twitter" class="form-control" />
-        </div>
-
-        <div class="container">
-          <div class="row justify-content-end">
-            <button type="submit" class="mr-3 btn btn-info">Preview</button>
-            <button class="btn btn-danger">Cancel</button>
-          </div>
-        </div>
-      </form>
-    </div>
-
-    <script src="../../lib/frontend/jquery/jquery-3.3.1.min.js"></script>
-    <script src="../../lib/frontend/popper/popper.min.js"></script>
-    <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
-    <script src="../../js/admin/business_create.js"></script>
-    <script src="../../js/admin/business_index.js"></script>
-    <script>
-      $("#header").load("adminHeader.html");
-      utils.createBizSelectbox();
-    </script>
-    <script type="text/javascript" src="../../js/modal.js"></script>
-    <script src="../../js/googleMap.js"></script>
-  </body>
 </html>
