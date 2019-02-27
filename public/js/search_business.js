@@ -1,12 +1,12 @@
 /**
  * ==================================================================================
- * searchBiz utils
+ * searchBiz
  * @param : object data for used in search business overall
  *  - sqlData : result of datas from sql for search
  *  - searchKeyword : the data which user written in keyword search input
  * ==================================================================================
  */
-const searchBizUtils = ((objParam) => {
+const searchBiz = ((objParam) => {
   /**
    * ---------------------------------------------------------------------------
    * setSearchKeyword : set search keyword in input and section
@@ -85,6 +85,4 @@ const searchBizUtils = ((objParam) => {
 
   // load searched datas to HTML
   loadSearchData(objParam.sqlData);
-
-  return {};
 })(objData);
