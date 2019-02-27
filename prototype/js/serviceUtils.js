@@ -4,13 +4,46 @@
  * ==================================================================================
  */
 const serviceUtils = (() => {
+  let objMenuAll = null;
+
   /**
    * ----------------------------------------------------------------------------------
+   * private
+   * fetchMenu : fetch All Menus
+   * ----------------------------------------------------------------------------------
+   */
+  const fetchMenu = () => {
+    let ajax = new XMLHttpRequest();
+    ajax.open("POST", "../php/db.php", true);
+    ajax.send();
+    ajax.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        objMenuAll = JSON.parse(this.responseText);
+        loadMenu(objMenuAll);
+      }
+    };
+  };
+
+  /**
+   * ----------------------------------------------------------------------------------
+   * private
+   * loadMenu : load All Menus
+   * @param : object of All menus
+   * ----------------------------------------------------------------------------------
+   */
+  const loadMenu = (objParam) => {
+    console.log(objParam);
+    //TODO :: thyunAhn load Menu Datas in header
+  };
+
+  /**
+   * ----------------------------------------------------------------------------------
+   * public
    * searchBizData : search for business & move to search result php page
    * @param : event of submit eventListener
    * ----------------------------------------------------------------------------------
    */
-  let searchBizData = (e) => {
+  const searchBizData = (e) => {
     e.preventDefault();
 
     // value of search key word.
@@ -36,6 +69,9 @@ const serviceUtils = (() => {
     window.location.href =
       window.location.pathname.substr(0, lastIndexOfSlash + 1) + fileMoveTo;
   };
+
+  //fetch Menu
+  fetchMenu();
 
   // supply utils
   return {
