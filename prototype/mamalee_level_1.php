@@ -554,7 +554,12 @@
                 </span>
                 <span>
                   <i class="fas fa-map-pin"></i>
-                  <span class="sub"><?= $biz_district . ", " . $biz_province;?></span>
+                  <span class="sub">
+                    <?php 
+                      $biz_district_real = str_replace("-gu", "", $biz_district);
+                      echo $biz_district_real . " , " . $biz_province;
+                    ?>
+                  </span>
                   <i class="fas fa-arrow-right"></i>
                 </span>
                 <span>
@@ -588,7 +593,7 @@
                 </li>
                 <li>
                   <i class="fas fa-clock"></i> Published:
-                  <span>November, 10, 2018</span>
+                  <span><?= $biz_interview_date; ?></span>
                 </li>
               </ul>
               <ul class="story_contact">

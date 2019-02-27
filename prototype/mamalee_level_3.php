@@ -427,7 +427,12 @@
 						</span>
 						<span>
 							<i class="fas fa-map-pin"></i>
-							<span class="sub"><?= $biz_district . ", " . $biz_province;?></span>
+							<span class="sub">
+							<?php 
+								$biz_district_real = str_replace("-gu", "", $biz_district);
+								echo $biz_district_real . " , " . $biz_province;
+							?>
+							</span>
 							<i class="fas fa-arrow-right"></i>
 						</span>
 						<span>
@@ -486,8 +491,8 @@
 					<div class="story">
 						<?= $biz_interview_conts; ?>
 						<div class="story_highlight">
-							<p><span><i class="fas fa-star"></i> Most popular item:</span> Daengjang (soybean paste) marinated steamed chicken and then charcoal grilled (9,000 won) <?= $biz_popular_item;?></p>
-							<p><span><i class="fas fa-thumbs-up"></i> Recommended:</span> Whole roast herbed chicken with mashed potatoes and green beans (needs to be ordered at least three days in advance) (10,500 won)<?= $biz_recommended;?></p>
+						<span><?= ($biz_popular_item=='')? '' : "Popular:" . $biz_popular_item;?></span><?= ($biz_popular_item=='')? '' : '<br>'?>
+							<span><?= ($biz_popular_item=='')? '' : "Recommended:" . $biz_popular_item;?></span>
 						</div>
 					</div>
 					<ul class="story_contact">
