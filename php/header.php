@@ -5,12 +5,12 @@
 	<title>mompopko</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="MomPopKo" />
-	<link href="css/style.css" rel="stylesheet" />
+	<link href="../public/css/style.css" rel="stylesheet" />
 
-	<link href="css/bootstrap.min.css" rel="stylesheet" />
-	<link href="css/fontawesome-all.css" rel="stylesheet" />
+	<link href="../public/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="../public/css/fontawesome-all.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-	<link href='fonts/NanumSquare/nanumsquare.css' rel='stylesheet' type='text/css'>
+	<link href='../public/fonts/NanumSquare/nanumsquare.css' rel='stylesheet' type='text/css'>
 	<style>
 	#Restaurants_hamburger, #Restaurants_dropdown{
 		display: none;
@@ -18,9 +18,12 @@
 	</style>
 
     <!-- serciceUtils -->
-    <script src="js/serviceUtils.js"></script>
+    <script src="../js/serviceUtils.js"></script>
     
-	<script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="../public/js/jquery.min.js"></script>
+    <script src="../public/js/jquery.easing.1.3.js"></script>
+    <script src="../public/js/bootstrap.min.js"></script>
+
 	<script type="text/javascript">
         $(function() {
 			var $ui 		= $('#top_search');
@@ -66,7 +69,7 @@
                     <div class="row">
                         <div class="col-xs-4">
                             <a href="index.html">
-                                <img src="img/logo.png" id="top-logo" class="top-logo" alt="logo">
+                                <img src="../public/img/logo.png" id="top-logo" class="top-logo" alt="logo">
                             </a>
                         </div>
                         <div class="col-xs-4"></div>
