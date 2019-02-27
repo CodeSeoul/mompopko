@@ -445,6 +445,7 @@ header .navbar-nav > li > a {
   /*font-family: 'Pacifico', cursive;*/
   font-family: "Varela Round", sans-serif;
   padding-right: 15px;
+  margin: 20px 0px;
 }
 
 .nav-tabs {
