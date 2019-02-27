@@ -314,5 +314,5 @@
 
         <script>
             const searchForm = document.querySelector("#top_search");
-            searchForm.addEventListener('submit', (e) => serviceUtils.searchBiz(e));
+            searchForm.addEventListener('submit', (e) => serviceUtils.searchBizData(e));
         </script>
