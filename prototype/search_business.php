@@ -43,16 +43,13 @@
 
         //execute query
         $req->execute();
-        
 
         while($result=$req->fetchAll()){
             if($result!=""){
                 $resultOfSQL = json_encode($result);
-                //print_r($resultOfSQL);
             } 
         }
     }
-
 ?>
 
 <!DOCTYPE html>
@@ -71,8 +68,10 @@
 					</ul>
 				</div>
 				<div class="tab-content">
-					<div id="recent" class="tab-pane fade in active">
-					</div>
+					<div id="result" class="tab-pane fade in active">
+                    </div>
+                    <div class="col-xs-12 alignright mgbottom30" id="recent_button">
+                    </div>
 				</div>
 			</div>
 		</div>
