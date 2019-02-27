@@ -176,7 +176,7 @@ let utils = (() => {
         buttonEdit.addEventListener("click", () => {
           localStorage.setItem("selectedBusiness", JSON.stringify(business));
           window.location.pathname =
-            "../../html/admin/business_edit.html";
+            "mompopko/html/admin/business_edit.html";
         });
         tdEdit.appendChild(buttonEdit);
         childrenArr.push(tdEdit);

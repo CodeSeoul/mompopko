@@ -21,14 +21,25 @@
   </head>
 
   <body>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8zGM0fpSVwHI9zeklsLyO9T92QZcznsg"></script>
     <header id="header"></header>
     <div class="container mb-5">
       <form
-        action="#"
+        id='business_edit_form'
+        action="../../php/business_edit.php"
         method="POST"
         enctype="multipart/form-data"
         onsubmit="return utils.checkValidation()"
       >
+
+      <input hidden name="biz_id" type="text"/>
+      <input hidden name="file_grp_id" type="text" />
+
+      <div class="form-group">
+        <label for="businessName" class="essential-asterisk">Business Name</label>
+        <input value="prefill" name="businessName" type="text" id="businessName" class="form-control essential-border" />
+      </div>
+
         <div class="form-group">
           <label for="level" class="essential-asterisk">Level</label>
           <!-- <input type="text" id="level" class="form-control" /> -->
@@ -37,28 +48,6 @@
             id="bizLevel"
             class="form-control essential-border"
           ></select>
-        </div>
-
-        <div class="form-group">
-          <label for="mainImages">Main image</label>
-          <input
-            name="mainImage"
-            type="file"
-            id="mainImage"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="subImages">Sub images</label>
-          <input
-            multiple
-            name="subImages[]"
-            type="file"
-            multiple
-            id="subImages"
-            class="form-control"
-          />
         </div>
 
         <div class="form-group">
@@ -173,11 +162,11 @@
         </div>
 
         <div class="form-group">
-          <label for="opening-hour">Opening hour</label>
+          <label for="open-hour">Opening hour</label>
           <input
             name="openingHour"
             type="text"
-            id="opening-hour"
+            id="open-hour"
             class="form-control"
           />
         </div>
@@ -247,7 +236,7 @@
           <input name="twitter" type="url" id="twitter" class="form-control" />
         </div>
 
-        <div class="container">
+        <div class="buttons container">
           <div class="row justify-content-end">
             <button type="submit" class="mr-3 btn btn-info">Preview</button>
             <button class="btn btn-danger">Cancel</button>
@@ -260,6 +249,7 @@
     <script src="../../lib/frontend/popper/popper.min.js"></script>
     <script src="../../lib/frontend/bootstrap/js/bootstrap.js"></script>
     <script src="../../js/admin//business_index.js"></script>
+    <script src='../../js/googleMap.js'></script>
     <script src="../../js/admin//business_edit.js"></script>
   </body>
 </html>

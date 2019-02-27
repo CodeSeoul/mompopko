@@ -44,7 +44,7 @@ catch (Exception $e){
         $biz_zipcode = (int)htmlspecialchars($_POST['newZipcode']);
         $biz_tel = htmlspecialchars($_POST['tel']);
         $biz_email = htmlspecialchars($_POST['email']);
-        $biz_open_hour = htmlspecialchars($_POST['operatingHour']);
+        $biz_open_hour = htmlspecialchars($_POST['openingHour']);
         $biz_owner = htmlspecialchars($_POST['ownerName']);
         $biz_interview_conts = htmlspecialchars($_POST['interview']);
         $biz_interview_date = htmlspecialchars($_POST['interviewDate']);
@@ -55,6 +55,7 @@ catch (Exception $e){
         $biz_twitter = htmlspecialchars($_POST['twitter']);
 
         include "fileupload.php";
+        fileupload_create_new_business();
 
         $findExistingBiz ='SELECT * FROM tb_biz WHERE biz_name = :biz_name';
         

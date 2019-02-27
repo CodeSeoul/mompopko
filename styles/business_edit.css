@@ -2,10 +2,11 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, auto));
   grid-template-rows: repeat(auto-fit, minmax(200px, auto));
+  grid-gap : 2px;
 }
 .current-images-container img {
-  height: 100%;
-  object-fit: contain;
+  height : 100%;
+  object-fit: cover;
   width: 100%;
 }
 
