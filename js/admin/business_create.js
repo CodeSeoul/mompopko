@@ -15,8 +15,7 @@ menuBtnElem.addEventListener("click", () => {
   utils.menuSelectPopup({
     menuIdElem: document.getElementById("menuId"),
     menuNameElem: document.getElementById("menuName")
-  }
-  );
+  });
   // document.body.appendChild(utils.modal(divElem));
 });
 
@@ -29,7 +28,7 @@ menuBtnElem.addEventListener("click", () => {
  * ---------------------------------------------------------------------------
  */
 
-let addEventToForm = function () {
+let addEventToForm = function() {
   let form = document.querySelector("#business_create_form");
   console.log(form);
   form.addEventListener("submit", (e) => {
@@ -48,7 +47,7 @@ addEventToForm();
  * ---------------------------------------------------------------------------
  */
 
-let showPreview = function (e) {
+let showPreview = function(e) {
   e.preventDefault();
   window.scrollTo({
     top: 0,
@@ -70,7 +69,7 @@ let showPreview = function (e) {
  * ---------------------------------------------------------------------------
  */
 
-let createPreviewElement = function () {
+let createPreviewElement = function() {
   let form = document.querySelector("#business_create_form");
   let businessName = form.querySelector('[name="businessName"]').value;
   let bizLevel = form.querySelector('[name="bizLevel"]').value;
@@ -95,8 +94,8 @@ let createPreviewElement = function () {
     }
   }
 
-  let menuId = form.querySelector('#menuId').value;
-  let menuName = form.querySelector('#menuName').value;
+  let menuId = form.querySelector("#menuId").value;
+  let menuName = form.querySelector("#menuName").value;
   let openingDate = new Date(form.querySelector('[name="openingDate"]').value);
   let newAddress = form.querySelector('[name="newAddress"]').value;
   let province = form.querySelector('[name="province"]').value;
@@ -148,9 +147,9 @@ let createPreviewElement = function () {
         <span>
           <i class="fas fa-calendar"></i>
           <span class="sub">${openingDate.toLocaleString(
-    "en-US",
-    openingDateFormat
-  ) || "Jan, 2019"}</span>
+            "en-US",
+            openingDateFormat
+          ) || "Jan, 2019"}</span>
         </span>
       </h5>
     </div>
@@ -169,23 +168,23 @@ let createPreviewElement = function () {
     <div class="col-12">
       <ul class="story_detail">
         <li><i class="fas fa-user"></i> <span>Owner:</span>${ownerName ||
-    "Mr.Kim"}</li>
+          "Mr.Kim"}</li>
         <li><i class="fas fa-clock"></i> <span>Published:</span>${new Date(
-      Date.now()
-    ).toLocaleString("en-US", publishedDateFormat) || "Jan 19, 2019"}</li>
+          Date.now()
+        ).toLocaleString("en-US", publishedDateFormat) || "Jan 19, 2019"}</li>
       </ul>
       <div class="story">
         ${interview ||
-    " Sample interview  Sample interview  Sample interview  Sample interview  Sample interview "}
+          " Sample interview  Sample interview  Sample interview  Sample interview  Sample interview "}
         <p>sample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample textsample text</p>
       </div>
       <ul class="story_contact">
         <li><span><i class="fas fa-phone"></i> Telephone:</span> ${tel ||
-    "02-1234-4567"}</li>
+          "02-1234-4567"}</li>
         <li><span><i class="fas fa-clock"></i> Hours:</span> ${operatingHour ||
-    "Mon-Tue 08:00~13:00"}</li>
+          "Mon-Tue 08:00~13:00"}</li>
         <li><span><i class="fab fa-instagram"></i> Instagram:</span> <a>${instagram ||
-    "instagram.com"}</a></li>
+          "instagram.com"}</a></li>
       </ul>
     </div>
   </div>
@@ -235,7 +234,7 @@ function createCarousel(imageURLs) {
   carouselContainer.style.gridGap = 8 / 3 + "%";
   carouselContainer.style.gridTemplateColumns = `repeat(${
     imageURLs.length
-    }, 23%)`;
+  }, 23%)`;
 
   let images = [];
   for (let i = 0; i < imageURLs.length; i++) {

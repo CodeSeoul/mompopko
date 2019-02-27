@@ -59,9 +59,7 @@
 <html>
     
     <!-- includes <head>, <body> <header> tags -->
-    <?php
-        include_once 'header.php';
-    ?>
+    <?php require "header.php"?>
     
     <section id="content">
 	    <div class="container">
@@ -80,11 +78,8 @@
 		</div>
     </section>
 
-     <!-- includes <body> <footer>, <a> for scroll up, 3 <script> tags -->
-    <?php
-        include_once 'footer.php';
-    ?>
-
+    <!-- includes <body> <footer>, <a> for scroll up, 3 <script> tags -->
+    <?php require "footer.php"?>
 
     <!-- script for pass php values to search_business.js -->
     <script type="text/javascript">
