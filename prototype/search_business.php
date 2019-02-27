@@ -62,21 +62,14 @@
     <?php
         include_once 'header.php';
     ?>
-
-    <!-- script for pass php values to search_business.js -->
-    <script type="text/javascript">
-        let resultOfSQL = <?= $resultOfSQL ?>;
-    </script>
-    
-    <!-- search logics in this script -->
-    <script src="js/search_business.js"></script>
     
     <section id="content">
 	    <div class="container">
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="nav nav-tabs">
-					  	<li><h3 class="title">Result of Searching : </h3></li>
+                        <!-- title for "Results of keyword" -->
+					  	<li><h3 class="title" id="result_title"> </h3></li>
 					</ul>
 				</div>
 				<div class="tab-content">
@@ -91,5 +84,15 @@
     <?php
         include_once 'footer.php';
     ?>
+
+
+    <!-- script for pass php values to search_business.js -->
+    <script type="text/javascript">
+        let objResultOfSQL = <?= $resultOfSQL ?>;
+        let objData = {sqlData: objResultOfSQL, searchKeyword: "<?= $searchKeyword ?>"};
+    </script>
+    
+    <!-- search logics in this script -->
+    <script src="js/search_business.js"></script>
     
 </html>
