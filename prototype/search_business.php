@@ -2,6 +2,7 @@
 <html>
     
 
+    <!-- includes <head>, <body> <header> tags -->
     <?php
         include_once 'header.php';
     ?>
@@ -32,11 +33,9 @@
 		</div> -->
     </section>
 
+     <!-- includes <body> <footer>, <a> for scroll up, 3 <script> tags -->
     <?php
         include_once 'footer.php';
     ?>
     
-
-
-</body>
 </html>
