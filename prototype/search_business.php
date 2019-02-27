@@ -1,36 +1,90 @@
+<?php 
+    try {
+        $host = 'mompopkoapi.wcoding.com';
+        $user = 'mompopko_api';
+        $password = 'uAVPVDMZz9N8d9RC';
+        $port = '8833';
+        $dbname = 'mompopko';
+
+        $dsn = 'mysql:host='. $host . ';port=' . $port . ';dbname=' . $dbname;
+
+        $pdo = new PDO($dsn, $user, $password);
+
+    } catch (Exception $e) {
+        die('Error: '. $e->getMessage());
+    }
+
+    // URL get query value of searchKeyword
+    $searchKeyword = $_GET['searchKeyword'];
+    
+    // Result of SQL
+    $resultOfSQL = json_encode([]);
+
+    if( !empty($searchKeyword) ) {
+        $query = "SELECT
+                        biz_id
+                        ,biz_name
+                        ,biz_level
+                        ,IF(biz_level>1, 2, 1) AS biz_level_classify
+                        ,ROUND((CHAR_LENGTH(CONCAT(biz_name, biz_interview_conts))-CHAR_LENGTH((CONCAT(REPLACE(biz_name,:searchKeyword,''),REPLACE(biz_interview_conts,:searchKeyword,''))))) / CHAR_LENGTH(:searchKeyword)) AS search_cnt
+                FROM tb_biz 
+                WHERE biz_interview_conts LIKE :searchKeywordInWhere OR biz_name LIKE :searchKeywordInWhere
+                ORDER BY biz_level_classify desc, search_cnt DESC";
+        
+        $req = $pdo->prepare($query);
+
+        // setting for search word 
+        $searchKeywordInWhere = "%" . $searchKeyword . "%";
+        $req->bindParam(':searchKeyword', $searchKeyword,PDO::PARAM_STR);
+        $req->bindParam(':searchKeyword', $searchKeyword,PDO::PARAM_STR);
+        $req->bindParam(':searchKeyword', $searchKeyword,PDO::PARAM_STR);
+        $req->bindParam(':searchKeywordInWhere', $searchKeywordInWhere,PDO::PARAM_STR);
+        $req->bindParam(':searchKeywordInWhere', $searchKeywordInWhere,PDO::PARAM_STR);
+
+        //execute query
+        $req->execute();
+        
+
+        while($result=$req->fetchAll()){
+            if($result!=""){
+                $resultOfSQL = json_encode($result);
+                //print_r($resultOfSQL);
+            } 
+        }
+    }
+
+?>
+
 <!DOCTYPE html>
 <html>
     
-
     <!-- includes <head>, <body> <header> tags -->
     <?php
         include_once 'header.php';
     ?>
 
-	<section id="content">
-		<!-- <div class="container">
+    <!-- script for pass php values to search_business.js -->
+    <script type="text/javascript">
+        let resultOfSQL = <?= $resultOfSQL ?>;
+    </script>
+    
+    <!-- search logics in this script -->
+    <script src="js/search_business.js"></script>
+    
+    <section id="content">
+	    <div class="container">
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="nav nav-tabs">
-					  	<li><h3 class="title">New Openings</h3></li>
-					  	<li class="active"><a data-toggle="tab" href="#recent">[RECENT]</a></li>
-					  	<li><a data-toggle="tab" href="#popular">[POPULAR]</a></li>
-					  	<li><a data-toggle="tab" href="#trends">[TRENDS]</a></li>
+					  	<li><h3 class="title">Result of Searching : </h3></li>
 					</ul>
 				</div>
 				<div class="tab-content">
 					<div id="recent" class="tab-pane fade in active">
 					</div>
-						<div class="col-xs-12 alignright mgbottom30" id="recent_button">
-						</div>
-					</div>
-					<div id="popular" class="tab-pane fade">
-					</div>
-					<div id="trends" class="tab-pane fade">
-					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
     </section>
 
      <!-- includes <body> <footer>, <a> for scroll up, 3 <script> tags -->

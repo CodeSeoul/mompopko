@@ -1328,20 +1328,29 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script>
 		let searchForm = document.querySelector("#top_search");
-		searchForm.addEventListener('submit', (e) => searchBizKeyword(e));
+		searchForm.addEventListener('submit', (e) => searchBiz(e));
 
 		/**
 		 * ----------------------------------------------------------------------------------
-		 * searchBizKeyword : search for business by keyword & move to search result php page
+		 * searchBiz : search for business & move to search result php page
 		 * @param : event of submit eventListener
 		 * ----------------------------------------------------------------------------------
 		 */
-		let searchBizKeyword = (e) => {
+		let searchBiz = (e) => {
 			e.preventDefault();
+			console.log(e)
+
+			// destination of file name.
+			let fileMoveTo = "search_business.php";
+
+			// value of search key word.
+			const searchKeyword = e.srcElement[1].value;
+
+			fileMoveTo+="?searchKeyword="+searchKeyword;
 
 			// move to search_business.php for search result page.
 			let lastIndexOfSlash = window.location.pathname.lastIndexOf('/');
-			window.location.pathname=window.location.pathname.substr(0,lastIndexOfSlash+1)+"search_business.php";
+			window.location.href=window.location.pathname.substr(0,lastIndexOfSlash+1)+fileMoveTo;
 		}
 	</script>
 </body>
