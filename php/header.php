@@ -68,7 +68,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-4">
-                            <a href="index.html">
+                            <a id="logo" href="">
                                 <img src="../public/img/logo.png" id="top-logo" class="top-logo" alt="logo">
                             </a>
                         </div>
@@ -316,6 +316,8 @@
         </header>
 
         <script>
+            const logoElem = document.getElementById("logo");
+            logoElem.addEventListener('click', (e) => serviceUtils.moveToIndexPage(e));
             const searchForm = document.querySelector("#top_search");
             searchForm.addEventListener('submit', (e) => serviceUtils.searchBizData(e));
         </script>
