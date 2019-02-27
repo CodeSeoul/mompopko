@@ -8,6 +8,30 @@ const serviceUtils = (() => {
 
   /**
    * ----------------------------------------------------------------------------------
+   * public
+   * moveToIndexPage : fetch All Menus
+   * @param : event of click eventListener
+   * ----------------------------------------------------------------------------------
+   */
+  const moveToIndexPage = (e) => {
+    console.log(window.location.pathname);
+    e.preventDefault();
+    let urlPathname = window.location.pathname;
+    let lastIndexOfSlash = -1;
+
+    // two depth of path between index.php and header.php
+    for (let i = 0; i < 2; i++) {
+      lastIndexOfSlash = urlPathname.lastIndexOf("/");
+      urlPathname = urlPathname.substr(0, lastIndexOfSlash);
+    }
+    urlPathname += "/index.php";
+    window.location.href = urlPathname;
+
+    return false;
+  };
+
+  /**
+   * ----------------------------------------------------------------------------------
    * private
    * fetchMenu : fetch All Menus
    * ----------------------------------------------------------------------------------
@@ -75,6 +99,7 @@ const serviceUtils = (() => {
 
   // supply utils
   return {
-    searchBizData
+    searchBizData,
+    moveToIndexPage
   };
 })();
