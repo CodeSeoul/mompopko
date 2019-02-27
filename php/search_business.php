@@ -79,7 +79,7 @@
 
     <!-- includes <body> <footer>, <a> for scroll up, 3 <script> tags -->
     <?php require "footer.php"?>
-
+    
     <!-- script for pass php values to search_business.js -->
     <script type="text/javascript">
         let objResultOfSQL = <?= $resultOfSQL ?>;
