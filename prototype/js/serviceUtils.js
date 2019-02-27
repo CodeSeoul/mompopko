@@ -6,11 +6,11 @@
 const serviceUtils = (() => {
   /**
    * ----------------------------------------------------------------------------------
-   * searchBiz : search for business & move to search result php page
+   * searchBizData : search for business & move to search result php page
    * @param : event of submit eventListener
    * ----------------------------------------------------------------------------------
    */
-  let searchBiz = (e) => {
+  let searchBizData = (e) => {
     e.preventDefault();
 
     // value of search key word.
@@ -39,6 +39,6 @@ const serviceUtils = (() => {
 
   // supply utils
   return {
-    searchBiz
+    searchBizData
   };
 })();
