@@ -23,6 +23,9 @@
 			#Restaurants_hamburger, #Restaurants_dropdown{
 				display: none;
 			}
+	.story_highlight span:empty{
+		display: none;
+	}
 			</style>
 
     <script type="text/javascript" src="js/jquery.min.js"></script>
