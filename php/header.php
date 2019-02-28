@@ -20,7 +20,6 @@
 
     <!-- serciceUtils -->
     <script src="../js/serviceUtils.js"></script>
-    
     <script type="text/javascript" src="../public/js/jquery.min.js"></script>
     <script src="../public/js/jquery.easing.1.3.js"></script>
     <script src="../public/js/bootstrap.min.js"></script>
