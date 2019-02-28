@@ -30,43 +30,16 @@ const searchBiz = ((objParam) => {
    * ---------------------------------------------------------------------------
    */
   const loadSearchData = (objSearchData) => {
-    console.log(objSearchData);
-
     const recentElem = document.getElementById("result");
+
+    // object for send as parameter to loadBiz()
+    const objSendParam = {};
+    objSendParam.objBizData = objSearchData;
+    objSendParam.targetElem = recentElem;
 
     // when searched data exists
     if (objSearchData.length > 0) {
-      objSearchData.map((searchData) => {
-        recentElem.innerHTML += `<div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="thumb-box">
-              <div class="thumb-img">
-                  <a href="mamalee_level_${searchData.biz_level}.php
-                                  ?biz_name=${searchData.biz_name}">
-                  <img src="img/openings/MamaleeMarket_1.jpg" width="100%" alt="" />
-                </a>
-              </div>
-              <div class="thumb-content">
-                <h5 class="thumb-category">
-                  <span class="main" class="menu_zero_span"></span>
-                  <span class="sub" class="menu_sub_cat">Korean</span>
-                </h5>
-                <span class="img_two"><span/>
-                  <div class="row">
-                    <div class="col-xs-7 thumb-name">
-                      <span>${searchData.biz_name}</span>
-                      <div style="color: #999;"> 
-                        (level ${searchData.biz_level}) 
-                      </div>
-                    </div>
-                    <div class="col-xs-5 thumb-product">
-                        <span class="img_two"><span/>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>`;
-      });
+      serviceUtils.loadBiz(objSendParam);
     } else {
       // when searched data doesn't exist
       recentElem.innerHTML = `

@@ -211,6 +211,50 @@ const serviceUtils = (() => {
   /**
    * ----------------------------------------------------------------------------------
    * public
+   * loadBiz : load Businesses
+   * @param : object of businesses to load
+   *  - objBizData: business data to load in html
+   *  - targetElem: target element to add business data by innerHTML
+   * ----------------------------------------------------------------------------------
+   */
+  const loadBiz = (objParam) => {
+    console.log(objParam);
+    objParam.objBizData.map((bizData) => {
+      objParam.targetElem.innerHTML += `<div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="thumb-box">
+            <div class="thumb-img">
+                <a href="mamalee_level_${bizData.biz_level}.php
+                                ?biz_name=${bizData.biz_name}">
+                <img src="img/openings/MamaleeMarket_1.jpg" width="100%" alt="" />
+              </a>
+            </div>
+            <div class="thumb-content">
+              <h5 class="thumb-category">
+                <span class="main" class="menu_zero_span"></span>
+                <span class="sub" class="menu_sub_cat">Korean</span>
+              </h5>
+              <span class="img_two"><span/>
+                <div class="row">
+                  <div class="col-xs-7 thumb-name">
+                    <span>${bizData.biz_name}</span>
+                    <div style="color: #999;"> 
+                      (level ${bizData.biz_level}) 
+                    </div>
+                  </div>
+                  <div class="col-xs-5 thumb-product">
+                      <span class="img_two"><span/>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>`;
+    });
+  };
+
+  /**
+   * ----------------------------------------------------------------------------------
+   * public
    * searchBizData : search for business & move to search result php page
    * @param : event of submit eventListener
    * ----------------------------------------------------------------------------------
@@ -252,6 +296,7 @@ const serviceUtils = (() => {
   // supply utils
   return {
     searchBizData,
-    moveToIndexPage
+    moveToIndexPage,
+    loadBiz
   };
 })();
