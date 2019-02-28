@@ -420,7 +420,7 @@ $bizInfo = $getBizInfoReq->fetchAll();
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h3 class="title"><?= $real_biz_name;?></h3>
+					<h3 class="title"><?= $bizInfo[0]['biz_name'];?></h3>
 					<h5 class="thumb-category">
 						<span>
 							<i class="fas fa-utensils"></i>
@@ -433,15 +433,15 @@ $bizInfo = $getBizInfoReq->fetchAll();
 							<i class="fas fa-map-pin"></i>
 							<span class="sub">
 							<?php 
-								$biz_district_real = str_replace("-gu", "", $biz_district);
-								echo $biz_district_real . " , " . $biz_province;
+								$biz_district_real = str_replace("-gu", "", $bizInfo[0]['biz_district']);
+								echo $biz_district_real . " , " . $bizInfo[0]['biz_name'];
 							?>
 							</span>
 							<i class="fas fa-arrow-right"></i>
 						</span>
 						<span>
 							<i class="fas fa-calendar"></i>
-							<span class="sub">Opened <?= $biz_open_date ?></span>
+							<span class="sub">Opened <?= $bizInfo[0]['biz_open_date'] ?></span>
 						</span>
 					</h5>
 				</div>
@@ -548,7 +548,6 @@ $bizInfo = $getBizInfoReq->fetchAll();
 	<script src="../public/js/jquery.easing.1.3.js"></script>
 	<script src="../public/js/bootstrap.min.js"></script>
 	<script src='../public/js/googleMap.js'></script>
-	<script>createGoogleMap("<?=$bizInfo[0]['biz_address'];?>")</script>
 	<script type="text/javascript">
 	    $(window).load(function() {
 		  $('.flexslider').flexslider({
@@ -563,8 +562,11 @@ $bizInfo = $getBizInfoReq->fetchAll();
 	</script>
 	<script src='../js/serviceUtils.js'></script>
 	<script>
-	let menu_id = <?=$bizInfo[0]['menu_id']?>;
-	serviceUtils.fetchRecommendedPosts(menu_id);
+		$(window).load(function() {
+			createGoogleMap("<?=$bizInfo[0]['biz_address'];?>")
+			let menu_id = <?=$bizInfo[0]['menu_id']?>;
+			serviceUtils.fetchRecommendedPosts(menu_id);
+		});
 	</script>
 </body>
 </html>
