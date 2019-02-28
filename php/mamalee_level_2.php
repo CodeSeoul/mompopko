@@ -11,7 +11,13 @@ $bizInfo = $getBizInfoReq->fetchAll();
 
 <!DOCTYPE html>
 <html>
-<head>
+	<!-- includes <head>, <body> <header> tags -->
+	<?php require "header.php"?>
+
+	<?php require('./../php/biz_db.php');?>
+
+	<!-- header.php -->
+<!-- <head>
 	<meta charset="utf-8">
 	<title>mompopko</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -23,7 +29,6 @@ $bizInfo = $getBizInfoReq->fetchAll();
 	<link href="../public/css/fontawesome-all.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 	<link href='../public/fonts/NanumSquare/nanumsquare.css' rel='stylesheet' type='text/css'>
-	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjWNh6hc_mh96jtYaQOuCEAJYSECzrQgs"></script>
 	<script type="text/javascript" src="../public/js/jquery.min.js"></script>
 	<script type="text/javascript">
         $(function() {
@@ -159,7 +164,7 @@ $bizInfo = $getBizInfoReq->fetchAll();
 </head>
 
 <body>
-<?php require('./../php/biz_db.php');?>
+
 	<div id="wrapper">
 	<header>
 		<div class="top">
@@ -417,6 +422,8 @@ $bizInfo = $getBizInfoReq->fetchAll();
 			</div>
 		</div>
 	</header>
+	-->
+	 <!-- // header.php -->
 
 	<section id="content_page">
 		<div class="container">
@@ -510,7 +517,11 @@ $bizInfo = $getBizInfoReq->fetchAll();
 		</div>
 	</section>
 
-	<footer>
+	<!-- includes <body> <footer>, <a> for scroll up, 3 <script> tags -->
+	<?php require "footer.php"?>
+
+	<!-- footer.php -->
+	<!--<footer>
 		<div class="container">
 			<div class="row aligncenter">
 				<div class="col-sm-12">
@@ -542,14 +553,15 @@ $bizInfo = $getBizInfoReq->fetchAll();
 
 	<a href="#" class="scrollup">
 		<i class="fa fa-angle-up active"></i>
-	</a>
+	</a> -->
+    <!-- // footer.php -->
 
   	<!-- FlexSlider -->
 	<script defer src="../public/js/jquery.flexslider.js"></script>
 	<script src='../public/js/googleMap.js'></script>
-	<script src="../public/js/jquery.min.js"></script>
-	<script src="../public/js/jquery.easing.1.3.js"></script>
-	<script src="../public/js/bootstrap.min.js"></script>
+
+	<script>createGoogleMap("<?=$bizInfo[0]['biz_address'];?>")</script>
+
 	<script type="text/javascript">
 	    $(window).load(function() {
 		  $('.flexslider').flexslider({
@@ -562,7 +574,6 @@ $bizInfo = $getBizInfoReq->fetchAll();
 		  });
 		});
 	</script>
-	<script src='../js/serviceUtils.js'></script>
 	<script>
 		$(window).load(function() {
 			createGoogleMap("<?=$bizInfo[0]['biz_address'];?>")

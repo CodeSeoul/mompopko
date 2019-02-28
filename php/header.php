@@ -6,10 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="MomPopKo" />
 	<link href="../public/css/style.css" rel="stylesheet" />
-
+    <link href="../public/css/flexslider.css" rel="stylesheet" />
 	<link href="../public/css/bootstrap.min.css" rel="stylesheet" />
 	<link href="../public/css/fontawesome-all.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjWNh6hc_mh96jtYaQOuCEAJYSECzrQgs"></script>
 	<link href='../public/fonts/NanumSquare/nanumsquare.css' rel='stylesheet' type='text/css'>
 	<style>
         #Restaurants_hamburger, #Restaurants_dropdown{
@@ -19,7 +20,6 @@
 
     <!-- serciceUtils -->
     <script src="../js/serviceUtils.js"></script>
-    
     <script type="text/javascript" src="../public/js/jquery.min.js"></script>
     <script src="../public/js/jquery.easing.1.3.js"></script>
     <script src="../public/js/bootstrap.min.js"></script>
