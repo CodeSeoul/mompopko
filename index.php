@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
+
+<!-- header.php -->
+	<head>
 	<meta charset="utf-8">
 	<title>mompopko</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,7 +12,14 @@
 	<link href="public/css/fontawesome-all.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet"/>
 	<link href='public/fonts/NanumSquare/nanumsquare.css' rel='stylesheet' type='text/css'/>
+	<style>
+        #Restaurants_hamburger, #Restaurants_dropdown{
+            display: none;
+        }
+	</style>
 
+	<!-- serciceUtils -->
+	<script src="js/serviceUtils.js"></script>
 	<script type="text/javascript" src="public/js/jquery.min.js"></script>
 	<script type="text/javascript">
         $(function() {
@@ -46,6 +55,7 @@
 		    }
 		});
 	</script>
+	<!-- // header.php -->
 
 <script type="text/javascript">
 	var ajax_biz = new XMLHttpRequest();
@@ -233,7 +243,8 @@
 
 				<script> -->
 
-	<script type="text/javascript">
+ <!-- header.php & in the serviceUtils -->
+ <!-- <script type="text/javascript">
 	var ajax = new XMLHttpRequest();
 	ajax.open("POST", "php/db.php", true);
 	ajax.send();
@@ -339,7 +350,7 @@
 				}}
 			};
 		}
-</script>
+</script> -->
 
 </head>
 
@@ -595,6 +606,8 @@
 			</div>
 		</div>
 	</header>
+	<!-- // header.php -->
+
 
 	<section id="content">
 		<div class="container">
@@ -1290,5 +1303,10 @@
 	<script src="public/js/jquery.min.js"></script>
 	<script src="public/js/jquery.easing.1.3.js"></script>
 	<script src="public/js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		// for search biz
+		const searchForm = document.querySelector("#top_search");
+		searchForm.addEventListener('submit', (e) => serviceUtils.searchBizData(e));
+	</script>
 </body>
 </html>
