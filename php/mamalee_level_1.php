@@ -3,7 +3,13 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
+  <!-- includes <head>, <body> <header> tags -->
+  <?php require "header.php"?>
+
+  <?php require('biz_db.php'); ?>
+  
+  <!-- header.php -->
+  <!-- <head>
     <meta charset="utf-8" />
     <title>mompopko</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -218,7 +224,7 @@
   </head>
 
   <body>
-  <?php require('biz_db.php'); ?>
+  
     <div id="wrapper">
       <header>
         <div class="top">
@@ -545,7 +551,9 @@
             </div>
           </div>
         </div>
-      </header>
+      </header> -->
+
+        <!-- // header.php -->
 
       <section id="content_page">
         <div class="container">
@@ -733,7 +741,11 @@
         </div>
       </section>
 
-      <footer>
+      <!-- includes <body> <footer>, <a> for scroll up, 3 <script> tags -->
+      <?php require "footer.php"?>
+
+      <!-- footer.php -->
+      <!-- <footer>
         <div class="container">
           <div class="row aligncenter">
             <div class="col-sm-12">
@@ -773,12 +785,13 @@
             </div>
           </div>
         </div>
-      </footer>
-    </div>
+      </footer> 
 
     <a href="#" class="scrollup">
       <i class="fa fa-angle-up active"></i>
     </a>
+    -->
+    <!-- // footer.php -->
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
     <script>
@@ -805,8 +818,4 @@
       });
     </script>
 
-    <script src="../public/js/jquery.min.js"></script>
-    <script src="../public/js/jquery.easing.1.3.js"></script>
-    <script src="../public/js/bootstrap.min.js"></script>
-  </body>
 </html>
