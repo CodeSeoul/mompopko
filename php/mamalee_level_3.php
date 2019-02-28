@@ -10,7 +10,13 @@ $bizInfo = $getBizInfoReq->fetchAll();
 
 <!DOCTYPE html>
 <html>
-<head>
+	<!-- includes <head>, <body> <header> tags -->
+	<?php require "header.php"?>
+
+	<?php require('./../php/biz_db.php');?>
+
+	<!-- header.php -->
+<!-- <head>
 	<meta charset="utf-8">
 	<title>mompopko</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -157,7 +163,7 @@ $bizInfo = $getBizInfoReq->fetchAll();
 </head>
 
 <body>
-<?php require('./../php/biz_db.php');?>
+
 	<div id="wrapper">
 	<header>
 		<div class="top">
@@ -414,7 +420,8 @@ $bizInfo = $getBizInfoReq->fetchAll();
 				</div>
 			</div>
 		</div>
-	</header>
+	</header> -->
+	 <!-- // header.php -->
 
 	<section id="content_page">
 		<div class="container">
@@ -508,6 +515,11 @@ $bizInfo = $getBizInfoReq->fetchAll();
 		</div>
 	</section>
 
+	<!-- includes <body> <footer>, <a> for scroll up, 3 <script> tags -->
+	<?php require "footer.php"?>
+	
+	<!-- footer.php -->
+	<!--
 	<footer>
 		<div class="container">
 			<div class="row aligncenter">
@@ -540,13 +552,11 @@ $bizInfo = $getBizInfoReq->fetchAll();
 
 	<a href="#" class="scrollup">
 		<i class="fa fa-angle-up active"></i>
-	</a>
+	</a>-->
+    <!-- // footer.php -->
 
   	<!-- FlexSlider -->
   <script defer src="../public/js/jquery.flexslider.js"></script>
-	<script src="../public/js/jquery.min.js"></script>
-	<script src="../public/js/jquery.easing.1.3.js"></script>
-	<script src="../public/js/bootstrap.min.js"></script>
 	<script src='../public/js/googleMap.js'></script>
 	<script>createGoogleMap("<?=$bizInfo[0]['biz_address'];?>")</script>
 	<script type="text/javascript">
@@ -561,7 +571,6 @@ $bizInfo = $getBizInfoReq->fetchAll();
 		  });
 		});
 	</script>
-	<script src='../js/serviceUtils.js'></script>
 	<script>
 	let menu_id = <?=$bizInfo[0]['menu_id']?>;
 	serviceUtils.fetchRecommendedPosts(menu_id);
