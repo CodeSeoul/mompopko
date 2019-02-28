@@ -56,8 +56,134 @@ const serviceUtils = (() => {
    * ----------------------------------------------------------------------------------
    */
   const loadMenu = (objParam) => {
-    console.log(objParam);
-    //TODO :: thyunAhn load Menu Datas in header
+    for (let i = 0; i < objParam.length; i++) {
+      let upper_menu_id = objParam[i].upper_menu_id;
+      let menu_name = objParam[i].menu_name;
+      if (upper_menu_id == 2) {
+        let restaurants_dropdown = document.querySelector(
+          "#restaurants_dropdown"
+        );
+        let restaurants_hamburger = document.querySelector(
+          "#restaurants_hamburger"
+        );
+
+        restaurants_dropdown.innerHTML += "<li><a>" + menu_name + "</a></li>";
+        restaurants_hamburger.innerHTML += "<li><a>" + menu_name + "</a></li>";
+      }
+    }
+
+    for (let i = 0; i < objParam.length; i++) {
+      let upper_menu_id = objParam[i].upper_menu_id;
+      let menu_name = objParam[i].menu_name;
+      if (upper_menu_id == 1) {
+        let main_bars = document.querySelector("#main_bars");
+        let main_bars_hamburger = document.querySelector(
+          "#main_bars_hamburger"
+        );
+
+        main_bars.innerHTML +=
+          "<ul class='multi-column-dropdown' id='" +
+          menu_name +
+          "_dropdown'><h5><a>" +
+          menu_name +
+          "</a></h5></ul>";
+        main_bars_hamburger.innerHTML +=
+          "<ul class='multi-column-dropdown' id='" +
+          menu_name +
+          "_hamburger'><h5><a>" +
+          menu_name +
+          "</a></h5></ul>";
+      }
+    }
+
+    for (let i = 0; i < objParam.length; i++) {
+      let upper_menu_id = objParam[i].upper_menu_id;
+      let menu_name = objParam[i].menu_name;
+      if (upper_menu_id == 15) {
+        let bars_dropdown = document.querySelector("#Bars_dropdown");
+        let bars_hamburger = document.querySelector("#Bars_hamburger");
+
+        bars_dropdown.innerHTML += "<li><a>" + menu_name + "</a></li>";
+        bars_hamburger.innerHTML += "<li><a>" + menu_name + "</a></li>";
+      }
+    }
+
+    for (let i = 0; i < objParam.length; i++) {
+      let upper_menu_id = objParam[i].upper_menu_id;
+      let menu_name = objParam[i].menu_name;
+      if (upper_menu_id == 24) {
+        let main_beauty = document.querySelector("#main_beauty");
+        let main_beauty_hamburger = document.querySelector(
+          "#main_beauty_hamburger"
+        );
+
+        main_beauty.innerHTML +=
+          "<ul class='multi-column-dropdown' id='" +
+          menu_name +
+          "_dropdown'><h5><a>" +
+          menu_name +
+          "</a></h5></ul>";
+        main_beauty_hamburger.innerHTML +=
+          "<ul class='multi-column-dropdown' id='" +
+          menu_name +
+          "_hamburger'><h5><a>" +
+          menu_name +
+          "</a></h5></ul>";
+      }
+    }
+
+    for (let i = 0; i < objParam.length; i++) {
+      let upper_menu_id = objParam[i].upper_menu_id;
+      let menu_name = objParam[i].menu_name;
+      if (upper_menu_id == 48) {
+        let beauty_dropdown = document.querySelector("#Beauty_dropdown");
+        let beauty_hamburger = document.querySelector("#Beauty_hamburger");
+
+        beauty_dropdown.innerHTML += "<li><a>" + menu_name + "</a></li>";
+        beauty_hamburger.innerHTML += "<li><a>" + menu_name + "</a></li>";
+      }
+    }
+
+    for (let i = 0; i < objParam.length; i++) {
+      let upper_menu_id = objParam[i].upper_menu_id;
+      let menu_name = objParam[i].menu_name;
+      if (upper_menu_id == 33) {
+        let fashion_dropdown = document.querySelector("#fashion_dropdown");
+        let fashion_hamburger = document.querySelector("#fashion_hamburger");
+
+        fashion_dropdown.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
+        fashion_hamburger.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
+      }
+    }
+
+    for (let i = 0; i < objParam.length; i++) {
+      let upper_menu_id = objParam[i].upper_menu_id;
+      let menu_name = objParam[i].menu_name;
+      if (upper_menu_id == 38) {
+        let entertainment_dropdown = document.querySelector(
+          "#entertainment_dropdown"
+        );
+        let entertainment_hamburger = document.querySelector(
+          "#entertainment_hamburger"
+        );
+
+        entertainment_dropdown.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
+        entertainment_hamburger.innerHTML +=
+          "<h5><a>" + menu_name + "</a></h5>";
+      }
+    }
+
+    for (let i = 0; i < objParam.length; i++) {
+      let upper_menu_id = objParam[i].upper_menu_id;
+      let menu_name = objParam[i].menu_name;
+      if (upper_menu_id == 43) {
+        let services_dropdown = document.querySelector("#services_dropdown");
+        let services_hamburger = document.querySelector("#services_hamburger");
+
+        services_dropdown.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
+        services_hamburger.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
+      }
+    }
   };
 
   /**
