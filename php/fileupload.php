@@ -4,38 +4,22 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 session_start();
 
-//connect db
-try
-{           
-    $host = 'mompopkoapi.wcoding.com';
-    $user = 'mompopko_admin';
-    $password = 'windMarshall92Adult';
-    $port = '8833';
-    $dbname = 'mompopko';
-
-    $dsn = 'mysql:host='. $host . ';port=' . $port . ';dbname=' . $dbname;
-
-    $pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
-}
-catch (Exception $e){
-    die('Error: '. $e->getMessage());
-}
+function fileupload_biz($pdo, $biz_menuName){
 
     $fileGrpIdReq = $pdo->query("SELECT MAX(file_grp_id) FROM tb_file");
     $fileGrpId = (int)($fileGrpIdReq->fetch())[0]+1;
 
-
     $mainImage = $_FILES['mainImage'];
     $subImages = $_FILES['subImages'];
 
-    
-    $imgDir = dirname(__DIR__) . "/img/$biz_menuName/";
+    // for server : $imgDir = dirname(__DIR__) . "/img/$biz_menuName/";
+    // for local :
+    $imgDir = "../public/img/$biz_menuName/";
+
 
     echo dirname(__FILE__) . "__FILE__ <br/>";
     
-
     $totalNbImage = 1 + count($subImages['name']);
-
 
     //upload Images
 
@@ -83,7 +67,6 @@ catch (Exception $e){
 
                 $uploadMainImgQuery = "INSERT INTO tb_file (file_grp_id, file_id, file_order, file_logic_name, file_physic_name, file_path, file_extension, frst_input_date)
                 VALUES(:fileGrpId, :file_id, :file_order, :file_logic_name, :file_physic_name, :file_path, :file_extension, NOW())";
-
 
                 $mainImgId = 1;
                 $uploadMainImgReq = $pdo->prepare($uploadMainImgQuery);
@@ -166,5 +149,78 @@ catch (Exception $e){
             }
         }
     }
+}
 
+function fileupload_trend($pdo){
+
+    $fileGrpIdReq = $pdo->query("SELECT MAX(file_grp_id) FROM tb_file");
+    $fileGrpId = (int)($fileGrpIdReq->fetch())[0]+1;
+
+    $trend_file = $_FILES['trend_file'];
+
+    $uploadOk = 1;
+
+    //main image
+
+    $fileLogicName = $trend_file['name'];
+    $fileType = strtolower(pathinfo(basename($fileLogicName),PATHINFO_EXTENSION));
+    $filePhysicName = uniqid("",true);
+    // for server : $fileDir = dirname(__DIR__) . "/file/datatrend/";
+    // for local :
+    $fileDir = "../public/img/datatrend/";
+    $filePath = $fileDir . basename($filePhysicName . "." . $fileType);
+
+    //check if its an image
+    $check = getimagesize($trend_file['tmp_name']);
+
+    if($check !== false) {
+        echo "File is an image - " . $check["mime"] . ".";
+    } else {
+        echo "File is not an image.";
+        $uploadOk = 0;
+    }
+
+    // Check file size
+    if ($trend_file["size"] > 500000) {
+        echo "Sorry, your file is too large.";
+        $uploadOk = 0;
+    }
+
+    // Allow certain file formats
+    if($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg" && $fileType != "gif" ) {
+        echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+        $uploadOk = 0;
+    }
+
+    // Check if $uploadOk is set to 0 by an error
+    if ($uploadOk == 0) {
+        echo "Sorry, your file was not uploaded.";
+        // if everything is ok, try to upload file
+    } else {
+
+        if (move_uploaded_file($trend_file["tmp_name"], $filePath)) {
+        echo "The file has been uploaded.";
+
+        $uploadFileQuery = "INSERT INTO tb_file (file_grp_id, file_id, file_order, file_logic_name, file_physic_name, file_path, file_extension, frst_input_date)
+        VALUES(:fileGrpId, :file_id, :file_order, :file_logic_name, :file_physic_name, :file_path, :file_extension, NOW())";
+
+        $fileId = 1;
+        $uploadFileReq = $pdo->prepare($uploadFileQuery);
+        $uploadFileReq->bindParam(":fileGrpId", $fileGrpId, PDO::PARAM_INT);
+        $uploadFileReq->bindParam(":file_id", $fileId, PDO::PARAM_INT);
+        $uploadFileReq->bindParam(":file_order", $fileId, PDO::PARAM_INT);
+        $uploadFileReq->bindParam(":file_logic_name", $fileLogicName, PDO::PARAM_STR);
+        $uploadFileReq->bindParam(":file_physic_name", $filePhysicName, PDO::PARAM_STR);
+        $uploadFileReq->bindParam(":file_path", $filePath, PDO::PARAM_STR);
+        $uploadFileReq->bindParam(":file_extension", $fileType, PDO::PARAM_STR);
+        
+        $uploadFileReq->execute();
+        
+        } else {
+        exit();
+        echo "Sorry, there was an error uploading your file.";
+        }
+    }
+    return $fileGrpId;
+}
 ?>

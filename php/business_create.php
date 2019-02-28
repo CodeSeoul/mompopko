@@ -2,22 +2,8 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 session_start();
-try
-{           
-    $host = 'mompopkoapi.wcoding.com';
-    $user = 'mompopko_admin';
-    $password = 'windMarshall92Adult';
-    $port = '8833';
-    $dbname = 'mompopko';
 
-    $dsn = 'mysql:host='. $host . ';port=' . $port . ';dbname=' . $dbname;
-
-    $pdo = new PDO($dsn, $user, $password, array(PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION));
-}
-catch (Exception $e){
-    die('Error: '. $e->getMessage());
-}
-
+require("dbConnect_admin.php");
 
     if($_SERVER['REQUEST_METHOD']=="POST"
         && !empty($_POST['businessName'])
@@ -55,6 +41,7 @@ catch (Exception $e){
         $biz_twitter = htmlspecialchars($_POST['twitter']);
 
         include "fileupload.php";
+        fileupload_biz($pdo,$biz_menuName);
 
         $findExistingBiz ='SELECT * FROM tb_biz WHERE biz_name = :biz_name';
         

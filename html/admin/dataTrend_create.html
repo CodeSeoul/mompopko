@@ -16,20 +16,20 @@
   <header id="header"></header>
   <div class="container mb-5">
 
-    <form action="#" method="POST">
+    <form enctype="multipart/form-data" action="../../php/trend_create.php"  method="POST">
       <div class="form-group">
-        <label for="title">Data trend post title</label>
-        <input type="text" id="title" class="form-control" />
+        <label for="trend_headline">Data trend post headline</label>
+        <input name= 'trend_headline' type="text" id="trend_headline" class="form-control" />
       </div>
 
       <div class="form-group">
-        <label for="infographic">Infographic</label>
-        <input type="file" id="infographic" class="form-control" />
+        <label for="trend_file">Infographic</label>
+        <input type="file" name='trend_file' id="trend_file" class="form-control" />
       </div>
 
       <div class="form-group">
-        <label for="description">Description</label>
-        <textarea rows="20" id="description" class="form-control"></textarea>
+        <label for="trend_article">Description</label>
+        <textarea name="trend_article"rows="20" id="trend_article" class="form-control"></textarea>
       </div>
 
       <div class="container">

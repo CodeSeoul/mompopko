@@ -505,6 +505,7 @@ $bizInfo = $getBizInfoReq->fetchAll();
 				<div class="col-xs-12">
 					<h3 class="title">Perhaps you'd like...</h3>
 				</div>
+				<!-- Recommended Posts Here -->
 			</div>
 		</div>
 	</section>
