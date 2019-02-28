@@ -64,7 +64,6 @@
 	ajax_biz.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			var result = JSON.parse(this.responseText);
-			console.log(result);
 			var offset=0;
 			for (var i = offset; i < result.length && i<offset+9; i++){
 				var biz_name = result[i].biz_name;

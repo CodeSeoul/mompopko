@@ -293,10 +293,95 @@ const serviceUtils = (() => {
   //fetch Menu
   fetchMenu();
 
+    /**
+   * ----------------------------------------------------------------------------------
+   * public
+   * fetchRecommendedPosts : fetch recommended posts
+   * @param : current business' main category
+   *  - menuId : current business' menuId
+   * @return : recommended posts in JSON
+   * ----------------------------------------------------------------------------------
+   */
+
+  function fetchRecommendedPosts(menuId){
+    let ajaxUrl = "../php/biz_db_recommend.php";
+
+    if (blIndexOrNot()) ajaxUrl = "php/biz_db_recommend.php";
+
+    let ajax = new XMLHttpRequest();
+
+    ajax.open("POST", ajaxUrl, true);
+    ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    
+    ajax.onreadystatechange = function() {
+      if (this.readyState == 4 && this.status == 200) {
+        loadRecommendedPosts(JSON.parse(ajax.response));
+        console.log(ajax.response);
+      }
+    };
+    ajax.send(`menuId=${menuId}`);
+  }
+
+      /**
+   * ----------------------------------------------------------------------------------
+   * public
+   * loadRecommendedPosts : load recommended posts
+   * @param : (object) recommended posts
+   *  - posts : recommended posts
+   * ----------------------------------------------------------------------------------
+   */
+  
+   function loadRecommendedPosts(posts){
+
+
+    // select recommended posts container
+
+    let rcmdContainer = document.querySelector("#related_post .container .row");
+    
+     
+    for(key in posts){
+
+      //create recommended post elements
+      let rcmdPost = posts[key];
+      let rcmdPostElement = document.createElement("div");
+      rcmdPostElement.className = "col-xs-12 col-sm-6 col-md-4";
+      
+      rcmdPostElement.innerHTML = `
+      <div class="thumb-box">
+        <div class="thumb-img">
+          <a href="mamalee_level_`+rcmdPost['biz_level']+`.php?biz_id=`+rcmdPost['biz_id']+`">
+            <img src=${rcmdPost['file_path'].replace('/var/www/html/',"../public/")} width="100%" alt="" />
+          </a>
+        </div>
+        <div class="thumb-content">
+          <h5 class="thumb-category">
+            <span class="main" class="menu_zero_span"></span>
+            <span class="sub" class="menu_sub_cat">Korean</span>
+          </h5>
+          <span class="img_two"><span/>
+            <div class="row">
+              <div class="col-xs-7 thumb-name">
+                <span>`+rcmdPost['biz_name']+`</span>
+                <div style="color: #999;">(level `+rcmdPost['biz_level']+`)</div>
+              </div>
+              <div class="col-xs-5 thumb-product">
+                  <span class="img_two"><span/>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    `
+    rcmdContainer.appendChild(rcmdPostElement);
+    }
+   }
+
   // supply utils
   return {
     searchBizData,
     moveToIndexPage,
-    loadBiz
+    loadBiz,
+    fetchRecommendedPosts,
+    loadRecommendedPosts
   };
 })();

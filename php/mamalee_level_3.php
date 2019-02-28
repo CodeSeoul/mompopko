@@ -503,83 +503,7 @@ $bizInfo = $getBizInfoReq->fetchAll();
 				<div class="col-xs-12">
 					<h3 class="title">Perhaps you'd like...</h3>
 				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">
-					<div class="thumb-box">
-						<div class="thumb-img">
-							<a href="">									<img src="img/openings/Elliots_1.jpg" width="100%" alt="" />
-							</a>
-						</div>
-						<div class="thumb-content">
-							<h5 class="thumb-category">
-								<i class="fas fa-utensils"></i>
-								<span class="main">Food & Drink</span>
-								<span class="sub">Cocktail Bar</span>
-							</h5>
-							<a href="">
-								<div class="row">
-									<div class="col-xs-7 thumb-name">
-										<span>Elliot’s</span>
-									</div>
-									<div class="col-xs-5 thumb-product">
-										<img src="img/openings/Elliots_2.jpg" width="100%" alt="" />
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">
-					<div class="thumb-box">
-						<div class="thumb-img">
-							<a href="">
-								<img src="img/openings/RouseArouse_1.jpg" width="100%" alt="" />
-							</a>
-						</div>
-						<div class="thumb-content">
-							<h5 class="thumb-category">
-								<i class="fas fa-utensils"></i>
-								<span class="main">Food & Drink</span>
-								<span class="sub">French Bar & Bistro</span>
-							</h5>
-							<a href="">
-								<div class="row">
-									<div class="col-xs-7 thumb-name">
-										<span>Rouse Arouse</span>
-									</div>
-									<div class="col-xs-5 thumb-product">
-										<img src="img/openings/RouseArouse_2.jpg" width="100%" alt="" />
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">
-					<div class="thumb-box">
-						<div class="thumb-img">
-							<a href="">
-								<img src="img/openings/AyaCoffee_1.jpg" width="100%" alt="" />
-							</a>
-						</div>
-						<div class="thumb-content">
-							<h5 class="thumb-category">
-								<i class="fas fa-utensils"></i>
-								<span class="main">Food & Drink</span>
-								<span class="sub">Cafe</span>
-							</h5>
-							<a href="">
-								<div class="row">
-									<div class="col-xs-7 thumb-name">
-										<span>Aya Coffee</span>
-									</div>
-									<div class="col-xs-5 thumb-product">
-										<img src="img/openings/AyaCoffee_2.png" width="100%" alt="" />
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
+				<!-- Recommended Posts Here -->
 			</div>
 		</div>
 	</section>
@@ -636,6 +560,11 @@ $bizInfo = $getBizInfoReq->fetchAll();
 		    maxItems: 4
 		  });
 		});
+	</script>
+	<script src='../js/serviceUtils.js'></script>
+	<script>
+	let menu_id = <?=$bizInfo[0]['menu_id']?>;
+	serviceUtils.fetchRecommendedPosts(menu_id);
 	</script>
 </body>
 </html>
