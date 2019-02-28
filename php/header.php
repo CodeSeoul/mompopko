@@ -12,9 +12,9 @@
 	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
 	<link href='../public/fonts/NanumSquare/nanumsquare.css' rel='stylesheet' type='text/css'>
 	<style>
-	#Restaurants_hamburger, #Restaurants_dropdown{
-		display: none;
-	}
+        #Restaurants_hamburger, #Restaurants_dropdown{
+            display: none;
+        }
 	</style>
 
     <!-- serciceUtils -->

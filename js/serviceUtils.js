@@ -8,13 +8,31 @@ const serviceUtils = (() => {
 
   /**
    * ----------------------------------------------------------------------------------
+   * private
+   * blIndexOrNot : findout whether current page is index.php or not.
+   * @return : true=> index.php / false=> not index.php
+   * ----------------------------------------------------------------------------------
+   */
+  const blIndexOrNot = () => {
+    let blResult = false;
+
+    // find out whether the file is index.php or not
+    let urlPathname = window.location.pathname;
+    let arryPath = urlPathname.split("/");
+
+    if (arryPath[arryPath.length - 1] === "index.php") blResult = true;
+
+    return blResult;
+  };
+
+  /**
+   * ----------------------------------------------------------------------------------
    * public
    * moveToIndexPage : fetch All Menus
    * @param : event of click eventListener
    * ----------------------------------------------------------------------------------
    */
   const moveToIndexPage = (e) => {
-    console.log(window.location.pathname);
     e.preventDefault();
     let urlPathname = window.location.pathname;
     let lastIndexOfSlash = -1;
@@ -37,8 +55,12 @@ const serviceUtils = (() => {
    * ----------------------------------------------------------------------------------
    */
   const fetchMenu = () => {
+    let ajaxUrl = "../php/db.php";
+
+    if (blIndexOrNot()) ajaxUrl = "php/db.php";
+
     let ajax = new XMLHttpRequest();
-    ajax.open("POST", "../php/db.php", true);
+    ajax.open("POST", ajaxUrl, true);
     ajax.send();
     ajax.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
@@ -211,13 +233,17 @@ const serviceUtils = (() => {
 
     // destination of file name.
     let fileMoveTo = "search_business.php";
-
     fileMoveTo += "?searchKeyword=" + searchKeyword;
 
-    // move to search_business.php for search result page.
-    let lastIndexOfSlash = window.location.pathname.lastIndexOf("/");
-    window.location.href =
-      window.location.pathname.substr(0, lastIndexOfSlash + 1) + fileMoveTo;
+    // if current page is index.php
+    if (blIndexOrNot()) {
+      window.location.href = "php/" + fileMoveTo;
+    } else {
+      // move to search_business.php for search result page.
+      let lastIndexOfSlash = window.location.pathname.lastIndexOf("/");
+      window.location.href =
+        window.location.pathname.substr(0, lastIndexOfSlash + 1) + fileMoveTo;
+    }
   };
 
   //fetch Menu
