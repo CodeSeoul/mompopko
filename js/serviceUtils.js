@@ -223,9 +223,10 @@ const serviceUtils = (() => {
       objParam.targetElem.innerHTML += `<div class="col-xs-12 col-sm-6 col-md-4">
           <div class="thumb-box">
             <div class="thumb-img">
-                <a href="mamalee_level_${bizData.biz_level}.php
-                                ?biz_id=${bizData.biz_id}">
-                <img src=${result[i]["file_path"].replace(
+                <a href="mamalee_level_${bizData.biz_level}.php?biz_id=${
+        bizData.biz_id
+      }">
+                <img src=../${bizData.file_path.replace(
                   "/var/www/html/",
                   "public/"
                 )} width="100%" alt="" />
