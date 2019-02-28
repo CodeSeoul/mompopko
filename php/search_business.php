@@ -22,13 +22,18 @@
 
     if( !empty($searchKeyword) ) {
         $query = "SELECT
-                        biz_id
-                        ,biz_name
-                        ,biz_level
-                        ,IF(biz_level>1, 2, 1) AS biz_level_classify
-                        ,ROUND((CHAR_LENGTH(CONCAT(biz_name, biz_interview_conts))-CHAR_LENGTH((CONCAT(REPLACE(biz_name,:searchKeyword,''),REPLACE(biz_interview_conts,:searchKeyword,''))))) / CHAR_LENGTH(:searchKeyword)) AS search_cnt
-                FROM tb_biz 
-                WHERE biz_interview_conts LIKE :searchKeywordInWhere OR biz_name LIKE :searchKeywordInWhere
+                        A.biz_id
+                        ,A.biz_name
+                        ,A.biz_level
+                        ,IF(A.biz_level>1, 2, 1) AS biz_level_classify
+                        ,ROUND((CHAR_LENGTH(CONCAT(A.biz_name, A.biz_interview_conts))-CHAR_LENGTH((CONCAT(REPLACE(A.biz_name,:searchKeyword,''),REPLACE(A.biz_interview_conts,:searchKeyword,''))))) / CHAR_LENGTH(:searchKeyword)) AS search_cnt
+                        ,B.file_path
+		                ,B.file_order
+                FROM tb_biz A
+                LEFT JOIN tb_file B
+                ON A.file_grp_id = B.file_grp_id 
+                WHERE (A.biz_interview_conts LIKE :searchKeywordInWhere OR A.biz_name LIKE :searchKeywordInWhere)
+                AND B.file_order = 1
                 ORDER BY biz_level_classify desc, search_cnt DESC";
         
         $req = $pdo->prepare($query);
