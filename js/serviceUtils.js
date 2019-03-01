@@ -216,7 +216,11 @@ const serviceUtils = (() => {
   const setATagForMenu = (objMenuData, openTag, closeTag) => {
     // if menu doesn't have page
     if (objMenuData.menu_page_yn === "1") {
-      openTag += "<a>";
+      let movePageUrl = "menu_detail.php";
+
+      if (blIndexOrNot()) movePageUrl = "php/" + movePageUrl;
+
+      openTag += "<a href=" + movePageUrl + "#" + objMenuData.menu_name + ">";
       closeTag = "</a>" + closeTag;
     }
 
