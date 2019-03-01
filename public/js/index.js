@@ -161,7 +161,52 @@ function loadByPopular(nb_posts) {
  */
 
 function loadTrends(nb_trends) {
-	alert('trends');
+	ajax_trend = new XMLHttpRequest();
+	ajax_trend.open('POST', 'php/trends_db.php', true);
+	ajax_trend.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	ajax_trend.send(`nb_posts=${nb_trends}`);
+
+	ajax_trend.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			var result = JSON.parse(this.responseText);
+			var offset = nb_trends;
+			var main_div_recent = document.querySelector('#recent');
+			main_div_recent.innerHTML = '';
+
+			for (var i = 0; i < result.length && i < offset; i++) {
+				var headline = result[i].trend_headline;
+				var article = result[i].trend_article;
+				var id = result[i].trend_id;
+				console.log(result[i].file_path);
+				var filepath = result[i].file_path.replace('../public', 'public');
+				console.log(filepath);
+
+				main_div_recent.innerHTML += `
+				<div class="col-xs-12 col-sm-6 col-md-4 trend-post">
+					<div class="thumb-box">
+						<div class="thumb-img">
+							<a href="php/datatrend.php?trend_id=${id}">
+								<img src=${filepath} width="100%" alt="" />
+							</a>
+						</div>
+						<div class="thumb-content-2">
+							<a href="trends_1.html">
+								<div class="row">
+									<div class="col-xs-12 thumb-name">
+										<span>${headline}</span>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+				</div>`;
+			}
+
+			var recent_button = document.querySelector('#recent_button');
+			recent_button.innerHTML = `<button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button>`;
+			loadMore('trends');
+		}
+	};
 }
 
 /**
@@ -173,18 +218,19 @@ function loadTrends(nb_trends) {
 
 function loadMore(currentState) {
 	document.querySelector('.btn-more').addEventListener('click', () => {
-		let nb_current_post = document.querySelectorAll('.business-post').length;
+		let nb_business_post = document.querySelectorAll('.business-post').length;
+		let nb_trend_post = document.querySelectorAll('.trend-post').length;
 		switch (currentState) {
 			case 'recent': {
-				loadByRecent(nb_current_post + 3);
+				loadByRecent(nb_business_post + 3);
 				break;
 			}
 			case 'popular': {
-				loadByPopular(nb_current_post + 3);
+				loadByPopular(nb_business_post + 3);
 				break;
 			}
 			case 'trends': {
-				loadTrends();
+				loadTrends(nb_trend_post + 3);
 				break;
 			}
 		}

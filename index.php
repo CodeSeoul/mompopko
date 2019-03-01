@@ -58,67 +58,6 @@
 
 	<!-- // header.php -->
 
-<!-- <script type="text/javascript">
-	file_grp_id, file_id, file_order, file_logic_name, file_physic_name, file_path, file_extension
-		var ajax_biz = new XMLHttpRequest();
-		ajax_biz.open("POST", "../php/db_file", true);
-		ajax_biz.send();
-		ajax_biz.onreadystatechange = function() {
-			if (this.readyState == 4 && this.status == 200) {
-				var result = JSON.parse(this.responseText);
-				for (var i = 0; i< result.length; i++) {
-					var file_grp_id = result[i].file_grp_id;
-					var file_order = result[i].file_order;
-					var file_path = result.[i].file_path;
-					var file_physic_name = result[i].file_physic_name;
-					var file_logic_name = result.[i].file_logic_name;
-					var img1 = document.querySelectorAll(.img_one);
-					var img2 = document.querySelectorAll(.img_two);
-					if (file_grp_id == 1 && file_order == 1){
-						imh1.innerHTML = "<img src='`+file_path+file_physical_name+file_logic_name+`' width='100%'/>"
-					}
-					if (file_grp_id == 2 && file_order == 2)''
-						img2.innerHTML = "<img src='`/prototype/img/stock-vector-arouse-water-wave-representation-emblem-1221620014.jpg' width='100%'/>"
-					}
-					if (file_grp_id == 1 && file_order == 1){
-						
-					}
-					if (file_grp_id == 2 && file_order == 2){
-						
-					}
-					if (file_grp_id == 3 && file_order == 1){
-						
-					}
-					if (file_grp_id == 3 && file_order == 2){
-						
-					}
-					if (file_grp_id == 4 && file_order == 1){
-						
-					}
-					if (file_grp_id == 4 && file_order == 2){
-						
-					}
-					if (file_grp_id == 5 && file_order == 1){
-						
-					}
-					if (file_grp_id == 5 && file_order == 2){
-						
-					}
-					if (file_grp_id == 6 && file_order == 1){
-						
-					}
-					if (file_grp_id == 6 && file_order == 2){
-						
-					}
-					if (file_grp_id == 7 && file_order == 1){
-						
-					}
-					if (file_grp_id == 7 && file_order == 2){
-						
-					}
-				}}
-	</script> -->
-
 </head>
 
 <body>
