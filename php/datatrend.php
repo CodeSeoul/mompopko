@@ -2,7 +2,7 @@
 
 // get business info for this trend page
 require_once('dbConnect.php');
-$getTrendInfoQuery = 'SELECT * FROM tb_trend LEFT JOIN tb_file ON tb_trend.file_grp_id = tb_file.file_grp_id WHERE tb_trend.trend_id = :trend_id ORDER BY tb_file.file_order ASC';
+$getTrendInfoQuery = 'SELECT *, DATE_FORMAT(tb_trend.frst_input_date, "%W, %M %d, %Y") AS fmt_date  FROM tb_trend LEFT JOIN tb_file ON tb_trend.file_grp_id = tb_file.file_grp_id WHERE tb_trend.trend_id = :trend_id ORDER BY tb_file.file_order ASC';
 $getTrendInfoReq = $pdo->prepare($getTrendInfoQuery);
 $getTrendInfoReq->bindParam(":trend_id",$_GET['trend_id'],PDO::PARAM_INT);
 $getTrendInfoReq->execute();
@@ -15,11 +15,11 @@ $trendInfo = $getTrendInfoReq->fetch();
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
-					<h3 class="title"></h3>
+					<h3 class="title"><?=$trendInfo['trend_headline']?></h3>
 					<h5 class="thumb-category">
 						<span>
 							<i class="fas fa-edit"></i>
-							<span class="main"><?=$trendInfo['trend_title']?></span>
+							<span class="main">Published by MOMPOPKO <?=$trendInfo['fmt_date']?></span>
 						</span>
 					</h5>
 				</div>
@@ -43,63 +43,7 @@ $trendInfo = $getTrendInfoReq->fetch();
 	<section id="related_post">
 		<div class="container">
 			<div class="row">
-				<div class="col-xs-12">
-					<h3 class="title">Other Business Data Trends...</h3>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">
-					<div class="thumb-box">
-						<div class="thumb-img">
-							<a href="trends_1.html">
-								<img src="img/trends/graph_1.jpg" width="100%" alt="" />
-							</a>
-						</div>
-						<div class="thumb-content-2">
-							<a href="trends_1.html">
-								<div class="row">
-									<div class="col-xs-12 thumb-name">
-										<span>Openings by Category 2018</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">
-					<div class="thumb-box">
-						<div class="thumb-img">
-							<a href="">
-								<img src="img/trends/graph_2.jpg" width="100%" alt="" />
-							</a>
-						</div>
-						<div class="thumb-content-2">
-							<a href="">
-								<div class="row">
-									<div class="col-xs-12 thumb-name">
-										<span>Open and Closure Rate (5 year trend)</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-4">
-					<div class="thumb-box">
-						<div class="thumb-img">
-							<a href="">
-								<img src="img/trends/graph_3.jpg" width="100%" alt="" />
-							</a>
-						</div>
-						<div class="thumb-content-2">
-							<a href="">
-								<div class="row">
-									<div class="col-xs-12 thumb-name">
-										<span>Openings by Location</span>
-									</div>
-								</div>
-							</a>
-						</div>
-					</div>
-				</div>
+				<!-- related posts from trend.js -->
 			</div>
 		</div>
 	</section>

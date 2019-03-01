@@ -2,10 +2,10 @@
         <div class="container">
             <div class="row aligncenter">
                 <div class="col-sm-12">
-                    <div class="subscribe">
+                    <!-- <div class="subscribe">
                         <h3 class="title">Subscribe</h3>
                         <span class="email"><i class="far fa-envelope-open"></i><input type="text" placeholder="Please enter your email." id="email" autocomplete="off" /></span>
-                    </div>
+                    </div> -->
                     <ul class="sns-list">
                         <li><a><i class="fab fa-facebook-square"></i></a></li>
                         <li><a><i class="fab fa-instagram"></i></a></li>
@@ -14,13 +14,13 @@
                 </div>
                 <div class="col-sm-12">
                     <ul class="link-list">
-                        <li>
+                        <!-- <li>
                             <a href="">ABOUT</a>
-                        </li>
+                        </li> -->
                         <li>MOMPOPKO @ 2018</li>
-                        <li>
+                        <!-- <li>
                             <a href="">CONTACT</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>

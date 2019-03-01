@@ -11,7 +11,7 @@
 	<link href="../public/css/fontawesome-all.css" rel="stylesheet" />
 	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjWNh6hc_mh96jtYaQOuCEAJYSECzrQgs"></script>
-	<link href='../public/fonts/NanumSquare/nanumsquare.css' rel='stylesheet' type='text/css'>
+    <link href='../public/fonts/NanumSquare/nanumsquare.css' rel='stylesheet' type='text/css'>
 	<style>
         #Restaurants_hamburger, #Restaurants_dropdown{
             display: none;
@@ -93,10 +93,10 @@
                                 <input type="text" id="sb_keyword_label" value="Find" disabled/>
                                 <input type="text" placeholder="wine bar, spa, cafe..." id="sb_keyword"/>
                             </div>
-                            <div class="sb sb_input_location">
+                            <!-- <div class="sb sb_input_location">
                                 <input type="text" id="sb_location_label" value="Near" disabled/>
                                 <input type="text" placeholder="Seoul, Korea" id="sb_location"/>
-                            </div>
+                            </div> -->
                             <div class="sb">
                                 <input class="sb_search" type="submit" value=""/>
                             </div>
@@ -166,7 +166,7 @@
                                     <a href="">Golf Range</a>
                                 </li>
                             </ol> -->
-                            <ol class="sb_dropdown sb_location" style="display:none;">
+                            <!-- <ol class="sb_dropdown sb_location" style="display:none;">
                                 <li class="rank_title">
                                     <a href="">Most Popular</a>
                                 </li>
@@ -230,7 +230,7 @@
                                     </div>
                                     <a href="">Lotte Tower</a>
                                 </li>
-                            </ol>
+                            </ol> -->
                             </form>
                         </div>
                     </div>
