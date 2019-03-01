@@ -273,6 +273,11 @@ const serviceUtils = (() => {
           </div>
         </div>`;
     });
+
+    //objParam.targetElem.innerHTML +=
+
+    const recent_button = document.querySelector("#recent_button");
+    recent_button.innerHTML = `<button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button>`;
   };
 
   /**
