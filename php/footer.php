@@ -1,5 +1,5 @@
     <footer>
-        <div class="container">
+        <div class="container" style="padding:50px 0px;"> <!-- when unlock the comment of subscribe remove style attribute of container class-->
             <div class="row aligncenter">
                 <div class="col-sm-12">
                     <!-- <div class="subscribe">
