@@ -52,9 +52,7 @@ const menuDetail = (() => {
     const objSendParam = {};
     objSendParam.objBizData = objBizData;
     objSendParam.targetElem = targetElem;
-    console.log(objBizData);
-    console.log(objBizData[0]);
-    console.log(objBizData[0].biz_id);
+
     // when searched data exists
     if (!serviceUtils.isEmpty(objBizData[0].biz_id)) {
       serviceUtils.loadBiz(objSendParam);
@@ -69,6 +67,11 @@ const menuDetail = (() => {
 
     //const recent_button = document.querySelector("#recent_button");
     //recent_button.innerHTML = `<button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button>`;
+  };
+
+  // onhashchange event
+  window.onhashchange = () => {
+    fetchDetailMenuBiz();
   };
 
   // to get menu's business
