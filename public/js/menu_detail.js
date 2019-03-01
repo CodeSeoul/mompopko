@@ -34,6 +34,12 @@ const menuDetail = (() => {
       if (this.readyState == 4 && this.status == 200) {
         let objBiz = [];
         if (ajax.responseText) objBiz = JSON.parse(ajax.responseText);
+
+        // set result title
+        const resultTitleElem = document.getElementById("result_title");
+        resultTitleElem.innerHTML = objBiz[0].menu_path;
+
+        //loading Menu's biz
         loadDetailMenuBiz(objBiz);
       }
     };
@@ -60,13 +66,10 @@ const menuDetail = (() => {
       // when searched data doesn't exist
       targetElem.innerHTML = `
           <div class="no-search-data">
-            No data in '${objBizData[0].menu_path}' menu.
+            No data in this menu.
           </div>
         `;
     }
-
-    //const recent_button = document.querySelector("#recent_button");
-    //recent_button.innerHTML = `<button class="btn btn-more" data-toggle="collapse" data-target="#moreThumb">See More</button>`;
   };
 
   // onhashchange event
