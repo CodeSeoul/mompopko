@@ -19,7 +19,7 @@
 	</style>
 
 	<!-- serciceUtils -->
-	<script src="js/serviceUtils.js"></script>
+	<script type="text/javascript" src="js/serviceUtils.js"></script>
 	<script type="text/javascript" src="public/js/jquery.min.js"></script>
 	<script type="text/javascript">
         $(function() {
@@ -149,7 +149,7 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<ul class="multi-column-dropdown" id="restaurants_dropdown">
-											<h5><a>Restaurants</a></h5>
+											<h5>Restaurants</h5>
 					                    </ul>
 					                </div>
 					                <div class="col-sm-6" id="main_bars">
