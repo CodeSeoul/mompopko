@@ -187,7 +187,7 @@ const serviceUtils = (() => {
     }
   };
 
-  const loadMenu_old = (objParam) => {
+  /*const loadMenu_old = (objParam) => {
     for (let i = 0; i < objParam.length; i++) {
       let upper_menu_id = objParam[i].upper_menu_id;
       let menu_name = objParam[i].menu_name;
@@ -316,7 +316,7 @@ const serviceUtils = (() => {
         services_hamburger.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
       }
     }
-  };
+  };*/
 
   /**
    * ----------------------------------------------------------------------------------
