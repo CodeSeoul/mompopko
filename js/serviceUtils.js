@@ -220,7 +220,7 @@ const serviceUtils = (() => {
 
       if (blIndexOrNot()) movePageUrl = "php/" + movePageUrl;
 
-      openTag += "<a href=" + movePageUrl + "#" + objMenuData.menu_name + ">";
+      openTag += "<a href=" + movePageUrl + "#" + objMenuData.menu_id + ">";
       closeTag = "</a>" + closeTag;
     }
 
@@ -405,6 +405,18 @@ const serviceUtils = (() => {
     }
   }
 
+  /**
+   * ---------------------------------------------------------------------------
+   * isEmpty : check value is null/undefined/empty string
+   * @param : value which needs checked
+   * @return : true (param is null/undefined/empty string) / false (param has value)
+   * ---------------------------------------------------------------------------
+   */
+  const isEmpty = (arg) => {
+    if (arg === undefined || arg === null || arg === "") return true;
+    return false;
+  };
+
   // supply utils
   return {
     searchBizData,
@@ -412,6 +424,7 @@ const serviceUtils = (() => {
     loadBiz,
     fetchRecommendedPosts,
     loadRecommendedPosts,
-    fetchMenu
+    fetchMenu,
+    isEmpty
   };
 })();
