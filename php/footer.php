@@ -31,3 +31,8 @@
     <i class="fa fa-angle-up active"></i>
 </a>
 
+<script type="text/javascript">
+    // fetch & load for menu datas.
+    serviceUtils.fetchMenu();
+</script>
+

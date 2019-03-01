@@ -253,6 +253,9 @@
 	<script src="public/js/bootstrap.min.js"></script>
 	<script src="public/js/index.js"></script>
 	<script type="text/javascript">
+		// fetch & load for menu datas.
+		serviceUtils.fetchMenu();
+		
 		// for search biz
 		const searchForm = document.querySelector("#top_search");
 		searchForm.addEventListener('submit', (e) => serviceUtils.searchBizData(e));
