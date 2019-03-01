@@ -50,7 +50,7 @@ const serviceUtils = (() => {
 
   /**
    * ----------------------------------------------------------------------------------
-   * private
+   * public
    * fetchMenu : fetch All Menus
    * ----------------------------------------------------------------------------------
    */
@@ -81,6 +81,7 @@ const serviceUtils = (() => {
     for (let i = 0; i < objParam.length; i++) {
       let upper_menu_id = objParam[i].upper_menu_id;
       let menu_name = objParam[i].menu_name;
+      let strInnerHTML = "";
 
       switch (upper_menu_id) {
         case "1":
@@ -89,18 +90,20 @@ const serviceUtils = (() => {
             "#main_bars_hamburger"
           );
 
+          strInnerHTML = setATagForMenu(objParam[i], "<h5>", "</h5>");
+
           main_bars.innerHTML +=
             "<ul class='multi-column-dropdown' id='" +
             menu_name +
-            "_dropdown'><h5><a>" +
-            menu_name +
-            "</a></h5></ul>";
+            "_dropdown'>" +
+            strInnerHTML +
+            "</ul>";
           main_bars_hamburger.innerHTML +=
             "<ul class='multi-column-dropdown' id='" +
             menu_name +
-            "_hamburger'><h5><a>" +
-            menu_name +
-            "</a></h5></ul>";
+            "_hamburger'>" +
+            strInnerHTML +
+            "</ul>";
           break;
 
         case "2":
@@ -111,17 +114,21 @@ const serviceUtils = (() => {
             "#restaurants_hamburger"
           );
 
-          restaurants_dropdown.innerHTML += "<li><a>" + menu_name + "</a></li>";
-          restaurants_hamburger.innerHTML +=
-            "<li><a>" + menu_name + "</a></li>";
+          // "<li><a>" + menu_name + "</a></li>";
+          strInnerHTML = setATagForMenu(objParam[i], "<li>", "</li>");
+
+          restaurants_dropdown.innerHTML += strInnerHTML;
+          restaurants_hamburger.innerHTML += strInnerHTML;
           break;
 
         case "15":
           let bars_dropdown = document.querySelector("#Bars_dropdown");
           let bars_hamburger = document.querySelector("#Bars_hamburger");
 
-          bars_dropdown.innerHTML += "<li><a>" + menu_name + "</a></li>";
-          bars_hamburger.innerHTML += "<li><a>" + menu_name + "</a></li>";
+          strInnerHTML = setATagForMenu(objParam[i], "<li>", "</li>");
+
+          bars_dropdown.innerHTML += strInnerHTML;
+          bars_hamburger.innerHTML += strInnerHTML;
           break;
 
         case "24":
@@ -130,26 +137,30 @@ const serviceUtils = (() => {
             "#main_beauty_hamburger"
           );
 
+          strInnerHTML = setATagForMenu(objParam[i], "<h5>", "</h5>");
+
           main_beauty.innerHTML +=
             "<ul class='multi-column-dropdown' id='" +
             menu_name +
-            "_dropdown'><h5><a>" +
-            menu_name +
-            "</a></h5></ul>";
+            "_dropdown'>" +
+            strInnerHTML +
+            "</ul>";
           main_beauty_hamburger.innerHTML +=
             "<ul class='multi-column-dropdown' id='" +
             menu_name +
-            "_hamburger'><h5><a>" +
-            menu_name +
-            "</a></h5></ul>";
+            "_hamburger'>" +
+            strInnerHTML +
+            "</ul>";
           break;
 
         case "33":
           let fashion_dropdown = document.querySelector("#fashion_dropdown");
           let fashion_hamburger = document.querySelector("#fashion_hamburger");
 
-          fashion_dropdown.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
-          fashion_hamburger.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
+          strInnerHTML = setATagForMenu(objParam[i], "<h5>", "</h5>");
+
+          fashion_dropdown.innerHTML += strInnerHTML;
+          fashion_hamburger.innerHTML += strInnerHTML;
           break;
 
         case "38":
@@ -160,10 +171,9 @@ const serviceUtils = (() => {
             "#entertainment_hamburger"
           );
 
-          entertainment_dropdown.innerHTML +=
-            "<h5><a>" + menu_name + "</a></h5>";
-          entertainment_hamburger.innerHTML +=
-            "<h5><a>" + menu_name + "</a></h5>";
+          strInnerHTML = setATagForMenu(objParam[i], "<h5>", "</h5>");
+          entertainment_dropdown.innerHTML += strInnerHTML;
+          entertainment_hamburger.innerHTML += strInnerHTML;
           break;
 
         case "43":
@@ -172,151 +182,46 @@ const serviceUtils = (() => {
             "#services_hamburger"
           );
 
-          services_dropdown.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
-          services_hamburger.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
+          strInnerHTML = setATagForMenu(objParam[i], "<h5>", "</h5>");
+
+          services_dropdown.innerHTML += strInnerHTML;
+          services_hamburger.innerHTML += strInnerHTML;
           break;
 
         case "48":
           let beauty_dropdown = document.querySelector("#Beauty_dropdown");
           let beauty_hamburger = document.querySelector("#Beauty_hamburger");
 
-          beauty_dropdown.innerHTML += "<li><a>" + menu_name + "</a></li>";
-          beauty_hamburger.innerHTML += "<li><a>" + menu_name + "</a></li>";
+          strInnerHTML = setATagForMenu(objParam[i], "<li>", "</li>");
+
+          beauty_dropdown.innerHTML += strInnerHTML;
+          beauty_hamburger.innerHTML += strInnerHTML;
           break;
       }
     }
   };
 
-  /*const loadMenu_old = (objParam) => {
-    for (let i = 0; i < objParam.length; i++) {
-      let upper_menu_id = objParam[i].upper_menu_id;
-      let menu_name = objParam[i].menu_name;
-      if (upper_menu_id == 2) {
-        let restaurants_dropdown = document.querySelector(
-          "#restaurants_dropdown"
-        );
-        let restaurants_hamburger = document.querySelector(
-          "#restaurants_hamburger"
-        );
+  /**
+   * ----------------------------------------------------------------------------------
+   * private
+   * setATagForMenu : set <a> tag for menu if it has menu_page
+   * @param : 1. object of menu data
+   *          2. menuName's html open tag
+   *          3. menuName's html close tag
+   * @return : if menuName has page then, return tag+menuName with <a> tag
+   *          if menuName has not page then, return only tag+menuName
+   * ----------------------------------------------------------------------------------
+   */
 
-        restaurants_dropdown.innerHTML += "<li><a>" + menu_name + "</a></li>";
-        restaurants_hamburger.innerHTML += "<li><a>" + menu_name + "</a></li>";
-      }
+  const setATagForMenu = (objMenuData, openTag, closeTag) => {
+    // if menu doesn't have page
+    if (objMenuData.menu_page_yn === "1") {
+      openTag += "<a>";
+      closeTag = "</a>" + closeTag;
     }
 
-    for (let i = 0; i < objParam.length; i++) {
-      let upper_menu_id = objParam[i].upper_menu_id;
-      let menu_name = objParam[i].menu_name;
-      if (upper_menu_id == 1) {
-        let main_bars = document.querySelector("#main_bars");
-        let main_bars_hamburger = document.querySelector(
-          "#main_bars_hamburger"
-        );
-
-        main_bars.innerHTML +=
-          "<ul class='multi-column-dropdown' id='" +
-          menu_name +
-          "_dropdown'><h5><a>" +
-          menu_name +
-          "</a></h5></ul>";
-        main_bars_hamburger.innerHTML +=
-          "<ul class='multi-column-dropdown' id='" +
-          menu_name +
-          "_hamburger'><h5><a>" +
-          menu_name +
-          "</a></h5></ul>";
-      }
-    }
-
-    for (let i = 0; i < objParam.length; i++) {
-      let upper_menu_id = objParam[i].upper_menu_id;
-      let menu_name = objParam[i].menu_name;
-      if (upper_menu_id == 15) {
-        let bars_dropdown = document.querySelector("#Bars_dropdown");
-        let bars_hamburger = document.querySelector("#Bars_hamburger");
-
-        bars_dropdown.innerHTML += "<li><a>" + menu_name + "</a></li>";
-        bars_hamburger.innerHTML += "<li><a>" + menu_name + "</a></li>";
-      }
-    }
-
-    for (let i = 0; i < objParam.length; i++) {
-      let upper_menu_id = objParam[i].upper_menu_id;
-      let menu_name = objParam[i].menu_name;
-      if (upper_menu_id == 24) {
-        let main_beauty = document.querySelector("#main_beauty");
-        let main_beauty_hamburger = document.querySelector(
-          "#main_beauty_hamburger"
-        );
-
-        main_beauty.innerHTML +=
-          "<ul class='multi-column-dropdown' id='" +
-          menu_name +
-          "_dropdown'><h5><a>" +
-          menu_name +
-          "</a></h5></ul>";
-        main_beauty_hamburger.innerHTML +=
-          "<ul class='multi-column-dropdown' id='" +
-          menu_name +
-          "_hamburger'><h5><a>" +
-          menu_name +
-          "</a></h5></ul>";
-      }
-    }
-
-    for (let i = 0; i < objParam.length; i++) {
-      let upper_menu_id = objParam[i].upper_menu_id;
-      let menu_name = objParam[i].menu_name;
-      if (upper_menu_id == 48) {
-        let beauty_dropdown = document.querySelector("#Beauty_dropdown");
-        let beauty_hamburger = document.querySelector("#Beauty_hamburger");
-
-        beauty_dropdown.innerHTML += "<li><a>" + menu_name + "</a></li>";
-        beauty_hamburger.innerHTML += "<li><a>" + menu_name + "</a></li>";
-      }
-    }
-
-    for (let i = 0; i < objParam.length; i++) {
-      let upper_menu_id = objParam[i].upper_menu_id;
-      let menu_name = objParam[i].menu_name;
-      if (upper_menu_id == 33) {
-        let fashion_dropdown = document.querySelector("#fashion_dropdown");
-        let fashion_hamburger = document.querySelector("#fashion_hamburger");
-
-        fashion_dropdown.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
-        fashion_hamburger.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
-      }
-    }
-
-    for (let i = 0; i < objParam.length; i++) {
-      let upper_menu_id = objParam[i].upper_menu_id;
-      let menu_name = objParam[i].menu_name;
-      if (upper_menu_id == 38) {
-        let entertainment_dropdown = document.querySelector(
-          "#entertainment_dropdown"
-        );
-        let entertainment_hamburger = document.querySelector(
-          "#entertainment_hamburger"
-        );
-
-        entertainment_dropdown.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
-        entertainment_hamburger.innerHTML +=
-          "<h5><a>" + menu_name + "</a></h5>";
-      }
-    }
-
-    for (let i = 0; i < objParam.length; i++) {
-      let upper_menu_id = objParam[i].upper_menu_id;
-      let menu_name = objParam[i].menu_name;
-      if (upper_menu_id == 43) {
-        let services_dropdown = document.querySelector("#services_dropdown");
-        let services_hamburger = document.querySelector("#services_hamburger");
-
-        services_dropdown.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
-        services_hamburger.innerHTML += "<h5><a>" + menu_name + "</a></h5>";
-      }
-    }
-  };*/
+    return openTag + objMenuData.menu_name + closeTag;
+  };
 
   /**
    * ----------------------------------------------------------------------------------
