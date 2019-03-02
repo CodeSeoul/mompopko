@@ -77,11 +77,11 @@
             // $_SESSION['login_id'] = $login_id;
             // $_SESSION.gc_maxlifetime = 30;
             
-            header ('location: business_index.html');
+            header ('Location: business_index.html');
         }
         else {
             echo "Your user ID or Password is Incorrect!<br> please Try Again";
-            header ('location: admin_login.php');
+            // header ('Location: admin_login.php');
 
         }
     }
@@ -93,7 +93,7 @@
     <script src='../../lib/frontend/bootstrap/js/bootstrap.js'></script>
 
     <script>
-        var error_message = document.queryselector('#error_message');
+        var error_message = document.querySelector('#error_message');
         // error_message.innerHTML = "<b>Your user ID or Password is Incorrect!<br> Please Try Again!</b>";
         var submit = document.querySelector('#login');
         submit.addEventListener('click',function(e){

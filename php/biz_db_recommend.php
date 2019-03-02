@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 
 require_once("dbConnect.php");
 
-if($_SERVER['REQUEST_METHOD']='POST' && isset($_POST['menuId'])){
+if($_SERVER['REQUEST_METHOD']=='POST' && isset($_POST['menuId'])){
 
     $menuId = $_POST['menuId'];
 
@@ -77,9 +77,10 @@ if($_SERVER['REQUEST_METHOD']='POST' && isset($_POST['menuId'])){
     }
     while($rcmdPosts['mostViews']['biz_id']==$rcmdPosts['rand']['biz_id']
     OR $rcmdPosts['lastUpload']['biz_id']==$rcmdPosts['rand']['biz_id']){
+        $randReq = $pdo->query($randQuery);
+        $randBiz = $randReq->fetch();
         $rcmdPosts['rand'] = $randBiz;
     }
-
     print_r(json_encode($rcmdPosts));
 }
 

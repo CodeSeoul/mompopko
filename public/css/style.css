@@ -142,6 +142,8 @@ header #top_search {
 }
 
 header .search_wrapper {
+  display: flex;
+  justify-content: center;
   position: relative;
   margin-top: -10px;
   margin-bottom: 20px;
@@ -445,7 +447,7 @@ header .navbar-nav > li > a {
   /*font-family: 'Pacifico', cursive;*/
   font-family: "Varela Round", sans-serif;
   padding-right: 15px;
-  margin: 20px 0px;
+  margin: 20px 0px 28px 0px;
 }
 
 .nav-tabs {

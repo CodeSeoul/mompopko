@@ -44,7 +44,7 @@ const searchBiz = ((objParam) => {
       // when searched data doesn't exist
       recentElem.innerHTML = `
           <div class="no-search-data">
-            There is no data for '${objParam.searchKeyword}'
+            No data for '${objParam.searchKeyword}'
           </div>
         `;
     }

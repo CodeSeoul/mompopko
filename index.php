@@ -19,7 +19,7 @@
 	</style>
 
 	<!-- serciceUtils -->
-	<script src="js/serviceUtils.js"></script>
+	<script type="text/javascript" src="js/serviceUtils.js"></script>
 	<script type="text/javascript" src="public/js/jquery.min.js"></script>
 	<script type="text/javascript">
         $(function() {
@@ -92,10 +92,10 @@
 							<input type="text" id="sb_keyword_label" value="Find" disabled/>
 							<input type="text" placeholder="wine bar, spa, cafe..." id="sb_keyword"/>
 						</div>
-						<div class="sb sb_input_location">
+						<!-- <div class="sb sb_input_location">
 							<input type="text" id="sb_location_label" value="Near" disabled/>
 							<input type="text" placeholder="Seoul, Korea" id="sb_location"/>
-						</div>
+						</div> -->
 						<div class="sb">
 							<input class="sb_search" type="submit" value=""/>
 						</div>
@@ -149,7 +149,7 @@
 								<div class="row">
 									<div class="col-sm-6">
 										<ul class="multi-column-dropdown" id="restaurants_dropdown">
-											<h5><a>Restaurants</a></h5>
+											<h5>Restaurants</h5>
 					                    </ul>
 					                </div>
 					                <div class="col-sm-6" id="main_bars">
@@ -231,13 +231,13 @@
 				</div>
 				<div class="col-sm-12">
 					<ul class="link-list">
-						<li>
+						<!-- <li>
 							<a href="">ABOUT</a>
-						</li>
+						</li> -->
 						<li>MOMPOPKO @ 2018</li>
-						<li>
+						<!-- <li>
 							<a href="">CONTACT</a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 			</div>
@@ -253,6 +253,9 @@
 	<script src="public/js/bootstrap.min.js"></script>
 	<script src="public/js/index.js"></script>
 	<script type="text/javascript">
+		// fetch & load for menu datas.
+		serviceUtils.fetchMenu();
+		
 		// for search biz
 		const searchForm = document.querySelector("#top_search");
 		searchForm.addEventListener('submit', (e) => serviceUtils.searchBizData(e));
