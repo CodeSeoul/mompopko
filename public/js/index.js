@@ -51,14 +51,29 @@ function loadByRecent(nb_posts) {
       var offset = nb_posts;
       var main_div_recent = document.querySelector("#recent");
       main_div_recent.innerHTML = "";
-      console.log(result);
+
       for (var i = 0; i < result.length && i < offset; i++) {
         var biz_name = result[i].biz_name;
         var biz_level = result[i].biz_level;
         var biz_id = result[i].biz_id;
+        var menu_level = result[i].menu_level;
+
         var menu_main = result[i].menu_name;
+        var menu_sub = result[i].menu_name;
         var arry_menu_parents = result[i].menu_parents.split(" > ");
         var arry_topest_parent = arry_menu_parents[0];
+
+        if (result[i].menu_level == 2) {
+          var menu_child = result[i].menu_name;
+        }
+        if (menu_level == 3) {
+          var menu_grand_child = result[i].menu_name;
+        }
+        if (menu_child == "") {
+          var menu_sub = menu_grand_child;
+        } else {
+          var menu_sub = menu_child;
+        }
         main_div_recent.innerHTML += `<div class="col-xs-12 col-sm-6 col-md-4 business-post">
 					<div class="thumb-box">
 						<div class="thumb-img">
@@ -194,7 +209,9 @@ function loadTrends(nb_trends) {
         var headline = result[i].trend_headline;
         var article = result[i].trend_article;
         var id = result[i].trend_id;
+        console.log(result[i].file_path);
         var filepath = result[i].file_path.replace("../public", "public");
+        console.log(filepath);
 
         main_div_recent.innerHTML += `
 				<div class="col-xs-12 col-sm-6 col-md-4 trend-post">
@@ -259,31 +276,31 @@ function loadMore(currentState) {
  * ----------------------------------------------------------------------------------
  */
 
-// function clickCounter() {
-//   ajax_view = new XMLHttpRequest();
-//   ajax_view.open("POST", "./php/click_counter.php", true);
-//   ajax_view.setRequestHeader(
-//     "Content-Type",
-//     "application/x-www-form-urlencoded"
-//   );
-//   ajax_view.send();
-//   ajax_view.onreadystatechange = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//       var result = JSON.parse(this.responseText);
-//       var biz_click = document.querySelector("#" + biz_id);
-//       biz_click.onclick = function() {
-//         viewCounter();
-//       };
-//       for (var i = 0; i < result.length && i < offset; i++) {
-//         var biz_view_cnt = result[i].biz_view_cnt;
-//         function viewCounter() {
-//           biz_view_cnt += 1;
-//         }
-//       }
-//     }
-//   };
-// }
-// clickCounter();
+function clickCounter() {
+  ajax_view = new XMLHttpRequest();
+  ajax_view.open("POST", "./php/click_counter.php", true);
+  ajax_view.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded"
+  );
+  ajax_view.send();
+  ajax_view.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      var result = JSON.parse(this.responseText);
+      var biz_click = document.querySelector("#" + biz_id);
+      biz_click.onclick = function() {
+        viewCounter();
+      };
+      for (var i = 0; i < result.length && i < offset; i++) {
+        var biz_view_cnt = result[i].biz_view_cnt;
+        function viewCounter() {
+          biz_view_cnt += 1;
+        }
+      }
+    }
+  };
+}
+clickCounter();
 
 // var biz_click = document.querySelector("#" + biz_id);
 // biz_click.onclick = function() {clickCounter()};

@@ -2,8 +2,8 @@
     try
 {
     $host = 'mompopkoapi.wcoding.com';
-    $user = 'mompopko_api';
-    $password = 'uAVPVDMZz9N8d9RC';
+    $user = 'mompopko_admin';
+    $password = 'windMarshall92Adult';
     $port = '8833';
     $dbname = 'mompopko';
     $dsn = 'mysql:host='. $host . ';port=' . $port . ';dbname=' . $dbname;
