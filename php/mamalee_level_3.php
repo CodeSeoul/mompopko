@@ -87,8 +87,8 @@ $bizInfo = $getBizInfoReq->fetchAll();
 					<div class="story">
 						<?= $biz_interview_conts; ?>
 						<div class="story_highlight">
-						<span><?= ($biz_popular_item=='')? '' : "Popular:" . $biz_popular_item;?></span><?= ($biz_popular_item=='')? '' : '<br>'?>
-							<span><?= ($biz_popular_item=='')? '' : "Recommended:" . $biz_popular_item;?></span>
+						<span><?= ($biz_popular_item=='')? '' : "<b>Popular : </b>" . $biz_popular_item;?></span><?= ($biz_popular_item=='')? '' : '<br>'?>
+							<span><?= ($biz_popular_item=='')? '' : "<b>Recommended : </b>" . $biz_popular_item;?></span>
 						</div>
 					</div>
 					<ul class="story_contact">
