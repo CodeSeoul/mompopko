@@ -92,10 +92,10 @@
 							<input type="text" id="sb_keyword_label" value="Find" disabled/>
 							<input type="text" placeholder="wine bar, spa, cafe..." id="sb_keyword"/>
 						</div>
-						<div class="sb sb_input_location">
+						<!-- <div class="sb sb_input_location">
 							<input type="text" id="sb_location_label" value="Near" disabled/>
 							<input type="text" placeholder="Seoul, Korea" id="sb_location"/>
-						</div>
+						</div> -->
 						<div class="sb">
 							<input class="sb_search" type="submit" value=""/>
 						</div>
@@ -231,13 +231,13 @@
 				</div>
 				<div class="col-sm-12">
 					<ul class="link-list">
-						<li>
+						<!-- <li>
 							<a href="">ABOUT</a>
-						</li>
+						</li> -->
 						<li>MOMPOPKO @ 2018</li>
-						<li>
+						<!-- <li>
 							<a href="">CONTACT</a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 			</div>

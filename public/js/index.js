@@ -177,9 +177,7 @@ function loadTrends(nb_trends) {
 				var headline = result[i].trend_headline;
 				var article = result[i].trend_article;
 				var id = result[i].trend_id;
-				console.log(result[i].file_path);
 				var filepath = result[i].file_path.replace('../public', 'public');
-				console.log(filepath);
 
 				main_div_recent.innerHTML += `
 				<div class="col-xs-12 col-sm-6 col-md-4 trend-post">

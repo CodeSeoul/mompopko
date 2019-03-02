@@ -1,7 +1,14 @@
 <?php
 
-// get business info for this business page
 require_once('dbConnect.php');
+
+//increase view count
+$incViewCntQuery = 'UPDATE tb_biz SET biz_view_cnt = biz_view_cnt +1 WHERE biz_id=:biz_id';
+$incViewCntReq = $pdo->prepare($incViewCntQuery);
+$incViewCntReq->bindParam(":biz_id",htmlspecialchars($_GET['biz_id']),PDO::PARAM_INT);
+$incViewCntReq->execute();
+
+// get business info for this business page
 $getBizInfoQuery = 'SELECT * FROM tb_biz LEFT JOIN tb_file ON tb_biz.file_grp_id = tb_file.file_grp_id WHERE tb_biz.biz_id = :biz_id ORDER BY tb_file.file_order ASC';
 $getBizInfoReq = $pdo->prepare($getBizInfoQuery);
 $getBizInfoReq->bindParam(":biz_id",$_GET['biz_id'],PDO::PARAM_INT);
