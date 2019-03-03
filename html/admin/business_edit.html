@@ -24,11 +24,16 @@
     <header id="header"></header>
     <div class="container mb-5">
       <form
-        action="#"
+        action="../../php/business_edit.php"
         method="POST"
         enctype="multipart/form-data"
-        onsubmit="return utils.checkValidation()"
       >
+
+      <div class="form-group">
+        <label for="businessName" class="essential-asterisk">Business Name</label>
+        <input name="businessName" type="text" id="businessName" class="form-control essential-border" />
+      </div>
+
         <div class="form-group">
           <label for="level" class="essential-asterisk">Level</label>
           <!-- <input type="text" id="level" class="form-control" /> -->
@@ -37,28 +42,6 @@
             id="bizLevel"
             class="form-control essential-border"
           ></select>
-        </div>
-
-        <div class="form-group">
-          <label for="mainImages">Main image</label>
-          <input
-            name="mainImage"
-            type="file"
-            id="mainImage"
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="subImages">Sub images</label>
-          <input
-            multiple
-            name="subImages[]"
-            type="file"
-            multiple
-            id="subImages"
-            class="form-control"
-          />
         </div>
 
         <div class="form-group">
@@ -247,9 +230,14 @@
           <input name="twitter" type="url" id="twitter" class="form-control" />
         </div>
 
+        <div hidden class="form-group">
+          <label for="biz_id">biz_id</label>
+          <input name="biz_id" type="text" id="biz_id" class="form-control" />
+        </div>
+
         <div class="container">
           <div class="row justify-content-end">
-            <button type="submit" class="mr-3 btn btn-info">Preview</button>
+            <button id='btn-submit' type="submit" class="mr-3 btn btn-info">Submit</button>
             <button class="btn btn-danger">Cancel</button>
           </div>
         </div>

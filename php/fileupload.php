@@ -4,6 +4,14 @@ error_reporting(E_ALL);
 ini_set('display_errors', '1');
 session_start();
 
+/**
+ *
+ * -----------------------------------------------------------------------
+ * fileupload_biz : upload business image files when admin creates a business
+ * -----------------------------------------------------------------------
+ *
+ */
+
 function fileupload_biz($pdo, $biz_menuName){
 
     $fileGrpIdReq = $pdo->query("SELECT IFNULL(MAX(file_grp_id),0) FROM tb_file");
@@ -46,7 +54,7 @@ function fileupload_biz($pdo, $biz_menuName){
             }
 
             // Check file size
-            if ($mainImage["size"] > 500000) {
+            if ($mainImage["size"] > 1000000) {
                 echo "Sorry, your file is too large.";
                 $uploadOk = 0;
             }
@@ -109,7 +117,7 @@ function fileupload_biz($pdo, $biz_menuName){
         }
 
         // Check file size
-        if ($subImages["size"][$i] > 500000) {
+        if ($subImages["size"][$i] > 1000000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
@@ -153,6 +161,138 @@ function fileupload_biz($pdo, $biz_menuName){
     return $fileGrpId;
 }
 
+/**
+ *
+ * -----------------------------------------------------------------------
+ * find file_grp_id with biz_id
+ * -----------------------------------------------------------------------
+ *
+ */
+
+ function findFileGrpId($biz_id){
+     require("dbConnect.php");
+     $fileGrpIdReq = $pdo->prepare("SELECT file_grp_id FROM tb_biz WHERE biz_id = :biz_id");
+     $fileGrpIdReq->bindParam(":biz_id", $biz_id, PDO::PARAM_INT);
+     $fileGrpIdReq->execute();
+     return $fileGrpIdReq->fetch()['file_grp_id'];
+}
+
+/**
+ *
+ * -----------------------------------------------------------------------
+ * find real file path with file_grp_id and file_id
+ * -----------------------------------------------------------------------
+ *
+ */
+
+function findImgPath($file_grp_id, $file_id){
+    require("dbConnect.php");
+    $fileGrpIdReq = $pdo->prepare("SELECT file_path FROM tb_file WHERE file_id = $file_id AND file_grp_id = $file_grp_id");
+    $fileGrpIdReq->execute();
+    return $fileGrpIdReq->fetch()['file_path'];
+}
+
+/**
+ *
+ * -----------------------------------------------------------------------
+ * fileupload_replace_img
+ * -----------------------------------------------------------------------
+ *
+ */
+
+function fileupload_replace_img($pdo, $biz_id, $biz_menuName){
+
+    print_r($_FILES);
+
+    require("dbConnect.php");
+
+    // get file_grp_id
+
+    $fileGrpId = findFileGrpId($biz_id);
+
+    // get total number of images in the file grp
+
+    $getTotalReq = $pdo->query("SELECT file_id FROM tb_file WHERE file_grp_id = $fileGrpId");
+    $totalImg = $getTotalReq->rowCount();
+    echo $totalImg;
+
+
+    for($i=1;$i<$totalImg+1;$i++){
+        $queryName = 'newImage' . $i;
+        $file = $_FILES[$queryName];
+
+        if($file['size'] == 0) break;
+        else{
+            // delete existing image
+            $file_path = findImgPath($fileGrpId, $i);
+            unlink($file_path);
+            $uploadOk = 1;
+
+            // upload new image
+
+            $imgDir = "../public/img/$biz_menuName/";
+            $imgLogicName = $file['name'];
+            $imgType = strtolower(pathinfo(basename($imgLogicName),PATHINFO_EXTENSION));
+            $imgPhysicName = uniqid("",true);
+            $imgPath = $imgDir . basename($imgPhysicName . "." . $imgType);
+
+            //check if its an image
+            $check = getimagesize($file['tmp_name']);
+
+            if($check !== false) {
+                echo "File is an image - " . $check["mime"] . ".";
+            } else {
+                echo "File is not an image.";
+                $uploadOk = 0;
+            }
+
+            // Check file size
+            if ($file["size"] > 1000000) {
+                echo "Sorry, your file is too large.";
+                $uploadOk = 0;
+            }
+
+            // Allow certain file formats
+            if($imgType != "jpg" && $imgType != "png" && $imgType != "jpeg" && $imgType != "gif" ) {
+                echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+                $uploadOk = 0;
+            }
+
+            // Check if $uploadOk is set to 0 by an error
+            if ($uploadOk == 0) {
+                echo "Sorry, your file was not uploaded.";
+                // if everything is ok, try to upload file
+            } else {
+                if (move_uploaded_file($file["tmp_name"], $imgPath)) {
+                echo "The file has been uploaded.";
+
+                $uploadFileQuery = "UPDATE tb_file SET file_id=:file_id, file_order=:file_order, file_logic_name=:file_logic_name, file_physic_name=:file_physic_name, file_path=:file_path, file_extension=:file_extension, frst_input_date=NOW() WHERE file_grp_id = :file_grp_id AND file_id =:file_id";
+
+                $fileId = $i;
+                $uploadFile = $pdo->prepare($uploadFileQuery);
+                $uploadFile->bindParam(":file_id", $fileId, PDO::PARAM_INT);
+                $uploadFile->bindParam(":file_order", $fileId, PDO::PARAM_INT);
+                $uploadFile->bindParam(":file_logic_name", $imgLogicName, PDO::PARAM_STR);
+                $uploadFile->bindParam(":file_physic_name", $imgPhysicName, PDO::PARAM_STR);
+                $uploadFile->bindParam(":file_path", $imgPath, PDO::PARAM_STR);
+                $uploadFile->bindParam(":file_extension", $imgType, PDO::PARAM_STR);
+                $uploadFile->bindParam(":file_grp_id", $fileGrpId, PDO::PARAM_STR);
+                $uploadFile->bindParam(":file_id", $fileId, PDO::PARAM_STR);
+                
+                $uploadFile->execute();
+                
+                } else {
+                exit();
+                echo "Sorry, there was an error uploading your file.";
+                }
+            }
+        }
+    
+    }
+    return $fileGrpId;
+    
+}
+
 function fileupload_trend($pdo){
 
     $fileGrpIdReq = $pdo->query("SELECT MAX(file_grp_id) FROM tb_file");
@@ -183,7 +323,7 @@ function fileupload_trend($pdo){
     }
 
     // Check file size
-    if ($trend_file["size"] > 500000) {
+    if ($trend_file["size"] > 1000000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
