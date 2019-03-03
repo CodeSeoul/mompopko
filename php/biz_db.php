@@ -58,7 +58,7 @@ ORDER BY A.biz_id";
     ':biz_name' => $biz_name
     ));$req->execute();
     $result = $req -> fetch();
-    
+
     $menu_navi = $result['menu_navi'];
     $image_files = $result['image_files'];
     $menu_name = $result['menu_name'];

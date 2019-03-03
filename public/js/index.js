@@ -242,37 +242,3 @@ function loadMore(currentState) {
 		}
 	});
 }
-
-/**
- * ----------------------------------------------------------------------------------
- * public
- * clickCounter: updates the view count by click
- * ----------------------------------------------------------------------------------
- */
-
-function clickCounter() {
-	ajax_view = new XMLHttpRequest();
-	ajax_view.open('POST', './php/click_counter.php', true);
-	ajax_view.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	ajax_view.send();
-	ajax_view.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200) {
-			var result = JSON.parse(this.responseText);
-			var biz_click = document.querySelector('#' + biz_id);
-			biz_click.onclick = function() {
-				viewCounter();
-			};
-			for (var i = 0; i < result.length && i < offset; i++) {
-				var biz_view_cnt = result[i].biz_view_cnt;
-				function viewCounter() {
-					biz_view_cnt += 1;
-				}
-			}
-		}
-	};
-}
-clickCounter();
-
-// var biz_click = document.querySelector("#" + biz_id);
-// biz_click.onclick = function() {clickCounter()};
-// function clickCounter(){}

@@ -6,7 +6,7 @@ session_start();
 
 function fileupload_biz($pdo, $biz_menuName){
 
-    $fileGrpIdReq = $pdo->query("SELECT MAX(file_grp_id) FROM tb_file");
+    $fileGrpIdReq = $pdo->query("SELECT IFNULL(MAX(file_grp_id),0) FROM tb_file");
     $fileGrpId = (int)($fileGrpIdReq->fetch())[0]+1;
 
     $mainImage = $_FILES['mainImage'];
@@ -143,12 +143,14 @@ function fileupload_biz($pdo, $biz_menuName){
                 $uploadMainImgReq->bindParam(":file_extension", $imgType, PDO::PARAM_STR);
                 
                 $uploadMainImgReq->execute();
+
             } else {
                 exit();
                 echo "Sorry, there was an error uploading your file.";
             }
         }
     }
+    return $fileGrpId;
 }
 
 function fileupload_trend($pdo){

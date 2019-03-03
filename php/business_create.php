@@ -1,6 +1,6 @@
 <?php 
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
+//error_reporting(E_ALL);
+//ini_set('display_errors', '1');
 session_start();
 
 require("dbConnect_admin.php");
@@ -41,7 +41,10 @@ require("dbConnect_admin.php");
         $biz_twitter = htmlspecialchars($_POST['twitter']);
 
         include "fileupload.php";
-        fileupload_biz($pdo,$biz_menuName);
+        
+        $fileGrpId = fileupload_biz($pdo,$biz_menuName);
+
+        echo $fileGrpId;
 
         $findExistingBiz ='SELECT * FROM tb_biz WHERE biz_name = :biz_name';
         

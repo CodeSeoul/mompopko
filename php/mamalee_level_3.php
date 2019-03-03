@@ -1,6 +1,6 @@
 <?php
 
-require_once('dbConnect.php');
+require_once('dbConnect_admin.php');
 
 //increase view count
 $incViewCntQuery = 'UPDATE tb_biz SET biz_view_cnt = biz_view_cnt +1 WHERE biz_id=:biz_id';
@@ -9,7 +9,7 @@ $incViewCntReq->bindParam(":biz_id",htmlspecialchars($_GET['biz_id']),PDO::PARAM
 $incViewCntReq->execute();
 
 // get business info for this business page
-$getBizInfoQuery = 'SELECT * FROM tb_biz LEFT JOIN tb_file ON tb_biz.file_grp_id = tb_file.file_grp_id WHERE tb_biz.biz_id = :biz_id ORDER BY tb_file.file_order ASC';
+$getBizInfoQuery = "SELECT *, CONCAT(fn_menu_parents(tb_menu.menu_id), ' > ', tb_menu.menu_name) AS menu_navi FROM  tb_biz INNER JOIN tb_menu ON tb_biz.menu_id = tb_menu.menu_id LEFT JOIN tb_file ON tb_biz.file_grp_id = tb_file.file_grp_id WHERE tb_biz.biz_id = :biz_id ORDER BY tb_file.file_order ASC";
 $getBizInfoReq = $pdo->prepare($getBizInfoQuery);
 $getBizInfoReq->bindParam(":biz_id",$_GET['biz_id'],PDO::PARAM_INT);
 $getBizInfoReq->execute();
@@ -25,21 +25,19 @@ $bizInfo = $getBizInfoReq->fetchAll();
 
 	 <!-- // header.php -->
 
-	<section id="content_page">
+	 <section id="content_page">
 		<div class="container">
 			<div class="row">
 				<div class="col-xs-12">
 					<h3 class="title"><?= $bizInfo[0]['biz_name'];?></h3>
 					<h5 class="thumb-category">
 						<span>
-							<i class="fas fa-utensils"></i>
 							<span class="main">
-								<?= $menu_navi;?>
+								<?= $bizInfo[0]['menu_navi'];?>
 							</span>
 							<i class="fas fa-arrow-right"></i>
 						</span>
 						<span>
-							<i class="fas fa-map-pin"></i>
 							<span class="sub">
 							<?php 
 								$biz_district_real = str_replace("-gu", "", $bizInfo[0]['biz_district']);
@@ -49,7 +47,6 @@ $bizInfo = $getBizInfoReq->fetchAll();
 							<i class="fas fa-arrow-right"></i>
 						</span>
 						<span>
-							<i class="fas fa-calendar"></i>
 							<span class="sub">Opened <?= $bizInfo[0]['biz_open_date'] ?></span>
 						</span>
 					</h5>
@@ -81,25 +78,23 @@ $bizInfo = $getBizInfoReq->fetchAll();
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="story_detail">
-						<li><i class="fas fa-user"></i> Owner: <span class="title"><?= $biz_owner;?></span></li>
-						<li><i class="fas fa-clock"></i> Published: <span><?= $biz_interview_date; ?></span></li>
+						<li><i class="fas fa-user"></i> Owner: <span class="title"><?= $bizInfo[0]['biz_owner'];?></span></li>
+						<li><i class="fas fa-clock"></i> Published: <span><?= $bizInfo[0]['biz_interview_date']; ?></span></li>
 					</ul>
 					<div class="story">
 						<?= $biz_interview_conts; ?>
 						<div class="story_highlight">
-						<span><?= ($biz_popular_item=='')? '' : "Popular:" . $biz_popular_item;?></span><?= ($biz_popular_item=='')? '' : '<br>'?>
-							<span><?= ($biz_popular_item=='')? '' : "Recommended:" . $biz_popular_item;?></span>
+						<span><?= ($bizInfo[0]['biz_popular_item']=='')? '' : "Popular : " . $bizInfo[0]['biz_popular_item'] . "<br/>";?></span>
+							<span><?= ($bizInfo[0]['biz_recommended']=='')? '' : "Recommended : " . $bizInfo[0]['biz_recommended'];?></span>
 						</div>
 					</div>
 					<ul class="story_contact">
-						<li><span><i class="fas fa-phone"></i> Telephone: </span><?= $biz_tel;?></li>  | 
-						<li><span><i class="fas fa-clock"></i> Hours: </span><?= $biz_open_hour;?></li>  | 
-						<li><span><i class="fab fa-instagram"></i> Instagram: </span> <a>
+						<li><span><?= ($bizInfo[0]['biz_open_hour']=='')? '' : "Hours : " . $bizInfo[0]['biz_open_hour'] . " | ";?> </span>
+						<li><span><?= ($bizInfo[0]['biz_tel']=='')? '' : " Phone : " . $bizInfo[0]['biz_tel'] . " | ";?> </span>
 						<?php 
 						$takeout = array(" ","'",",");
-						echo "@" . str_replace($takeout, "", $real_biz_name);
 						?>
-						</a></li>
+						<li><span><?= ($bizInfo[0]['biz_instagram']=='')? '' : "  Instagram : @" . str_replace($takeout, "", $bizInfo[0]['biz_name']);?> </span></li>
 					</ul>
 				</div>
 			</div>
