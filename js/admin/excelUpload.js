@@ -71,6 +71,7 @@ let excelConversion = (() => {
 	}
 
 	function sendJson(json) {
+		console.log(json);
 		document.querySelector('form').addEventListener('submit', e => {
 			e.preventDefault();
 			let xhr = new XMLHttpRequest();
@@ -78,6 +79,7 @@ let excelConversion = (() => {
 			xhr.setRequestHeader('Content-Type', 'application/json');
 			xhr.onreadystatechange = function() {
 				if (xhr.status == 200 && xhr.readyState == 4) {
+					console.log(xhr.response);
 				}
 			};
 			xhr.send(json);
