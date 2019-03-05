@@ -195,14 +195,16 @@ function findImgPath($file_grp_id, $file_id){
 /**
  *
  * -----------------------------------------------------------------------
- * fileupload_replace_img
+ * fileupload_replace_img :replace existing images with new ones
+ * @param
+ * - $pdo for db connection
+ *  - $biz_id : to find the business of which images will be replaced
+ *  - $biz_menuName : to get file path
  * -----------------------------------------------------------------------
  *
  */
 
-function fileupload_replace_img($pdo, $biz_id, $biz_menuName){
-
-    print_r($_FILES);
+function fileupload_replace_img($biz_id, $biz_menuName){
 
     require("dbConnect.php");
 
@@ -214,14 +216,14 @@ function fileupload_replace_img($pdo, $biz_id, $biz_menuName){
 
     $getTotalReq = $pdo->query("SELECT file_id FROM tb_file WHERE file_grp_id = $fileGrpId");
     $totalImg = $getTotalReq->rowCount();
-    echo $totalImg;
-
 
     for($i=1;$i<$totalImg+1;$i++){
         $queryName = 'newImage' . $i;
         $file = $_FILES[$queryName];
 
+        // if admin didn't replace the image, skip.
         if($file['size'] == 0) break;
+
         else{
             // delete existing image
             $file_path = findImgPath($fileGrpId, $i);
@@ -291,6 +293,61 @@ function fileupload_replace_img($pdo, $biz_id, $biz_menuName){
     }
     return $fileGrpId;
     
+}
+
+/**
+ *
+ * -----------------------------------------------------------------------
+ * delete_files : delete files
+ * @param
+ *  - $biz_id : to find the business of which images will be replaced
+ *  - $biz_menuName : to get file path
+ * -----------------------------------------------------------------------
+ *
+ */
+
+function delete_files($biz_id, $biz_menuName){
+
+    require("dbConnect_admin.php");
+
+    $fileGrpId = findFileGrpId($biz_id);
+
+    $getTotalReq = $pdo->query("SELECT file_id FROM tb_file WHERE file_grp_id = $fileGrpId");
+    $totalImg = $getTotalReq->rowCount();
+
+    for($i=1; $i<$totalImg+1; $i++){
+        $inputName = 'imageToDelete' . $i;
+        if(isset($_POST[$inputName])){
+
+            //delete the file entry from tb_file
+
+            $deleteQuery = "DELETE FROM tb_file WHERE file_grp_id = 99999 AND file_id=:file_id";
+            $deleteReq = $pdo->prepare($deleteQuery);
+            $deleteReq->bindParam(":file_id", $i, PDO::PARAM_INT);
+            $deleteReq->execute();
+
+            //delete the image file
+            $file_path = findImgPath($fileGrpId, $i);
+            unlink($file_path);
+
+
+        }
+    }
+
+}
+
+function add_more_images($biz_id, $biz_menuName){
+
+    $newSubImages = $_FILES['newSubImages'];
+
+    $imgDir = "../public/img/$biz_menuName/";
+
+
+    echo dirname(__FILE__) . "__FILE__ <br/>";
+    
+    for($i=0;$i<count($newSubImages['name']);$i++){
+        
+    }
 }
 
 function fileupload_trend($pdo){

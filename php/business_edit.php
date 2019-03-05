@@ -42,7 +42,16 @@ if($_SERVER['REQUEST_METHOD']=="POST"
         include "fileupload.php";
         
         //replace images
-        $fileGrpId = fileupload_replace_img($pdo,$biz_id,$biz_menuName);
+        $fileGrpId = fileupload_replace_img($biz_id, $biz_menuName);
+
+        //delete images
+        delete_files($biz_id, $biz_menuName);
+
+        //add more images
+        
+        add_more_images($biz_id, $biz_menuName);
+
+        //update tb_biz
 
             $editBizQuery = 'UPDATE tb_biz SET 
                 menu_id=:menu_id,
