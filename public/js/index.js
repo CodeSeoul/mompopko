@@ -62,7 +62,12 @@ function loadByRecent(nb_posts) {
 					<div class="thumb-box">
 						<div class="thumb-img">
 							<a href="php/mamalee_level_${biz_level}.php?biz_id=${biz_id}" id="${biz_name}">
-								<img src=${result[i]['file_path'].replace('/var/www/html/', 'public/')} width="100%" alt="" />
+								<img src=${biz_level == 1
+									? '../public/img/' +
+										encodeURI(result[i]['file_path'].replace('/var/www/html/', 'public/'))
+									: encodeURI(
+											result[i]['file_path'].replace('/var/www/html/', 'public/')
+										)} width="100%" alt="" />
 							</a>
 						</div>
 						<div class="thumb-content">
@@ -127,7 +132,12 @@ function loadByPopular(nb_posts) {
 					<div class="thumb-box">
 						<div class="thumb-img">
 							<a href="php/mamalee_level_${biz_level}.php?biz_id=${biz_id}" id="${biz_name}">
-								<img src=${result[i]['file_path'].replace('/var/www/html/', 'public/')} width="100%" alt="" />
+								<img src=${biz_level == 1
+									? '../public/img/' +
+										encodeURI(result[i]['file_path'].replace('/var/www/html/', 'public/'))
+									: encodeURI(
+											result[i]['file_path'].replace('/var/www/html/', 'public/')
+										)} width="100%" alt="" />
 							</a>
 						</div>
 						<div class="thumb-content">

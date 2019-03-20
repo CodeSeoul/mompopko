@@ -77,7 +77,9 @@ let excelConversion = (() => {
 			xhr.open('POST', '../../php/excelUpload.php');
 			xhr.setRequestHeader('Content-Type', 'application/json');
 			xhr.onreadystatechange = function() {
-				if (xhr.status == 200 && xhr.readyState == 4) {
+				if (xhr.readyState != 4) return;
+
+				if (xhr.status == 200) {
 					console.log(xhr.response);
 				}
 			};
